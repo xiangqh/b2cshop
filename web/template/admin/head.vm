@@ -1,0 +1,40 @@
+<div id="header">
+	<div id="headertop">
+		<div class="logo">
+			##<a href="#"><img height="28" width="303" src="image/logo2.jpg"/></a>
+		</div>
+		<p><a href="/sc/logout.htm">退出管理</a></p>
+	</div>
+	
+	 <div class="sc-nav">
+	  <ul class="sc-nav-head">
+	  #foreach( $scMenu2 in $menuListS )
+									<li><a  href="$!scMenu2.m_url">$!scMenu2.m_name</a></li>
+									#end
+	  </ul>
+	<!--主菜单列表-->
+	  <div class="sc-right">
+	  <span id="clickmodle" class="bh-ico-1 "onclick="dis_sc()" style="width:120px;height;29px;">$!sys_name</span> 
+                <div class="clig hidden_sc" id="system_id">
+                    <ul >
+                    #foreach( $scMenu in $menuList )
+		     <li><a  href="$!scMenu.m_url">$!scMenu.m_name</a></li>
+		    #end
+                    </ul>
+                <div class="bom_sc"/>
+	   </div>
+          </div>
+	 </div>
+</div>
+<div class="sc-secnav">
+    <div class="sc-secnav-head">
+    	#foreach( $scMenu3 in $menuListT )
+	  <a href="$!scMenu3.m_url"><span>$!scMenu3.m_name</span></a>
+	#end
+     </div>
+</div>
+<script>
+function dis_sc(){
+  document.getElementById("system_id").style.display="block";
+}
+</script>

@@ -1,0 +1,22 @@
+failed
+trrrrrrrrrrrrrrrrrrr
+${qq}
+${name}刘志富
+<div class="logo">
+			<a href="#"><img height="43" width="303" src="../image/logo.gif"></a>
+		</div>
+		<div id="menu">
+			<ul name="menu">
+				<li class="first selected"><a hidefocus="true" href="#">系统设置</a></li>
+				<li><a hidefocus="true" href="#">商品管理</a></li>
+				<li><a hidefocus="true" href="#">会员管理</a></li>
+				<li><a hidefocus="true" href="#">订单管理</a></li>
+				<li><a hidefocus="true" href="#">促销活动</a></li>
+				<li><a hidefocus="true" href="#">内容管理</a></li>
+				<li class="last"><a hidefocus="true" href="#">统计查看</a></li>
+			</ul>
+		</div>
+		<p><a href="#">退出管理</a></p>
+	</div>
+	<div id="info_bar">
+	</div>

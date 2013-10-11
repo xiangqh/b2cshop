@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>3655订单中心-投诉记录</title>
+<link href="${cssDomain}/css/reset.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/common.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/page.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="${jsDomain}/js/jquery.js"></script>
+<script type="text/javascript" src="${jsDomain}/js/jquery.cookie.js"></script>
+</head>
+<body id="bh-member-toushu" class="bh-mbody">
+<!--head begin-->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:HEAD,vmpath:frontpage/member/fkhead.vm")
+<!--head end-->
+<div class="bh-p-content">
+  <div class="bh-content">
+    <div class="bh-section">
+      <div class="bh-bread bh-bigFont"><span class="bh-strong ">我的3655</span>&nbsp;&gt;&nbsp;<span>订单中心</span></div>
+    </div>
+    <div class="bh-section">
+      <div class="bh-sidebar-left">
+       #getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:LEFT,vmpath:frontpage/member/left.vm");
+      </div>
+      <div class="bh-mLeft bh-container">
+        <div class="bh-m-rwrap">
+          <div class="bh-order bh-toushu">
+            <div class="bh-ztab bh-member-ztab">
+              <h1>我的投诉</h1>
+            </div>
+            <div class="bh-zcon bh-mtop5">
+              <ul>
+                <li><span><a href="complain.htm">选择订单</a></span></li>
+                <li class="bh-on"><span><a href="complainList.htm">投诉记录</a></span></li>
+              </ul>
+         #*     
+		 <div class="bh-tj bh-mtop10">
+                状态&nbsp;<select>
+                  <option>未完成</option>
+                </select>
+              </div>
+			  *#
+              <table width="829" border="0" cellspacing="0" cellpadding="0" class="bh-table1">
+                <tr>
+                  <th width="200" align="center">投诉内容</th>
+                  <th width="120">类型</th>
+                  <th width="120">涉及订单</th>
+                  <th>提交时间</th>
+                  <th width="120">状态</th>
+                  <th width="110" style="border-right:1px solid #eee;">操作</th>
+                </tr>
+				#foreach($complain in $complains)
+                <tr>
+                  <td><a href="/sc/frontpage/member/complainInfo.htm?complain_id=${complain.id}" class="bh-toushutitle">$complain.content</a></td>
+                  <td>#if($complain.type==1)产品相关
+				      #elseif($complain.type==2)22222
+					  #elseif($complain.type==3)3333
+					  #else 4444
+					  #end
+				  </td>
+                  
+                  <td>$complain.order_code</td>
+                  <td>$complain.create_time</td>
+                  
+                  <td>#if($complain.status==0)待处理
+				      #else 已解决
+				  #end</td>
+                  <td><a href="/sc/frontpage/member/complainInfo.htm?complain_id=${complain.id}">查看</a></td>
+                </tr>
+				#end
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bh-clear"></div>
+    </div>
+    <div class="bh-clear"></div>
+  </div>
+</div>
+<!-- foot begin -->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:FOOT,vmpath:frontpage/member/fkfoot.vm")
+<!-- foot end -->
+</body>
+</html>

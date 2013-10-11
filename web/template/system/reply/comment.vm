@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>${goods_model.commodityName}-评论</title>
+<link rel="stylesheet" type="text/css" href="${request.getContextPath()}/frontpage/css/reset.css"/>
+<link rel="stylesheet" type="text/css" href="${request.getContextPath()}/frontpage/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="${request.getContextPath()}/frontpage/css/page.css"/>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/util.js"></script>
+</head>
+<body id="bh-member-comment" class="bh-mbody bh-mbody-210">
+<!--head begin-->
+ #getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:HEAD,vmpath:frontpage/head.vm");
+<!--head end-->s
+<div class="bh-p-content">
+  <div class="bh-content">
+    <div class="bh-section">
+      <div class="bh-bread bh-bigFont"><span class="bh-strong ">我的3655</span>&nbsp;&gt;&nbsp;<a href="#">鞋帽</a>&nbsp;&gt;&nbsp;<a href="#">反帝</a><span>df</span></div>
+    </div>
+    <div class="bh-section">
+      <div class="bh-sidebar-left">
+        <div class="bh-base-pd">
+          <div class="bh-ztab">
+            <h3>商品信息</h3>
+          </div>
+          <div class="bh-zcon">
+            <div class="bh-img"><a href="$!{scpath}/showgoods.htm?gs=${goods_model.id}" target="_blank"><img src="${commodityImgsDomain}${goods_model.categoryId}/${goods_model.id}_1_4.${goods_model.imgSuffix}" width="130" height="130"/> </a></div>
+            <div class="bh-title">商品名称：<a href="$!{scpath}/showgoods.htm?gs=${goods_model.id}" target="_blank">${goods_model.commodityName}</a></div>
+            <div class="bh-zprice bh-mtop5">京创实际价：<span class="bh-red bh-strong">￥${goods_model.priceActual}</span></div>
+            <div class="bh-zprice bh-mtop5">京创折扣价：<span class="bh-red bh-strong">￥${goods_model.priceDiscount}</span></div>
+            <div class="bh-core bh-mtop5 bh-overf"><span class="bh-fl">评价得分：</span>
+              <div class="bh-fl">
+                <div id="product_star" class="star sa5 bh-fl"></div>
+                (<span>5</span>分)</div>
+            </div>
+            <div class="bh-comment bh-mtop5">评论数：<span>0</span>条</div>
+            <div class="bh-mtop10"><a class="bh-btn" href="#">添加到购物车</a></div>
+          </div>
+        </div>
+      </div><form id="2209f" method="post" action="addcmt.htm">
+      	<input type="hidden" name="11080" id="11080" value="${goods_model.id}"/> 
+          	<input type="hidden" name="00191" id="00191" value="${userId}"/> 
+          	<input type="hidden" name="00200" id="00200" value="${orderCode}"/> 
+          	<input type="hidden" name="00221" id="00221" value="${ctime}"/> 
+      <div class="bh-mLeft bh-container">
+        <div class="bh-m-rwrap bh-fr">
+          <div class="bh-comment-ztab">
+            <h2 class="bh-bigFont">发表评价</h2>
+          </div>
+          <div class="bh-zcon bh-comment-content">
+            <div class="bh-comment-message"> 
+            #if(${_flag}==1) 
+              欢迎您发表原创、与商品质量相关、对其它用户有参考价值的商品评价；<br/>
+              如果您发表的评价内容与商品本身的质量无关，评价将被删除；<br/>
+              您的评价通过审核后可以获得一定积分奖励，好的评价还会在首页展示并有额外的积分奖励哦！
+             #else
+             您无法对该商品进行评论：<br/>
+             1，您没有购买该商品；<br/>
+             2，您已经评价过该商品；<br/>
+             3，您对该商品的评论过期；<br/>
+             4，评论被关闭；<br/>
+            #end
+            </div>
+             #if(${_flag}==1)
+            <div class="bh-padLR10 bh-mtop10">
+            	<div class="bh-title">
+	              <dl>
+	                <dt><b>*</b>标题</dt>
+	                <dd>
+	                  <input type="text" class="bh-text" name="_p_title" id="_p_title"/>
+	                  <label id="titleerror" class="gray bh-padLR10">请填写字数，在4-50个字之间</label>
+	                </dd>
+	              </dl>
+            	</div>
+            	<div class="bh-core bh-mtop10">
+	              <dl>
+	                <dt><b>*</b>评分</dt>
+	                <dd><input type="hidden" name="_p_score" id="_p_score" value="1"/> 
+	                  <ul class="list-h form">
+	                    <li>
+	                    	<input type="hidden" id="imgdoma-hidden" value="${imageDomain}/images/" />
+	                      <span id="star-span" style="cursor:pointer;">
+							<img id="1-img-start" src="${imageDomain}/images/star-l.png" width="12" height="12"/>
+							<img id="2-img-start" src="${imageDomain}/images/star-h.png" width="12" height="12"/>
+							<img id="3-img-start" src="${imageDomain}/images/star-h.png" width="12" height="12"/>
+							<img id="4-img-start" src="${imageDomain}/images/star-h.png" width="12" height="12"/>
+							<img id="5-img-start" src="${imageDomain}/images/star-h.png" width="12" height="12"/>
+						  </span>
+	                      (<span id="scorecmm">1</span>分) 
+	                    </li>
+	                  </ul>
+	                  <div class="bh-clear"></div>
+	                </dd>
+	              </dl>
+            	</div>
+            	<div class="bh-good-bad bh-mtop10">
+	              <dl>
+	                <dt><b>*</b>优点</dt>
+	                <dd>
+	                  <input type="text" class="bh-text" name="_p_adv_" id="_p_adv_"/>
+	                  <label id="proserror" class="gray">请填写字数，在4-80个字之间</label>
+	                </dd>
+	              </dl>
+	              <dl>
+	                <dt><b>*</b>不足</dt>
+	                <dd>
+	                  <input type="text" class="bh-text" name="_p_def_" id="_p_def_"/>
+	                  <label id="conserror" class="gray">请填写字数，在4-80个字之间</label>
+	                </dd>
+	              </dl>
+              		<input type="button" value=" " class="bh-btn" id="002900P"/>
+            	</div>
+           	</div>
+           	#end
+          </div>
+        </div>
+      </div>
+    </div></form>
+    <div class="bh-clear"></div>
+  </div>
+</div>
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:FOOT,vmpath:frontpage/member/fkfoot.vm")<!-- foot end -->
+</body>
+</html>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/comment.js"></script>

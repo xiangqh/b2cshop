@@ -1,0 +1,239 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>图片上传</title>
+<link href="${request.getContextPath()}/css/admin.css" rel="stylesheet">
+<link href="${request.getContextPath()}/css/style.css" rel="stylesheet">
+<link href="${request.getContextPath()}/css/artDialog.css" rel="stylesheet">
+<script type="text/javascript" charset="utf-8" language="javascript" src="${request.getContextPath()}/js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${request.getContextPath()}/js/artDialog.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${request.getContextPath()}/js/util.js"></script>
+</head>
+
+<body>
+<div>
+	<table class="upload_table" id="upload_table">
+		<tbody>
+			<tr>
+				<td class="imgtd">
+					<span id="imgspan1">
+						#if(${img1}!="") 
+							<img src="${url}${img1}" />
+						#end
+					</span>
+				</td>
+				<td class="imgtd">
+					<span id="imgspan2">
+						#if(${img2}!="") 
+							<img src="${url}${img2}" />
+						#end
+					</span>
+				</td>
+				<td class="imgtd">
+					<span id="imgspan3">
+						#if(${img3}!="") 
+							<img src="${url}${img3}" />
+						#end
+					</span>
+				</td>
+			</tr>
+			<tr>
+				<td class="texttd">
+					<form id="img1_form" method="post" target="refreshFrame" enctype="multipart/form-data" action = "${request.getContextPath()}/cmdyImgUpload.htm">
+						<input type="hidden" name="splitAttrId" value="${splitAttrId}"/>
+						<input type="hidden" name="categoryId" value="${categoryId}"/>
+						<input type="hidden" name="opeartion" id="opeartion1" value="" />
+						<input type="hidden" name="number" value="1"/>
+						<button type="button" class="btn" onclick="submitForm('ADD','1');"><span>图片一上传</span></button>&nbsp;&nbsp;&nbsp;
+						<button type="button" class="btn" onclick="submitForm('DEL','1');"><span>删除</span></button>
+						<br/><input type="file" size="25" id="file1" name="upload.uf"/>
+					</form>
+				</td>
+				<td class="texttd">
+					<form id="img2_form" method="post" target="refreshFrame" enctype="multipart/form-data" action = "${request.getContextPath()}/cmdyImgUpload.htm">
+						<input type="hidden" name="splitAttrId" value="${splitAttrId}"/>
+						<input type="hidden" name="categoryId" value="${categoryId}"/>
+						<input type="hidden" name="opeartion" id="opeartion2" value="" />
+						<input type="hidden" name="number" value="2"/>
+						<button type="button" class="btn" onclick="submitForm('ADD','2');"><span>图片二上传</span></button>&nbsp;&nbsp;&nbsp;
+						<button type="button" class="btn" onclick="submitForm('DEL','2');"><span>删除</span></button>
+						<br/><input type="file" size="25" id="file2" name="upload.uf"/>
+					</form>
+				</td>
+				<td class="texttd">
+					<form  id="img3_form" method="post" target="refreshFrame" enctype="multipart/form-data" action = "${request.getContextPath()}/cmdyImgUpload.htm">
+						<input type="hidden" name="splitAttrId" value="${splitAttrId}"/>
+						<input type="hidden" name="categoryId" value="${categoryId}"/>
+						<input type="hidden" name="opeartion" id="opeartion3" value="" />
+						<input type="hidden" name="number" value="3"/>
+						<button type="button" class="btn" onclick="submitForm('ADD','3');"><span>图片三上传</span></button>&nbsp;&nbsp;&nbsp;
+						<button type="button" class="btn" onclick="submitForm('DEL','3');"><span>删除</span></button>
+						<br/><input type="file" size="25" id="file3" name="upload.uf"/>
+					</form>
+				</td>
+			</tr>
+			<tr>
+				<td class="imgtd">
+					<span id="imgspan4">
+						#if(${img4}!="") 
+							<img src="${url}${img4}" />
+						#end
+					</span>
+				</td>
+				<td class="imgtd">
+					<span id="imgspan5">
+						#if(${img5}!="") 
+							<img src="${url}${img5}" />
+						#end
+					</span>
+				</td>
+				<td class="imgtd">
+					<span id="imgspan6">
+						#if(${img6}!="") 
+							<img src="${url}${img6}" />
+						#end
+					</span>
+				</td>
+			</tr>
+			<tr>
+				<td class="texttd">
+					<form id="img4_form" method="post" target="refreshFrame" enctype="multipart/form-data" action = "${request.getContextPath()}/cmdyImgUpload.htm">
+						<input type="hidden" name="splitAttrId" value="${splitAttrId}"/>
+						<input type="hidden" name="categoryId" value="${categoryId}"/>
+						<input type="hidden" name="opeartion" id="opeartion4" value="" />
+						<input type="hidden" name="number" value="4"/>
+						<button type="button" class="btn" onclick="submitForm('ADD','4');"><span>图片四上传</span></button>&nbsp;&nbsp;&nbsp;
+						<button type="button" class="btn" onclick="submitForm('DEL','4');"><span>删除</span></button>
+						<br/><input type="file" size="25" id="file4" name="upload.uf"/>
+					</form>
+				</td>
+				<td class="texttd">
+					<form id="img5_form" method="post" target="refreshFrame" enctype="multipart/form-data" action = "${request.getContextPath()}/cmdyImgUpload.htm">
+						<input type="hidden" name="splitAttrId" value="${splitAttrId}"/>
+						<input type="hidden" name="categoryId" value="${categoryId}"/>
+						<input type="hidden" name="opeartion" id="opeartion5" value="" />
+						<input type="hidden" name="number" value="5"/>
+						<button type="button" class="btn" onclick="submitForm('ADD','5');"><span>图片五上传</span></button>&nbsp;&nbsp;&nbsp;
+						<button type="button" class="btn" onclick="submitForm('DEL','5');"><span>删除</span></button>
+						<br/><input type="file" size="25" id="file5" name="upload.uf"/>
+					</form>
+				</td>
+				<td class="texttd">
+					<form id="img6_form" method="post" target="refreshFrame" enctype="multipart/form-data" action = "${request.getContextPath()}/cmdyImgUpload.htm">
+						<input type="hidden" name="splitAttrId" value="${splitAttrId}"/>
+						<input type="hidden" name="categoryId" value="${categoryId}"/>
+						<input type="hidden" name="opeartion" id="opeartion6" value="" />
+						<input type="hidden" name="number" value="6"/>
+						<button type="button" class="btn" onclick="submitForm('ADD','6');"><span>图片六上传</span></button>&nbsp;&nbsp;&nbsp;
+						<button type="button" class="btn" onclick="submitForm('DEL','6');"><span>删除</span></button>
+						<br/><input type="file" size="25" id="file6" name="upload.uf"/>
+					</form>
+				</td>
+			</tr>
+			<tr>
+				<td class="imgtd">
+					<span id="imgspan7">
+						#if(${img7}!="") 
+							<img src="${url}${img7}" />
+						#end
+					</span>
+				</td>
+				<td class="imgtd">
+					<span id="imgspan8">
+						#if(${img8}!="") 
+							<img src="${url}${img8}" />
+						#end
+					</span>
+				</td>
+				<td class="imgtd">
+					<span id="imgspan9">
+						#if(${img9}!="") 
+							<img src="${url}${img9}" />
+						#end
+					</span>
+				</td>
+			</tr>
+			<tr>
+				<td class="texttd">
+					<form id="img7_form" method="post" target="refreshFrame" enctype="multipart/form-data" action = "${request.getContextPath()}/cmdyImgUpload.htm">
+						<input type="hidden" name="splitAttrId" value="${splitAttrId}"/>
+						<input type="hidden" name="categoryId" value="${categoryId}"/>
+						<input type="hidden" name="opeartion" id="opeartion7" value="" />
+						<input type="hidden" name="number" value="7"/>
+						<button type="button" class="btn" onclick="submitForm('ADD','7');"><span>图片七上传</span></button>&nbsp;&nbsp;&nbsp;
+						<button type="button" class="btn" onclick="submitForm('DEL','7');"><span>删除</span></button>
+						<br/><input type="file" size="25" id="file7" name="upload.uf"/>
+					</form>
+				</td>
+				<td class="texttd">
+					<form id="img8_form" method="post" target="refreshFrame" enctype="multipart/form-data" action = "${request.getContextPath()}/cmdyImgUpload.htm">
+						<input type="hidden" name="splitAttrId" value="${splitAttrId}"/>
+						<input type="hidden" name="categoryId" value="${categoryId}"/>
+						<input type="hidden" name="opeartion" id="opeartion8" value="" />
+						<input type="hidden" name="number" value="8"/>
+						<button type="button" class="btn" onclick="submitForm('ADD','8');"><span>图片八上传</span></button>&nbsp;&nbsp;&nbsp;
+						<button type="button" class="btn" onclick="submitForm('DEL','8');"><span>删除</span></button>
+						<br/><input type="file" size="25" id="file8" name="upload.uf"/>
+					</form>
+				</td>
+				<td class="texttd">
+					<form id="img9_form" method="post" target="refreshFrame" enctype="multipart/form-data" action = "${request.getContextPath()}/cmdyImgUpload.htm">
+						<input type="hidden" name="splitAttrId" value="${splitAttrId}"/>
+						<input type="hidden" name="categoryId" value="${categoryId}"/>
+						<input type="hidden" name="opeartion" id="opeartion9" value="" />
+						<input type="hidden" name="number" value="9"/>
+						<button type="button" class="btn" onclick="submitForm('ADD','9');"><span>图片九上传</span></button>&nbsp;&nbsp;&nbsp;
+						<button type="button" class="btn" onclick="submitForm('DEL','9');"><span>删除</span></button>
+						<br/><input type="file" size="25" id="file9" name="upload.uf"/>
+					</form>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<iframe id="refreshFrame" name="refreshFrame" width="0" height="0" border="0" frameborder="no" framespacing="0" ></iframe>
+</body>
+</html>
+<script type="text/javascript" charset="utf-8" language="javascript">
+	function tip(title,content){
+		dialogAlert(title,content);
+	}
+	function submitForm(opera,number){
+		if(opera == "ADD"){
+			if(document.getElementById("file"+number).value.length == 0){
+				dialogAlert("提示","没有选择上传的图片！");
+			}else{
+				var __form = document.getElementById("img"+number+"_form");
+				document.getElementById("opeartion"+number).value="ADD";
+				if(document.getElementById("imgspan"+number).innerHTML.toUpperCase().indexOf("IMG") != -1){
+					dialogConfirm("提示","确认要重新上传图片吗?",
+						function(){
+							//__form.enctype="multipart/form-data";
+							//__form.action = "${request.getContextPath()}/cmdyImgUpload.htm";
+							__form.submit();
+						}
+					);
+				}else{
+					//__form.enctype="multipart/form-data";
+					//__form.action = "${request.getContextPath()}/cmdyImgUpload.htm";
+					__form.submit();
+				}
+			}
+		}else{
+			if(document.getElementById("imgspan"+number).innerHTML.toUpperCase().indexOf("IMG") != -1){
+				dialogConfirm("提示","确认要删除图片吗?",
+					function(){
+						var __form = document.getElementById("img"+number+"_form");
+						document.getElementById("opeartion"+number).value="DEL";
+						//__form.enctype="application/x-www-form-urlencoded";
+						//__form.action = "${request.getContextPath()}/cmdyImgDel.htm";
+						__form.submit();
+					}
+				);
+			}else{
+				dialogAlert("提示","图片不存在，不能够删除！");
+			}
+		}
+	}
+</script>

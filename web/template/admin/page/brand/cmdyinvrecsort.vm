@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>分类推荐列表</title>
+<link href="${request.getContextPath()}/css/admin.css" rel="stylesheet">
+<link href="${request.getContextPath()}/css/style.css" rel="stylesheet">
+<link href="${request.getContextPath()}/css/artDialog.css" rel="stylesheet">
+<script type="text/javascript" charset="utf-8" language="javascript" src="${request.getContextPath()}/js/util.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${request.getContextPath()}/js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${request.getContextPath()}/js/artDialog.js"></script>
+</head>
+
+<body>
+#getMothodSc("moduleName=admin.action.Common" "parameters=tag:1,vmpath:admin/head.vm,level:3,level2:26");
+<div id="admin_right">
+	<div class="headbar">
+		<div class="position"><span>商品</span><span>&gt;</span><span>分类管理</span><span>&gt;</span><span>分类推荐货品列表</span></div>
+		<div class="searchbar">
+			<a href="javascript:;"><button onclick="batchdel();" type="button" class="btn"><span>批量删除</span></button></a>
+			<a href="javascript:;"><button onclick="batchupd();" type="button" class="btn"><span>批量修改</span></button></a>
+		</div>
+		<div class="field">
+			<div class="table_box">
+				<table class="list_table">
+					<colgroup>
+					<col width="80px"/>
+					<col width="350px"/>
+					<col width="120px"/>
+					<col width="70px"/>
+					</colgroup><thead>
+						<tr class="">
+							<th>选择</th>
+							<th>商品名称</th>
+							<th>货品名称</th>
+							<th>排序</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="content">
+		<form name="sortform" id="sortform" method="post" action="">
+		<input type="hidden" name="recId" value="${recId}" />
+		<input type="hidden" name="cateId" value="${cateId}" />
+		<table class="list_table" id="list_table">
+			<colgroup>
+					<col width="80px"/>
+					<col width="350px"/>
+					<col width="120px"/>
+					<col width="70px"/>
+			</colgroup>
+			<tbody>
+					#foreach($row in $rec_list)
+						<tr>
+							<td><input type="checkbox" value="${recId}_${cateId}_${row.invId}" name="checkedDelete" /></td>
+							<td title="${row.goodsName}">${row.getShortGoodsName()}</td>
+							<td>${row.invName}</td>
+							<td>
+								<input type="hidden" name="sort_inv_${velocityCount}" value="${row.invId}" />
+								<input title="排序，正整数" type="text" name="sort_${velocityCount}" style="ime-mode:disabled;" value="${row.sort}" onblur="checkNum(this);"  size="2" class="tiny" maxlength="7">
+							</td>
+						</tr>	
+					#end
+			</tbody>
+		</table>
+		</form>
+	</div>
+</div>
+#getMothodSc("moduleName=admin.action.Common" "parameters=tag:2,vmpath:admin/foot.vm");
+</body>
+</html>
+<script language="javascript">
+	function checkNum(obj){
+		var _value = obj.value;
+		var flag = true;
+		if(_value.length > 0){
+			if(_value.charAt(0) == "0" && _value.length > 1){
+				flag = false;
+			}else{
+				flag = /^\d+$/.test(_value);
+			}
+		}else{
+			flag = false;
+		}
+		if(!flag){
+			dialogAlert("提示","请正确填写排序数字！");
+			obj.focus();
+		}
+	}
+	function batchdel(){
+		dialogConfirm("提示","确认要删除分类推荐吗?",
+			function(){
+				var f = document.getElementById('sortform');
+				f.action = "${request.getContextPath()}/batchDelRec.htm";
+				f.submit();
+			}
+		);
+	}
+	function batchupd(){
+		dialogConfirm("提示","确认要修改分类推荐排序?",
+			function(){
+				var f = document.getElementById('sortform');
+				f.action = "${request.getContextPath()}/saveRecS.htm";
+				f.submit();
+			}
+		);
+	}
+</script>

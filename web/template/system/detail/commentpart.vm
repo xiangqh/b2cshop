@@ -1,0 +1,100 @@
+              #foreach($row in $comment_list)
+	              <div class="item">
+	                <div class="user">
+	                  <div class="u-icon"> <a target="_blank" href=""> 
+	                  	<img width="50" height="50" src="" upin=""> </a> </div>
+	                  <div class="u-name"> <a target="_blank" href="">${row.userName}</a> </div>
+	                  <span class="u-level"> <font style="color:#000000"> 铜牌会员 </font> </span>
+	                  <div class="u-address"> (${row.province})</div>
+	                </div>
+	                <div class="i-item">
+	                  <div class="o-topic"> <strong class="topic">
+	                  <a target="_blank" href="">${row.title}</a> </strong> 
+	                  <span>00</span> 
+	                  <span class="date-comment"> ${row.commentTime}</span> </div>
+	                  <div class="comment-content">
+	                    <dl>
+	                      <dt>优点：</dt>
+	                      <dd>${row.advantage}</dd>
+	                    </dl>
+	                    <dl>
+	                      <dt>不足：</dt>
+	                      <dd>${row.defect}</dd>
+	                    </dl>
+	                  </div>
+	                  <div class="btns">
+	                    <div class="useful"> 
+	                     <span>此评价对我</span> 
+	                     <a class="btn-agree" href="javascript:;" title="${row.useful}" name="agree" onclick="useful(this,${row.id});">有用(${row.useful})</a>
+	                     <a class="btn-oppose" href="javascript:;" title="${row.useless}" name="oppose" onclick="useless(this,${row.id});">没用(${row.useless})</a> 
+	                     </div>
+	                    <a class="btn-reply" target="_blank" href="reply.htm?gs=${_gs}&cmt=${row.id}">回复</a> </div>
+	                  	#foreach($rpy in $row.reply)
+	                  	<div class="item-reply">
+							<strong>${velocityCount}.</strong>
+							<dl>
+								<dt>
+								<span class="u-name">
+									<a target="_blank" href="">${rpy.userName}</a>
+									回复说：
+								</span>
+								<span class="date-comment"> ${rpy.replyTime}</span>
+								</dt>
+								<dd> ${rpy.content}</dd>
+							</dl>
+						</div>
+						#end
+	                  </div>
+	                <div class="corner tl"> </div>
+	                <div class="corner tr"> </div>
+	                <div class="corner b"> </div>
+	                <div class="corner bl"> </div>
+	                <div class="corner br"> </div>
+	              </div>
+              #end
+              <div class="clearfix">
+				<!--页面参数 pageNo:当前页,pageSize:每页记录数,totalpage:总记录数-->
+				<div id="__page__" class="pagin bh-fr">
+					#if(${_page.pageNo} > 1)
+						<a class="next" href="javascript:;" onclick="getPageData(${_gs},${_page.getPageNoDecreasing1()},${_page.pageSize})">上一页</a>
+					#end
+					#if(${_page.totalpage} <= 10)
+						#foreach($i in [1 .. ${_page.totalpage}])
+							<a href="javascript:void(0)" #if($i == ${_page.pageNo}) class="current" #else onclick="getPageData(${_gs},$i,${_page.pageSize})" #end>$i</a>
+						#end
+					#else
+						#set ($tmp = ${_page.totalpage} - 5)
+						#set ($tmp1 = ${_page.pageNo} + 2)
+						#if(${_page.pageNo} <= 5)
+							#foreach($i in [1 .. ${tmp1}])
+								<a href="javascript:void(0)" #if($i == ${_page.pageNo}) class="current" #else onclick="getPageData(${_gs},$i,${_page.pageSize})" #end>$i</a>
+							#end
+							<a href="javascript:;">...</a>
+							<a href="javascript:;" onclick="getPageData(${_gs},${_page.getTotalPageDecreasing1()},${_page.pageSize})">${_page.getTotalPageDecreasing1()}</a>
+							<a href="javascript:;" onclick="getPageData(${_gs},${_page.totalpage},${_page.pageSize})">${_page.totalpage}</a>
+						#elseif(${_page.pageNo} >=${tmp})
+							<a href="javascript:;" onclick="getPageData(${_gs},1,${_page.pageSize})">1</a>
+							<a href="javascript:;" onclick="getPageData(${_gs},2,${_page.pageSize})">2</a>
+							<a href="javascript:;">...</a>
+							#foreach($i in [${_page.getPageNoDecreasing2()} .. ${_page.totalpage}])
+								<a href="javascript:;" #if($i == ${_page.pageNo}) class="current" #else onclick="getPageData(${_gs},$i,${_page.pageSize})" #end>$i</a>
+							#end
+						#elseif(${_page.pageNo} > 5 && ${_page.pageNo} < ${tmp})
+							<a href="javascript:;" onclick="getPageData(${_gs},1,${_page.pageSize})">1</a>
+							<a href="javascript:;" onclick="getPageData(${_gs},2,${_page.pageSize})">2</a>
+							<a href="javascript:;">...</a>
+							<a href="javascript:;" onclick="getPageData(${_gs},${_page.getPageNoDecreasing2()},${_page.pageSize})">${_page.getPageNoDecreasing2()}</a>
+							<a href="javascript:;" onclick="getPageData(${_gs},${_page.getPageNoDecreasing1()},${_page.pageSize})">${_page.getPageNoDecreasing1()}</a>
+							<a href="javascript:;" class="current">${_page.pageNo}</a>
+							<a href="javascript:;" onclick="getPageData(${_gs},${_page.getPageNoIncrement1()},${_page.pageSize})">${_page.getPageNoIncrement1()}</a>
+							<a href="javascript:;" onclick="getPageData(${_gs},${_page.getPageNoIncrement2()},${_page.pageSize})">${_page.getPageNoIncrement2()}</a>
+							<a href="javascript:;">...</a>
+							<a href="javascript:;" onclick="getPageData(${_gs},${_page.getTotalPageDecreasing1()},${_page.pageSize})">${_page.getTotalPageDecreasing1()}</a>
+							<a href="javascript:;" onclick="getPageData(${_gs},${_page.totalpage},${_page.pageSize})">${_page.totalpage}</a>
+						#end
+					#end
+					#if(${_page.pageNo} < ${_page.totalpage})
+						<a class="next" href="javascript:;" onclick="getPageData(${_gs},${_page.getPageNoIncrement1()},${_page.pageSize})">下一页</a>
+					#end
+				</div>
+			  </div>

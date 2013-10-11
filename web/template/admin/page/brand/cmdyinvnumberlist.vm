@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>库存</title>
+<link href="${request.getContextPath()}/css/admin.css" rel="stylesheet">
+<link href="${request.getContextPath()}/css/style.css" rel="stylesheet">
+<link href="${request.getContextPath()}/css/artDialog.css" rel="stylesheet">
+<script type="text/javascript" charset="utf-8" language="javascript" src="${request.getContextPath()}/js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${request.getContextPath()}/js/artDialog.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${request.getContextPath()}/js/util.js"></script>
+</head>
+
+<body>
+<div id="admin_right">
+	<div class="headbar">
+	<div class="field">
+		<table class="list_table">
+		<colgroup>
+		<col width="100px">
+		<col width="200px">
+		</colgroup>
+		<thead>
+				<tr id="headth" class="">
+					<th>属性</th>
+					<th>库存</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+<div class="content">
+	<form name="nmform" id="nmform" method="post" action="${request.getContextPath()}/updateNumbers.htm" target="refreshFrame">
+	<input type="hidden" name="invId" value="${inv_id}" />
+	<table class="list_table" id="list_table">
+		<colgroup>
+		<col width="100px">
+		<col width="200px">
+		</colgroup>
+		<tbody id="conth">
+			#foreach($row in $inv_num_list)
+			<tr>
+				<td>
+					${row.invName}
+					<input type="hidden" name="invName_${velocityCount}" value="${row.invName}" />
+				</td>
+				<td>
+					<input title="库存,整数" type="text" value="${row.number}" size="4" class="tiny" onblur="checkNum(this);" maxlength="6" name="number_${velocityCount}" style="ime-mode:disabled;">
+				</td>
+			</tr>
+			#end
+			<tr>
+				<td colspan = "2">
+					<button type="submit" class="btn"><span>保 存</span></button>
+				<td>
+			</tr>
+		</tbody>
+	</table>
+	</form>
+	
+	<iframe id="refreshFrame" name="refreshFrame" width="0" height="0" border="0" frameborder="no" framespacing="0" ></iframe>
+</div>
+	</div>
+</body>
+</html>
+<script type="text/javascript" language="javascript" charset="utf-8">
+	function checkNum(obj){
+		var _value = obj.value;
+		var flag = true;
+		if(_value.length > 0){
+			if(_value.charAt(0) == "0" && _value.length > 1){
+				flag = false;
+			}else{
+				flag = /^\d+$/.test(_value);
+			}
+		}else{
+			flag = false;
+		}
+		if(!flag){
+			dialogAlert("提示","请正确填写库存数量！");
+			obj.focus();
+		}
+	}
+	
+	function tip(r){
+		if(r == 1){
+			dialogAlert("提示","保存成功！");
+		}else{
+			dialogAlert("提示","保存失败！");
+		}
+	}
+</script>

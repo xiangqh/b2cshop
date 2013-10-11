@@ -1,0 +1,3 @@
+<a href="${ad.link}" title="${ad.description}">
+	<img src="${imageHttp}/${ad.path}" width="${ad.width}" height="${ad.height}"/>
+</a>

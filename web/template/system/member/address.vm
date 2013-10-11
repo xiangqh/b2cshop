@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>3655订单中心-收货地址</title>
+<link href="${cssDomain}/css/reset.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/common.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/page.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="${jsDomain}/js/jquery.js"></script>
+<script type="text/javascript" src="${jsDomain}/js/jquery.cookie.js"></script>
+</head>
+<body id="bh-member-deliads" class="bh-mbody">
+<!--head begin-->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:HEAD,vmpath:frontpage/member/fkhead.vm")
+<!--head end-->
+<div class="bh-p-content">
+  <div class="bh-content">
+    <div class="bh-section">
+      <div class="bh-bread bh-bigFont"><span class="bh-strong ">我的3655</span>&nbsp;&gt;&nbsp;<a href="#">收货地址</a></span></div>
+    </div>
+    <div class="bh-section">
+      <div class="bh-sidebar-left">
+        <!--left -->
+	#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:LEFT,vmpath:frontpage/member/left.vm")
+      </div>
+      <div class="bh-mLeft bh-container">
+        <div class="bh-m-rwrap">
+          <div class="bh-order bh-m-address">
+            <div class="bh-ztab bh-member-ztab">
+              <h1>收货地址</h1>
+            </div>
+            <div class="bh-zcon bh-mtop5">
+              <div class="bh-add-adress bh-overf">
+                <div class="bh-fl bh-mR10"><a href="#"><img src="$!{imageDomain}/images/add-adress-btn.jpg" width="75" height="30" /></a></div>
+                <div class="bh-fl bh-add-address"><span class="gray bh-show bh-mBt10 bh-mtop5 bh-mlt10">已经添加<span class="bh-red">$!{addList.size()}</span>个地址,还可以添加<span class="bh-red">$!{num}</span>个常用地址</span>
+                  <form method="post" action="saveMemberAddress.htm">
+		  <div class="bh-overf bh-mBt10 bh-item">
+                    <p><span class="bh-red">*</span>收&nbsp;件&nbsp;人：</p>
+                    <div class="bh-fl">
+                      <input class="bh-text" type="text" name="user_name" />
+                    </div>
+                  </div>
+                  <div class="bh-overf bh-mBt10 bh-item">
+                    <p><span class="bh-red">*</span>所在地区：</p>
+                    <div class="bh-fl">
+                      <select name="province">
+                        <option value="1">山西</option>
+                      </select>&nbsp;
+                      <select name="city">
+                        <option value="1">太原市</option>
+                      </select>&nbsp;
+                      <select style="width:300px;" name="area" >
+                        <option value="1">阳曲县</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="bh-overf bh-mBt10 bh-item">
+                    <p><span class="bh-red">*</span>详细地址：</p>
+                    <div class="bh-fl">
+                      山西太原市阳曲县&nbsp;<input class="bh-text" type="text" style="width:300px;" name="address" />
+                    </div>
+                  </div>
+                  <div class="bh-overf bh-mBt10 bh-item">
+                    <p>手机号码：</p>
+                    <div class="bh-fl">
+                      <input class="bh-text" type="text" name="mobile" /><span class="bh-padLR10 gray">用于接收发货通知短信</span>
+                    </div>
+                  </div>
+                  <div class="bh-overf bh-mBt10 bh-item">
+                    <p>电话号码：</p>
+                    <div class="bh-fl">
+                      <input class="bh-text" type="text" name="telphone" /><span class="bh-padLR10 gray">用于送货前确认</span>
+                    </div>
+                  </div>
+                  <div class="bh-overf bh-mBt10 bh-item">
+                    <p>电子邮箱：</p>
+                    <div class="bh-fl">
+                      <input class="bh-text" type="text" name="email" /><span class="bh-padLR10 gray">用于接收订单执行状态提醒邮件</span>
+                    </div>
+                  </div>
+                  <div class="bh-overf bh-mBt10 bh-item">
+                    <p>邮政编码：</p>
+                    <div class="bh-fl">
+                      <input class="bh-text" type="text" name="zip" />
+                    </div>
+                  </div>
+		  	
+                  <div class="bh-mBt10 bh-item bh-mlt10">
+		  #if($!{num}==0)
+                  最多可以添加10个地址
+		  #else
+                      <input class="bh-btn" type="submit" value=" ">
+		      #end
+                  </div>
+		  </form>
+                </div>
+              </div>
+              <div class="bh-invicemessage">
+				<h1 class="bh-bigFont">已保存的有效地址：</h1>
+			  </div>
+              <table width="829" border="0" cellspacing="0" cellpadding="0" class="bh-table1">
+                <tr>
+                  <th width="120">收货人</th>
+                  <th width="170">联系电话</th>
+                  <th>详细地址</th>
+                  <th width="110">操作</th>
+                </tr>
+		
+		#foreach($address in $!addList)
+                <tr class="bh-on">
+                  <td>$!{address.user_name}</td>
+                  <td>$!{address.mobile}</td>
+                  <td class="bh-textLt">$!{address.address}</td>
+                  <td><div class="bh-posRlt"><a href="javascript:void(0)" onclick="displayi($!{address.id})">修改</a>|<a href="delMemberAddress.htm?id=$!{address.id}">删除</a></div></td>
+                </tr>
+               #end
+              </table>
+               
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bh-clear"></div>
+    </div>
+    <div class="bh-clear"></div>
+  </div>
+</div>
+<!-- alert -->
+#foreach($address in $!addList)
+
+<div id="updateinvioce_$!{address.id}" class=" bh-tanchu-toushu bh-invoice-look" id="bh-tanchu-look" style="top:400px;left:400px;width:525px; height:345px; position:absolute; z-index:9;display:none;">
+                        	<div class="bh-zztab">
+                        		<h3>收货地址</h3>
+                            	<a class="bh-close" href="javascript:void(0);"  onclick="hiddeni($!{address.id})"></a>
+                        	</div>
+				<form  id="forminvioce_$!{address.id}" method="post" action="updateMemberAddress.htm">
+				
+				  <input type="hidden" class="bh-text" name="id" value="$!{address.id}" />
+				 
+				  
+                                 <div class="bh-zzcon">
+                            	
+                        		<dl>
+                            		<dt><span class="bh-red">*</span>收&nbsp;件&nbsp;人：：</dt>
+                            		<dd><input type="text" class="bh-text" name="user_name" value="$!{address.user_name}" /></dd>
+                            	</dl>
+                            	<dl>
+                            		<dt>所在地区：：</dt>
+                            		<dd><select name="province">
+                        <option value="1">山西</option>
+                      </select>&nbsp;
+                      <select name="city">
+                        <option value="1">太原市</option>
+                      </select>&nbsp;
+                      <select style="width:300px;" name="area" >
+                        <option value="1">阳曲县</option>
+                      </select></dd>
+                            	</dl>
+                            	<dl>
+                            		<dt>详细地址：</dt>
+                            		<dd><input type="text" class="bh-text" name="address" value="$!{address.address}" /></dd>
+                            	</dl>
+                            	<dl>
+                            		<dt>手机号码：</dt>
+                            		<dd><input type="text" class="bh-text" name="mobile" value="$!{address.mobile}" /></dd>
+                            	</dl>
+                            	<dl>
+                            		<dt>电话号码：</dt>
+                            		<dd><input type="text" class="bh-text" name="telphone" value="$!{address.telphone}" /></dd>
+                            	</dl>
+                                <dl>
+                            		<dt>电子邮箱：</dt>
+                            		<dd><input type="text" class="bh-text" name="email" value="$!{address.email}" /></dd>
+                            	</dl>
+                                <dl>
+                            		<dt>邮政编码：</dt>
+                            		<dd><input type="text" class="bh-text" name="zip" value="$!{address.zip}" /></dd>
+                            	</dl>
+                               
+                                
+                                <div class="bh-overf">
+				
+                                	<a href="javascript:void(0);" onclick="submitInvoice($!{address.id})">修改</a>
+                                </div>
+                        	</div>
+				</form>
+                        </div>
+				#end
+				<script>
+				function submitInvoice(id){
+				 $("#forminvioce_"+id).submit();
+				}
+				function displayi(id){
+				 $("#updateinvioce_"+id).show();
+				}
+				
+				function hiddeni(id){
+				 $("#updateinvioce_"+id).hide();
+				 
+				}
+				</script>
+			<!-- alert -->
+<!-- foot begin -->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:FOOT,vmpath:frontpage/member/fkfoot.vm")
+<!-- foot end -->
+</body>
+</html>

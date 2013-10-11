@@ -17,7 +17,8 @@
         http://www.springframework.org/schema/util/spring-util.xsd" default-autowire="byType">
 
 	<context:component-scan base-package="com.zz.b2cshop"
-		name-generator="com.zz.b2cshop.common.util.Generator" use-default-filters="false">
+		name-generator="com.zz.b2cshop.common.util.Generator">
+		
 	</context:component-scan>
 
 	<bean class="com.zz.b2cshop.common.SpringContextHolder" lazy-init="false"/>

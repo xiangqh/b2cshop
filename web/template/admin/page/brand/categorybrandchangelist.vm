@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>分类品牌推荐列表</title>
+<link href="${request.getContextPath()}/css/admin.css" rel="stylesheet">
+<link href="${request.getContextPath()}/css/style.css" rel="stylesheet">
+<link href="${request.getContextPath()}/css/artDialog.css" rel="stylesheet">
+<script type="text/javascript" charset="utf-8" language="javascript" src="${request.getContextPath()}/js/util.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${request.getContextPath()}/js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${request.getContextPath()}/js/artDialog.js"></script>
+</head>
+
+<body>
+#getMothodSc("moduleName=admin.action.Common" "parameters=tag:1,vmpath:admin/head.vm,level:3,level2:44");
+<div id="admin_right">
+	<div class="headbar">
+	<div class="position"><span>商品</span><span>&gt;</span><span>品牌管理</span><span>&gt;</span><span>品牌推荐</span></div>
+	<div class="searchbar">
+		<a href="javascript:;"><button onclick="batchSub();" type="button" class="btn"><span>批量删除</span></button></a>
+	</div>
+	<div class="field">
+		<table class="list_table">
+		<colgroup>
+		<col width="120px" />
+		<col width="500px">
+		</colgroup>
+		<thead>
+				<tr id="headth" class="">
+					<th>分类名称</th>
+					<th>推荐品牌</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+<div class="content"><form id="cbbform" name="cbbform" action="${request.getContextPath()}/delbatchcbb.htm" method="post">
+	<table class="list_table" id="list_table">
+		<colgroup>
+		<col width="120px" />
+		<col width="500px">
+		</colgroup>
+		<tbody id="conth">
+			#foreach($row in $list_category_b)
+			<tr>
+				<td>${row.categoryName}</td>
+				<td>$!{row.values}</td>
+			</tr>
+			#end
+		</tbody>
+	</table>
+	</form>
+</div>
+	</div>
+	#getMothodSc("moduleName=admin.action.Common" "parameters=tag:2,vmpath:admin/foot.vm");
+</body>
+</html>
+<script language="javascript">
+	function batchSub(){
+		var flag = false;
+		var _bb = document.getElementsByName("cbboxs");
+		if(_bb && _bb.length > 0){
+			var c = _bb.length;
+			for(var i=0;i<c;i++){
+				if(_bb[i].checked){
+					flag = true;
+					break;
+				}			
+			}
+		}
+		if(flag){
+			dialogConfirm("提示","确认要删除该分类分类的推荐品牌吗?",
+			function(){
+				document.getElementById("cbbform").submit();
+			});
+		}else{
+			dialogAlert("提示","请选择删除的品牌!");
+		}
+	}
+</script>

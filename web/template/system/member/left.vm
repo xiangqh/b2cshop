@@ -1,0 +1,45 @@
+﻿<div id="bh-m-left">
+          <div class="bh-ztab">
+            <h1><img height="37" width="150" src="${imageDomain}/images/mem-tab.jpg"/></h1>
+          </div>
+          <div class="bh-zcon bh-overf">
+            <dl>
+              <dt><a></a>交易管理</dt>
+              <dd><a href="getOrderList.htm">订单中心</a></dd>
+              <dd><a href="#">在线支付</a></dd>
+              <dd><a href="getAttList.htm">我的关注</a></dd>
+              ##<dd><a href="#">我的竞单</a></dd>
+             ## <dd><a href="#">我的产品线</a></dd>
+              ##<dd><a href="#">评价管理</a></dd>
+             ## <dd><a href="#">我的收藏</a></dd>
+             ## <dd class="bh-last"><a href="#">交易记录</a></dd>
+            </dl>
+            <dl>
+              <dt><a></a>账户管理</dt>
+              <dd><a href="editMemberInfo.htm">账户信息</a></dd>
+              <dd><a href="getBanlanList.htm">账户余额</a></dd>
+              <dd><a href="getAccountList.htm">账户安全</a></dd>
+              <dd><a href="getAddressList.htm">收货地址</a></dd>
+              <dd><a href="getInvoiceMemberList.htm">发票管理</a></dd>
+              <dd><a href="dingyue.htm">我的订阅</a></dd>
+              <dd class="bh-last"><a href="getPointerList.htm">我的积分</a></dd>
+            </dl>
+            <dl>
+              <dt><a></a>社区中心</dt>
+              <dd><a href="getCmmUid.htm">商品评论</a></dd>
+              <dd><a href="getQsUid.htm">咨询回复</a></dd>
+              ##<dd><a href="#">分享有礼</a></dd>
+              <dd><a href="messageList.htm">站内消息</a></dd>
+              <dd class="bh-last"><a href="complainList.htm">我的投诉</a></dd>
+            </dl>
+			<!--
+            <dl>
+              <dt><a></a>客户服务</dt>
+			  <dd><a href="editMemberInfo.htm">用户信息</a></dd>
+              <dd><a href="#">用户认证</a></dd>
+              <dd><a href="#">退款管理</a></dd>
+              <dd><a href="#">维权管理</a></dd>
+              <dd class="bh-last"><a href="#">违规记录</a></dd>
+			</dl>-->
+          </div>
+        </div>

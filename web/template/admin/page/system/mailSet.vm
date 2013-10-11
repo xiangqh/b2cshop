@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>邮箱设置</title>
+    <link href="css/admin.css" rel="stylesheet">
+	<link href="css/art.css" rel="stylesheet">
+	<link href="css/default.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+	<script type="text/javascript" src="js/jquery.js"></script>
+  </head>
+  
+  <body>
+  #getMothodSc("moduleName=admin.action.Common" "parameters=tag:1,vmpath:admin/head.vm,level:1,level2:16")
+    <div id="admin_right">
+		<div class="headbar">
+			<ul name="conf_menu" class="tab">
+				<li class="selected"><a href="#">邮箱设置</a></li>
+			</ul>
+		</div>
+		<div class="content_box">
+		
+			<div class="content form_content">
+				<form name="mail_conf" method="post" action="updateMailInfo.htm" style="display: block;" novalidate="true">
+					<!--邮箱设置-->
+					<table class="form_table">
+						<colgroup><col width="150px">
+						<col>
+						</colgroup>
+						<tbody>
+							#if($mailSet)
+							<tr name="smtp">
+								<th>发送服务器：</th>
+								<td>
+									<input type="text" pattern="required" class="normal" name="smtpServer" value="$!{mailSet.smtpServer}">
+								</td>
+							</tr>
+							<tr name="smtp">
+								<th>邮箱：</th>
+								<td>
+									<input type="text"  pattern="required" class="normal" name="email" value="$!{mailSet.email}">
+								</td>
+							</tr>
+							<tr name="smtp">
+								<th>密码：</th>
+								<td><input type="password" class="normal" name="pwd" value="$!{mailSet.pwd}"></td>
+							</tr>
+							<tr name="smtp">
+								<th>SMTP服务器需要身份验证：</th>
+								<td>
+									#if($mailSet.isCheck == 1)
+										<input type="checkbox" value="1" checked="checked" id="isCheck" name="isCheck">
+									#else
+										<input type="checkbox" value="0" id="isCheck" name="isCheck">
+									#end
+									
+								</td>
+							</tr>
+							#else
+								<tr name="smtp">
+								<th>发送服务器：</th>
+								<td>
+									<input type="text" pattern="required" class="normal" name="smtpServer" value="smtp.163.com">
+								</td>
+							</tr>
+							<tr name="smtp">
+								<th>邮箱：</th>
+								<td>
+									<input type="text"  pattern="required" class="normal" name="email" value="@shop.com">
+								</td>
+							</tr>
+							<tr name="smtp">
+								<th>密码：</th>
+								<td><input type="password" value="" class="normal" name="pwd"></td>
+							</tr>
+							<tr name="smtp">
+								<th>SMTP服务器需要身份验证：</th>
+								<td><input type="checkbox" value="1" checked="checked" id="isCheck" name="isCheck"></td>
+							</tr>
+							#end
+							<tr>
+								<th></th>
+								<td>
+									<button type="submit" class="submit"><span>保存邮箱设置</span></button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
+	#getMothodSc("moduleName=admin.action.Common" "parameters=tag:2,vmpath:admin/foot.vm");
+  </body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>公告资讯</title>
+<link href="${cssDomain}/css/reset.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/common.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/page.css" type="text/css" rel="stylesheet"/>
+</head>
+<body id="bh-page-news">
+<!--head begin-->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:HEAD,vmpath:frontpage/head.vm");
+<!--head end-->
+<div class="bh-p-content">
+  <div class="bh-content">
+    <div class="bh-section">
+      <div class="bh-sidebar-left" style="height:520px;"></div>
+      <div class="bh-mLeft bh-container">
+        <div class="right-extra">
+          <div class="m" id="detail">
+            <div class='mta'>
+              <h1>$!new.title</h1>
+              <div class='partake'><span>分享到：</span><a href="javascript:void(0)" id="site-qzone" title="分享到腾讯微博">qzone</a><a href="http://www.douban.com/recommend/?url=http%3a%2f%2fwww.360buy.com%2fnews.aspx%3fid%3d7870&title=%e4%b9%9d%e7%89%a7%e7%8e%8b%e5%85%a8%e5%9c%ba3-5%e6%8a%98&comment=%e5%85%a8%e5%9c%ba3-5%e6%8a%98%ef%bc%8c%e5%85%88%e9%a2%86%e5%88%b8%ef%bc%8c%e5%86%8d%e4%b8%8b%e5%8d%95%ef%bc%8c%e4%ba%ab%e5%8f%97%e9%a2%9d%e5%a4%9630%e5%85%83%e7%ab%8b%e5%87%8f%ef%bc%8c%e9%a2%86%e5%88%b8%e6%9c%80%e5%90%8e%e4%b8%80%e5%a4%a9%ef%bc%81%ef%bc%81%e8%af%a6%e6%83%85%e8%af%b7%e7%82%b9%e5%87%bb%ef%bc%9ahttp%3a%2f%2fmall.360buy.com%2findex-13244.html%e4%b9%9d%e7%89%a7%e7%8e%8b%e6%97%97%e4%b8%8b%e5%b9%b4%e8%bd%bb..."  id="site-douban" title="分享到豆瓣" target="_blank">douban</a><a href="http://share.renren.com/share/buttonshare/post/1004?url=http%3a%2f%2fwww.360buy.com%2fnews.aspx%3fid%3d7870&title=%e4%b9%9d%e7%89%a7%e7%8e%8b%e5%85%a8%e5%9c%ba3-5%e6%8a%98&content=%e5%85%a8%e5%9c%ba3-5%e6%8a%98%ef%bc%8c%e5%85%88%e9%a2%86%e5%88%b8%ef%bc%8c%e5%86%8d%e4%b8%8b%e5%8d%95%ef%bc%8c%e4%ba%ab%e5%8f%97%e9%a2%9d%e5%a4%9630%e5%85%83%e7%ab%8b%e5%87%8f%ef%bc%8c%e9%a2%86%e5%88%b8%e6%9c%80%e5%90%8e%e4%b8%80%e5%a4%a9%ef%bc%81%ef%bc%81%e8%af%a6%e6%83%85%e8%af%b7%e7%82%b9%e5%87%bb%ef%bc%9ahttp%3a%2f%2fmall.360buy.com%2findex-13244.html%e4%b9%9d%e7%89%a7%e7%8e%8b%e6%97%97%e4%b8%8b%e5%b9%b4%e8%bd%bb..." id="site-renren" title="分享到人人" target="_blank">renren</a><a href="http://www.kaixin001.com/repaste/share.php?rurl=http%3a%2f%2fwww.360buy.com%2fnews.aspx%3fid%3d7870&rtitle=%e4%b9%9d%e7%89%a7%e7%8e%8b%e5%85%a8%e5%9c%ba3-5%e6%8a%98&rcontent=%e5%85%a8%e5%9c%ba3-5%e6%8a%98%ef%bc%8c%e5%85%88%e9%a2%86%e5%88%b8%ef%bc%8c%e5%86%8d%e4%b8%8b%e5%8d%95%ef%bc%8c%e4%ba%ab%e5%8f%97%e9%a2%9d%e5%a4%9630%e5%85%83%e7%ab%8b%e5%87%8f%ef%bc%8c%e9%a2%86%e5%88%b8%e6%9c%80%e5%90%8e%e4%b8%80%e5%a4%a9%ef%bc%81%ef%bc%81%e8%af%a6%e6%83%85%e8%af%b7%e7%82%b9%e5%87%bb%ef%bc%9ahttp%3a%2f%2fmall.360buy.com%2findex-13244.html%e4%b9%9d%e7%89%a7%e7%8e%8b%e6%97%97%e4%b8%8b%e5%b9%b4%e8%bd%bb..." id="site-kaixing" title="分享到开心网" target="_blank">kaixing</a><a href="javascript:void(0)" id="site-sina" title="分享到新浪微博">sina</a></div>
+              <div class="summary">时间：$!date.format('yyyy-MM-dd HH:mm:ss',$!new.create_time)&nbsp;&nbsp;&nbsp;&nbsp;</div>
+            </div>
+            <div class="mc">
+             $!new.content
+            </div>
+            <input id="CommentVisible" type="hidden" value="False">
+            </input>
+          </div>
+          <div id="review_top"></div>
+          <div id="container"></div>
+        </div>
+        <!--right-extra end-->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- foot begin -->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:FOOT,vmpath:frontpage/foot.vm");
+<!-- foot end -->
+<div class="bh-fix">
+  <div class="bh-question"><img src="../images/question.gif" width="25" height="94" /></div>
+  <div class="bh-back bh-mtop10"><a href="#logo"><img src="../images/back.gif" width="25" height="94" /></a></div>
+</div>
+<script type="text/javascript" >
+$("#bh-pd-menuanchor").mouseover(function(){
+$("#bh-pd-menudiv").show();
+});
+
+$("#bh-pd-menuanchor").mouseout(function(){
+$("#bh-pd-menudiv").hide();
+});
+</script>
+</body>
+</html>

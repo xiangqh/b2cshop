@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>3655订单中心-站内消息</title>
+<link href="${cssDomain}/css/reset.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/common.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/page.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="${jsDomain}/js/jquery.js"></script>
+<script type="text/javascript" src="${jsDomain}/js/jquery.cookie.js"></script>
+</head>
+<body id="bh-member-message" class="bh-mbody">
+<!--head begin-->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:HEAD,vmpath:frontpage/member/fkhead.vm")
+<!--head end-->
+<div class="bh-p-content">
+  <div class="bh-content">
+    <div class="bh-section">
+      <div class="bh-bread bh-bigFont"><span class="bh-strong ">我的3655</span>&nbsp;&gt;&nbsp;<span>站内消息</span></div>
+    </div>
+    <div class="bh-section">
+      <div class="bh-sidebar-left">
+        #getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:LEFT,vmpath:frontpage/member/left.vm");
+      </div>
+      <div class="bh-mLeft bh-container">
+        <div class="bh-m-rwrap">
+          <div class="bh-order">
+            <div class="bh-ztab bh-member-ztab">
+              <h1>站内消息</h1>
+            </div>
+            <p class="bh-dingyue-message">评论回复（<span class="bh-red">2</span>）&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;系统通知（<span class="bh-red">1</span>）</p>
+            <div class="bh-zcon bh-mtop5">
+              <ul>
+                <li><span>评论回复</span></li>
+                <li class="bh-on"><span>系统通知</span></li>
+              </ul>
+              <table width="829" border="0" cellspacing="0" cellpadding="0" class="bh-table1">
+                <tr>
+                  <th width="100">类型</th>
+                  <th>内容</th>
+                  <th>更新时间</th>
+                  <th width="110" style="border-right:1px solid #eee;">操作</th>
+                </tr>
+				#foreach($msg in $msgList)
+                <tr>
+                  <td class="gray">$msg.title</td>
+                  <td class="bh-textLt"><div class="bh-title">$msg.content</div></td>
+                  <td class="gray bh-time" width="150">$!date.format('yyyy-MM-dd HH:mm:ss',$msg.send_time)</td>
+                  <td><a href="javascript:show_msg($msg.id)">查看</a>&nbsp;|&nbsp;<a href="/delMsg.htm">删除</a></td>
+                </tr>
+				<tr id="content_${msg.id}" style="display:none">
+                  <td colspan="3" >$msg.content</td>
+                  
+                  <td><a href="javascript:close_msg($msg.id)">关闭</a></td>
+                </tr>
+				#end
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bh-clear"></div>
+    </div>
+    <div class="bh-clear"></div>
+  </div>
+</div>
+<!-- foot begin -->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:FOOT,vmpath:frontpage/member/fkfoot.vm")
+<!-- foot end -->
+</body>
+</html>
+<script >
+ function show_msg(id){
+    $("#content_"+id).show();
+ }
+ function close_msg(id){
+    $("#content_"+id).hide();
+ }
+</script>

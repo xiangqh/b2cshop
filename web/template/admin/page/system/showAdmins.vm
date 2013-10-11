@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>管理员列表</title>
+    <link href="${request.getContextPath()}/css/admin.css" rel="stylesheet">
+	<link href="${request.getContextPath()}/css/art.css" rel="stylesheet">
+	<link href="${request.getContextPath()}/css/default.css" rel="stylesheet">
+	<link href="${request.getContextPath()}/css/style.css" rel="stylesheet">
+	<script type="text/javascript" src="${request.getContextPath()}/js/jquery.js"></script>
+  </head>
+  
+  <body>
+  #qModuleLoader("moduleName=module.admin.common.head" "parameters={path:template/admin/head.vm,level1:1,level2:48}")
+  
+
+	
+   <div id="admin_right">
+      <div class="headbar">
+        <div class="position"><span>系统</span><span>></span><span>权限管理</span><span>></span><span>管理员列表</span></div>
+        <div class="operating">
+        	<a href="javascript:;"><button class="operating_btn" onclick="location.href='${request.getContextPath()}/addAdmin.htm'" type="button"><span class="addition">添加管理员</span></button></a>
+        	<a href="javascript:void(0)" onclick="selall()"><button class="operating_btn" type="button"><span class="sel_all">全选</span></button></a>
+        	<a href="javascript:void(0)" onclick="del_select()"><button class="operating_btn" type="button"><span class="delete">批量删除</span></button></a>
+        	<a href="javascript:void(0)" onclick=""><button class="operating_btn" type="button"><span class="recycle">回收站</span></button></a>
+        </div>
+        <div class="field">
+        	<table class="list_table">
+        		<col width="40px" />
+        		<col width="150px" />
+        		<col width="100px" />
+        		<col width="200px" />
+        		<col />
+        		<thead>
+        			<tr id="headth">
+        				<th>选择</th>
+        				<th>用户名</th>
+        				<th>角色</th>
+        				<th>Email</th>
+        				<th>上次登录IP</th>
+        				<th>上次登录时间</th>
+        				<th>操作</th>
+        			</tr>
+        		</thead>
+        	</table>
+        </div>
+        </div>
+        
+        <div class="content">
+        <form id="admin_from" name='admin_list' method='post' action='getAdminList.htm'>
+        	<input type="hidden" name="curPage" id="curPage" value="1">
+			<table id="list_table" class="list_table">
+        		<tbody id="conth">
+			   #foreach($admin in $adminList)
+        		     <tr>
+				<td style="width: 33px;"><input class="selectall" type='checkbox' name='id[]' value='$admin.id' /></td>
+				<td style="width: 105px;">$!admin.admin_name</td>
+				<td style="width: 85px;">$!admin.role_name</td>
+				<td style="width: 193px;">$!admin.email</td>
+				<td style="width: 188px;">$!admin.last_ip</td>
+				<td style="width: 188px;">$!admin.last_time</td>
+				<td style="width: 188px;">
+					<a href='editAdmin.htm?id=$admin.id'><img class="operator" src="/views/default/skin/default/images/admin/icon_edit.gif" alt="编辑" title="编辑" /></a>
+					<a href='javascript:void(0)' onclick="delModel($admin.id)"><img class="operator" src="/views/default/skin/default/images/admin/icon_del.gif" alt="删除" title="删除" /></a>
+				</td>
+        		</tr>
+			    #end
+        		</tbody>
+        	</table>
+			##getPageHtml("formId=admin_from" "parameters=pageNo:$page.pageNo,pageSize:$page.pageSize,totalCount:$page.totalCount,pageviewcount:$page.pageviewcount,vmpath:common/page.vm");
+        </form>
+      </div>
+        
+  </div>
+ 
+  ##getMothodSc("moduleName=admin.action.Common" "parameters=tag:2,vmpath:admin/foot.vm");
+  </body>
+</html>
+<script >
+function delModel(id){
+	    window.location.href = "/sc/delAdmin.htm?id="+id;
+	}
+function selall(){
+    
+    if($(".selectall").first().attr("checked")){
+           $(".selectall").attr("checked",false);
+	}else{
+	       $(".selectall").attr("checked",true);
+	}
+
+}
+function del_select(){
+    
+}
+</script>

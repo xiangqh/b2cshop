@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>添加广告</title>
+    <link href="css/admin.css" rel="stylesheet">
+    <link href="css/art.css" rel="stylesheet">
+	<link href="css/default.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+    <script src="js/jquery.js" type="text/javascript"></script>
+    <script language="javascript" src="DatePicker/WdatePicker.js" type="text/javascript"></script> 
+    <script language="javascript" src="js/content/ad.js"></script>
+    <script >
+        function change(id){
+	
+	    $(".upload").hide();
+	    $("#"+id).show();
+	}
+    
+    </script>
+    
+  </head>
+  <body>
+	#getMothodSc("moduleName=admin.action.Common" "parameters=tag:1,vmpath:admin/head.vm,level:2,level2:23")
+    <div id="admin_right">
+		<div class="headbar">
+			<div class="position"><span>内容管理</span><span>&gt;</span><span>广告管理</span><span>&gt;</span><span>添加广告</span></div>
+		</div>
+		<div class="content_box">
+			<div class="content form_content">
+				<form enctype="multipart/form-data" name="ad" method="post" action="saveAd.htm" >
+					<input type="hidden" name="content">
+					<table class="form_table">
+						<colgroup><col width="150px">
+						<col>
+						</colgroup><tbody><tr>
+							<th>名称：</th>
+							<td>
+								<input type="text" alt="填写名称"  name="name" class="normal">
+								<label>*广告名称（必填）</label>
+							</td>
+						</tr>
+						<tr>
+							<th>广告展示类型：</th>
+							<td>
+								<label class="attr"><input onClick="change('image')" type="radio" checked="checked" value="1" name="adType">图片</label>
+								<label class="attr"><input onClick="change('flash')" type="radio" value="2" name="adType">flash</label>
+		
+								<div id="ad_box">
+									<div style=""  id ="image" class="upload">
+										<input type="file"size="25"  name="upload.uf"/><br>
+									</div>
+		
+									<div class="upload" id="flash" style="display:none" >
+										<input type="file"  size="25" name="upload.uf"><br>
+									</div>
+
+								</div>
+		
+							</td>
+						</tr>
+						<tr>
+							<th>广告位：</th>
+							<td>
+								<select alt="广告位不能为空" pattern="required" class="normal" name="position_id">
+									<option value="0">请选择</option>
+									#foreach($adP in $adPList)
+										<option value="$!{adP.id}">$!{adP.name}</option>
+									#end
+								</select>
+								<label>*在选择的广告位置内进行展示（必选）</label>
+							</td>
+						</tr>
+						<tr>
+							<th>链接地址：</th>
+							<td>
+								<input type="text"  name="link" class="normal">
+								<label>*点击广告后页面链接的URL地址，为空则不跳转（必选）</label>
+							</td>
+						</tr>
+						
+						<tr>
+							<th>宽×高：</th>
+							<td>
+								<input type="text" alt="填写宽度" pattern="^\d+$" name="width" class="small">×
+								<input type="text" alt="填写高度" pattern="^\d+$" name="height" class="small">
+								<label>*要展示广告所占页面的宽度和高度,如果为0则为不限制（必选）</label>
+							</td>
+						</tr>
+						
+						<tr>
+							<th>描述：</th>
+							<td><textarea alt="请填写文章内容" pattern="required" name="description" class="textarea"></textarea></td>
+						</tr>
+						<tr>
+							<th></th><td><button type="submit" class="submit"><span>确 定</span></button></td>
+						</tr>
+					</tbody></table>
+				</form>
+			</div>
+		</div>
+	</div>
+	#getMothodSc("moduleName=admin.action.Common" "parameters=tag:2,vmpath:admin/foot.vm");
+  </body>
+</html>

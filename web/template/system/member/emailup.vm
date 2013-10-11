@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>3655订单中心-账户安全-修改邮箱</title>
+<link href="${cssDomain}/css/reset.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/common.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/page.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="${jsDomain}/js/jquery.js"></script>
+</head>
+<body id="bh-member-safe" class="bh-mbody">
+<!--head begin-->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:HEAD,vmpath:frontpage/member/fkhead.vm")
+<!--head end-->
+<div class="bh-p-content">
+  <div class="bh-content">
+    <div class="bh-section">
+      <div class="bh-bread bh-bigFont"><span class="bh-strong ">我的3655</span>&nbsp;&gt;&nbsp;<span>账户安全</span></div>
+    </div>
+    <div class="bh-section">
+      <div class="bh-sidebar-left">
+        #getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:LEFT,vmpath:frontpage/member/left.vm")
+      </div>
+      <div class="bh-mLeft bh-container">
+        <div class="bh-m-rwrap">
+          <div class="bh-order">
+            <div class="bh-comment-ztab">
+              <h2 class="bh-bigFont">账户安全</h2>
+            </div>
+            <div class="bh-zcon bh-mtop5">
+              <div class="bh-dingyue-message"><span class="bh-red">提示：</span><span class="bh-yellow">密码由6-12个字符组成 请使用英文字母加数字或符号的组合密码。</span></div>
+              <div class="bh-safe-password bh-xiugai-safepassword">
+	      <form id="uppwd_form" action="toemail.htm">
+			<input type="hidden" name="userid" class="bh-text" value="$!{user.user_id}" tabindex="2"/>
+              	<div class="item bh-overf" style="border-bottom:1px dotted #D7D7D7; padding-bottom:10px;">
+                <label><span class="bh-yellow">*</span>&nbsp;邮箱：</label>
+                <input type="text" id="email" name="email" class="bh-text" tabindex="2"/>
+                <span class="gray"></span> 
+              	</div>
+                <div class="item bh-overf">
+                <label>&nbsp;</label>
+                <a href="javascript:void(0);" onclick="toMail();" class="bh-verify bh-mTop20">提交验证</a>
+                </div>
+		<form>
+           <script>
+  function toMail(){
+  var email=$("#email").val();
+  $("#xxemail").html(email);
+   $.ajax({
+			url: 'tomail.htm',
+			type: 'post',
+			data: {email:email},
+			success: function(data){
+			if(data.tag==1){
+			$(".emaildiv").show();
+			$("#bh-longbtn").attr("href","http://"+data.emailhost);
+			}
+		   }
+		});
+  }
+  
+  function hide(){
+  $(".emaildiv").hide();
+  }
+  </script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bh-clear"></div>
+    </div>
+    <div class="bh-clear"></div>
+  </div>
+</div>
+
+<!--alert-->
+<div class="bh-safe-tanchu1 bh-tanchu-toushu emaildiv" style="top: 400px; left: 400px; width: 525px; height: 345px; position: absolute; z-index: 9;display:none" >
+                        	<div class="bh-zztab"><h3>邮箱验证</h3><a class="bh-close" href="javascript:void(0);" onclick="hide();"></a></div>
+                            <div class="bh-zzcon">
+                                <div class="bh-h1" >验证邮箱已发送到您的邮箱<font id="xxemail" ></font></div>
+                                <p style="padding-left:60px;" class="gray">请于24小时内登录邮箱完成验证，获取10积分</p><br><br>
+                                <div style="padding-left:60px;"><a class="bh-longbtn" id="bh-longbtn" >查看验证邮箱</a><br><br><br>如果您未能验证邮箱，请选择&nbsp;<a class="bh-longbtn" href="javascript:void(0);" onclick="toMail();" >重发验证邮件</a></div><br>
+                                <div class="bh-lose">
+                                	若没有收到邮件，也可以尝试以下操作：<br>
+                                    1.请检查您的垃圾箱或者广告箱，邮件有可能被误认为垃圾或广告邮件；<br>
+                                    2.邮箱已过期或忘记密码无法登录，请拨打客服电话400-800-3655申诉更换验证邮箱
+                                </div>
+                            </div>
+                        </div>
+<!--alert-->
+<!-- foot begin -->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:FOOT,vmpath:frontpage/member/fkfoot.vm")
+<!-- foot end -->
+</body>
+</html>

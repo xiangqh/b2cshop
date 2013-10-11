@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>没有搜索到结果</title>
+<link href="${cssDomain}/css/reset.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/common.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/page.css" type="text/css" rel="stylesheet"/>
+</head>
+<body id="bh-search404">
+<!--head begin-->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:HEAD,vmpath:frontpage/member/fkhead.vm");
+<!--head end-->
+<div class="bh-p-content">
+  <div class="bh-content">
+    <div class="bh-section">
+      <div class="bh-bread bh-bigFont">
+		<a href="#">搜索结果</a>&nbsp;&gt;&nbsp;$!{keyName} </div>
+    </div>
+    <div class="bh-section">
+      <div class="bh-swrap">
+        <div class="bh-w810">
+          <div class="bh-subsection">
+            <div class="h1"> <b></b> 抱歉，没有找到与“ <span>$!{keyName}</span> ”相关的商品 </div>
+            <div class="intellisense">
+              <div class="bh-search404">
+                <spanbh-bigFont>
+                重新搜索:</span>
+				<form class="bh-fl bh-overf" action="getSearchList.htm">
+                    <input class="text" name="keyName" id="keyName" #if($!keyName) value="电脑" #else value="$!keyName" #end  type="text" />
+                    <input class="btn-search"  type="submit" value="" />
+                  </form>
+                &nbsp;&nbsp;&nbsp;说说您的搜搜意见&nbsp;
+				<a href="#"><img src="$!{imageDomain}/images/search404-tell.gif" width="32" height="20" /></a></div>
+            </div>
+            <div class="bh-jianyi"> 建议您：<br />
+              1.判断输入的文字是否有误<br />
+              2.根据词意，尝试一下其他相关的词语<br />
+              3.拆分要搜索的关键词，分成几个词语再次搜索 </div>
+          </div>
+          <div class="bh-subsection">
+            <div class="bh-recommon">
+              <div class="mt bh-overf">
+                <h2 class="bh-bigFont bh-fl">相关推荐商品</h2>
+                <b></b> </div>
+              <div class="bh-zcon bh-overf">
+                <div class="bh-m-window4 bh-fl ">
+                  <ul>
+                    <li class="bh-img"><a target="_blank" href="#"><img src="$!{imageDomain}/images/templ/pd7.gif" width="163" height="163" /></a><span class="huodong"></span></li>
+                    <li><a target="_blank" href="#" class="bh-p-title">包邮 ！全新 摩托罗拉 ME501/MB501/最新2.1/2.3 1220.00￥1050.00诺基亚 C5-03 C503最新</a></li>
+                    <li class="bh-textCt"><span class="bh-zprice">折扣价：￥3600</span></li>
+                    <li class="bh-textCt bh-btn"><a href="#" class="bh-searchadd"></a></li>
+                  </ul>
+                </div>
+                <div class="bh-m-window4 bh-fl ">
+                  <ul>
+                    <li class="bh-img"><a target="_blank" href="#"><img src="$!{imageDomain}/images/templ/pd7.gif" width="163" height="163" /></a><span class="huodong"></span></li>
+                    <li><a target="_blank" href="#" class="bh-p-title">包邮 ！全新 摩托罗拉 ME501/MB501/最新2.1/2.3 1220.00￥1050.00诺基亚 C5-03 C503最新</a></li>
+                    <li class="bh-textCt"><span class="bh-zprice">折扣价：￥3600</span></li>
+                    <li class="bh-textCt bh-btn"><a href="#" class="bh-searchadd"></a></li>
+                  </ul>
+                </div>
+                <div class="bh-m-window4 bh-fl ">
+                  <ul>
+                    <li class="bh-img"><a target="_blank" href="#"><img src="$!{imageDomain}/images/templ/pd7.gif" width="163" height="163" /></a><span class="huodong"></span></li>
+                    <li><a target="_blank" href="#" class="bh-p-title">包邮 ！全新 摩托罗拉 ME501/MB501/最新2.1/2.3 1220.00￥1050.00诺基亚 C5-03 C503最新</a></li>
+                    <li class="bh-textCt"><span class="bh-zprice">折扣价：￥3600</span></li>
+                    <li class="bh-textCt bh-btn"><a href="#" class="bh-searchadd"></a></li>
+                  </ul>
+                </div>
+                <div class="bh-m-window4 bh-fl ">
+                  <ul>
+                    <li class="bh-img"><a target="_blank" href="#"><img src="$!{imageDomain}/images/templ/pd7.gif" width="163" height="163" /></a><span class="huodong"></span></li>
+                    <li><a target="_blank" href="#" class="bh-p-title">包邮 ！全新 摩托罗拉 ME501/MB501/最新2.1/2.3 1220.00￥1050.00诺基亚 C5-03 C503最新</a></li>
+                    <li class="bh-textCt"><span class="bh-zprice">折扣价：￥3600</span></li>
+                    <li class="bh-textCt bh-btn"><a href="#" class="bh-searchadd"></a></li>
+                  </ul>
+                </div>
+                <div class="bh-m-window4 bh-fl ">
+                  <ul>
+                    <li class="bh-img"><a target="_blank" href="#"><img src="$!{imageDomain}/images/templ/pd7.gif" width="163" height="163" /></a><span class="huodong"></span></li>
+                    <li><a target="_blank" href="#" class="bh-p-title">包邮 ！全新 摩托罗拉 ME501/MB501/最新2.1/2.3 1220.00￥1050.00诺基亚 C5-03 C503最新</a></li>
+                    <li class="bh-textCt"><span class="bh-zprice">折扣价：￥3600</span></li>
+                    <li class="bh-textCt bh-btn"><a href="#" class="bh-searchadd"></a></li>
+                  </ul>
+                </div>
+                <div class="bh-m-window4 bh-fl ">
+                  <ul>
+                    <li class="bh-img"><a target="_blank" href="#"><img src="$!{imageDomain}/images/templ/pd7.gif" width="163" height="163" /></a><span class="huodong"></span></li>
+                    <li><a target="_blank" href="#" class="bh-p-title">包邮 ！全新 摩托罗拉 ME501/MB501/最新2.1/2.3 1220.00￥1050.00诺基亚 C5-03 C503最新</a></li>
+                    <li class="bh-textCt"><span class="bh-zprice">折扣价：￥3600</span></li>
+                    <li class="bh-textCt bh-btn"><a href="#" class="bh-searchadd"></a></li>
+                  </ul>
+                </div>
+                <div class="bh-m-window4 bh-fl ">
+                  <ul>
+                    <li class="bh-img"><a target="_blank" href="#"><img src="$!{imageDomain}/images/templ/pd7.gif" width="163" height="163" /></a><span class="huodong"></span></li>
+                    <li><a target="_blank" href="#" class="bh-p-title">包邮 ！全新 摩托罗拉 ME501/MB501/最新2.1/2.3 1220.00￥1050.00诺基亚 C5-03 C503最新</a></li>
+                    <li class="bh-textCt"><span class="bh-zprice">折扣价：￥3600</span></li>
+                    <li class="bh-textCt bh-btn"><a href="#" class="bh-searchadd"></a></li>
+                  </ul>
+                </div>
+                <div class="bh-m-window4 bh-fl ">
+                  <ul>
+                    <li class="bh-img"><a target="_blank" href="#"><img src="$!{imageDomain}/images/templ/pd7.gif" width="163" height="163" /></a><span class="huodong"></span></li>
+                    <li><a target="_blank" href="#" class="bh-p-title">包邮 ！全新 摩托罗拉 ME501/MB501/最新2.1/2.3 1220.00￥1050.00诺基亚 C5-03 C503最新</a></li>
+                    <li class="bh-textCt"><span class="bh-zprice">折扣价：￥3600</span></li>
+                    <li class="bh-textCt bh-btn"><a href="#" class="bh-searchadd"></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" >
+$("#bh-pd-menuanchor").mouseover(function(){
+$("#bh-pd-menudiv").show();
+});
+
+$("#bh-pd-menuanchor").mouseout(function(){
+$("#bh-pd-menudiv").hide();
+});
+</script>
+<!-- foot begin -->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:FOOT,vmpath:frontpage/foot.vm")
+<!-- foot end -->
+</body>
+</html>

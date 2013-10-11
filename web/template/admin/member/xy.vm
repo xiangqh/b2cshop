@@ -1,0 +1,46 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>会员注册协议</title>
+ <link href="css/admin.css" rel="stylesheet">
+	<link href="css/art.css" rel="stylesheet">
+	<link href="css/default.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="${request.getContextPath()}/js/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="js/xheditor.js"></script>
+</head>
+<body>
+	#getMothodSc("moduleName=admin.action.Common" "parameters=tag:1,vmpath:admin/head.vm,level:5,level2:9");
+	<div id="admin_right">
+		<div class="headbar">
+		<div class="position"><span>会员管理</span><span>&gt;</span><span>会员注册协议</span></div>
+		<div class="field"></div>
+	</div>
+	<div class="content" style="height:400px;">
+		<form  method="post" action="saveXy.htm" onsubmit="return getcontent()">
+			<table class="list_table">
+				<tbody id="conth">
+				<tr class="">
+					<td class="t_c" >
+					<textarea  class="htmlEditor" name="content" rows="50" cols="80" style="width: 80%;height:300px;">
+                            	$!{content}
+                            	
+                            	</textarea>
+					</td>
+				</tr>
+ 				<tr class="">
+					<td class="t_c" >
+					<button type="submit" class="submit"><span>确 定</span></button>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</form>
+	</div>
+	#getMothodSc("moduleName=admin.action.Common" "parameters=tag:2,vmpath:admin/foot.vm");
+</body>
+</html>
+ 
+ 

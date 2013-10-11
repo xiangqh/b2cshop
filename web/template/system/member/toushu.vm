@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>3655订单中心-投诉</title>
+<link href="${cssDomain}/css/reset.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/common.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/page.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="${jsDomain}/js/jquery.js"></script>
+<script type="text/javascript" src="${jsDomain}/js/jquery.cookie.js"></script>
+</head>
+<body id="bh-member-toushu" class="bh-mbody">
+<!--head begin-->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:HEAD,vmpath:frontpage/member/fkhead.vm")
+<!--head end-->
+<div class="bh-p-content">
+  <div class="bh-content">
+    <div class="bh-section">
+      <div class="bh-bread bh-bigFont"><span class="bh-strong ">我的3655</span>&nbsp;&gt;&nbsp;<span>订单中心</span></div>
+    </div>
+    <div class="bh-section">
+      <div class="bh-sidebar-left">
+        #getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:LEFT,vmpath:frontpage/member/left.vm");
+      </div>
+      <div class="bh-mLeft bh-container">
+        <div class="bh-m-rwrap">
+          <div class="bh-order bh-toushu">
+            <div class="bh-ztab bh-member-ztab">
+              <h1>我的投诉</h1>
+            </div>
+            <div class="bh-zcon bh-mtop5">
+              <ul>
+                <li class="bh-on"><span><a href="complain.htm">选择订单</a></span></li>
+                <li><span><a href="complainList.htm">投诉记录</a></span></li>
+              </ul>
+              <div class="bh-tj bh-mtop10">
+              	<div class="bh-fr"><input type="text" class="bh-text" value="商品名称/订单号"/><input type="submit" value="筛选" class="bh-submit"/></div>
+                <select>
+                  <option>最近一月的订单</option>
+                </select>&nbsp;
+              </div>
+              <table width="829" border="0" cellspacing="0" cellpadding="0" class="bh-table1">
+               
+				<tr>
+                  <th width="100" align="center">订单编号</th>
+                  <th width="400">订单商品</th>
+                  <th>签收时间</th>
+                  <th>下单时间</th>
+                  <th width="110" style="border-right:1px solid #eee;">操作</th>
+                </tr>
+				#foreach($order in $!orderList)
+				<tr>
+                  <td><a href="getDetail.htm?orderCode=${order.orderCode}">${order.orderCode}</a></td>
+                  <td class="bh-textLt"><a href="#" class="bh-img"><img src="${imageDomain}/images/templ/pd4.gif" width="50" height="50"/></a>
+				       $!order.cmdyName
+				  </td>
+                  
+                  <td class="gray">$!order.dtOrderReceive</td>
+                  <td class="gray">$!order.dtOrderCreate</td>
+                  
+                  <td>
+					 #if(!$order.complain || $order.complain.status == 0)
+					 
+					 <div class="bh-posRlt"><a href="javascript:show('${order.orderCode}');"><img src="${imageDomain}/images/toushu.jpg" width="74" height="21" /></a>
+                  		<div class="bh-tanchu-toushu" style="display:none;" id="toushu_${order.orderCode}">
+                        	<div class="bh-zztab">
+                            	<h3>提交投诉</h3>
+                                <h3><a href="javascript:close();"></a></h3>
+                            </div>
+                            <div class="bh-zzcon">
+								<form action="/sc/frontpage/member/saveComplain.htm">
+								<input type="hidden" name="order_code" value="$!{order.orderCode}"/>
+								<input type="hidden" name="user_id" value="11"/>
+                            	<dl>
+                                	<dd class="bh-num">涉及订单：${order.orderCode}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										投诉类型：<select name="type" >
+											        <option value="1">产品相关</option>
+												
+										         </select>
+                                    </dd>
+                                    <dd class="bh-tuanchucon"><span style="vertical-align:top">投诉内容：</span><textarea name="content" value=""></textarea><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;还可以输入500字</dd>
+                                    <dd class="bh-mTop20">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" class="bh-btn" value="提交投诉"/>
+                                    </dd>
+                                </dl>
+								</form>
+                            </div>
+                        </div>
+                     </div>
+					 #else
+						已解决
+					 #end
+				  </td>
+                </tr>
+				#end
+
+
+              </table>
+             
+              #getPageHtml("formId=order_from" "parameters=pageNo:$page.pageNo,pageSize:$page.pageSize,totalCount:$page.totalCount,pageviewcount:$page.pageviewcount,vmpath:common/page.vm");
+            
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bh-clear"></div>
+    </div>
+    <div class="bh-clear"></div>
+  </div>
+</div>
+<script>
+  function show(id){
+       
+       $("#toushu_"+id).show();
+  }
+  function close(){
+      $(".bh-tanchu-toushu").hide();
+  }
+</script>
+<!-- foot begin -->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:FOOT,vmpath:frontpage/member/fkfoot.vm")
+<!-- foot end -->
+</body>
+</html>

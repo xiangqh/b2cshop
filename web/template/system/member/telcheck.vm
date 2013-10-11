@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>3655订单中心-账户安全-验证手机</title>
+<link href="${cssDomain}/css/reset.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/common.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/page.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="${jsDomain}/js/jquery.js"></script>
+<script type="text/javascript" src="${jsDomain}/js/jquery.cookie.js"></script>
+</head>
+<body id="bh-member-safe" class="bh-mbody">
+<!--head begin-->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:HEAD,vmpath:frontpage/member/fkhead.vm")
+<!--head end-->
+<div class="bh-p-content">
+  <div class="bh-content">
+    <div class="bh-section">
+      <div class="bh-bread bh-bigFont"><span class="bh-strong ">我的3655</span>&nbsp;&gt;&nbsp;<span>账户安全</span></div>
+    </div>
+    <div class="bh-section">
+      <div class="bh-sidebar-left">
+        #getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:LEFT,vmpath:frontpage/member/left.vm")
+      </div>
+      <div class="bh-mLeft bh-container">
+        <div class="bh-m-rwrap">
+          <div class="">
+            <div class="bh-comment-ztab">
+              <h2 class="bh-bigFont">账户安全</h2>
+            </div>
+            <div class="bh-zcon bh-mtop5">
+              <div class="bh-dingyue-message"><span class="bh-yellow">验证手机可加强账户安全，并能够通过手机号快速找回密码；</span></div>
+              <div class="bh-overf"><div class="progress clearfix bh-posRlt">
+          	<ul class="progress1">
+              <li class="step-1">1.输入手机号</li>
+              <li class="step-2">2.获取验证码并验证</li>
+              <li class="step-3">3.绑定成功</li>
+            </ul>
+          </div></div>
+		  <form merhod="post" action="ismobile.htm">
+         
+              <div class="bh-safe-password bh-safe-tel">
+              	<div class="item bh-overf">
+                <label><b class="bh-yellow">*</b>&nbsp;<font class="bh-strong">绑定手机号码：</font></label>
+               <input type="text" class="bh-smalltext" id="mobile" name="mobile" />
+                <a href="javascript:void(0);" onclick="getmobile();" class="bh-tel-yanzheng">获取验证码</a> 
+                <span class="gray" id="mobileer">请输入正确的手机号码！</span>
+              	</div>
+              	<div class="item bh-overf">
+                <label class="bh-strong">验证码：</label>
+                <input type="text" class="bh-smalltext" id="remobile" name="remobile" />
+                <span class="gray">请输入6位数字或字母的验证码，区分大小写！</span> 
+              	</div>
+                <div class="item bh-overf">
+                <label>&nbsp;</label>
+                <input type="submit" class="bh-btn" value=" "/>
+                </div>
+              </div>
+            </div>
+ </form>
+ <script >
+ function getmobile(){
+ var mobile=$("#mobile").val();
+   $.ajax({
+			url: 'getmobile.htm',
+			type: 'post',
+			data: {mobile:mobile},
+			success: function(data){
+    			if(data.tag==1){
+    			$(".mobileer").html("获取成功!");
+    			}
+			}
+		});
+ }
+ </script>
+          </div>
+        </div>
+      </div>
+      <div class="bh-clear"></div>
+    </div>
+    <div class="bh-clear"></div>
+  </div>
+</div>
+<!-- foot begin -->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:FOOT,vmpath:frontpage/member/fkfoot.vm")
+<!-- foot end -->
+</body>
+</html>
+>

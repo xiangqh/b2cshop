@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>3655订单中心-我的关注</title>
+<link rel="stylesheet" type="text/css" href="${cssDomain}/css/reset.css"/>
+<link rel="stylesheet" type="text/css" href="${cssDomain}/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="${cssDomain}/css/page.css"/>
+</head>
+<body id="bh-member-attention" class="bh-mbody">
+<!--head begin-->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:HEAD,vmpath:frontpage/member/fkhead.vm")
+<!--head end-->
+<div class="bh-p-content">
+  <div class="bh-content">
+    <div class="bh-section">
+      <div class="bh-bread bh-bigFont"><span class="bh-strong ">我的3655</span>&nbsp;&gt;&nbsp;<span>订单中心</span></div>
+    </div>
+    <div class="bh-section">
+      <div class="bh-sidebar-left">
+      	#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:LEFT,vmpath:frontpage/member/left.vm")
+      </div>
+      <div class="bh-mLeft bh-container">
+        <div class="bh-m-rwrap">
+          <div class="bh-order bh-attention">
+            <div class="bh-ztab bh-member-ztab">
+              <h1>我的关注</h1>
+            </div>
+            <div class="bh-zcon bh-mtop5">
+              <ul>
+                <li class="bh-on" onclick="changeTab(this)" id="tab01"><span>我关注的商品</span></li>
+                <li onclick="changeTab(this)" id="tab02"><span>常购商品</span></li>
+              </ul>
+              <div id="gzdiv" style="display:block;">
+	              <table width="829" border="0" cellspacing="0" cellpadding="0" class="bh-table1">
+	                <tr>
+	                  <th width="150">商品图片</th>
+	                  <th>商品名称</th>
+	                  <th>价格</th>
+	                  <th width="150" style="border-right:1px solid #eee;">操作</th>
+	                </tr>
+	                #foreach($row in $att_list)
+	                <tr>
+	                  <td><a href="showgoods.htm?gs=${row.goodsId}" target="_blank"><img src="${row.goodsImg}" width="100" height="100"/></a></td>
+	                  <td class="bh-textLt"><a href="showgoods.htm?gs=${row.goodsId}" target="_blank">${row.goodsName}</a><p class="star"></p><span class="gray">加关注时间：${row.attTime}</span></td>
+	                  <td class="bh-textLt">关注时价格:<span class="bh-red bh-strong">￥${row.price}</span><br/>当前的价格：<span class="bh-red bh-strong">￥${row.currPrice}</span></td>
+	                  <td><a href="javascript:;" class="bh-show bh-mBt10"><img src="${imageDomain}/images/search-addcart.gif" width="94" height="25" /></a>
+	                  	<a href="javascript:;">分享给好友</a><br /><a href="javascript:;">订阅设置</a><br /><a href="deleteAtt.htm?id=${row.id}&userid=1">取消关注</a></td>
+	                </tr>
+	                #end
+	              </table>
+              	  <div class="bh-all"></div>
+              </div>
+              <div id="cgdiv" style="display:none;">
+              	   <table width="829" border="0" cellspacing="0" cellpadding="0" class="bh-table1">
+                		<tr>
+		                  <th width="150">商品图片</th>
+		                  <th>商品名称</th>
+		                  <th>价格</th>
+		                  <th width="150" style="border-right:1px solid #eee;">操作</th>
+                		</tr>
+                		#foreach($row in $freq_list)
+                		<tr>
+		                  <td><a href="showgoods.htm?gs=${row.id}" target="_blank"><img src="${commodityImgsDomain}${row.cate}/${row.id}_1_4.${row.imgSuffix}" width="100" height="100"/></a></td>
+		                  <td class="bh-textLt"><a href="showgoods.htm?gs=${row.id}" target="_blank">${row.name}</a>
+		                  		<p class="star"></p><span class="gray">收货时间：${row.shrq}</span></td>
+		                  <td class="bh-textLt"><span class="bh-red bh-strong">当前价格:￥${row.price}</td>
+		                  <td><a href="javascript:;" class="bh-show bh-mBt10"><img src="${imageDomain}/images/search-addcart.gif" width="94" height="25" /></a>
+		                  <a href="javascript:;">分享给好友</a><br /><a href="javascript:;">订阅设置</a><br /></td>
+		                </tr>
+		                #end
+              		</table>
+              		<div class="bh-all"></div>
+              		<p class="bh-message"><span class="bh-strong">提示：</span><br />仅显示最近3个月2次以上订购的商品</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bh-clear"></div>
+  </div>
+</div>
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:FOOT,vmpath:frontpage/member/fkfoot.vm")
+</body>
+</html>
+<script type="text/javascript" charset="utf-8" language="javascript">
+	function changeTab(tab){
+		var _id = tab.getAttribute("id");
+		if("bh-on" != tab.getAttribute("class")){
+			if("tab01" == _id){
+				document.getElementById("tab01").setAttribute("class","bh-on");
+				document.getElementById("tab02").setAttribute("class","");
+				document.getElementById("gzdiv").style.display = 'block';
+				document.getElementById("cgdiv").style.display = 'none';
+			}else if("tab02" == _id){
+				document.getElementById("tab02").setAttribute("class","bh-on");
+				document.getElementById("tab01").setAttribute("class","");
+				document.getElementById("gzdiv").style.display = 'none';
+				document.getElementById("cgdiv").style.display = 'block';
+			}
+		}
+	}
+</script>
+

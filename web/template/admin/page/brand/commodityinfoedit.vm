@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>商品信息维护</title>
+<link href="${request.getContextPath()}/css/admin.css" rel="stylesheet">
+<link href="${request.getContextPath()}/css/style.css" rel="stylesheet">
+<script type="text/javascript" src="${request.getContextPath()}/js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="${request.getContextPath()}/js/xheditor.js"></script>
+</head>
+
+<body>
+#getMothodSc("moduleName=admin.action.Common" "parameters=tag:1,vmpath:admin/head.vm,level:3,level2:0");
+<div id="admin_right">
+<style type="text/css">
+	.wordBox{display:inline-block;padding:3px;background:#ddd;margin:5px;color:#000;font-size:12px;}
+	.wordBoxButton{background:#999;cursor:pointer;padding:2px;margin:2px;border-radius:3px;}
+	.wordBoxButton:hover{background:#bbb}
+</style>
+<div class="headbar clearfix">
+	<div class="position"><span>商品</span><span>&gt;</span><span>商品管理</span><span>&gt;</span><span>商品信息维护</span></div>
+</div>
+<div class="content_box">
+	<div class="content form_content">
+		<form method="post" id="cmtyForm" name="cmtyForm" action="savecmdyinfo.htm">
+			<input type="hidden" name="id" value="${id}" />
+			<input type="hidden" name="category_id" value="${category_id}" />
+			<div id="table_box_1" style="display: block;">
+				<table class="form_table">
+					<colgroup><col width="150px">
+					<col>
+					</colgroup><tbody>		
+					<tr>
+						<th>商品介绍：</th>
+						<td>
+							<textarea class="htmlEditor" name="cmdyDesc" style="width: 80%;height:300px;">$!{cmdyDesc}</textarea>
+						</td>
+					</tr>	
+					<tr>
+						<th>规格参数：</th>
+						<td>
+							<textarea class="htmlEditor2" name="cmdyStandard" style="width: 80%;height:300px;">$!{cmdyStandard}</textarea>
+						</td>
+					</tr>
+					<tr>
+						<th>包装运输：</th>
+						<td>
+							<textarea class="htmlEditor3" name="cmdyPack" style="width: 80%;height:300px;">$!{cmdyPack}</textarea>
+						</td>
+					</tr>
+				</tbody></table>
+			</div>
+			<table class="form_table">
+				<colgroup><col width="150px">
+				<col>
+				</colgroup><tbody><tr>
+					<td></td><td><button onclick="if(confirm('原信息将会被覆盖，是否确认保存？')){getcontent();getcontent2();getcontent3();cmtyForm.submit();}" type="button" class="submit"><span>保存</span></button></td>
+				</tr>
+			</tbody></table>
+		</form>
+	</div>
+</div>
+
+	</div>
+	#getMothodSc("moduleName=admin.action.Common" "parameters=tag:2,vmpath:admin/foot.vm");
+</body>
+</html>

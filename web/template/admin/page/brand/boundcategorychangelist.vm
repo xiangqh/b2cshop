@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>品牌绑定分类列表</title>
+<link href="${request.getContextPath()}/css/admin.css" rel="stylesheet">
+<link href="${request.getContextPath()}/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+<div id="admin_right">
+	<div class="headbar">
+	
+	<div class="field">
+		<table class="list_table">
+		<colgroup>
+		<col width="80px" />
+		<col width="400px">
+		</colgroup>
+		<thead>
+				<tr id="headth" class="">
+					<th>选择</th>
+					<th>分类名称</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+<div class="content">
+	<table class="list_table" id="list_table">
+		<colgroup>
+		<col width="80px" />
+		<col width="400px">
+		</colgroup>
+		<tbody id="conth">
+			#foreach($row in $list_category)
+			<tr>
+				<td><input type="checkbox" value="${row.cid}" name="cbox" #if(${row.checked} !=0) checked #end/></td>
+				<td>$!{row.name}</td>
+			</tr>
+			#end
+		</tbody>
+	</table>
+</div>
+	</div>
+</body>
+</html>

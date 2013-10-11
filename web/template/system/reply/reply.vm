@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>${goods_model.commodityName}-评论</title>
+<link rel="stylesheet" type="text/css" href="${request.getContextPath()}/frontpage/css/reset.css"/>
+<link rel="stylesheet" type="text/css" href="${request.getContextPath()}/frontpage/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="${request.getContextPath()}/frontpage/css/page.css"/>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/util.js"></script>
+</head>
+<body id="bh-member-comment" class="bh-mbody bh-mbody-210">
+<!--head begin-->
+<div class="bh-p-head bh-member-head">
+  <div class="bh-head">
+    <!--添加的头部-->
+    #getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:HEAD,vmpath:frontpage/member/fkhead.vm")
+    <!--添加的头部结束-->
+  </div>
+</div>
+<!--head end-->
+<div class="bh-p-content">
+  <div class="bh-content">
+    <div class="bh-section">
+      <div class="bh-bread bh-bigFont"><span class="bh-strong ">我的3655</span>&nbsp;&gt;&nbsp;<a href="#">商品信息</a></div>
+    </div>
+    <div class="bh-section">
+      <div class="bh-sidebar-left">
+        <div class="bh-base-pd">
+          <div class="bh-ztab">
+            <h3>商品信息</h3>
+          </div>
+          <div class="bh-zcon">
+            <div class="bh-img"><a href="showgoods.htm?gs=${goods_model.id}" target="_blank"><img src="${commodityImgsDomain}${goods_model.categoryId}/${goods_model.id}_1_4.${goods_model.imgSuffix}" width="130" height="130"/> </a></div>
+            <div class="bh-title">商品名称：<a href="javascript:;" target="_blank">${goods_model.commodityName}</a></div>
+            <div class="bh-zprice bh-mtop5">京创实际价：<span class="bh-red bh-strong">￥${goods_model.priceActual}</span></div>
+            <div class="bh-zprice bh-mtop5">京创折扣价：<span class="bh-red bh-strong">￥${goods_model.priceDiscount}</span></div>
+            <div class="bh-core bh-mtop5 bh-overf"><span class="bh-fl">评价得分：</span>
+              <div class="bh-fl">
+                <div id="product_star" class="star sa5 bh-fl"></div>
+                (<span>5</span>分)</div>
+            </div>
+            <div class="bh-comment bh-mtop5">评论数：<span>0</span>条</div>
+            <div class="bh-mtop10"><a class="bh-btn" href="#">添加到购物车</a></div>
+          </div>
+        </div>
+      </div><form id="2209f" method="post" action="addReply.htm">
+      		<input type="hidden" name="12080" id="12080" value="${model_comment.id}"/> 
+          	<input type="hidden" name="02191" id="02191" value="${userId}"/> 
+	      <div class="bh-mLeft bh-container">
+	        <div class="bh-m-rwrap bh-fr">
+	          <div class="bh-comment-ztab">
+	            <h2 class="bh-bigFont">发表回复</h2>
+	          </div>
+	          <div class="bh-zcon" id="comment">
+	            <div class="item bh-mtop10">
+	              <div class="user">
+	                <div class="u-icon"> <a target="_blank" href="#"> 
+	                <img width="50" height="50" src="http://misc.360buyimg.com/lib/img/u/60.gif" upin=""> </a> </div>
+	                <div class="u-name"> <a target="_blank" href="javascript:;">${model_comment.userName}</a> </div>
+	                <span class="u-level"> <font style="color:#000000"> 铜牌会员 </font> </span>
+	                <div class="u-address"> (${model_comment.province})</div>
+	              </div>
+	              <div class="i-item">
+	                <div class="o-topic"> <strong class="topic"> <a target="_blank" href="javascript:;">${model_comment.title}</a> </strong> 
+	                <span >000</span> <span class="date-comment"> ${model_comment.commentTime}</span> </div>
+	                <div class="comment-content">
+	                  <dl>
+	                    <dt>优点：</dt>
+	                    <dd> ${model_comment.advantage}</dd>
+	                  </dl>
+	                  <dl>
+	                    <dt>不足：</dt>
+	                    <dd> ${model_comment.defect}</dd>
+	                  </dl>
+	                </div>
+	                <div class="btns">
+	                  <div class="useful"> <span>此评价对我</span>
+	                  <a class="btn-agree" href="javascript:;" title="${model_comment.useful}" name="agree" onclick="useful(this,${model_comment.id});">有用(${model_comment.useful})</a> 
+	                  <a class="btn-oppose" href="javascript:;" title="${model_comment.useless}" name="oppose" onclick="useless(this,${model_comment.id});">没用(${model_comment.useless})</a> </div>
+	                  <a href="javascript:;">&nbsp;</a> </div>
+	                  #foreach($rpy in $model_comment.reply)
+	                  <div class="item-reply"> <strong>${velocityCount}.</strong>
+		                  <dl>
+		                    <dt> <span class="u-name"> 
+		                     <a target="_blank" href="javascript:;">${rpy.userName}</a> 回复说： </span>
+		                     <span class="date-comment"> ${rpy.replyTime}</span> </dt>
+		                    <dd> ${rpy.content}</dd>
+		                  </dl>
+	                  </div>
+	                  #end
+	              </div>
+	              <div class="corner tl"> </div>
+	              <div class="corner tr"> </div>
+	              <div class="corner b"> </div>
+	              <div class="corner bl"> </div>
+	              <div class="corner br"> </div>
+	            </div>
+	            <div id="reply" class="bh-replay">
+	              <dl>
+	                <dt class="bh-mBt10 bh-strong">发表回复</dt>
+	                <dd>
+	                  <textarea id="cmmreply" name="cmmreply"></textarea>
+	                  <br>
+	                  <label id="cmmreply_lbl"> 请填写回复内容，长度在5-200位字符之间</label>
+	                  <input class="bh-btn" type="button" value=" " id="bh_btn_0x">
+	                </dd>
+	              </dl>
+	            </div>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+    </form>
+    <div class="bh-clear"></div>
+  </div>
+</div>
+<!-- foot begin -->
+<div class="bh-p-foot bh-mtop10 bh-member-foot">
+  <div class="bh-foot">
+    <div class="bh-section">
+      <!-- module foot begin -->
+      <div id="bh-m-foot">
+        <div class="bh-ser-wrapall">
+          <div class="bh-ser-wrap">
+            <div class="bh-service bh-overf">
+              <div class="bh-service-message bh-fr bh-textCt"><span class="bh-red bh-strong">全国客服：400-800-3655</span><br />
+                服务时间（9:00-21:00）<br />
+                <a href="#" class="bh-mR10">在线咨询</a><a href="#">投诉中心</a></div>
+              <div class="bh-fore bh-overf bh-fl">
+                <dl class="bh-fore1">
+                  <dt><b></b><strong>关于支付</strong></dt>
+                  <dd>
+                    <div class="bh-item"><a target="_blank" href="#">购物流程</a></div>
+                    <div class="bh-item"><a target="_blank" href="#">支付方式</a></div>
+                    <div class="bh-item"><a target="_blank" href="#">支付相关问题</a></div>
+                  </dd>
+                </dl>
+                <dl class="bh-fore2">
+                  <dt><b></b><strong>关于配送</strong></dt>
+                  <dd>
+                    <div class="bh-item"><a target="_blank" href="#">配送方式</a></div>
+                    <div class="bh-item"><a target="_blank" href="#">配送流程</a></div>
+                    <div class="bh-item"><a target="_blank" href="#">全程运输保险</a></div>
+                  </dd>
+                </dl>
+                <dl class="bh-fore3">
+                  <dt><b></b><strong>售后服务</strong></dt>
+                  <dd>
+                    <div class="bh-item"><a target="_blank" href="#">品质保证</a></div>
+                    <div class="bh-item"><a target="_blank" href="#">回收条款</a></div>
+                    <div class="bh-item"><a target="_blank" href="#">15天退换货承诺</a></div>
+                  </dd>
+                </dl>
+                <dl class="bh-fore4">
+                  <dt><b></b><strong>客服中心</strong></dt>
+                  <dd>
+                    <div class="bh-item"><a target="_blank" href="#">找回密码</a></div>
+                    <div class="bh-item"><a target="_blank" href="#">会员制度</a></div>
+                    <div class="bh-item"><a target="_blank" href="#">常见热点问题</a></div>
+                  </dd>
+                </dl>
+                <dl class="bh-fore5">
+                  <dt><b></b><strong>关于我们</strong></dt>
+                  <dd>
+                    <div class="bh-item"><a target="_blank" href="#">权威认证</a></div>
+                    <div class="bh-item"><a target="_blank" href="#">招聘信息</a></div>
+                    <div class="bh-item"><a target="_blank" href="#">联系我们</a></div>
+                  </dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- module foot end -->
+    </div>
+    <div class="bh-section" style="display:none">
+      <!-- module copyright begin -->
+      <div id="bh-m-copyright">
+        <p class="bh-textCt bh-link"><a href="#">加入商城</a> | <a href="#">广告服务</a> | <a href="#">法律声明</a> | <a href="#">帮助中心</a> | <a href="#">联系我们</a></p>
+        <p class="bh-textCt bh-mTop20 bh-mBt20">服务热线：400-628-5179 传真：021-66362636<br />
+          Copyright©2010 酒博会 http://www.9bohui.cn All Rights 沪ICP备10040069号-1</p>
+      </div>
+      <!-- module copyright end -->
+    </div>
+  </div>
+</div>
+<!-- foot end -->
+</body>
+</html>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/comment.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/use.js"></script>

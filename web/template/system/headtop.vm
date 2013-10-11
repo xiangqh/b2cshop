@@ -1,0 +1,49 @@
+<div class="bh-section">
+        <div class="bh-head-top">
+          <div class="bh-sidebar-left">
+            <div class="bh-head-txt" id="loginhtml"> 
+			<span class="kp-user-notlogin">尊敬的用户。欢迎光临京创在线！&nbsp;<a id="head_login"  href="${scpath}/mlogin.htm" target="_blank">【登录】</a>，新用户？<a id="head_register" href="${scpath}/preg.htm" target="_blank">【免费注册】</a></span> 
+			</div>
+          </div>
+          <div class="bh-container bh-mLeft">
+            <div class="bh-fr">
+              <ul>
+                <li><a href="#">我的订单</a></li>
+                <li><a href="#">网站地图</a></li>
+                <li><a href="#">企业客户</a></li>
+                <li class="bh-customers">
+                  <div class="bh-on"> <a href="#" class="bh-tab">客户服务<b></b> </a>
+                    <div class="bh-tanchu">
+                    	<dl>
+                        	<dd><a href="#">常见问题</a></dd>
+                            <dd><a href="#">售后服务</a></dd>
+                            <dd><a href="#">投诉中心</a></dd>
+                            <dd><a href="#">客服邮箱</a></dd>
+                        </dl>
+                    </div>
+                  </div>
+                </li>
+                <li style=" background:none;"><a href="#">在线客服&nbsp;&nbsp;<img width="13" height="17" src="${imageDomain}/images/item3.jpg"></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+		  <script>
+	    var cookie={ 
+  //读取COOKIES,n为COOKIE名 
+   Get:function(n){ 
+   		var re=new RegExp(n+'=([^;]*);?','gi');
+   	    var r=re.exec(document.cookie)||[];
+   	    return (r.length>1?r[1]:null)
+   	  },show:function(){
+	  var userName=cookie.Get("userName");
+	  if(userName!=null && userName!="" ){
+			//登录成功
+		 document.getElementById("loginhtml").innerHTML ='<span style="display:none" class="kp-user-haslogin">您好，'+unescape(userName)+'<span class="kp-user-nick"></span> <a href="${scpath}/">[会员中心]</a> <a target="_self" href="${scpath}/outlogin.htm">退出登录</a></span>';
+		 }
+	  }
+	  }
+	  
+	cookie.show();
+  </script>

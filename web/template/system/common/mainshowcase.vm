@@ -1,0 +1,36 @@
+ 		<div class="bh-mLeft bh-mRight bh-container">
+        <div class="bh-four-tab">
+          <ul class="bh-tab-ul bh-com-tab bh-com-smalltab" id="_bh_tab_ul_">
+          	#foreach($row in $showcaseHeader)
+          		<li #if($velocityCount == 1) class="bh-on" #end  #if(!$velocityHasNext) style="border:0 none;" #end id="_head_li_sc_${row.id}" onmouseover="scMouseover(this,${row.id})">${row.name}</li>
+          	#end
+          </ul>
+          #set($curr=0)
+          #foreach($row in $showcaseList)
+          	  #if($velocityCount == 1)
+          	  	#set($curr=${row.id})
+          	  	 <div class="bh-windows bh-on" id="bh_cxsp_${row.id}">
+            		<div class="bh-windows-wrap bh-overf">
+              #else
+                 #if($curr != ${row.id})
+	          	  	  #set($curr=${row.id})
+	          	  		</div>
+	          		  </div>
+	          		  <div class="bh-windows" id="bh_cxsp_${row.id}">
+	            	   <div class="bh-windows-wrap bh-overf">
+	          	  #end
+              #end
+              <div class="bh-m-window bh-fl ">
+                <ul>
+                  <li class="bh-img"><a target="_blank" href="showgoods.htm?gs=${row.invId}"><img src="${commodityImgsDomain}/${row.cateId}/${row.invId}_${imgPos}.${row.imgSuffix}" width="156" height="156" /></a></li>
+                  <li> <a target="_blank" href="showgoods.htm?gs=${row.invId}" title="${row.invName}" class="bh-p-title">${row.invName}</a></li>
+                  <li><span class="bh-zprice">折扣价：</span><span class="bh-zred">￥${row.priceDiscount}</span></li>
+                </ul>
+              </div>
+          	  #if(!$velocityHasNext)
+          	  		</div>
+	          	</div>
+          	  #end
+           #end      
+           </div>
+         </div>

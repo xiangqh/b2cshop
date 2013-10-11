@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>商品上下架设置</title>
+    <link href="css/admin.css" rel="stylesheet">
+	<link href="css/art.css" rel="stylesheet">
+	<link href="css/default.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+	<script type="text/javascript" src="js/jquery.js"></script>
+  </head>
+  
+  <body>
+  #getMothodSc("moduleName=admin.action.Common" "parameters=tag:1,vmpath:admin/head.vm,level:1,level2:14")
+    <div id="admin_right">
+		<div class="headbar">
+			<ul name="conf_menu" class="tab">
+				<li class="selected"><a>商品上下架</a></li>
+			</ul>
+		</div>
+		<div class="content_box">
+		
+			<div class="content form_content">
+				<form name="goods_conf" method="post" action="updateGoodsInfo.htm" style="display: block;" novalidate="true">
+					<!--邮箱设置-->
+					<table class="form_table">
+						<colgroup>
+							<col width="150px"/>
+							<col width="240px"/>
+							<col />
+						</colgroup>
+						<tbody>
+							#if($goods)
+							<tr name="goods">
+								<th>商品可上架条件：</th>
+								<td>
+                                    <input type="radio" name="can_shelves" #if(${goods.can_shelves} == 1) checked="checked" #end value="1"><label>定价完成并有库存</label>
+								</td>
+								<td>
+                                    <input type="radio" name="can_shelves" #if(${goods.can_shelves} == 0) checked="checked" #end value="0"><label>定价完成</label>
+								</td>
+							</tr>
+							<tr name="goods">
+								<th>附合上架条件时：</th>
+								<td>
+                                    <input type="radio" name="shelves_on" #if(${goods.shelves_on} == 1) checked="checked" #end value="1"><label>自动上架</label>
+								</td>
+								<td>
+                                    <input type="radio" name="shelves_on" #if(${goods.shelves_on} == 0) checked="checked" #end value="0"><label>手工上架</label>
+								</td>
+							</tr>
+							<tr name="goods">
+								<th>库存为0时：</th>
+								<td>
+                                    <input type="radio" name="stock0_buy" #if(${goods.stock0_buy} == 1) checked="checked" #end value="1"><label>不允许购买</label>
+								</td>
+								<td>
+                                    <input type="radio" name="stock0_buy" #if(${goods.stock0_buy} == 0) checked="checked" #end value="0"><label>允许购买</label>
+								</td>
+							</tr>
+							#else
+							<tr name="goods">
+								<th>商品可上架条件：</th>
+								<td>
+                                    <input type="radio" name="can_shelves" checked="checked" value="1"><label>定价完成并有库存</label>
+								</td>
+								<td>
+                                    <input type="radio" name="can_shelves" value="0"><label>定价完成</label>
+								</td>
+							</tr>
+							<tr name="goods">
+								<th>附合上架条件时：</th>
+								<td>
+                                    <input type="radio" name="shelves_on" checked="checked" value="1"><label>自动上架</label>
+								</td>
+								<td>
+                                    <input type="radio" name="shelves_on" value="0"><label>手工上架</label>
+								</td>
+							</tr>
+							<tr name="goods">
+								<th>库存为0时：</th>
+								<td>
+                                    <input type="radio" name="stock0_buy" checked="checked" value="1"><label>不允许购买</label>
+								</td>
+								<td>
+                                    <input type="radio" name="stock0_buy" value="0"><label>允许购买</label>
+								</td>
+							</tr>
+							#end
+							<tr>
+								<th></th>
+								<td>
+									<button type="submit" class="submit"><span>保存设置</span></button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
+	#getMothodSc("moduleName=admin.action.Common" "parameters=tag:2,vmpath:admin/foot.vm");
+  </body>
+</html>

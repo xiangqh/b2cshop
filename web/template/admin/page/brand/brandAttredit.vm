@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>品类添加-基本信息</title>
+<link href="${request.getContextPath()}/css/admin.css" rel="stylesheet">
+<link href="${request.getContextPath()}/css/style.css" rel="stylesheet">
+<script type="text/javascript" charset="utf-8" language="javascript" src="${request.getContextPath()}/js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${request.getContextPath()}/js/validator.js"></script>
+</head>
+
+<body>
+#getMothodSc("moduleName=admin.action.Common" "parameters=tag:1,vmpath:admin/head.vm,level:3,level2:0");
+	<div id="admin_right">
+		<div class="headbar clearfix">
+		<div class="position"><span>商品</span><span>&gt;</span><span>品类管理</span><span>&gt;</span><span>品类添加</span></div>
+	</div>
+
+	<form method="post" action="${request.getContextPath()}/editBrandAttr.htm" name="brandAttrForm" id="brandAttrForm" novalidate="true">
+	<div class="content_box">
+		<div class="content form_content">
+			<table name="table" class="form_table" id="tab-1">
+				<colgroup><col width="150px">
+				<col>
+				</colgroup>
+				<tbody>
+					<tr>
+						<th>品类名称：</th>
+						<td>
+							<input type="text" value="$!{edit_ba.name}" title="品类名称" id="name" name="name" class="normal _vdt:{CHECKNOTNULL(品类名称)} _for:{msg01}">
+							<label class="msgColor">*</label>
+							<label id="msg01" class="msgColor"></label>
+							<input type="hidden" value="${edit_ba.id}" name="id">
+						</td>
+					</tr>
+					<tr>
+						<th>拆分属性 [名称/值]：</th>
+						<td>
+							<input type="text" value="$!{edit_ba.splitName}" title="拆分属性"  id="splitName" name="splitName" class="normal _vdt:{CHECKNOTNULL(拆分属性[名称])} _for:{msg02}" >
+							<input type="text" value="$!{edit_ba.splitValue}" title="拆分属性" style="width:350px" id="splitValue" name="splitValue" class="normal _vdt:{CHECKNOTNULL(拆分属性[值])} _for:{msg02}">
+							<label class="msgColor">*</label>
+							<label id="msg02" class="msgColor"></label>
+						</td>
+					</tr>
+					<tr>
+						<th>选购属性 [名称/值]：</th>
+						<td>
+							<input type="text" value="$!{edit_ba.changeName}" title="选购属性" id="changeName" name="changeName" class="normal _vdt:{CHECKNOTNULL(选购属性[名称]])} _for:{msg03}">
+							<input type="text" value="$!{edit_ba.changeValue}" title="选购属性" style="width:350px" id="changeValue" name="changeValue" class="normal _vdt:{CHECKNOTNULL(选购属性[值]])} _for:{msg03}">
+							<label class="msgColor">*(无选购属性时，名称和值填写#号)</label>	
+							<label id="msg03" class="msgColor"></label>					
+						</td>
+					</tr>
+					<tr>
+						<th>价格属性 [名称/值]：</th>
+						<td>
+							<input type="text" value="$!{edit_ba.priceName}" title="价格属性" id="priceName" name="priceName" class="normal _vdt:{CHECKNOTNULL(价格属性[名称])} _for:{msg04}">
+							<input type="text" value="$!{edit_ba.priceValue}" title="价格属性" style="width:350px" id="priceValue" name="priceValue" class="normal _vdt:{CHECKNOTNULL(价格属性[值])} _for:{msg04}">
+							<label class="msgColor">*</label>	
+							<label id="msg04" class="msgColor"></label>						
+						</td>
+					</tr>
+					<tr>
+						<th>添加扩展属性：</th>
+						<td><button type="button" onclick="addAttr();" class="btn"><span class="add">添加扩展属性</span></button></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>
+							<table width="90%" class="border_table">
+								<thead>
+									<tr>
+										<th>属性名</th>
+										<th nowrap="nowrap">前台列表页显示类型</th>
+										<th>选择项可选值【选项之间用逗号','做分割】</th>
+										<th>操作</th>
+									</tr>
+								</thead>
+								<tbody id="attr_list">
+									#foreach($row in $list_edit_atr)
+									<tr>
+										<td><input name='fjname'  class='normal' type='text' value="${row.name}" />
+											<input name='fjserach' value='1' type='hidden' /></td>
+										<td><select class='middle' name='fjtype'>
+											<option value = '1' #if(${row.type}==1) selected #end >单选框</option>
+											<option value = '2' #if(${row.type}==2) selected #end >复选框</option>
+										</select></td>
+										<td><input class='normal' name='fjvalue' type='text' value="${row.value}" /></td>
+										<td><img class='operator' src='${request.getContextPath()}/images/icon_del.gif' alt='删除'  onclick='delAttr(this)' />
+										</td>
+									</tr>
+									#end
+								</tbody>
+							</table>
+						</td>
+					</tr>
+			</tbody></table>
+			<table class="form_table">
+				<colgroup><col width="150px">
+				<col>
+				</colgroup><tbody><tr>
+					<td></td>
+					<td><button onclick="if(validator(document)){$('#brandAttrForm').submit();}" type="button" class="submit"><span>保 存</span></button></td>
+				</tr>
+			</tbody></table>
+		</div>
+	</div>
+	
+	</form>
+	<script type="text/javascript" charset="utf-8" language="javascript">
+		//添加一个模型属性
+		function addAttr()
+		{
+			var str = "<tr>"+
+						"<td><input name='fjname'  class='normal' type='text' /><input name='fjserach' value='1' type='hidden' /></td>"+
+						"<td><select class='middle' name='fjtype'>"+
+							"<option value = '1'>单选框</option>"+
+							"<option value = '2'>复选框</option>"+
+						"</select></td>"+
+						"<td><input class='normal' name='fjvalue' type='text'  /></td>"+
+						"<td><img class='operator' src='${request.getContextPath()}/images/icon_del.gif' alt='删除'  onclick='delAttr(this)' /></td>"+
+					"</tr>";
+			$("#attr_list").append(str);
+		}
+		//删除模型属性
+		function delAttr(curr_attr)
+		{
+			$(curr_attr).parent().parent().remove();
+		}
+	</script>
+	#getMothodSc("moduleName=admin.action.Common" "parameters=tag:2,vmpath:admin/foot.vm");
+</body>
+</html>

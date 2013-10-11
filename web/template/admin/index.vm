@@ -1,0 +1,82 @@
+<html>
+<head>
+	<title>后台管理中心</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" href="inc/southidc.css">
+<script type="text/javascript" src="js/jquery.js"></script>
+<script language=javascript>
+<!--
+function CheckForm()
+{
+	if(""==$("#username").val().trim())
+	{
+		alert("请输入用户名！");
+		return false;
+	}
+	if(""==$("#password").val().trim())
+	{
+		alert("请输入密码！");
+		return false;
+	}
+}
+
+
+//-->
+</script>
+</head>
+
+<body leftmargin=0 topmargin=0 >
+
+<table width="750" height="26" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td>　</td>
+  </tr>
+</table>
+<form id="Login" action="login.htm" method="post" onSubmit="return CheckForm();">
+<table width="792" height="350" border="0" align="center" cellpadding="0" cellspacing="0" background="image/logo.jpg">
+  <tr> 
+    <td height="87" colspan="2">　</td>
+  </tr>
+  <tr> 
+    <td width="462">　</td>
+    <td width="330">
+		<table width="282" height="106" border="0" align="center" cellpadding="2" cellspacing="0">
+
+          <tr> 
+            <td align="left">用户名称：</td>
+            <td><input id="username" name="UserName"  type="text"  maxlength="20" style="width:160px;border-style:solid;border-width:1;padding-left:4;padding-right:4;padding-top:1;padding-bottom:1" onMouseOver="this.style.background='#E1F4EE';" onMouseOut="this.style.background='#FFFFFF'" ></td>
+          </tr>
+          <tr> 
+            <td align="left">用户密码：</td>
+            <td><input id="password" name="Password"  type="password" maxlength="20" style="width:160px;border-style:solid;border-width:1;padding-left:4;padding-right:4;padding-top:1;padding-bottom:1" onMouseOver="this.style.background='#E1F4EE';" onMouseOut="this.style.background='#FFFFFF'" ></td>
+          </tr>
+          <tr> 
+              <td align="left">&nbsp;</td>
+              <td><font color="#FFFFFF">&nbsp;</font></td>          
+          </tr>
+          <tr> 
+            <td colspan="2"> <div align="center"> 
+                <input   type="submit" name="Submit" value=" 确&nbsp;认 " style="font-size: 9pt; height: 19; width: 60; color: #000000; background-color: #E1F4EE; border: 1 solid #E1F4EE" onMouseOver ="this.style.backgroundColor='#ffffff'" onMouseOut ="this.style.backgroundColor='#E1F4EE'">
+                &nbsp; 
+                <input name="reset" type="reset"  id="reset" value=" 清&nbsp;除 " style="font-size: 9pt; height: 19; width: 60; color: #000000; background-color: #E1F4EE; border: 1 solid #E1F4EE" onMouseOver ="this.style.backgroundColor='#ffffff'" onMouseOut ="this.style.backgroundColor='#E1F4EE'">
+                <br>
+              </div></td>
+          <tr> 
+            <td height="30" colspan="2">　</td>
+          
+          <tr>
+            <td colspan="2"> 
+            </td>
+          
+     
+      </table></td>
+  </tr>
+  <tr> 
+    <td colspan="2">　</td>
+  </tr>
+</table>
+   </form>
+
+</body>
+</html>

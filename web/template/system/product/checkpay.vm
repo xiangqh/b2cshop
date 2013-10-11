@@ -1,0 +1,115 @@
+	<div class="show-message"  id="pay_show" #if($!inittag==1) style="display:none;"#end>
+                <h1><span class="bh-bigFont">支付及配送方式</span> <a href="javascript:void(0);" onclick="Sc_check.getPayList($!{paytype},$!{shiptype})">[修改]</a></h1>
+                <div class="middle">
+                  <table style="width: 100%;">
+                    <tbody>
+                      <tr>
+                        <td style="text-align: right; width: 82px;">支付方式：</td>
+                        <td>
+							#if($!paytype==1)在线支付 #end
+                            #if($!paytype==2)货到付款#end
+                            #if($!paytype==3)公司转账#end
+                            #if($!paytype==4)邮局汇款#end
+							</td>
+                      </tr>
+                      <tr>
+                        <td style="text-align: right;">配送方式：</td>
+                        <td>
+							#if($!shiptype==1)快递 #end
+                            #if($!shiptype==2)平邮#end
+                            #if($!shiptype==3)EMS#end
+							</td>
+                      </tr>
+                      <tr>
+                        <td style="text-align: right;">运费：</td>
+                        <td><div> <span id="text_ship_id">
+						#if($!shiptype==1)$!{ship.fastPost} #end
+                            #if($!shiptype==2)$!{ship.slowPost} #end
+                            #if($!shiptype==3)$!{ship.ems} #end
+						</span> </div></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+			  
+              <div class="write-message"  id="pay_edit"  #if($!inittag==0) style="display:none;"#end>
+					
+                    <form metod="post" id="form_pay">
+						#if($!shiptype==1) 
+						<input type="hidden" name="expressAmount" id="expressAmount" value="$!{ship.fastPost}" />
+						#end
+                            #if($!shiptype==2)
+							<input type="hidden" name="expressAmount" id="expressAmount" value="$!{ship.slowPost}" />
+							#end
+                            #if($!shiptype==3)
+							<input type="hidden" name="expressAmount" id="expressAmount" value="$!{ship.ems}" />
+							#end
+						
+                <h1><span class="bh-bigFont">支付及配送方式</span> <a href="#" onclick="Sc_check.closePay();">[关闭]</a> </h1>
+                <div class="bh-pay-zffs middle">
+                  <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                    <tbody><tr class="bh-strong bh-bigFont">
+                      <td style="width: 240px;">支付方式</td>
+                      <td>备注</td>
+                    </tr>
+                  </tbody></table>
+                  <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                    <tbody><tr>
+                      <td valign="top" align="left" style="width: 240px;"><input type="radio" name="paytype" id="paytype"  value="2"  #if($!paytype==2)checked="checked" #end />
+                        <label style="margin-left: 2px;">货到付款</label></td>
+                      <td valign="top" class="gray">签订合同收取部分定金（30%），货物到达采购商指定地点查验无误后支付余款  </a></td>
+                    </tr>
+                  </tbody></table>
+                  <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                    <tbody><tr>
+                      <td valign="top" align="left" style="width: 240px;"><input type="radio" name="paytype" id="paytype"  value="1"  #if($!paytype==1)checked="checked" #end />
+                        <label style="margin-left: 2px;">在线支付</label></td>
+                      <td valign="top" class="gray">支付宝即时到帐，支付绝大数银行借记卡及部分银行信用卡 </a></td>
+                    </tr>
+                  </tbody></table>
+                  <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                    <tbody><tr>
+                      <td valign="top" align="left" style="width: 240px;"><input type="radio" name="paytype" id="paytype"  value="3"  #if($!paytype==3)checked="checked" #end />
+                        <label style="margin-left: 2px;">公司转账 </label></td>
+                      <td valign="top" class="gray">通过支付宝平台转账，转帐后1-2个工作日内到帐  </a></td>
+                    </tr>
+                  </tbody></table>
+                  <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                    <tbody><tr>
+                      <td valign="top" align="left" style="width: 240px;"><input type="radio" name="paytype"   value="4" id="paytype" #if($!paytype==4)checked="checked" #end />
+                        <label style="margin-left: 2px;">邮局汇款 </label></td>
+                      <td valign="top" class="gray">通过支付宝平台收款，汇款后1-2个工作日到账  </td>
+                    </tr>
+                  </tbody></table>
+                </div>
+                <div class="bh-send middle bh-mtop10">
+                  <table width="100%" cellspacing="0" cellpadding="0" border="0" align="center">
+                    <tbody><tr>
+                      <td height="24" width="130px" valign="top" align="left"><div class=" bh-bigFont bh-strong">配送方式</div></td>
+                      <td width="155px" valign="top" align="left">运费</td>
+                    </tr>
+                  </tbody></table>
+                  <table width="100%" cellspacing="0" cellpadding="0" border="0" align="enter" id="ShipMentTab">
+                    <tbody>
+                      <tr>
+                        <td height="24" width="130px" valign="top" align="left"><input type="radio" name="shiptype" checked="checked" value="1"/>
+                          <label style="margin-left: 2px;">快递运输</label></td>
+                        <td width="155px" valign="top" align="left"> $!{ship.fastPost}元 <span class="bh-red">(免运费)</span></td>
+                      </tr>
+					  <tr>
+                        <td height="24" width="130px" valign="top" align="left"><input type="radio" name="shiptype" checked="checked" value="2"/>
+                          <label style="margin-left: 2px;">平邮</label></td>
+                        <td width="155px" valign="top" align="left">$!{ship.slowPost}元 <span class="bh-red">(免运费)</span></td>
+                      </tr>
+					  <tr>
+                        <td height="24" width="130px" valign="top" align="left"><input type="radio" name="shiptype" checked="checked" value="3"/>
+                          <label style="margin-left: 2px;">EMS</label></td>
+                        <td width="155px" valign="top" align="left"> $!{ship.ems}元 <span class="bh-red">(免运费)</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+				<div style="padding: 10px 0pt;" class="bh-btns"><input type="button" value="保存支付方式和配送方式" class="bh-btn" onclick="Sc_check.savePay();" /></div>
+</form>              
+</div>

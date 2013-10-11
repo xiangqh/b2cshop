@@ -2,6 +2,7 @@ package com.zz.b2cshop.privilege.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,7 @@ import com.zz.b2cshop.privilege.dao.entity.Role;
 @Service
 public class RoleServiceImpl implements IRoleService {
 
+	@Autowired
 	private IRoleDao roleDao;
 
 	@Override

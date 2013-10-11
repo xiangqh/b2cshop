@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>商品列表</title>
+<link href="${request.getContextPath()}/css/admin.css" rel="stylesheet">
+<link href="${request.getContextPath()}/css/style.css" rel="stylesheet">
+<link href="${request.getContextPath()}/css/artDialog.css" rel="stylesheet">
+<script type="text/javascript" charset="utf-8" language="javascript" src="${request.getContextPath()}/js/util.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${request.getContextPath()}/js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${request.getContextPath()}/js/artDialog.js"></script>
+</head>
+
+<body>
+#getMothodSc("moduleName=admin.action.Common" "parameters=tag:1,vmpath:admin/head.vm,level:3,level2:28");
+	<div id="admin_right">
+	<form method="post" action="" name="ModelForm" id="ModelForm">
+<div class="headbar">
+	<div class="position"><span>商品</span><span>&gt;</span><span>商品管理</span><span>&gt;</span><span>商品列表</span></div>
+	<div class="searchbar">
+		<form name="goodsListFprm" method="post" action="${request.getContextPath()}/listcmty.htm">
+			商品货号：<input class="small" name="goodsNum" type="text" value="$!{goodsNum}" style="width:100px"/>
+			<select style="width:155px" name="categoryId" class="auto">
+				<option value="0" #if(${cg.id}==0) selected #end>选择商品分类</option>
+				#foreach($cg in $list_cgl)
+					<option value="${cg.id}" #if(${cg.id}==${categoryId}) selected #end>${cg.name}</option>
+				#end
+			</select>
+			<button type="submit" class="btn"><span>查 询</span></button>
+			<a href="javascript:;"><button onclick="location.href='${request.getContextPath()}/tocmtyedit.htm?opera=0';" type="button" class="btn"><span>添加商品</span></button></a>
+		</form>
+	</div>
+	<div class="field">
+		<table class="list_table">
+			<colgroup>
+			<col width="150px">
+			<col width="150px">
+			<col width="150px">
+			<col width="200px">
+			<col width="350px">
+			<col>
+			</colgroup><thead>
+				<tr class="">
+					<th>商品名称</th>
+					<th>商品货号</th>
+					<th>商品品牌</th>
+					<th>商品类型</th>
+					<th>商品属性</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+
+</div>
+<div class="content">
+		<table cellspacing="0" cellpadding="0" class="list_table">
+			<colgroup>
+			<col width="150px">
+			<col width="150px">
+			<col width="150px">
+			<col width="200px">
+			<col width="350px">
+			</colgroup>
+			<tbody>
+				#foreach($row in $list_cdy)
+					<tr class="">
+						<td title="${row.name}">${row.name}</td>
+						<td>$!{row.goods_num}</td>
+						<td>$!{row.brandName}</td>
+						<td>$!{row.ctName}</td>
+						<td>$!{row.cdity_attr}</td>
+						<td>
+							<a href="javascript:void(0);" onclick="location.href='${request.getContextPath()}/tocmtyedit.htm?opera=1&cmty=${row.id}';">
+								<img title="编辑" src="${request.getContextPath()}/image/m1/pen.png" class="operator">
+							</a>
+							<a href="javascript:void(0);" onclick="del(${row.id});">
+								<img title="删除" src="${request.getContextPath()}/image/m1/del.png" class="operator">
+							</a>
+							<a href="javascript:void(0);" onclick="location.href='${request.getContextPath()}/cmdyinfo.htm?id=${row.id}&category_id=${row.category_id}';">
+								<img title="编辑商品HTML" src="${request.getContextPath()}/image/m1/pen.png" class="operator">
+							</a>
+						</td>
+					</tr>
+				#end
+			</tbody>
+		</table>
+	</div></form>
+	</div>
+<form id="commForm" action="${request.getContextPath()}/listcmty.htm" method="post">
+	<input type="hidden" name="curPage" id="curPage" value="1">
+</form>
+#getPageHtml("formId=commForm" "parameters=pageNo:$page.pageNo,pageSize:$page.pageSize,totalCount:$page.totalCount,pageviewcount:$page.pageviewcount,vmpath:common/page.vm");
+#getMothodSc("moduleName=admin.action.Common" "parameters=tag:2,vmpath:admin/foot.vm");
+</body>
+</html>
+<script language="javascript">
+	function del(id){
+		dialogConfirm("提示","删除商品，商品下的货品都将删除，确认要删除吗",
+			function(){
+				window.location='${request.getContextPath()}/deletecmty.htm?cmty='+id;
+			}
+		);
+	}
+</script>

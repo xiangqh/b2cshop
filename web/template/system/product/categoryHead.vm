@@ -1,0 +1,4 @@
+#if($!category1Head)<a href="getSearchList.htm?keyName=&cateId=$!category1Head.id">$!category1Head.name</a>#end
+#if($!category2Head)-<a href="getSearchList.htm?keyName=&cateId=$!category2Head.id">$!category2Head.name</a>#end
+#if($!category3Head)-<a href="getSearchList.htm?keyName=&cateId=$!category3Head.id">$!category3Head.name</a>#end
+		

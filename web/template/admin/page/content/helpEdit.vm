@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>添加帮助文档</title>
+    <link href="${request.getContextPath()}/css/admin.css" rel="stylesheet">
+	<script type="text/javascript" src="${request.getContextPath()}/js/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="${request.getContextPath()}/js/xheditor.js"></script>
+
+  </head>
+  <body>
+  #getMothodSc("moduleName=admin.action.Common" "parameters=tag:1,vmpath:admin/head.vm,level:2,level2:25")
+    <div id="admin_right">
+		<div class="headbar">
+			<div class="position"><span>内容管理</span><span>&gt;</span><span>帮助管理</span><span>&gt;</span><span>添加帮助文档</span></div>
+		</div>
+		<div class="content_box">
+			<div class="content form_content">
+				<form name="article" method="post" action="saveHelpInfo.htm" novalidate="true" onsubmit="return getcontent()">
+					<table class="form_table">
+						<colgroup><col width="150px">
+						<col>
+										</colgroup><tbody><tr>
+							<th>分类：</th>
+							<td>
+								<select class="auto" name="cate_id">
+									<option value="0">请选择分类值</option>
+									#foreach($heplCate in $helpCateList)
+										<optgroup label="$heplCate.title"></optgroup>
+										#foreach($helpCate2 in $heplCate.chilenCateList )
+										<option value="$helpCate2.id">$helpCate2.title</option>
+									    #end
+								    #end
+								</select>
+		
+								<label>*选择帮助所属分类（必填）</label>
+							</td>
+						</tr>
+						<tr>
+							<th>标题：</th>
+							<td><input type="text" class="normal" name="title"></td>
+						</tr>
+						
+		
+						<tr>
+							<th valign="top">内容：</th>
+							<td>
+								<textarea  class="htmlEditor"  name="content" rows="50" cols="80" style="width: 80%;height:400px;">
+                            	</textarea>
+							</td>
+						</tr>
+						<tr>
+							<th></th><td><button type="submit" class="submit"><span>确 定</span></button></td>
+						</tr>
+					</tbody></table>
+				</form>
+			</div>
+		</div>
+	</div>
+	#getMothodSc("moduleName=admin.action.Common" "parameters=tag:2,vmpath:admin/foot.vm");
+  </body>
+</html>

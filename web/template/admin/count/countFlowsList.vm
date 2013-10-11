@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>会员统计</title>
+        <link href="css/admin.css" rel="stylesheet">
+            <link href="css/art.css" rel="stylesheet">
+                <link href="css/default.css" rel="stylesheet">
+                    <link href="css/style.css" rel="stylesheet">
+                        <script type="text/javascript" src="${jsDomain}/js/jquery.js"></script>
+                        <script src="${jsDomain}/js/ChinaCity.js" type='text/javascript'></script>
+                        <script src="${jsDomain}/js/ChinaProvince.js" type='text/javascript'></script>
+                        <script src="${jsDomain}/js/ChinaTown.js" type='text/javascript'></script>
+                        <script src="${jsDomain}/js/jquery.selectboxes.js" type='text/javascript'></script>
+                        <script src="${jsDomain}/js/com.js" type='text/javascript'></script>
+                        <script language="javascript" src="DatePicker/WdatePicker.js" type="text/javascript"></script>
+</head>
+<body>
+    #getMothodSc("moduleName=admin.action.Common" "parameters=tag:1,vmpath:admin/head.vm,level:7,level2:46");
+    <div id="admin_right">
+        <script src="/runtime/systemjs/my97date/wdatepicker.js" charset="UTF-8"></script>
+        <div class="headbar">
+            <div class="position">
+                <span>运营统计</span>
+                <span>&gt;</span>
+                <span>流量统计</span>
+            </div>
+            <div class="operating">
+                <div class="search">
+                    <form id="countusersForm" method="post" action="getCountFlowsList.htm" name="">
+                        <input type="hidden" name="curPage" id="curPage" value="1">
+                            选择时间: 
+			        <input type="radio" name="selecttime" value="1" #if($selecttime == 1)checked="checked"  #end/>上周
+                		<input type="radio" name="selecttime" value="2" #if($selecttime == 2)checked="checked"  #end/>本周
+                		<input type="radio" name="selecttime" value="3" #if($selecttime == 3)checked="checked"  #end/>上月
+                		<input type="radio" name="selecttime" value="4" #if($selecttime == 4)checked="checked"  #end/>本月
+                            </button>
+</form>
+</div>
+                </div>
+                <div class="field">
+                    <table class="list_table">
+                        <thead>
+                            <tr id="headth" role="head" class="">
+                                <th style="width: 58px;text-align: center;">编号</th>
+                                <th style="width: 206px;text-align: center;">ip数量</th>
+                                <th style="width: 91px;text-align: center;">pv数量</th>
+                                <th style="width: 91px;text-align: center;">uv数量</th>
+                                <th style="width: 99px;text-align: center;">统计时间</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            <div class="content" style="height: 436px;">
+                <input type="hidden" value="" name="move_group">
+                    <input type="hidden" value="" name="move_point">
+                        <table class="list_table" id="list_table">
+                            <tbody id="conth">
+                                #foreach( $flow in $flowlist )
+                                    <tr class="">
+                                        <td style="width: 58px;">$flow.id</td>
+                                        <td title="0" style="width: 206px;text-align: center;">$flow.ip</td>
+                                        <td title="0" style="width: 91px;text-align: center;">$flow.pv</td>
+                                        <td title="0" style="width: 91px;text-align: center;">$flow.uv</td>
+                                        <td title="2012-03-23" style="width: 99px;text-align: center;">$!date.format('yyyy-MM-dd HH:mm:ss',$flow.create_time)</td>
+                                    </tr>
+                                #end
+                            </tbody>
+                        </table>
+                        #getPageHtml("formId=countusersForm" "parameters=pageNo:$page.pageNo,pageSize:$page.pageSize,totalCount:$page.totalCount,pageviewcount:$page.pageviewcount,vmpath:common/page.vm");
+</div>
+                </div>
+</body>
+</html>

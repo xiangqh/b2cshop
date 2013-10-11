@@ -11,6 +11,7 @@ public class Generator extends AnnotationBeanNameGenerator {
 
 	@Override
 	protected String buildDefaultBeanName(BeanDefinition definition) {
+		System.out.println("---------------------"+definition.getBeanClassName());
 		return definition.getBeanClassName();
 	}
 }

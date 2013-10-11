@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>促销活动列表</title>
+<link href="${request.getContextPath()}/css/admin.css" rel="stylesheet">
+<link href="${request.getContextPath()}/css/art.css" rel="stylesheet">
+<link href="${request.getContextPath()}/css/default.css" rel="stylesheet">
+<link href="${request.getContextPath()}/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+#getMothodSc("moduleName=admin.action.Common" "parameters=tag:1,vmpath:admin/head.vm,level:4,level2:9");
+<div id="admin_right">
+	<div class="headbar">
+	<div class="position"><span>活动</span><span>&gt;</span><span>促销活动管理</span><span>&gt;</span><span>促销活动列表</span></div>
+	<div class="operating">
+		<a  href="javascript:;"><button type="button" onclick="location.href='${request.getContextPath()}/addPro.htm'" class="operating_btn"><span class="addition">添加活动</span></button></a>
+	</div>
+	<div class="field">
+		<table class="list_table">
+			<thead>
+				<tr class="">
+					<th>名称</th>
+					<th>活动时间</th>
+					<th>状态</th>
+					<th>介绍</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+<div class="content" >
+	<form id="proForm" action="getProList.htm" method="post">
+	<input type="hidden" name="curPage" id="curPage" value="1">
+		<table class="list_table">
+			<tbody>
+			#foreach( $pro in $promotionList )
+				   <tr class="">
+					<td>$!pro.name</td>
+					<td>$!date.format('yyyy-MM-dd HH:mm:ss',$!pro.start_time) ～ $!date.format('yyyy-MM-dd HH:mm:ss',$!pro.end_time)</td>
+					<td>
+					#if($!pro.is_valida==1)活动进行中 #end
+					#if($!pro.is_valida==0)活动停止 #end
+					</td>
+					<td>$!pro.detial</td>
+					<td>
+						<a href="updatePro.htm?id=$!pro.id&tag=0">
+							修改
+						</a>
+
+						<a href="delPro.htm?id=$!pro.id">
+							删除
+						</a>
+					</td>
+				</tr>
+							#end	
+							</tbody>
+		</table>
+	</form>
+	</form>
+	#getPageHtml("formId=proForm" "parameters=pageNo:$page.pageNo,pageSize:$page.pageSize,totalCount:$page.totalCount,pageviewcount:$page.pageviewcount,vmpath:common/page.vm");
+</div>
+
+	</div>
+	#getMothodSc("moduleName=admin.action.Common" "parameters=tag:2,vmpath:admin/foot.vm");
+</body>
+</html>

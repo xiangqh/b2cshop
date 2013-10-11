@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>会员积分设置</title>
+ <link href="css/admin.css" rel="stylesheet">
+	<link href="css/art.css" rel="stylesheet">
+	<link href="css/default.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+#getMothodSc("moduleName=admin.action.Common" "parameters=tag:1,vmpath:admin/head.vm,level:5,level2:9");
+<div id="admin_right">
+	<div class="headbar">
+	<div class="position"><span>会员管理</span><span>&gt;</span><span>积分设置</span></div>
+	<div class="field">
+		<table class="list_table">
+			<colgroup><col width="40px">
+			<col width="150px">
+			<col>
+			<col width="100px">
+			</colgroup><thead>
+				<tr id="headth" class="">
+					<th class="t_c" >启用</th>
+					<th>获取积分名称</th>
+					<th>获取积分的值</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+<div class="content" style="height: 282px;">
+	<form  method="post" action="saveP.htm">
+		<table class="list_table">
+			<tbody id="conth">
+			#foreach( $pointer in $pointerList )
+			<input type="hidden" name="id$pointer.p_id" value="$pointer.p_id"/>
+					<tr class="">
+					<td class="t_c" style="width: 33px;"><input type="checkbox" value="$pointer.is_check" name="cid$pointer.p_id" #if($pointer.is_check==1)checked #end></td>
+					<td style="width: 143px;">$pointer.p_name</td>
+					<td style="width: 778px;">
+                       <input type="text" name="value$pointer.p_id" value="$pointer.p_value" class="normal">
+                    </td>
+				</tr>
+				#end
+				<tr>
+				<td></td>	<td></td><td><button type="submit" class="submit"><span>确 定</span></button></td>
+				</tr>
+							</tbody>
+		</table>
+	</form>
+</div>
+	</div>
+	#getMothodSc("moduleName=admin.action.Common" "parameters=tag:2,vmpath:admin/foot.vm");
+</body>
+</html>

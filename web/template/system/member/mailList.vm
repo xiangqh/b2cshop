@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>3655订单中心-我的订阅</title>
+<link href="${cssDomain}/css/reset.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/common.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/page.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="${jsDomain}/js/jquery.js"></script>
+<script type="text/javascript" src="${jsDomain}/js/jquery.cookie.js"></script>
+</head>
+<body id="bh-member-dingyue" class="bh-mbody">
+<!--head begin-->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:HEAD,vmpath:frontpage/member/fkhead.vm")
+<!--head end-->
+<div class="bh-p-content">
+  <div class="bh-content">
+    <div class="bh-section">
+      <div class="bh-bread bh-bigFont"><span class="bh-strong ">我的3655</span>&nbsp;&gt;&nbsp;<span>订单中心</span></div>
+    </div>
+    <div class="bh-section">
+      <div class="bh-sidebar-left">
+		#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:LEFT,vmpath:frontpage/member/left.vm");  		
+      </div>
+      <div class="bh-mLeft bh-container">
+        <div class="bh-m-rwrap">
+          <div class="bh-order bh-dingyue">
+            <div class="bh-ztab bh-member-ztab">
+              <h1>我的订阅</h1>
+            </div>
+            <div class="bh-zcon bh-mtop5">
+              <div class="bh-mBt10 bh-dingyue-message bh-overf"><p class="bh-fl">为了您能准确收到订阅的促销邮件，请确认您的邮箱是否正确： <span class="bh-yellow">15901424612@139.com</span></p><a href="#" class="bh-dingyue-btn">立即验证邮箱</a></div>
+              <table width="829" border="0" cellspacing="0" cellpadding="0" class="bh-table1">
+                <tr>
+                  <td align="center" colspan="3" class="bh-textLt bh-red bh-bigFont bh-strong">促销/活动邮件：</td>
+                </tr>
+                <tr>
+                  <td width="80" class="bh-textLt"><input type="checkbox" class="bh-fl"/>订阅</td>
+                  <td width="80">月刊</td>
+                  <td>
+                  	<dl>
+                    	<dt><a href="#">手机数码</a></dt>
+                        <dd><a href="#">手机通讯</a>、<a href="#">手机通讯</a>、<a href="#">手机通讯</a>、<a href="#">手机通讯</a>、<a href="#">手机通讯</a></dd>
+                    </dl>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="bh-textLt"><input type="checkbox" class="bh-fl"/>订阅</td>
+                  <td class="bh-bigFont">月刊</td>
+                  <td>
+                  	<dl>
+                    	<dt><a href="#">手机数码</a></dt>
+                        <dd><a href="#">手机通讯</a>、<a href="#">手机通讯</a>、<a href="#">手机通讯</a>、<a href="#">手机通讯</a>、<a href="#">手机通讯</a></dd>
+                    </dl>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="bh-textLt"><input type="checkbox" class="bh-fl"/>订阅</td>
+                  <td class="bh-bigFont">月刊</td>
+                  <td>
+                  	<dl>
+                    	<dt><a href="#">手机数码</a></dt>
+                        <dd><a href="#">手机通讯</a>、<a href="#">手机通讯</a>、<a href="#">手机通讯</a>、<a href="#">手机通讯</a>、<a href="#">手机通讯</a></dd>
+                    </dl>
+                  </td>
+                </tr>
+                  <tr>
+                  <td class="bh-textLt"><input type="checkbox" class="bh-fl"/>订阅</td>
+                  <td class="bh-bigFont">月刊</td>
+                  <td>
+                  	<dl>
+                    	<dt><a href="#">手机数码</a></dt>
+                        <dd><a href="#">手机通讯</a>、<a href="#">手机通讯</a>、<a href="#">手机通讯</a>、<a href="#">手机通讯</a>、<a href="#">手机通讯</a></dd>
+                    </dl>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="bh-textLt"><input type="checkbox" class="bh-fl"/>订阅</td>
+                  <td class="bh-bigFont">月刊</td>
+                  <td>
+                  	<dl>
+                    	<dt><a href="#">手机数码</a></dt>
+                        <dd><a href="#">手机通讯</a>、<a href="#">手机通讯</a>、<a href="#">手机通讯</a>、<a href="#">手机通讯</a>、<a href="#">手机通讯</a></dd>
+                    </dl>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="bh-textLt"><input type="checkbox" class="bh-fl"/>订阅</td>
+                  <td class="bh-bigFont">月刊</td>
+                  <td>
+                  	<dl>
+                    	<dt><a href="#">手机数码</a></dt>
+                        <dd><a href="#">手机通讯</a>、<a href="#">手机通讯</a>、<a href="#">手机通讯</a>、<a href="#">手机通讯</a>、<a href="#">手机通讯</a></dd>
+                    </dl>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="bh-textLt"><input type="checkbox" class="bh-fl"/>订阅</td>
+                  <td class="bh-bigFont">月刊</td>
+                  <td>
+                  	<dl>
+                    	<dt><a href="#">手机数码</a></dt>
+                        <dd><a href="#">手机通讯</a>、<a href="#">手机通讯</a>、<a href="#">手机通讯</a>、<a href="#">手机通讯</a>、<a href="#">手机通讯</a></dd>
+                    </dl>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="bh-textLt"><input type="checkbox" class="bh-fl"/>订阅</td>
+                  <td class="bh-bigFont">月刊</td>
+                  <td>
+                  	<dl>
+                    	<dt><a href="#">手机数码</a></dt>
+                        <dd><a href="#">手机通讯</a>、<a href="#">手机通讯</a>、<a href="#">手机通讯</a>、<a href="#">手机通讯</a>、<a href="#">手机通讯</a></dd>
+                    </dl>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="bh-textLt"><input type="checkbox" class="bh-fl"/>订阅</td>
+                  <td class="bh-bigFont">月刊</td>
+                  <td>
+                  	<dl>
+                    	<dt><a href="#">手机数码</a></dt>
+                        <dd><a href="#">手机通讯</a>、<a href="#">手机通讯</a>、<a href="#">手机通讯</a>、<a href="#">手机通讯</a>、<a href="#">手机通讯</a></dd>
+                    </dl>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="bh-textLt"><input type="checkbox" class="bh-fl"/>订阅</td>
+                  <td class="bh-bigFont">月刊</td>
+                  <td>
+                  	<dl>
+                    	<dt><a href="#">手机数码</a></dt>
+                        <dd><a href="#">手机通讯</a>、<a href="#">手机通讯</a>、<a href="#">手机通讯</a>、<a href="#">手机通讯</a>、<a href="#">手机通讯</a></dd>
+                    </dl>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="bh-textLt"><input type="checkbox" class="bh-fl"/>订阅</td>
+                  <td class="bh-bigFont">月刊</td>
+                  <td>
+                  	<dl>
+                    	<dt><a href="#">手机数码</a></dt>
+                        <dd><a href="#">手机通讯</a>、<a href="#">手机通讯</a>、<a href="#">手机通讯</a>、<a href="#">手机通讯</a>、<a href="#">手机通讯</a></dd>
+                    </dl>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="bh-textLt"><input type="checkbox" class="bh-fl"/>订阅</td>
+                  <td class="bh-bigFont">月刊</td>
+                  <td>
+                  	<dl>
+                    	<dt><a href="#">手机数码</a></dt>
+                        <dd><a href="#">手机通讯</a>、<a href="#">手机通讯</a>、<a href="#">手机通讯</a>、<a href="#">手机通讯</a>、<a href="#">手机通讯</a></dd>
+                    </dl>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="bh-textLt"><input type="checkbox" class="bh-fl"/>订阅</td>
+                  <td class="bh-bigFont">月刊</td>
+                  <td>
+                  	<dl>
+                    	<dt><a href="#">手机数码</a></dt>
+                        <dd><a href="#">手机通讯</a>、<a href="#">手机通讯</a>、<a href="#">手机通讯</a>、<a href="#">手机通讯</a>、<a href="#">手机通讯</a></dd>
+                    </dl>
+                  </td>
+                </tr>
+              </table>
+              <div class="bh-overf bh-red bh-mtop10 bh-mBt10" style="line-height:26px;"><a href="#" class="bh-fl bh-queren-btn"></a>&nbsp;&nbsp;如果修改/退订，请在相应的复选框内勾选或取消勾选并点“确认”按钮即可。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bh-clear"></div>
+    </div>
+    <div class="bh-clear"></div>
+  </div>
+</div>
+<!-- foot begin -->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:FOOT,vmpath:frontpage/member/fkfoot.vm")
+<!-- foot end -->
+</body>
+</html>

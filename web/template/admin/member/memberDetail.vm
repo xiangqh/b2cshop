@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>添加会员</title>
+ <link href="css/admin.css" rel="stylesheet">
+	<link href="css/art.css" rel="stylesheet">
+	<link href="css/default.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+#getMothodSc("moduleName=admin.action.Common" "parameters=tag:1,vmpath:admin/head.vm,level:5,level2:9");
+<div id="admin_right">
+<div class="headbar">
+	<div class="position"><span>会员</span><span>&gt;</span><span>会员管理</span><span>&gt;</span><span>会员详情</span></div>
+</div>
+<div class="content_box">
+	<div class="content form_content">
+			<table class="form_table">
+				<colgroup><col width="150px">
+				<col>
+				</colgroup><tbody><tr>
+					<th>用户名：</th>
+					<td>
+					$!scmember.user_name
+					</td>
+				</tr>
+				<tr>
+					<th>email：</th><td>
+					$!$!scmember.email
+					</td>
+				</tr>
+				<tr>
+					<th>密码：</th>
+					
+					
+					</td>
+				</tr>
+			</tbody></table>
+	</div>
+</div>
+	</div>
+	#getMothodSc("moduleName=admin.action.Common" "parameters=tag:2,vmpath:admin/foot.vm");
+</body>
+</html>

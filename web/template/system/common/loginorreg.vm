@@ -1,0 +1,132 @@
+<div id="-out-div-" style="position:absolute;cursor:pointer;background-color:Gray;z-index:1000;left:0px;top:0px;filter:Alpha(Opacity=30);-moz-opacity:0.4;opacity:0.4;" ></div>
+<div id="-inner-div-" class="thickbox" style="position:absolute;display:none;z-index:9999;width: 472px; height: 409px; left: 394px; top: 207.5px;">
+  <div id="thicktitler" class="thicktitle" style="width:462"> <span>您尚未登录</span> </div>
+  <div id="thickconr" class="thickcon" style="width:452px;height:360px;">
+      <div id="regist">
+        <div class="mt">
+          <ul class="tab">
+            <li class="curr" id="formlogin1" onclick="pashlog(1)" style="cursor:pointer;">登&nbsp;录</li>
+            <li id="formlogin2" onclick="pashlog(2)" style="cursor:pointer;">注&nbsp;册 </li>
+          </ul>
+        </div>
+	 <form id="form_login1" action="mlogin.htm" method="post" >
+	  <input type="hidden" " name="tag" value="1" class="text" tabindex="2"/>
+        <div id="" class="mc form">
+          <div class="item"> <span class="label">用户名：</span>
+            <div class="bh-fl">
+	     <input type="text" id="login_count" name="login_count" class="text" tabindex="1" value="" onblur="SC_login.iscountOrEmail(1)"/>
+              
+              <label id="loginname_succeed" class="blank invisible"></label>
+              <span class="clr"></span>
+              <label id="login_count_error" class="null"></label>
+            </div>
+          </div>
+	   
+          <div class="item"> <span class="label">密码：</span>
+            <div class="bh-fl">
+              <input type="password" id="pwd" name="pwd" class="text" tabindex="2"/>
+              <label id="loginpwd_succeed" class="blank invisible"></label>
+              <label> <a class="flk13" target="_blank" href="#">忘记密码?</a> </label>
+              <span class="clr"></span>
+              <label id="loginpwd_error"></label>
+            </div>
+          </div>
+          <div class="item" id="autoentry">
+                    <span class="label">&nbsp;</span>
+
+                    <div class="bh-fl">
+                        <label class="mar"><input type="checkbox" class="checkbox" checked="checked"
+                                                  id="isremember" name="isremember" value="1" />
+                            记住用户名</label>
+                        <label><input type="checkbox" class="checkbox" id="autologin" name="autologin"  value="1" />
+                            自动登录</label>
+                    </div>
+                </div>
+       
+          <div class="item"> <span class="label">&nbsp;</span>
+           <input type="button" class="btn-img btn-entry btn-regist" id="loginsubmit" value="登录" tabindex="8" onclick="LoginReg.login()"/>
+            <label class="ftx23"> &nbsp;&nbsp;新用户? <a class="flk13"  href="${scpath}/preg.htm" target="_blank">立即注册</a> </label>
+          </div>
+
+          <div class="item extra"> 使用合作网站帐户登录京创：
+            <div class="clr"></div>
+            <span class="btns qq"> <s></s> <a onclick="" href="javascript:void(0)">QQ</a> </span> <span class="btns net163"> <s></s> <a onclick="parent.window.location='http://qq.360buy.com/new/netease/login.aspx?ReturnUrl='+parent.window.location;return false;" href="javascript:void(0)">网易</a> </span> <span class="btns renren"> <s></s> <a onclick="parent.window.location='http://passport.360buy.com/new/login.aspx?flag=1&ReturnUrl='+parent.window.location;return false;" href="javascript:void(0)">人人网</a> </span> <span class="btns sina"> <s style="background-position: -115px 0pt;"></s> <a onclick="parent.window.location='http://qq.360buy.com/new/sina/login.aspx?ReturnUrl='+parent.window.location;return false;" href="javascript:void(0)">新浪微博</a> </span> <span class="btns kaixing001"> <s style="background-position:-92px;"></s> <a target="_blank" href="http://www.kaixin001.com/login/connect.php?appkey=569559288279830b66734654259458a9&re=/kx001_receiver.htm&t=57">开心网</a> </span> <span class="btns douban"> <s style="background-position:-160px;"></s> <a onclick="parent.window.location='http://qq.360buy.com/new/douban/login.action?ReturnUrl='+parent.window.location;return false;" href="javascript:void(0)">豆瓣</a> </span> <a id="kx001_btn_login" style="display: none; color: rgb(255, 255, 255); padding-left: 30px; font-size: 12px; height: 23px; line-height: 23px; text-decoration: none; overflow: hidden; float: left;" href="http://www.kaixin001.com/login/connect.php?appkey=569559288279830b66734654259458a9&re=/kx001_receiver.htm&t=38" target="_blank"> <span style="float:left;cursor:pointer;padding-right:8px;height:23px;">登录</span> </a> </div>
+        </div>
+    </form>
+     <form id="form_login2" method="POST" style="display:none;">
+      <input type="hidden" " name="tag" value="1" class="text" tabindex="2"/>
+        <div class="mc form">
+          <div class="item"> <span class="label">您的电子邮箱：</span>
+            <div class="bh-fl">
+             <input type="text" id="email" name="email" class="text" tabindex="4"/>
+              <label id="email_succeed" class="blank"></label>
+              <span class="clr"></span>
+              <label id="email_error">请输入常用的邮箱，将用来找回密码、接收订单通知等</label>
+            </div>
+          </div>
+          <div class="item"> <span class="label">登录名：</span>
+            <div class="bh-fl">
+              <input type="text" id="login_countreg" name="login_count" class="text" tabindex="1"/>
+              <label id="username_succeed" class="blank"></label>
+              <span class="clr"></span>
+              <label id="login_countreg_error" class="null">4-20位字符，可由中文、英文、数字及“_”、“-”组成</label>
+            </div>
+          </div>
+          <div id="o-password">
+            <div class="item"> <span class="label">密码：</span>
+              <div class="bh-fl">
+               <input type="password" id="pwdreg" name="pwd" class="text" tabindex="2"/>
+                <label id="pwd_succeed" class="blank"></label>
+                <span class="clr"></span>
+                <label id="pwdstrength" class="hide"> <span class="bh-fl">安全程度：</span> <b></b> </label>
+                <label id="pwd_error">4-20位字符，可由英文、数字及“_”、“-”组成</label>
+              </div>
+            </div>
+            <div class="item"> <span class="label">确认密码：</span>
+              <div class="bh-fl">
+                <input type="password" id="pwdreg2" name="pwd2" class="text" tabindex="3"/>
+                <label id="pwd2_succeed" class="blank"></label>
+                <span class="clr"></span>
+                <label id="pwd2_error">请再次输入密码</label>
+              </div>
+            </div>
+          </div> 
+          <div class="item"> <span class="label">验证码：</span>
+            <div class="bh-fl">
+              <input type="text" id="authcode" style="ime-mode:disabled" class="text text-1" name="authcode" tabindex="4"/>
+          <label class="img">
+                       <img src="authImage" id="authImage" />
+		       </label>
+             <label class="ftx23">&nbsp;看不清？<a href="javascript:SC_login.refresh()"  class="flk13">换一张
+                    </a></label>
+              <label id="authcode_succeed" class="blank invisible"></label>
+              <span class="clr"></span>
+              <label id="authcode_error">请输入图片中的字符，不区分大小写</label>
+            </div>
+          </div>
+         
+          <div class="item"> <span class="label">&nbsp;</span>
+            <input id="registsubmitframe" class="btn-img btn-regist" type="button" tabindex="8" value="注 册">
+				  <label for="protocol">&nbsp;我已阅读并同意《 <a href="#" style=" text-decoration:none; color:#72BE5C;">京创在线用户协议</a> 》 </label>
+          </div>
+        </div>
+      </form>
+  </div>
+</div> 
+
+<a id="thickcloser" class="thickclose" href="javascript:;" onclick="closediv();">×</a>
+</div>
+   <script>
+         function pashlog(id){
+	     	 $("#formlogin1").removeClass("curr");$("#formlogin2").removeClass("curr");
+             $("#form_login1").hide();$("#form_login2").hide();
+             $("#formlogin"+id).addClass("curr");
+		 	 $("#form_login"+id).show();
+	    }
+        
+        function closediv(){
+        	$("#-out-div-").hide();
+        	$("#-inner-div-").hide();
+        }   
+    </script>
+           

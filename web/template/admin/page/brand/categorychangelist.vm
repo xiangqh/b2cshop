@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>分类列表</title>
+<link href="${request.getContextPath()}/css/admin.css" rel="stylesheet">
+<link href="${request.getContextPath()}/css/style.css" rel="stylesheet">
+<script type="text/javascript" charset="utf-8" language="javascript" src="${request.getContextPath()}/js/jquery.js"></script>
+</head>
+
+<body>
+<div id="admin_right">
+	<div class="headbar">
+	<div class="field">
+		<table class="list_table">
+		<colgroup>
+		<col width="60px" />
+		<col width="300px">
+		<col width="150px">
+		<col/>
+			</colgroup><thead>
+				<tr id="headth" class="">
+					<th>选择</th>
+					<th>分类名称</th>
+					<th>品类名称</th>
+					<th class="t_c">首页显示</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+<form name="category_list" method="post" action="">
+<div class="content">
+	<table class="list_table" id="list_table">
+		<tbody id="conth">
+			#foreach($row in $list_category)
+			<tr parent="${row.parent_id}" id="${row.id}" >
+				<td style="width:40px;">
+					#if(${row.hasRadio} == 1)<input name="cgradios" type="radio" value="${row.id};;;${row.name};;;$!{row.bname};;;$!{row.brandcg_id}"/>
+					#else <span>&nbsp;</span>
+					#end
+				</td>
+				<td style="padding-left: ${row.levelNum}px;width:300px;" class="switch">
+				<img title="关闭" src="${request.getContextPath()}/image/close.gif" class="operator">${row.name}</td>
+				<td style="width:150px;">$!{row.bname}</td>
+				<td class="t_c" style="width:100px;"><span class="green">#if(${row.visibility}==1) 是 #else 否 #end</span></td>
+			</tr>
+			#end
+		</tbody>
+	</table>
+</div>
+</form>
+	</div>
+</body>
+</html>
+<script language="javascript">
+$("td.switch .operator").each(function(i){
+	$(this).toggle(function(){
+		iteraShow($(this).parent().parent().attr('id'), 'hide');
+		$(this).attr("src", "${request.getContextPath()}/image/open.gif");
+	},function(){
+		iteraShow($(this).parent().parent().attr('id'), 'show');
+		$(this).attr("src", "${request.getContextPath()}/image/close.gif");
+	});
+});
+
+function iteraShow(id,isshow) {
+	var obj = $("#list_table tr[parent='"+id+"']");
+	if (obj.length>0){
+		obj.each(function(i) {
+			iteraShow($(this).attr('id'), isshow);
+		});
+		if (isshow=='hide'){
+			obj.hide();
+		}else{
+			obj.show();
+		}
+	}
+}
+</script>

@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>图片设置</title>
+    <link href="css/admin.css" rel="stylesheet">
+	<link href="css/art.css" rel="stylesheet">
+	<link href="css/default.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript"></script>
+  </head>
+  
+  <body>
+  #getMothodSc("moduleName=admin.action.Common" "parameters=tag:1,vmpath:admin/head.vm,level:1,level2:13")
+    <div id="admin_right">
+		<div class="headbar">
+			<ul name="conf_menu" class="tab">
+				<li class="selected"><a href="javascript:select_tab('image_conf');">图片设置</a></li>
+			</ul>
+		</div>
+		<div class="content_box">
+		
+			<div class="content form_content">
+				<form id="img_set" name="image_conf" enctype="multipart/form-data" style="display: block;" novalidate="true">
+					<!--图片设置-->
+					<table class="form_table">
+						<colgroup><col width="150px">
+						<col>
+						</colgroup>
+						#if($imageSet)
+						<tbody>
+							<tr>
+								<th>大图：</th>
+								<td>
+									宽：<input type="text" alt="请填写一个数字" pattern="int" name="img_1_w" class="small" value="$!{imageSet.img1.width}">
+									高：<input type="text" alt="请填写一个数字" pattern="int" name="img_1_h" class="small" value="$!{imageSet.img1.height}">
+								</td>
+							</tr>
+							<tr>
+								<th>商品页主图：</th>
+								<td>
+									宽：<input type="text" alt="请填写一个数字" pattern="int" name="img_2_w" class="small" value="$!{imageSet.img2.width}">
+									高：<input type="text" alt="请填写一个数字" pattern="int" name="img_2_h" class="small" value="$!{imageSet.img2.height}">
+								</td>
+							</tr>
+							<tr>
+								<th>商品页小预览图：</th>
+								<td>
+									宽：<input type="text" alt="请填写一个数字" pattern="int" name="img_3_w" class="small" value="$!{imageSet.img3.width}">
+									高：<input type="text" alt="请填写一个数字" pattern="int" name="img_3_h" class="small" value="$!{imageSet.img3.height}">
+								</td>
+							</tr>
+							<tr>
+								<th>商品列表图：</th>
+								<td>
+									宽：<input type="text" alt="请填写一个数字" pattern="int" name="img_4_w" class="small" value="$!{imageSet.img4.width}">
+									高：<input type="text" alt="请填写一个数字" pattern="int" name="img_4_h" class="small" value="$!{imageSet.img4.height}">
+								</td>
+							</tr>
+							<tr>
+								<th>商品页关联商品图：</th>
+								<td>
+									宽：<input type="text" alt="请填写一个数字" pattern="int" name="img_5_w" class="small" value="$!{imageSet.img5.width}">
+									高：<input type="text" alt="请填写一个数字" pattern="int" name="img_5_h" class="small" value="$!{imageSet.img5.height}">
+								</td>
+							</tr>
+							<tr>
+								<th></th>
+								<td>
+									<button id="bh-save" type="button" class="submit"><span>保存图片设置</span></button>
+								</td>
+							</tr>
+						</tbody>
+						#else
+						<tbody>
+							<tr>
+								<th>大图：</th>
+								<td>
+									宽：<input type="text" alt="请填写一个数字" pattern="int" name="img_1_w" class="small" value="940">
+									高：<input type="text" alt="请填写一个数字" pattern="int" name="img_1_h" class="small" value="940">
+								</td>
+							</tr>
+							<tr>
+								<th>商品页主图：</th>
+								<td>
+									宽：<input type="text" alt="请填写一个数字" pattern="int" name="img_2_w" class="small" value="470">
+									高：<input type="text" alt="请填写一个数字" pattern="int" name="img_2_h" class="small" value="470">
+								</td>
+							</tr>
+							<tr>
+								<th>商品页小预览图：</th>
+								<td>
+									宽：<input type="text" alt="请填写一个数字" pattern="int" name="img_3_w" class="small" value="30">
+									高：<input type="text" alt="请填写一个数字" pattern="int" name="img_3_h" class="small" value="30">
+								</td>
+							</tr>
+							<tr>
+								<th>商品列表图：</th>
+								<td>
+									宽：<input type="text" alt="请填写一个数字" pattern="int" name="img_4_w" class="small" value="160">
+									高：<input type="text" alt="请填写一个数字" pattern="int" name="img_4_h" class="small" value="160">
+								</td>
+							</tr>
+							<tr>
+								<th>商品页关联商品图：</th>
+								<td>
+									宽：<input type="text" alt="请填写一个数字" pattern="int" name="img_5_w" class="small" value="100">
+									高：<input type="text" alt="请填写一个数字" pattern="int" name="img_5_h" class="small" value="100">
+								</td>
+							</tr>
+							<tr>
+								<th>&nbsp;</th>
+								<td>
+									<button id="bh-save" class="submit" type="button" ><span>保存图片设置</span></button>
+								</td>
+							</tr>
+						</tbody>
+						#end
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	#getMothodSc("moduleName=admin.action.Common" "parameters=tag:2,vmpath:admin/foot.vm");
+	
+	<script >
+	$(function(){
+    	 $("#bh-save").click(function(){
+        	 $.ajax({
+        			url: "updateImageInfo.htm",
+        			type: 'GET',
+        			data:$('#img_set').serialize(),
+        			dataType: 'html',
+        			success: function(data){
+    				   alert("保存成功!");
+                    
+        		      }
+    				  
+        		});
+    	 })
+	   
+	})
+    </script>
+
+	
+  </body>
+</html>

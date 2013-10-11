@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>幻灯片设置</title>
+    <link href="css/admin.css" rel="stylesheet">
+    <link href="css/art.css" rel="stylesheet">
+	<link href="css/default.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+    <script src="js/jquery.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div id="admin_right">
+		<div class="headbar">
+			<div class="position"><span>内容管理</span><span>&gt;</span><span>广告管理</span><span>&gt;</span><span>幻灯片设置</span></div>
+			<ul name="conf_menu" class="tab">
+				<li class="selected"><a>首页幻灯设置</a></li>
+			</ul>
+		</div>
+		<div class="content_box">
+			<div class="content form_content">
+				<form enctype="multipart/form-data" name="index_slide" method="post" action="" style="display: block;" novalidate="true">
+					<table class="form_table">
+						<colgroup>
+							<col width="150px">
+							<col>
+						</colgroup>
+						<tbody>
+							<tr>
+    							<th>首页幻灯设置：</th>
+    							<td>
+    								<table id="slide_box" class="border_table">
+    									<colgroup><col width="150px">
+        									<col width="250px">
+        									<col width="250px">
+        									<col width="120px">
+    									</colgroup>
+    									<thead>
+    									<tr>
+    										<th>名称</th>
+    										<th>链接地址</th>
+    										<th>图片文件</th>
+    										<th>操作</th>
+    									</tr>
+    									</thead>
+    									<tbody>
+    										<tr>
+        										<td><input type="text" pattern="required" value="新设计，新内核，新起点" class="small" name="slide_name[]"></td>
+        										<td><input type="text" pattern="url" value="http://www.hao1866.com" class="middle" name="slide_url[]"></td>
+        										<td><img width="150" src="image/001.png"><br>
+        											<input type="file" name="slide_pic[]">
+        											<input type="hidden" name="slide_img[]" value="image/001.png">
+        										</td>
+        										<td>
+        											<img title="向上" alt="向上" src="image/icon_asc.gif" class="operator">
+        											<img title="向下" alt="向下" src="image/icon_desc.gif" class="operator">
+        											<img title="删除" alt="删除" src="image/icon_del.gif" class="operator">
+        
+        										</td>
+    										</tr>
+    										<tr class="td_c">
+    											<td><input type="text" pattern="required" value="开源电子商务" class="small" name="slide_name[]"></td>
+    											<td><input type="text" pattern="url" value="http://www.360buy.com" class="middle" name="slide_url[]"></td>
+    											<td><img width="150" src="image/002.png"><br>
+    												<input type="file" name="slide_pic[]">
+    												<input type="hidden" name="slide_img[]" value="image/002.png">
+    											</td>
+    											<td>
+    												<img title="向上" alt="向上" src="image/icon_asc.gif" class="operator">
+    												<img title="向下" alt="向下" src="image/icon_desc.gif" class="operator">
+    												<img title="删除" alt="删除" src="image/icon_del.gif" class="operator">
+    
+    											</td>
+    										</tr>
+    										<tr class="td_c">
+    											<td><input type="text" pattern="required" value="自由，易于二次开发" class="small" name="slide_name[]"></td>
+    											<td><input type="text" pattern="url" value="http://www.baidu.com" class="middle" name="slide_url[]"></td>
+    											<td><img width="150" src="image/003.png"><br>
+    												<input type="file" name="slide_pic[]">
+    												<input type="hidden" name="slide_img[]" value="image/003.png">
+    											</td>
+    											<td>
+    												<img title="向上" alt="向上" src="image/icon_asc.gif" class="operator">
+    												<img title="向下" alt="向下" src="image/icon_desc.gif" class="operator">
+    												<img title="删除" alt="删除" src="image/icon_del.gif" class="operator">
+    
+    											</td>
+    										</tr>
+    										<tr class="td_c">
+    											<td><input type="text" pattern="required" value="电子商务新起点" class="small" name="slide_name[]"></td>
+    											<td><input type="text" pattern="url" value="http://www.chenbw.com class="middle" name="slide_url[]"></td>
+    											<td><img width="150" src="image/004.png"><br>
+    												<input type="file" name="slide_pic[]">
+    												<input type="hidden" name="slide_img[]" value="image/004.png">
+    											</td>
+    											<td>
+    												<img title="向上" alt="向上" src="image/icon_asc.gif" class="operator">
+    												<img title="向下" alt="向下" src="image/icon_desc.gif" class="operator">
+    												<img title="删除" alt="删除" src="image/icon_del.gif" class="operator">
+    
+    											</td>
+    										</tr>
+    									</tbody>
+    	
+    									<tfoot>
+        									<tr>
+        										<td colspan="4">
+        											<button onclick="" class="btn" type="button"><span>添加幻灯</span></button>
+        										</td>
+        									</tr>
+    									</tfoot>
+    								</table>
+    								<label>设置首页幻灯片图片与名称</label>
+    							</td>
+    						</tr>
+    						<tr>
+    							<th></th>
+    							<td><button class="submit" type="submit"><span>保存幻灯片配置</span></button></td>
+    						</tr>
+    					</tbody>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
+	#getMothodSc("moduleName=admin.action.Common" "parameters=tag:2,vmpath:admin/foot.vm");
+  </body>
+</html>

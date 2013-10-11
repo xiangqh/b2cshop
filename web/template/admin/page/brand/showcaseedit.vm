@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>橱窗分类</title>
+<link href="${request.getContextPath()}/css/admin.css" rel="stylesheet">
+<link href="${request.getContextPath()}/css/style.css" rel="stylesheet">
+<script type="text/javascript" charset="utf-8" language="javascript" src="${request.getContextPath()}/js/validator.js"></script>
+</head>
+
+<body>
+#getMothodSc("moduleName=admin.action.Common" "parameters=tag:1,vmpath:admin/head.vm,level:3,level2:0");
+<div id="admin_right">
+<div class="headbar">
+	<div class="position"><span>商品</span><span>&gt;</span><span>商品橱窗管理</span><span>&gt;</span><span>添加橱窗</span></div>
+</div>
+<div class="content_box">
+	<div class="content form_content">
+		<form method="post" action="${request.getContextPath()}/editsc.htm" id="showcaseForm">
+			<table cellspacing="0" cellpadding="0" class="form_table">
+				<colgroup><col width="150px">
+				<col>
+				</colgroup><tbody><tr>
+					<th>橱窗名称：</th>
+					<td><input type="text" title="橱窗名称" value="$!{edit_showcase.name}" name="name" class="normal _vdt:{CHECKNOTNULL(橱窗名称)} _for:{name_msg}">
+						<label class="msgColor">*</label>
+						<label id="name_msg" class="msgColor"></label>
+						<input type="hidden" value="${edit_showcase.id}" name="id">
+					</td>
+				</tr>
+				<tr>
+					<th>上级橱窗：</th>
+					<td>
+						<select title="选择上级橱窗" name="parentId" class="normal">
+						<option value="0">顶级橱窗</option>
+						#foreach($row in $list_tree)
+							<option value="${row.id}" #if(${edit_showcase.parentId} == ${row.id}) selected #end>${row.name}</option>
+						#end
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td></td><td><button type="button" class="submit" onclick="if(validator(document)){document.getElementById('showcaseForm').submit();}"><span>确 定</span></button></td>
+				</tr>
+			</tbody></table>
+		</form>
+	</div>
+</div>
+	</div>
+	#getMothodSc("moduleName=admin.action.Common" "parameters=tag:2,vmpath:admin/foot.vm");
+</body>
+</html>

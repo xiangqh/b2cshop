@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>订单待审核列表</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="${request.getContextPath()}/css/admin.css" rel="stylesheet">
+<link href="${request.getContextPath()}/css/style.css" rel="stylesheet">
+<link href="${request.getContextPath()}/css/artDialog.css" rel="stylesheet">
+<script type="text/javascript" charset="utf-8" language="javascript" src="${request.getContextPath()}/js/util.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${request.getContextPath()}/js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${request.getContextPath()}/js/artDialog.js"></script>
+</head>
+<body>
+#getMothodSc("moduleName=admin.action.Common" "parameters=tag:1,vmpath:admin/head.vm,level:6,level2:0");
+<div id="admin_right">
+	<div class="headbar">
+		<div class="position">订单<span>&gt;</span><span>订单管理</span><span>&gt;</span><span>待审核列表</span></div>	
+		<div class="searchbar">
+			<a href="javascript:void(0)">
+				<button class="btn" onclick="_checkAll()" type="button">
+				<span>全选</span>
+				</button>
+			</a>	
+			<a href="javascript:void(0)">
+				<button class="btn" onclick="_batchOk()" type="button">
+				<span>批量确认</span>
+				</button>
+			</a>			
+		</div>
+		<div class="field">
+			<table class="list_table">
+				<colgroup>
+				<col width="30px" />
+				<col width="155px" />
+				<col width="80px" />
+				<col width="80px" />
+				<col width="100px" />	
+				<col width="130px" />
+				<col width="150px" />
+				<col width="130px" /></colgroup>
+				<thead>
+					<tr id="headth">
+						<th class="t_c">选择</th>
+						<th>订单号</th>
+						<th>商品价格</th>
+						<th>邮费价格</th>
+						<th>总金额</th>
+						<th>下单用户</th>
+						<th>下单时间</th>
+						<th>客户留言</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+	</div>
+
+	<div class="content">
+		<form id="batchForm" name="batchForm" action="${request.getContextPath()}/auditbatch.htm"/>
+		<table class="list_table">
+			<colgroup>
+				<col width="30px" />
+				<col width="155px" />
+				<col width="80px" />
+				<col width="80px" />
+				<col width="100px" />	
+				<col width="130px" />
+				<col width="150px" />
+				<col width="130px" /></colgroup>
+			<tbody id="conth">
+				#foreach($row in $order_info_list)
+					<tr>
+						<td class="t_c"><input name="orders" type="checkbox" value="${row.orderCode}" /></td>
+						<td>${row.orderCode}</td>
+						<td>${row.goodsAmount}</td>
+						<td>${row.expressAmount}</td>
+						<td>${row.getPayTotalAmount()}</td>
+						<td>${row.userId}</td>
+						<td>${row.dtOrderCreate}</td>
+						<td><span title="$!{row.customerRemark}" alt="$!{row.customerRemark}">$!{row.customerRemark}</span></td>
+						<td>
+							<img alt="审核通过" title="审核通过" src="${request.getContextPath()}/image/sel.gif" class="operator" onclick="_operation('${row.orderCode}','1')" />
+							<img alt="审核拒绝" title="审核拒绝" src="${request.getContextPath()}/image/icon_del.gif" class="operator" onclick="_operation('${row.orderCode}','0')"/>
+						</td>
+					</tr>
+				#end						
+			</tbody>
+		</table>
+		</form>
+	</div>
+</div>
+
+<form id="orderPageForm" action="${request.getContextPath()}/audit.htm" method="post">
+	<input type="hidden" name="curPage" id="curPage" value="1">
+</form>
+#getPageHtml("formId=orderPageForm" "parameters=pageNo:$page.pageNo,pageSize:$page.pageSize,totalCount:$page.totalCount,pageviewcount:$page.pageviewcount,vmpath:common/page.vm");
+#getMothodSc("moduleName=admin.action.Common" "parameters=tag:2,vmpath:admin/foot.vm");
+<script type='text/javascript'>
+	//隔行换色
+	$(".list_table tr::nth-child(even)").addClass('even');
+	$(".list_table tr").hover(
+		function () {
+			$(this).addClass("sel");
+		},
+		function () {
+			$(this).removeClass("sel");
+		}
+	);
+	$(function(){
+		 $('#headth th').each(function(i){
+			var width = $('#headth th:eq('+i+')').width();
+			$('#conth tr:eq(0) td:eq('+i+')').width(width-2);
+		});
+	});
+	
+	function _operation(id,opera){
+		if(opera == 0){
+			dialogConfirm("提示","确认要拒绝改订单吗?",
+				function(){
+					window.location='${request.getContextPath()}/audit_opera.htm?orderCode='+id+"&auditOp=REJ";
+				}
+			);
+		}else{
+			window.location='${request.getContextPath()}/audit_opera.htm?orderCode='+id+"&auditOp=ACC";
+		}
+	}
+	
+	function _batchOk(){
+		var count = 0;
+		if($("input[name='orders']")){
+			$("input[name='orders']").each(function(i){
+				if(this.checked){
+					count++;
+				}
+			});
+		}
+		if(count > 0){
+			$("#batchForm").submit();
+		}else{
+			dialogAlert("错误","请选中订单!");
+		}
+	}
+	
+	function _checkAll(){
+		if($("input[name='orders']")){
+			$("input[name='orders']").each(function(i){
+				this.checked = true;
+			});
+		}
+	}
+</script>
+</body>
+</html>

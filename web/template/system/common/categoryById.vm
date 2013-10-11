@@ -1,0 +1,26 @@
+			#foreach($row in $cates)
+				#if(${row.levels} == 1)
+					<div class="mt">
+              			<h2 class="bh-strong bh-bigFont">${row.name}</h2>
+            		</div>
+            		<div class="mc bh-overf" id="searchCatesDiv">
+            	#elseif(${row.levels}==2)
+            		#if(${row.preLevels} == 1)
+            			<div class='item cates_s current'>
+            		#else
+            			<div class='item cates_s'>
+            		#end
+            		<h3><b></b>${row.name}</h3>
+            	#else
+            		#if(${row.preLevels} == 2)
+            			<ul class="bh-overf">
+            		#end
+            		<li><a href="getSearchList.htm?keyName=&cateId=${row.id}">${row.name}</a></li>
+            		#if(${row.nextLevels} == 2)
+            			</ul></div>
+            		#end
+            		#if(${row.nextLevels} < 2)
+            			</ul></div></div>
+            		#end
+				#end
+			#end

@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>购物车结算1</title>
+<link href="${cssDomain}/css/reset.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/common.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/page.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="${jsDomain}/js/jquery.js"></script>
+<script type="text/javascript" src="${jsDomain}/js/cart.js"></script>
+<script type="text/javascript" src="${jsDomain}/js/member.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/invshow.js"></script>
+</head>
+<body>
+ #getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:HEAD,vmpath:frontpage/carthead.vm");
+<div class="bh-p-content">
+  <div class="bh-content">
+    <div class="bh-section">
+      <div id="show">
+      	<div class="cart-frame">
+			<div class="tl"></div>
+			<div class="tr"></div>
+	  	</div>
+        <div class="cart-inner">
+        	<div class="cart-thead cart-thead1 clearfix">我挑选的商品</div>
+          <div class="cart-thead clearfix">
+            <div class="column t-number">商品编号</div>
+            <div class="column t-goodsimg">产品图片</div>
+            <div class="column t-titile">商品名称</div>
+            <div class="column t-price">价格</div>
+            <div class="column t-promotion">返还积分</div>
+            <div class="column t-quantity">采购数量</div>
+            <div class="column t-action">删除商品</div>
+          </div>
+		  <form id="form_firm" action="addconfirm.htm" method="post">
+         
+          <div id="product-list" class="cart-tbody">
+          </div>
+		  <!--
+          <div class="cart-toolbar clearfix bh-overf">
+            <div class="total bh-fr bh-bigFont">重量总计：111.35kg&nbsp;&nbsp;&nbsp;原始金额：3600元</div>
+          </div>-->
+          <div class="cart-total clearfix bh-overf">
+            <div class="control bh-fl clearfix"><a href="#" onclick="Cart_show.delAll()" class="bh-clearcart">清空购物车</a><a id="goProduct" class="btn continue" href="#">继续购物</a></div>
+            <div class="total bh-fr">商品总金额：<span id="totalp">¥0元</span>&nbsp;<font id="free_id"></font>&nbsp;<font id="retatol_id"></font></div>
+			<input type="hidden" name="totals" id="totals_">
+			<input type="hidden" name="minusban" id="minusban">
+			<input type="hidden" name="to_value" id="to_value">
+			<input type="hidden" name="type" id="type">
+          </div>
+        </div>
+        <div class="cart-button clearfix"><a id="toSettlement" class="checkout" href="javascript:void(0);" onclick="sbfirm();" >去结算</a>
+		</div>
+		 </form>
+		 <script type="text/javascript">
+		 Cart_show.showConfirm();
+		 function sbfirm(){
+		 var userid=Sccookie.Get("userid");
+		 if(userid==""||userid==null){
+		 LoginReg.isloginReg(confirmNext);
+		 }else{
+		 $("#form_firm").submit();
+		 }
+		 }
+       
+		 function confirmNext(){
+                $("#form_firm").submit();
+                 } 
+		 </script>
+      </div>
+    </div>
+        <div id="kkkkk">
+	</div>
+    <div class="bh-section">
+    	<div class="bh-clear-pd">
+        	<div class="bh-tab bh-bigFont bh-padLR10">已删除商品，您可以重新购买或加关注</div>
+            <div class="bh-con" id="delhtml" >
+
+            </div>
+        </div>
+    </div>
+    <div class="bh-section bh-mtop10">
+    	<div class="bh-cate-1tab">
+        	<div class="bh-tab">
+            	<ul class="bh-overf">
+                	<li class="bh-on">我的关注</li>
+                    <li>特价推荐</li>
+                </ul>
+            </div>
+            <div class="bh-con bh-overf">
+            	<div class="bh-m-window4 bh-fl ">
+                  <ul>
+                    <li class="bh-img"><a target="_blank" href="#"><img src="../../images/templ/pd7.gif" width="163" height="163" /></a><span class="huodong"></span></li>
+                    <li><a target="_blank" href="#" class="bh-p-title">包邮 ！全新 摩托罗拉 ME501/MB501/最新2.1/2.3 1220.00￥1050.00诺基亚 C5-03 C503最新</a></li>
+                    <li class="bh-textCt"><span class="bh-zprice">折扣价：￥3600</span></li>
+                    <li class="bh-textCt bh-btn"><a href="#" class="bh-searchadd"></a></li>
+                  </ul>
+                </div><div class="bh-m-window4 bh-fl ">
+                  <ul>
+                    <li class="bh-img"><a target="_blank" href="#"><img src="../../images/templ/pd7.gif" width="163" height="163" /></a><span class="huodong"></span></li>
+                    <li><a target="_blank" href="#" class="bh-p-title">包邮 ！全新 摩托罗拉 ME501/MB501/最新2.1/2.3 1220.00￥1050.00诺基亚 C5-03 C503最新</a></li>
+                    <li class="bh-textCt"><span class="bh-zprice">折扣价：￥3600</span></li>
+                    <li class="bh-textCt bh-btn"><a href="#" class="bh-searchadd"></a></li>
+                  </ul>
+                </div><div class="bh-m-window4 bh-fl ">
+                  <ul>
+                    <li class="bh-img"><a target="_blank" href="#"><img src="../../images/templ/pd7.gif" width="163" height="163" /></a><span class="huodong"></span></li>
+                    <li><a target="_blank" href="#" class="bh-p-title">包邮 ！全新 摩托罗拉 ME501/MB501/最新2.1/2.3 1220.00￥1050.00诺基亚 C5-03 C503最新</a></li>
+                    <li class="bh-textCt"><span class="bh-zprice">折扣价：￥3600</span></li>
+                    <li class="bh-textCt bh-btn"><a href="#" class="bh-searchadd"></a></li>
+                  </ul>
+                </div><div class="bh-m-window4 bh-fl ">
+                  <ul>
+                    <li class="bh-img"><a target="_blank" href="#"><img src="../../images/templ/pd7.gif" width="163" height="163" /></a><span class="huodong"></span></li>
+                    <li><a target="_blank" href="#" class="bh-p-title">包邮 ！全新 摩托罗拉 ME501/MB501/最新2.1/2.3 1220.00￥1050.00诺基亚 C5-03 C503最新</a></li>
+                    <li class="bh-textCt"><span class="bh-zprice">折扣价：￥3600</span></li>
+                    <li class="bh-textCt bh-btn"><a href="#" class="bh-searchadd"></a></li>
+                  </ul>
+                </div><div class="bh-m-window4 bh-fl ">
+                  <ul>
+                    <li class="bh-img"><a target="_blank" href="#"><img src="../../images/templ/pd7.gif" width="163" height="163" /></a><span class="huodong"></span></li>
+                    <li><a target="_blank" href="#" class="bh-p-title">包邮 ！全新 摩托罗拉 ME501/MB501/最新2.1/2.3 1220.00￥1050.00诺基亚 C5-03 C503最新</a></li>
+                    <li class="bh-textCt"><span class="bh-zprice">折扣价：￥3600</span></li>
+                    <li class="bh-textCt bh-btn"><a href="#" class="bh-searchadd"></a></li>
+                  </ul>
+                </div>
+                <div class="bh-m-window4 bh-fl ">
+                  <ul>
+                    <li class="bh-img"><a target="_blank" href="#"><img src="../../images/templ/pd7.gif" width="163" height="163" /></a><span class="huodong"></span></li>
+                    <li><a target="_blank" href="#" class="bh-p-title">包邮 ！全新 摩托罗拉 ME501/MB501/最新2.1/2.3 1220.00￥1050.00诺基亚 C5-03 C503最新</a></li>
+                    <li class="bh-textCt"><span class="bh-zprice">折扣价：￥3600</span></li>
+                    <li class="bh-textCt bh-btn"><a href="#" class="bh-searchadd"></a></li>
+                  </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+//处理活动
+  if($!{adduserId}!=0&&$!{tag}!=0){
+     //登录用户
+      var balance=$!{p.balance};
+       var to_value=$!{p.to_value};
+      var redvalue=$("#totalp").html();//当前购物车的金额
+      var type=$!{p.type};
+      if(type==1){
+       //优惠
+       $("#minusban").val(balance);
+        $("#type").val(type);
+       if(redvalue>balance){
+       $("#retatol_id").html("优惠:"+balance+"    应付金额："+(Number(redvalue)-Number(balance)));
+       }
+      }
+      if(type==4){
+       //免运费
+       $("#retatol_id").html("(免运费)");
+      }
+    }
+</script>
+<!-- foot begin -->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:FOOT,vmpath:frontpage/foot.vm");
+</body>
+</html>

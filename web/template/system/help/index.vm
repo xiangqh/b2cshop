@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>帮助中心</title>
+<link href="${cssDomain}/css/reset.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/common.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/page.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="${jsDomain}/js/jquery.js"></script>
+<script type="text/javascript" src="${jsDomain}/js/cart.js"></script>
+</head>
+<body id="bh-help-index" class="bh-mbody">
+<!--head begin-->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:HEAD,vmpath:frontpage/member/fkhead.vm")
+<!--head end-->
+<div class="bh-p-content">
+  <div class="bh-content">
+    <div class="bh-section">
+      <div class="bh-bread bh-bigFont"><a href="#">首页</a>&nbsp;&gt;&nbsp;<span>帮助中心</span></div>
+    </div>
+    <div class="bh-section">
+      <div class="bh-sidebar-left bh-help-sidebar-left">
+
+         #getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:HELP,vmpath:frontpage/helpcategory.vm")
+
+      </div>
+      <div class="bh-mLeft bh-container bh-help-mLeft">
+      	<div class="bh-buy-step">
+        	<div class="bh-ztab bh-help-tab">
+            	<h3>购物流程</h3>
+            </div>
+            <div class="bh-help-zcon">
+                <p class="bh-bigFont bh-strong gray">&nbsp;&nbsp;&nbsp;&nbsp;购物流程图</p>
+                <div class="bh-textCt bh-mtop10"><img src="${imageDomain}/images/help-con1.jpg" width="718" height="106" /></div>
+            </div>
+        </div>
+        <div class="bh-jg-step bh-mtop10">
+        	<div class="bh-ztab bh-help-tab">
+            	<h3>竞购流程</h3>  
+            </div>
+            <div class="bh-help-zcon bh-textCt">
+                <img src="${imageDomain}/images/help-con2.jpg" width="695" height="286" />	
+            </div>
+        </div>
+        <div class="bh-help-category bh-mtop10">
+        	<div class="bh-ztab bh-help-tab">
+            	<h3>帮助分类</h3>  
+            </div>
+            <div class="bh-help-zcon">
+				
+                <div class="bh-subSection bh-overf">
+					#foreach($cate1 in $helpCateList)
+						<dl>
+                        	<dt><a href="#">$cate1.title</a></dt>
+                            <dd>
+								#foreach($cate2 in $helpCateList.chilenCateList)
+									#if($velocityCount!=1)&nbsp;|&nbsp;#end
+                            	    <a href="#">购物流程</a>
+                                #end
+							</dd>
+                        </dl>
+				    #end
+                	
+                </div>
+                <div class="bh-subSection bh-overf bh-mTop20">
+                	<div class="bh-fr">&gt;&gt;<a href="#logo">返回顶部</a></div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="bh-clear"></div>
+  </div>
+</div>
+<!-- foot begin -->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:FOOT,vmpath:frontpage/member/foot.vm")
+<!-- foot end -->
+<script type="text/javascript" >
+$("#bh-pd-menuanchor").mouseover(function(){
+$("#bh-pd-menudiv").show();
+});
+
+$("#bh-pd-menuanchor").mouseout(function(){
+$("#bh-pd-menudiv").hide();
+});
+</script>
+</body>
+</html>
+

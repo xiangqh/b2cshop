@@ -1,0 +1,30 @@
+<div id="bh-m-left">
+  <div class="bh-ztab bh-textCt bh-bigFont bh-posRlt"><a onclick="removeAll();" class="bh-cur"><img src="${imageDomain}/images/help-item.jpg" width="26" height="19"/></a><div class="bh-h1">帮助中心</div></div>
+  <div class="bh-zcon bh-overf">
+	#foreach($cate1 in $helpCateList)
+		<dl>
+          <dt id="cate1_$velocityCount"  class="help-dt bh-on"><a onclick="remove($velocityCount);"></a>$cate1.title</dt>
+		  <div id="all_$velocityCount" >
+		  #foreach($cate2 in $cate1.chilenCateList)
+			<dd class="bh-help-dd dd-help"><a href="/sc/frontpage/help/list.htm?id=$cate2.id">$cate2.title</a></dd>
+		  #end
+          </div>
+        </dl>
+	#end
+  </div>
+</div>
+<script >
+   function removeAll(){
+   		$(".help-dt").addClass("bh-on");
+		$(".dd-help").addClass("bh-help-dd");
+   }
+   function remove(num){	
+   		if($("#cate1_"+num).attr("class")=="help-dt bh-on"){
+			$("#cate1_"+num).removeClass("bh-on");
+			$("#all_"+num).children("dd").removeClass("bh-help-dd");
+		}else{
+			$("#cate1_"+num).addClass("bh-on");
+			$("#all_"+num).children("dd").addClass("bh-help-dd");
+		}
+   }
+</script>

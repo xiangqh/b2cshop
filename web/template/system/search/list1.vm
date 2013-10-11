@@ -1,0 +1,360 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>$!{keyName}搜索</title>
+<link href="${cssDomain}/css/reset.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/common.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/page.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="${jsDomain}/js/jquery.js"></script>
+<script type="text/javascript" src="${jsDomain}/js/searchMain.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/util.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/browse.js"></script>
+
+
+</head>
+<body id="bh-page-list">
+<!--head begin-->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:HEAD,vmpath:frontpage/head.vm")
+<!--head end-->
+<div class="bh-p-content">
+  <div class="bh-content">
+    <div class="bh-section">
+      <div class="bh-bread bh-bigFont">      
+		<a >搜索结果</a>&nbsp;&gt;
+		#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:CHEAD,cateId:$!{cateId},vmpath:frontpage/product/categoryHead.vm")
+		&nbsp;#if($!keyName)-$!{keyName} #end""</div>
+	 </div>
+    <div class="bh-section bh-mtop5">
+      <div class=" bh-sidebar-left">
+        <div class="bh-subSection">
+          <div class="m" id="sortlist">
+            <!--分类 begin-->
+	    #getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:CID,id:20,vmpath:frontpage/common/categoryById.vm")
+             <!--分类 end-->
+			 </div>
+          <!--sortlist end-->
+        </div>
+        <div class="bh-subSection bh-mtop10">
+           <!--一周排行begin-->
+	  #getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:WEEKSALE,vmpath:frontpage/common/oneWeekSale.vm")
+	 <!--end-->
+        </div>
+        <div class="bh-subSection bh-mtop10">
+          <div class="bh-new-comment">
+            <div class="bh-com-smalltab bh-two bh-bigFont bh-strong bh-red">最新评论</div>
+			 <!--最新评论begin-->
+             <div class="bh-zcon bh-overf" id="-new-cmm-0">
+                 <script language="text/javascript">
+                 	 $.ajax({
+						url: '$!{scpath}/newcomment.htm',
+						type: 'GET',
+						data: {gs:${checkedInv.id}},
+						dataType: 'html',
+						success: function(data){$("#-new-cmm-0").html(data);}
+					});
+                 </script>
+		 </div>
+              </div>
+			   <!--end-->
+        </div>
+        <div class="bh-subSection bh-mtop10"> 
+        	<div class="bh-history-pd">
+            	<div class="bh-com-smalltab bh-two bh-bigFont bh-strong bh-red"><a class="bh-fr">清空</a>最近浏览过的商品</div>
+            	<div class="bh-zcon"  id="browse">
+                
+              	</div>
+            </div>
+        </div>
+			<script type="text/javascript">
+Browse.showBrowse();
+</script>
+        <div class="bh-subSection bh-mtop10">
+        	<div class="bh-ad">
+            	#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:AD,id:53,vmpath:frontpage/common/adImage.vm")
+            </div>
+        </div>
+      </div>
+      <div class="bh-mLeft bh-container">
+         <div class="bh-subSection">
+        	  <div class="bh-tejia-hot">
+              <ul class="bh-com-tab bh-overf">
+                <li class="bh-on" id="_catelis0">本类特价商品</li>
+                <li id="_catelis1">本类热卖商品</li>
+              </ul>
+              <div class="bh-zcon bh-overf bh-posRlt">
+                <div class="bh-l" id="_bh-cate_left"></div>
+                <div class="bh-r" id="_bh-cate_rig"></div>
+                <div class="bh-tab-two bh-on bh-overf" id="bh-tejia">
+                 <script language="javascript">
+                 	 $.ajax({
+						url: 'getRecInvs.htm',
+						type: 'GET',
+						data: {recId:100,cateId:22},
+						dataType: 'html',
+						success: function(data){$("#bh-tejia").html(data);}
+					});
+                 </script>
+                </div>
+                <div class="bh-tab-two bh-overf" id="bh-hot">
+                 	<script language="javascript">
+	                 	 $.ajax({
+							url: 'getRecInvs.htm',
+							type: 'GET',
+							data: {recId:200,cateId:22},
+							dataType: 'html',
+							success: function(data){$("#bh-hot").html(data);}
+						});
+                 	</script>
+                </div>
+              </div>
+        </div>
+		
+        <div class="bh-subSection bh-mtop10">
+        #if($!cateId>0)
+        	<div id="select" class="m">
+                <div class="mt"><h1>电气开关/插座</h1><strong>&nbsp;-&nbsp;商品筛选</strong><div class="extra"><a href="#">重置筛选条件</a></div></div>
+				#if($!brandFacet.size()>1)
+		<dl class='fore'  id='select-brand'>
+			<dt>品牌：</dt>
+			<dd>
+				<div class=''>
+					<div rel='0'>
+						<a href="#"  class="curr searchclick" id="brand" valueb="" >不限</a></div>
+					#foreach($facetCount in $!brandFacet)
+					#if($!facetCount.count>0)
+							<div rel='0'><a href="#" class="searchclick" id="brand" value="$facetCount.name" >$facetCount.name（$facetCount.count）</a></div>
+							#end
+							#end
+				</div>
+			</dd>
+		</dl>
+			#end	
+			#if($!priceRangeFacet.size()>1)
+				<dl  >
+					<dt>价格：</dt>
+					<dd>
+						<div rel='0'><a id="0"  href=#' id="priceRange" valuep="" class="curr searchclick" id="pricepange" >不限</a></div>
+						#foreach($facetCount in $!priceRangeFacet)
+						#if($!facetCount.count>0)
+							<div rel='0'><a  class="searchclick" id="priceRange" value="$facetCount.name" href="#">$facetCount.name（$facetCount.count）</a></div>
+						#end
+						#end
+					</dd>
+				</dl>
+			#end
+				#if($!attrFacetMaplist.size()>0)
+						#foreach($name in $!attrFacetMaplist.keySet())
+						#if($!attrFacetMaplist.get($name).size()>0)
+				<dl  ><dt>$name：</dt>
+					<dd>
+						<div rel='0'><a id="0" href='#' class="curr searchclickattr" id="attr" value$velocityCount="" name="$name">不限</a></div>
+						#set($vcount=$velocityCount)
+						#foreach($facetCount in $!{attrFacetMaplist.get($name)})
+							#if($!facetCount.count>0)
+							<div rel='0'><a href="#" class="searchclickattr" id="attr" vcount=$vcount value="$name:$facetCount.attrValue">$facetCount.attrValue（$facetCount.count）</a></div>
+							#end
+							#end
+					</dd></dl>
+					#end
+						#end
+					#end
+			</div>
+			#end
+          </div>
+		  <form id="searchid" action="getSearchList.htm" method="post">
+        <input type="hidden" name="curPage" id="curPage" value="1"/>
+	 <input type="hidden"id="sortTag" name="sortTag" value="$!sortTag"/>
+	     <input type="hidden"  id="priceRange_s"  name="priceRange" value="$!priceRange"/>
+	     <input type="hidden" id="attr_s" name="attrf" value="$!attrf"/>
+	      <input type="hidden" id="brand_s" name="brand" value="$!brand"/>
+	       <input type="hidden" id="keyName" name="keyName" value="$!keyName"/>
+	        <input type="hidden" id="cateId" name="cateId" value="$!{cateId}"/>
+	</form>
+	
+        <div class="bh-subSection bh-mtop10">
+        	<div id="filter"  >
+                <div class="fore1 bh-overf">
+					<dl class='order'><dt>排序：</dt>
+		<dd class='' id="px_s" ><a class="searchclicksort" id="salenum"  value="s" href="#">销量</a><b></b>
+		</dd>
+		<dd id="px_p"  >
+		<b></b><a class="searchclicksort" id="price" value="p" href="#" rel='nofollow'>价格</a><b></b
+		></dd>
+
+		<dd id="px_a" >
+		<a class="searchclicksort" id="an" value="a"  href="#" rel='nofollow'>关注度</a><b></b></dd>
+		<dd id="px_c" >
+		<a class="searchclicksort" id="cn" value="c"  href="#" rel='nofollow'>评论数</a><b></b></dd>
+		</dl>
+					
+					<div class='pagin pagin-m'>
+						<span class='text'>$page.pageNo/$page.totalpage</span>
+						<span class="prev-disabled"></span>
+						</div>
+					    <div class='total'>
+							#getPageHtml("formId=searchid" "parameters=pageNo:$page.pageNo,pageSize:$page.pageSize,totalCount:$page.totalCount,pageviewcount:$page.pageviewcount,vmpath:common/page.vm")
+						</div>
+						
+				
+				</div>
+			</div><!--filter end-->
+            <div class="bh-zcon bh-windows bh-six-tab  bh-six-tab1">
+            	<div class="bh-overf">
+					
+					#foreach($goods in $!{searchgoods})
+					<div class="bh-m-window bh-fl ">
+                <ul>
+                  <li class="bh-img"><a target="_blank" href="showgoods.htm?gs=$!{goods.id}">
+		  
+				 <img src="${commodityImgsDomain}/$!{goods.uploadImgValue}" width="213" height="170" /></a><span class="huodong"></span></li>
+                  <li><a target="_blank" href="showgoods.htm?gs=$!{goods.id}" class="bh-p-title">
+					$!{goods.commodityName}</a></li>
+                  <li class="bh-textCt">
+					<span class="bh-trline">现价：￥$!formatNumber.format("#0",$goods.priceActual)</span>&nbsp;&nbsp;&nbsp;
+					<span class="bh-zprice">原价：￥$!formatNumber.format("#0",$goods.priceDiscount)</span></li>
+                  <li class="bh-textCt">
+                    <p class="bh-kc">库存：<span class="bh-now">#if($goods.invNumber>0)现货#else无库存#end</span></p>
+                  </li>
+                  <li class="bh-textCt bh-btn">
+					<a href="#" class="bh-gm">购&nbsp;&nbsp;买</a>
+					<!--<a href="#" class="bh-jg">竞&nbsp;&nbsp;购</a>-->
+					<a href="#" class="bh-db">对&nbsp;&nbsp;比</a></li>
+                </ul>
+              </div>
+			#end
+        </div>      
+              	<div class=" bh-overf bh-mtop10" style="padding:0 20px 0 0;">
+				#getPageHtml("formId=searchid" "parameters=pageNo:$page.pageNo,pageSize:$page.pageSize,totalCount:$page.totalCount,pageviewcount:$page.pageviewcount,vmpath:common/page.vm")
+			</div>                 
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" >
+$("#bh-pd-menuanchor").mouseover(function(){
+$("#bh-pd-menudiv").show();
+});
+
+$("#bh-pd-menuanchor").mouseout(function(){
+$("#bh-pd-menudiv").hide();
+});
+</script>
+<script type="text/javascript" charset="utf-8" language="javascript" >
+          function handleattr(name){
+	   var tmattr=$("#attr_s").val().split(",");
+	   var tmval="";
+           for(var i=0;i<tmattr.length;i++){
+	     if(tmattr[i].split(":")[0]!=name){
+	      tmval=tmattr[i];
+	      if(i<tmattr.length-1){ tmval=tmval+",";}
+	     }
+	    }
+          $("#attr_s").val(tmval);
+	  }
+	  function addattr(vall){
+	   var tmattr=$("#attr_s").val().split(",");
+	   var tmval=0;
+           for(var i=0;i<tmattr.length;i++){
+	     if(tmattr[i].split(":")[0]==vall){
+	       tmval=1;
+	     }
+	    }
+	    if(tmval==0){
+	    $("#attr_s").val(tmattr+","+vall);
+	    }
+          
+	  }
+	  $(function(){
+           $(".searchclickattr").click(function(){
+	      var tid=this.id;
+	      var tval=$(this).attr("value");
+	      if("attr"==tid){
+	        var tmattr=$("#attr_s").val();
+			if(tmattr!=""){
+			//$("#attr_s").val(tmattr+","+tval);
+			addattr(tval);
+			//处理重复的值
+			}else{
+			 $("#"+tid+"_s").val(tval);
+			}
+	      }
+            if(0==tid){
+	        var tmattr=$("#attr_s").val();
+			if(tmattr!=""){
+                   var name=$(this).attr("name");
+			handleattr(name);
+			//处理重复的值
+			}else{
+			 $("#attr_s").val(tval);
+			}
+	      }
+	     $("#searchid").submit();
+	   })
+	 
+           $(".searchclick").click(function(){
+	       var tid=this.id;
+	       var tval=$(this).attr("value");
+	       $("#"+tid+"_s").val(tval);
+	       $("#searchid").submit();
+	   })
+	   $(".searchclicksort").click(function(){
+	      var tid=this.id;
+	      var tval=$(this).attr("value");
+	      $("#sortTag").val(tval);
+	     $("#searchid").submit();
+	   })
+	  
+	  });
+
+	   function selAll(){
+	    var br_sel=$("#brand_s").val();
+	     var pr_sel=$("#priceRange_s").val();
+	     var attr_sel=$("#attr_s").val();
+	     selectTag(br_sel,'b');
+	     selectTag(pr_sel,'p');
+	    selectTags(attr_sel);
+           $("#px_$!sortTag").addClass("curr");
+	   }
+	   function selectTag(val,t){
+            if(val!=""){
+	      $('a[value="'+val+'"]').addClass("curr");
+	      if("b"==t){ $('a[valueb=""]').removeClass("curr");}
+	      if("p"==t){ $('a[valuep=""]').removeClass("curr");}
+	     }
+	    
+	   } 
+	   function selectTags(val){
+	   var tags=val.split(",");
+	   for(var i=0;i<tags.length;i++){
+	    $('a[value="'+tags[i]+'"]').addClass("curr");
+	    var vc=$('a[value="'+tags[i]+'"]').attr("vcount");
+             $('a[value'+vc+'=""]').removeClass("curr");
+	    }
+	   
+	   } 
+	   selAll();
+	   jQuery("#_catelis0").mouseover(function(){
+			if(!(this.getAttribute("class") && "bh-on"==this.getAttribute("class"))){
+				jQuery(this).addClass("bh-on");
+				jQuery("#bh-tejia").attr("class","bh-tab-two bh-on bh-overf");
+				jQuery("#_catelis1").removeClass("bh-on");
+				jQuery("#bh-hot").attr("class","bh-tab-two bh-overf");
+			}
+		})
+		jQuery("#_catelis1").mouseover(function(){
+			if(!(this.getAttribute("class") && "bh-on"==this.getAttribute("class"))){
+				jQuery(this).addClass("bh-on");
+				jQuery("#bh-hot").attr("class","bh-tab-two bh-on bh-overf");
+				jQuery("#_catelis0").removeClass("bh-on");
+				jQuery("#bh-tejia").attr("class","bh-tab-two bh-overf");
+			}
+		})
+	</script>
+<!-- foot begin -->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:FOOT,vmpath:frontpage/foot.vm")
+<!-- foot end -->
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>促销活动列表</title>
+<link href="${request.getContextPath()}/css/admin.css" rel="stylesheet">
+<link href="${request.getContextPath()}/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+#getMothodSc("moduleName=admin.action.Common" "parameters=tag:1,vmpath:admin/head.vm,level:4,level2:9");
+<div id="admin_right">
+	<div class="headbar">
+	<div class="position">><span>促销活动管理</span><span>&gt;</span><span>积分活动列表</span></div>
+	<div class="operating">
+		<a href="javascript:;"><button type="button" onclick="addp();" class="operating_btn"><span class="addition">添加积分活动</span></button></a>
+	</div>
+	<script type="text/javascript" >
+	function addp(){
+	location.href="/sc/addPointer.htm";
+	}
+	</script>
+	<div class="field">
+		<table class="list_table">
+			<thead>
+				<tr class="">
+					<th>名称</th>
+					<th>活动时间</th>
+					<th>状态</th>
+					<th>活动类型</th>
+					<th>销售数量</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+<div class="content" style="height: 454px;">
+	
+		<table class="list_table">
+			<tbody>
+			#foreach( $pro in $promotionList )
+				   <tr class="">
+					<td>$!pro.name</td>
+					<td>$!date.format('yyyy-MM-dd HH:mm:ss',$!pro.start_time) ～ $!date.format('yyyy-MM-dd HH:mm:ss',$!pro.end_time)</td>
+					<td>
+					#if($!pro.is_valida==0)未开始 #end
+					#if($!pro.is_valida==1)进行中 #end
+					#if($!pro.is_valida==2)已停止 #end
+					#if($!pro.is_valida==3)已结束 #end
+					</td>
+					<td>
+					#if($!pro.type==1)优惠现金 #end
+					#if($!pro.type==2)打折 #end
+					#if($!pro.type==3)送积分 #end
+					#if($!pro.type==4)免运费 #end
+					</td>
+					<td>$!pro.sale_num</td>
+					<td>
+					#if($!pro.is_valida==0)
+					<a href="updatePointer.htm?id=$!pro.id&tag=0">
+							修改
+						</a>
+
+						<a href="delPointer.htm?id=$!pro.id">
+							删除
+						</a>
+					#end
+					#if($!pro.is_valida==1)
+                    <a href="uppintstatus.htm?id=$!pro.id&is_valida=2">
+							停止活动
+						</a>
+                     #end
+					#if($!pro.is_valida==2)
+					<a href="uppintstatus.htm?id=$!pro.id&is_valida=1">
+					继续活动
+					</a>
+					#end
+				    <a href="getDtailJf.htm?id=$!pro.id">
+					查看
+					</a>
+					</td>
+				</tr>
+							#end	
+							</tbody>
+		</table>
+	<form id="pointerForm" action="getpoList.htm" method="post">
+	<input type="hidden" name="curPage" id="curPage" value="1">
+	</form>
+	#getPageHtml("formId=pointerForm" "parameters=pageNo:$page.pageNo,pageSize:$page.pageSize,totalCount:$page.totalCount,pageviewcount:$page.pageviewcount,vmpath:common/page.vm");
+</div>
+
+	</div>
+	## //public Page(int pageNo, int pageSize, int totalCount,int pageviewcount) 
+	#getMothodSc("moduleName=admin.action.Common" "parameters=tag:2,vmpath:admin/foot.vm");
+</body>
+</html>

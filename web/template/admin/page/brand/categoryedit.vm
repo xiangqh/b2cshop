@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>添加分类</title>
+<link href="${request.getContextPath()}/css/admin.css" rel="stylesheet">
+<link href="${request.getContextPath()}/css/style.css" rel="stylesheet">
+<script type="text/javascript" charset="utf-8" language="javascript" src="${request.getContextPath()}/js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${request.getContextPath()}/js/validator.js"></script>
+</head>
+
+<body>
+#getMothodSc("moduleName=admin.action.Common" "parameters=tag:1,vmpath:admin/head.vm,level:3,level2:0");
+<div id="admin_right">
+<div class="headbar">
+	<div class="position"><span>商品</span><span>&gt;</span><span>商品分类管理</span><span>&gt;</span><span>添加分类</span></div>
+</div>
+<div class="content_box">
+	<div class="content form_content" >
+		<form method="post" action="${request.getContextPath()}/editcg.htm" id="categoryForm">
+			<table cellspacing="0" cellpadding="0" class="form_table">
+				<colgroup><col width="150px">
+				<col>
+				</colgroup><tbody><tr>
+					<th>分类名称：</th>
+					<td><input type="text" title="分类名称" value="$!{edit_category.name}" name="name" class="normal _vdt:{CHECKNOTNULL(分类名称)} _for:{name_msg}">
+					<label class="msgColor">*</label>
+					<label id="name_msg" class="msgColor"></label>
+					<input type="hidden" value="${edit_category.id}" name="id">
+					</td>
+				</tr>
+				<tr>
+					<th>上级分类：</th>
+					<td>
+						<select title="选择分类" name="parent_id" class="normal">
+						<option value="0">顶级分类</option>
+						#foreach($row in $list_tree)
+							<option value="${row.id}" #if(${edit_category.parent_id} == ${row.id}) selected #end>${row.name}</option>
+						#end
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<th>品类：</th><td>
+					<select title="选择商品模型" name="brandcg_id" class="normal">
+						<option value="0" #if(${edit_category.brandcg_id} == 0) selected #end>无绑定</option>
+						#foreach($row in $list_ba)
+							<option value="${row.id}" #if(${edit_category.brandcg_id} == ${row.id}) selected #end>${row.name}</option>
+						#end
+					</select>
+				</td>
+				</tr>
+				<tr>
+					<th>首页是否显示：</th>
+					<td>
+						<label class="attr">
+							<input type="radio" value="1" name="visibility" #if(${edit_category.visibility} == 1) checked #end> 是 
+						</label>
+						<label class="attr">
+							<input type="radio" value="0" name="visibility" #if(${edit_category.visibility} == 0) checked #end> 否 
+						</label>
+					</td>
+				</tr>
+				<tr>
+					<td></td><td><button type="button" class="submit" onclick="if(validator(document)){$('#categoryForm').submit();}"><span>确 定</span></button></td>
+				</tr>
+			</tbody></table>
+		</form>
+	</div>
+</div>
+	</div>
+	#getMothodSc("moduleName=admin.action.Common" "parameters=tag:2,vmpath:admin/foot.vm");
+</body>
+</html>

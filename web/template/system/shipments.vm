@@ -1,0 +1,28 @@
+<dl>
+    <marquee height="317px" direction="up" onmouseover="this.stop()"  onmouseout="this.start()">
+      #foreach($order in $orderIList)
+    	#if($velocityCount==1)
+    		#set($orderId = $order.order_id)
+    		<dd>您好：$order.userName先生/女士，您订购编号为
+    			#foreach($order in $orderIList)
+    				#if($orderId == $order.order_id)
+                        <a href="showgoods.htm?gs=$!order.goods_id" class="bh-cccc">$!order.goods_num</a>
+    				#end 
+    			#end
+    			的商品，我们已经发货，请您耐心等待。时间：$!order.dtOrderDelivery
+    		</dd>
+    	#end
+    	#if($order.order_id!=$orderId)
+    		#set($orderId = $order.order_id)
+    		<dd>您好：$order.userName先生/女士，您订购编号为
+    			#foreach($order in $orderIList)
+    				#if($orderId == $order.order_id)
+    					<a href="showgoods.htm?gs=$!order.goods_id" class="bh-cccc">$!order.goods_num</a>
+    				#end 
+    			#end
+    			的商品，我们已经发货，请您耐心等待。时间：$!order.dtOrderDelivery
+    		</dd>
+    	#end
+      #end
+   </marquee>
+</dl>

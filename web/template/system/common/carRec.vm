@@ -1,0 +1,19 @@
+				#foreach($row in $rec_list)
+				<div class="bh-m-window4 bh-fl">
+                    <ul>
+                      <li class="bh-img">
+                      		<a target="_blank" href="$!{scpath}/showgoods.htm?gs=${row.invId}" title="${row.goodsName}">
+                      			<img src="${commodityImgsDomain}${cateId}/${row.invId}_1_4.${row.suffix}" width="163" height="163" />
+                      		</a>
+                      		<span class="huodong"></span>
+                     </li>
+                     <li>
+                      	<a target="_blank" href="$!{scpath}/showgoods.htm?gs=${row.invId}" class="bh-p-title" title="${row.goodsName}">
+                      		${row.goodsName}
+                        </a>
+                    </li>
+                    <li class="bh-textCt"><span class="bh-zprice">折扣价：￥${row.disPrice}</span></li>
+                     <li class="bh-textCt bh-btn"><a href="javascript:;" class="bh-searchadd"></a></li>
+                    </ul>
+                  </div>
+                 #end

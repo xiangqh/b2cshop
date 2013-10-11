@@ -1,0 +1,17 @@
+				#foreach($row in $rec_list)
+				<div class="bh-window4 bh-fl" number="${velocityCount}" #if(${velocityCount} > 4) style="display:none;" #end>
+                    <ul>
+                      <li class="bh-img">
+                      		<a target="_blank" href="$!{scpath}/showgoods.htm?gs=${row.invId}" title="${row.goodsName}">
+                      			<img src="${commodityImgsDomain}${cateId}/${row.invId}_1_4.${row.suffix}" width="110" height="110" />
+                      		</a>
+                     </li>
+                     <li class="bh-fr bh-message">
+                      	<a target="_blank" href="$!{scpath}/showgoods.htm?gs=${row.invId}" class="bh-p-title" title="${row.goodsName}">
+                      		${row.goodsName}
+                        </a>
+                      	<span class="bh-red">￥${row.disPrice}</span>
+                      	<a href="#" class="bh-btn">购&nbsp;买</a></li>
+                    </ul>
+                  </div>
+                 #end

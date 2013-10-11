@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>3655订单中心-账户余额</title>
+<link href="${cssDomain}/css/reset.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/common.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/page.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="${jsDomain}/js/jquery.js"></script>
+<script type="text/javascript" src="${jsDomain}/js/jquery.cookie.js"></script>
+</head>
+<body id="bh-member-yue" class="bh-mbody">
+<!--head begin-->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:HEAD,vmpath:frontpage/member/fkhead.vm")
+<!--head end-->
+<div class="bh-p-content">
+  <div class="bh-content">
+    <div class="bh-section">
+      <div class="bh-bread bh-bigFont"><span class="bh-strong ">我的3655</span>&nbsp;&gt;&nbsp;<span>账户余额</span></div>
+    </div>
+    <div class="bh-section">
+      <div class="bh-sidebar-left">
+       #getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:LEFT,vmpath:frontpage/member/left.vm")
+      </div>
+      <div class="bh-mLeft bh-container">
+        <div class="bh-m-rwrap">
+          <div class="bh-order">
+            <div class="bh-ztab bh-member-ztab">
+              <h1>账户余额</h1>
+            </div>
+            
+            <div class="bh-zcon bh-mtop5">
+            	<div class="bh-dingyue-message"><span class="bh-bigFont">当前账户余额：<span class="bh-red bh-strong">￥360.00</span>&nbsp;&nbsp;&nbsp;冻结金额：<span class="bh-red bh-strong">￥10.00</span>&nbsp;&nbsp;&nbsp;账户状态：<span class="bh-red bh-strong">有效</span><span class="bh-red bh-strong"><a href="getCz.htm">充值</a></span></span></div>
+              <ul class="bh-mtop10">
+                <li #if($!{t}==0) class="bh-on" #end><span><a href="getBanlanList.htm">近三个月</a></span></li>
+                <li #if($!{t}==1) class="bh-on" #end><span><a href="getBanlanList.htm?t=1">三个月前</a></span></li>
+              </ul>
+              <table width="829" border="0" cellspacing="0" cellpadding="0" class="bh-table1">
+                <tr>
+                  <th width="130">收支项目</th>
+                  <th width="130">存入（元）</th>
+                  <th width="130">支出（元）</th>
+                  <th width="130">账户余额（元）</th>
+                  <th>变动时间</th>
+                  <th width="130">交易类型</th>
+                </tr>
+				#foreach($banlan in $!banlanList)
+                <tr>
+                  <td>$!{banlan.title}</td>
+                  <td>￥$!{banlan.crje}</td>
+                  <td>￥$!{banlan.zcje}</td>
+                  <td>￥$!{banlan.syje}</td>
+                  <td>$!{banlan.ctime}</td>
+                  <td>#if($!{banlan.ctype}==1) 充值 #end #if($!{banlan.ctype}==2) 购物 #end</td>
+                </tr>
+               	#end
+              </table>
+              <div class="bh-overf bh-mtop10 bh-mBt10">
+              	<div class="pagin pagin-m bh-fr">
+                 <form method="post" action="getBanlanList.htm" id="banlan_from">
+					<input type="hidden" name="curPage" id="curPage" value="1">
+						<input type="hidden" name="t"  value="$!{t}">
+                 </form>
+                #getPageHtml("formId=banlan_from" "parameters=pageNo:$page.pageNo,pageSize:$page.pageSize,totalCount:$page.totalCount,pageviewcount:$page.pageviewcount,vmpath:common/page.vm")
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bh-clear"></div>
+    </div>
+    <div class="bh-clear"></div>
+  </div>
+</div>
+<!-- foot begin -->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:FOOT,vmpath:frontpage/member/fkfoot.vm")
+<!-- foot end -->
+</body>
+</html>
+

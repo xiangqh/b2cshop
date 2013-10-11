@@ -1,0 +1,6 @@
+<dl>
+  #foreach($new in $newList)
+  <dd><a href="detailNews.htm?id=$!new.id"> $new.title</a></dd>
+  #end
+
+</dl>

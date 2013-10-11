@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>订单信息确认页面</title>
+<link href="${cssDomain}/css/reset.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/common.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/page.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="${jsDomain}/js/jquery.js"></script>
+<script type="text/javascript" src="${jsDomain}/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="${jsDomain}/js/check.js"></script>
+ <script src="${jsDomain}/js/ChinaCity.js" type='text/javascript'></script>
+<script src="${jsDomain}/js/ChinaProvince.js" type='text/javascript'></script>
+<script src="${jsDomain}/js/ChinaTown.js" type='text/javascript'></script>
+<script src="${jsDomain}/js/jquery.selectboxes.js" type='text/javascript'></script>
+<script type="text/javascript" src="${jsDomain}/js/com.js"></script>
+</head>
+<body>
+
+  #getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:HEAD,vmpath:frontpage/carthead.vm")
+<div class="bh-p-content">
+  <div class="bh-content">
+    <div class="bh-section">
+      <div class="cart-frame">
+        <div class="tl"></div>
+        <div class="tr"></div>
+      </div>
+      <div class="bh-tianxie-message">
+        <div class="bh-ztab bh-bigFont">填写核对订单的信息</div>
+        <div class="bh-zcon">
+          <div class="bh-tianxiecontent">
+            <div id="bh-collect-people" >
+              <div class="show-message" >
+				<!--地址-->
+              </div>
+            </div>
+            <div id="bh-paytype">
+				<!--begin-->
+				<!--end-->
+            </div>
+            <div id="bh-fapiao">
+            </div>
+            <div id="bh-cartlist" class="bh-mtop10">
+              <div class="show-message">
+                <div class="cart-inner">
+                  <div class="cart-thead cart-thead1">商品清单</div>
+                  <div class="cart-thead">
+                    <div class="column t-number">商品编号</div>
+                    <div class="column t-goodsimg">产品图片</div>
+                    <div class="column t-titile">商品名称</div>
+                    <div class="column t-price">价&nbsp;格</div>
+                    <div class="column t-promotion">返还积分</div>
+                    <div class="column t-quantity">库存状态</div>
+                    <div class="column t-action">采购数量</div>
+                  </div>
+                  <div id="product-list" class="cart-tbody">
+					
+					#foreach($good in $!cart.goods)
+                    <div class="item item_selected" style="border:0;">
+                      <div class="item_form clearfix">
+                        <div class="cell p-number">$!good.id</div>
+                        <div class="cell p-goodsimg">
+                          <div class="p-img"><a href="showgoods.htm?gs=$!{good.id}"  target='_blank'>
+								<img src="$!{commodityImgsDomain}/$!{goods.categoryId}/$!{good.id}_1_4.$!{good.imgSuffix}" width="50" height="50"/>
+						  </a></div>
+                        </div>
+                        <div class="cell bh-ptitle">
+                          <div class="p-name">
+							<a href="showgoods.htm?gs=$!{good.id}"  target='_blank'>
+								$!{good.commodityName}-$!{good.splitName}
+							
+							</a>
+						  </div>
+                        </div>
+                        <div class="cell p-price"><span class="price">￥$!{good.priceActual}</span></div>
+                        <div class="cell p-promotion">$!{good.point}</div>
+                        <div class="cell p-quantity">
+							#if($!good.invNumber>0) 
+							现货
+								#else
+							缺货
+							#end
+							</div>
+                        <div class="cell">$!{good.count}</div>
+                      </div>
+                    </div>
+                   #end
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="bh-youxian">
+              <input type="checkbox" name="">
+              <label>先发有货商品（如果订单部分商品缺货，优先配送有货商品）</label>
+            </div>
+            <div id="bh-over">
+              <h1>结算信息</h1>
+              <div class="middle bh-bigFont">
+                <div class="bh-sum" style=" border-bottom:1px dotted #EBCBA0;">商品金额：￥$!formatNumber.format("#0.00",$!{cart.total})元&nbsp;+&nbsp;运费：<font id="exfreeid">0.00</font>元</div>
+                <div class="bh-sum bh-textRt bh-strong"><font id="real_id"></font>应付总额：<span class="bh-red">￥<font id="totalid">$!{cart.total}</font>元</span></div>
+              </div>
+            </div>
+            <div id="cart-submit" class="bh-overf">
+              <form method="post" id="orderform" >
+			  <div class="bh-fl">
+                <input type="checkbox" name="isremark" value="1" />
+                <label>订单备注</label>
+                <input class="bh-text" type="text" maxlength="50" name="customerRemark" value="限50个字" style="width: 220px; color: rgb(204, 204, 204);">
+				<div class="middle"><span class="bh-red">*提示</span><span style=" color:#ccc;">：请勿填写有关支付、收货、方面的信息。</span></div>
+              </div>
+              <div class="bh-fr">
+				
+					 #foreach   ($id   in   $ids) 
+                   <input type="hidden" name="ids" value="$!{id}" />
+                    #end 
+					#foreach   ($count   in   $counts) 
+                  <input type="hidden" name="counts" value="$!{count}" />
+                    #end
+                  #foreach   ($att   in   $attr) 
+                  <input type="hidden" name="attr" value="$!{att}" />
+				  #end
+				  <input type="hidden" name="payTotal" id="payTotal"  />
+			
+			
+				<input type="submit" class="bh-btn" value=" " onclick="Sc_check.addOrder();"/>
+				
+              </div>
+			  </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<script>
+Sc_check.getAddress(0,0);
+Sc_check.showPay(0,0);
+Sc_check.getInvoiceList(0,0);
+//loadcheck();
+   var balance=$!{minusban};
+   var to_value=$!{to_value};
+   var type=$!{type};
+function loadcheck(){
+
+var total=$!formatNumber.format("#0.00",$!{cart.total});//订单金额
+var exfree=$("#expressAmount").val();//运费
+
+//$("#totalid").html(Number(total)+Number(exfree));
+//$("#payTotal").val(Number(total)+Number(exfree));
+    //活动
+      if(type==1){
+       //优惠
+	       if(total>balance){
+	       $("#real_id").html("优惠:"+balance+"    ");
+	       $("#totalid").html((Number(total)-Number(balance)).toFixed(2));
+	       $("#payTotal").val((Number(total)-Number(balance)).toFixed(2));
+	       }
+      }else{
+        $("#totalid").html(Number(total)+Number(exfree));
+        $("#payTotal").val(Number(total)+Number(exfree));
+      }
+      
+      if(type==4){
+       //免运费
+      $("#text_ship_id").html(0);
+      $("#exfreeid").html(0);
+      }else{
+      $("#exfreeid").html(exfree);
+      }
+	  
+}
+</script>
+<!-- foot begin -->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:FOOT,vmpath:frontpage/foot.vm")
+</body>
+
+</html>

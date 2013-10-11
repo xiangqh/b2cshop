@@ -1,0 +1,16 @@
+				#foreach($row in $new_goods_comment)
+				<div class="bh-m-window2">
+                  <dl class="bh-overf">
+                    <dt class="bh-img bh-fl">
+                    <a target="_blank" href="$!{scpath}/showgoods.htm?gs=${row.goodsId}">
+                    	<img src="${commodityImgsDomain}${row.goodsCate}/${row.goodsId}_1_4.${row.goodsImgSuffix}" width="79" height="75"/>
+                    </a>
+                    </dt>
+                    <dd class="bh-fr bh-message">
+                    	<a target="_blank" href="$!{scpath}/showgoods.htm?gs=${row.goodsId}" class="bh-p-title bh-show" title="${row.goodsName}">${row.getGoodsNameLimit()}</a>
+                    	<span>${row.commentTime}</span><br />
+                        <p>${row.getTitleLimit()}</p>
+                    </dd>
+                  </dl>
+                </div>
+                #end

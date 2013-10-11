@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>企业会员登录</title>
+<link href="${cssDomain}/css/reset.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/common.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/page.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="${jsDomain}/js/jquery.js"></script>
+<script type="text/javascript" src="${jsDomain}/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="${jsDomain}/js//member.js"></script>
+</head>
+<body id="bh-login">
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:HEAD,vmpath:frontpage/member/head.vm");
+<div class="bh-p-content">
+  <div class="bh-content">
+    <div class="bh-section">
+<div id="entry">
+        <div class="mt">
+            <h2 class="bh-bigFont bh-fl">用户登录</h2>
+        </div>
+        <div class="mc" style="padding-top:30px;">
+            <form class="bh-login" action="mlogin.htm" method="post" ><div class="form">
+                <div class="item bh-overf">
+                    <span class="label">用户名：</span>
+
+                    <div class="bh-fl">
+                        <input type="text" id="login_count" name="login_count" class="text" tabindex="1" value="" onblur="SC_login.iscountOrEmail(1)"/>
+                        <label id="" class="blank invisible"></label>
+                        <span class="clr"></span>
+                        <label id="login_count_error"></label>
+                    </div>
+                </div>
+                <div class="item bh-overf">
+                    <span class="label">密码：</span>
+
+                    <div class="bh-fl">
+                        <input type="password" id="pwd" name="pwd" class="text" tabindex="2"/>
+                        <label id="loginpwd_succeed" class="blank invisible"></label>
+                        <label><a href="#"
+                                  class="flk13">忘记密码?</a></label>
+                        <span class="clr"></span>
+                        <label id="loginpwd_error"></label>
+                    </div>
+                </div>
+               
+                <div class="item" id="autoentry">
+                    <span class="label">&nbsp;</span>
+
+                    <div class="bh-fl">
+                        <label class="mar"><input type="checkbox" class="checkbox" checked="checked"
+                                                  id="isremember" name="isremember" value="1" />
+                            记住用户名</label>
+                        <label><input type="checkbox" class="checkbox" id="autologin" name="autologin"  value="1" />
+                            自动登录</label>
+                    </div>
+                </div>
+                <div class="item bh-overf">
+                    <span class="label">&nbsp;</span>
+
+                    <input type="submit" class="btn-img btn-entry" id="loginsubmit" value="登录" tabindex="8"/>
+                </div>
+
+
+                <div class="item extra">
+                    <label class="ftx24">
+                        使用合作网站账号登录京东：
+                        <span class="clr"></span>
+                        <span class="btns qq"><s></s><a href="javascript:void(0)"
+                                                        onclick="window.location='http://qq.360buy.com/new/qq/login.aspx'+window.location.search;return false;">QQ</a></span>
+                        <span class="btns net163"><s></s><a href="javascript:void(0)"
+                                                            onclick="window.location='http://qq.360buy.com/new/netease/login.aspx'+window.location.search;return false;">网易</a></span>
+                        <span class="btns renren"><s></s><a href="javascript:void(0)"
+                                                            onclick="renrenLogin('');return false;">人人网</a></span>
+                        <span class="btns sina"><s></s><a href="javascript:void(0)"
+                                                          onclick="openWind('http://qq.360buy.com/new/sina/login.aspx');return false;">新浪微博</a></span>
+                        <span class="btns kaixing001"><s></s><a href="javascript:void(0);"
+                                                                onclick="openWind('http://www.kaixin001.com/login/connect.php?appkey=569559288279830b66734654259458a9&re=/kx001_receiver.htm&t=57');return false;">开心网</a></span>
+                        <span class="btns douban"><s></s><a
+                                onclick="window.location='http://qq.360buy.com/new/douban/login.action'+window.location.search;return false;"
+                                href="javascript:void(0);">豆瓣</a></span>
+                        <span class="btns more"><a href="javascript:void(0)"
+                                                   onclick="window.location='http://qq.360buy.com/new/alipay/login.aspx'+window.location.search;return false;">更多>></a></span>
+                        <a id="kx001_btn_login" style="display:none"></a>
+                    </label>
+                </div>
+
+            </div>
+            </form>
+            <!--[if !ie]>form end<![endif]-->
+			<form class="bh-register">
+            <div id="guide">
+                <h5>还不是京创在线用户？</h5>
+
+                <div class="content">现在免费注册成为京创在线用户，京创在线邀请您体验，全球领先的竞价购物乐趣。</div>
+                <a  href="ereg.htm" target="_blank" class="btn-link btn-personal">注册新用户</a>
+
+                <div class="btns"><a href="ereg.htm" target="_blank">企业用户注册</a><a href="preg.htm"  target="_blank" >个人用户注册</a></div>
+                <div class="app bh-textCt">
+                    <a href="#"><img src="${imageDomain}/images/login-img.gif" width="489" height="76"/></a>
+                </div>
+            </div>
+            </form>
+            <!--[if !ie]>guide end<![endif]-->
+            <span class="clr"></span>
+        </div>
+        <!--[if !ie]>mc end<![endif]-->
+    </div>
+    <!--[if !ie]>regist end<![endif]-->
+        </div>
+  </div>
+</div>
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:FOOT,vmpath:frontpage/member/foot.vm");
+</body>
+</html>

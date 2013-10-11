@@ -1,0 +1,40 @@
+ <div class="bh-week">
+            <div class="bh-ztab-1">
+              <h3 class="bh-bigFont">一周销量排行榜</h3>
+            </div>
+            <div class="bh-zcon">
+              <div class="m rank" id="commend">
+                <div class="mc">
+                  <ul class="tabcon">
+                    <li class="fore bh-on"><span>1</span>
+                      <div class="p-img"><a href="#"> <img src="${imageDomain}/images/templ/pd4.gif" width="50" height="50"/></a></div>
+                      <div class="p-name"><a href="#">TCL KFRd-25GW/FC23  正1匹 壁挂式家用冷暖空调（白色）</a></div>
+                      <div class="bh-red">￥2799</div>
+                    </li>
+                    <li><span>2</span>
+                      <div class="p-name"><a href="#">美的（Midea）KFR-23GW/DY-IB(R3) 挂式 1匹 家用冷暖环保节能空调(月光白)</a></div>
+                    </li>
+                    <li><span>3</span>
+                      <div class="p-name"><a href="#">奥克斯（AUX）KFR-25GW/SQB+3 1匹 挂式家用冷暖空调（白色）</a></div>
+                    </li>
+                    <li><span>4</span>
+                      <div class="p-name"><a href="#">科龙(Kelon) KFR-23GW/UG-N3 1匹 节能明星系列壁挂式家用冷暖空调（细亮银）</a></div>
+                    </li>
+                    <li><span>5</span>
+                      <div class="p-name"><a href="#">奥克斯（AUX）KFR-51LW/M-2  大2匹 立柜式家用冷暖空调（白色）</a></div>
+                    </li>
+                    <li><span>6</span>
+                      <div class="p-name"><a  href="#">格兰仕（Galanz）KFR-35GW/dLD57-130(2) 1.5匹 壁挂式凉之劲系列家用冷暖空调 （白色）</a></div>
+                    </li>
+                    <li><span>7</span>
+                      <div class="p-name"><a href="#">志高（chigo） KFR-25GW/B104+N3 正1匹 挂式家用冷暖空调 （白色金边 白5）<font color="#ff6600" ></font></a></div>
+                    </li>
+                    <li><span>8</span>
+                      <div class="p-name"><a href="#">格兰仕（Galanz）KFR-26GW/dLP45-130(2)  1匹 壁挂式智能宝系列家用冷暖空调<</a></div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+ 

@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>橱窗货品列表</title>
+<link href="${request.getContextPath()}/css/admin.css" rel="stylesheet">
+<link href="${request.getContextPath()}/css/style.css" rel="stylesheet">
+<link href="${request.getContextPath()}/css/artDialog.css" rel="stylesheet">
+<script type="text/javascript" charset="utf-8" language="javascript" src="${request.getContextPath()}/js/util.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${request.getContextPath()}/js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${request.getContextPath()}/js/artDialog.js"></script>
+</head>
+
+<body>
+#getMothodSc("moduleName=admin.action.Common" "parameters=tag:1,vmpath:admin/head.vm,level:3,level2:0");
+	<div id="admin_right">
+<div class="headbar">
+	<div class="position"><span>商品</span><span>&gt;</span><span>商品橱窗管理</span><span>&gt;</span><span>橱窗的货品列表</span></div>
+	<div class="searchbar">
+		<a href="javascript:;"><button onclick="scbatch();" type="button" class="btn"><span>批量修改</span></button></a>
+	</div>
+	<div class="field">
+		<table class="list_table">
+			<colgroup>
+			<col width="280px">
+			<col width="200px">
+			<col width="150px">
+			<col width="150px">
+			<col width="50px">
+			<col width="50px">
+			</colgroup><thead>
+				<tr class="">
+					<th>商品名称</th>
+					<th>商品货号</th>
+					<th>商品品牌</th>
+					<th>货品名称</th>
+					<th>序号</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+<div class="content">
+		<form method="post" action="${request.getContextPath()}/scbatch.htm" id="scinvForm">
+		<input type="hidden" value="${scaseid}" name="showcaseId">
+		<table cellspacing="0" cellpadding="0" class="list_table">
+			<colgroup>
+			<col width="280px">
+			<col width="200px">
+			<col width="150px">
+			<col width="150px">
+			<col width="50px">
+			<col width="50px">
+			</colgroup>
+			<tbody>
+				#foreach($row in $list_showcase_inv)
+					<tr class="">
+						<td title="${row.commodityName}">${row.commodityName}</td>
+						<td>$!{row.goodsNumber}</td>
+						<td>$!{row.brandName}</td>
+						<td>$!{row.splitName}</td>
+						<td>
+							<input type="hidden" value="${row.id}" name="invId_${velocityCount}">
+							<input title="排序，正整数" type="text" name="sort_${velocityCount}" style="ime-mode:disabled;" value="${row.sort}" size="2" class="tiny" maxlength="7">
+						</td>
+						<td><a href="javascript:void(0);" onclick="del(${var_showcaseId},${row.id});">
+							<img title="删除" src="${request.getContextPath()}/image/icon_del.gif" class="operator">
+						</a></td>
+					</tr>
+				#end
+			</tbody>
+		</table>
+		</form>
+	</div>
+	</div>
+	#getMothodSc("moduleName=admin.action.Common" "parameters=tag:2,vmpath:admin/foot.vm");
+</body>
+</html>
+<script language="javascript">
+	function del(scid,invid){
+		dialogConfirm("提示","确认要删除该橱窗关联的货品吗?",
+			function(){
+				var _data = "sc="+scid+"&cm="+invid;
+				window.location="${request.getContextPath()}/deletescinv.htm?"+_data;
+			}
+		);
+	}
+	function scbatch(){
+		var b = true;
+		$("input[name='batchSort']").each(function(){
+			if(b && !(/^\d+$/.test($(this).val()))){
+				alert("排序号只能为数字!");
+				b = false;
+			}
+		});
+		if(b){
+			$("#scinvForm").submit();
+		}
+	}
+</script>

@@ -1,0 +1,329 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>货品列表</title>
+<link href="${request.getContextPath()}/css/admin.css" rel="stylesheet">
+<link href="${request.getContextPath()}/css/style.css" rel="stylesheet">
+<link href="${request.getContextPath()}/css/artDialog.css" rel="stylesheet">
+<script type="text/javascript" charset="utf-8" language="javascript" src="${request.getContextPath()}/js/util.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${request.getContextPath()}/js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${request.getContextPath()}/js/artDialog.js"></script>
+</head>
+
+<body>
+#getMothodSc("moduleName=admin.action.Common" "parameters=tag:1,vmpath:admin/head.vm,level:3,level2:30");
+	<div id="admin_right">
+<div class="headbar">
+	<div class="position"><span>商品</span><span>&gt;</span><span>商品管理</span><span>&gt;</span><span>货品列表</span></div>
+	<div class="searchbar">
+		<form name="goodsListFprm" method="post" action="${request.getContextPath()}/listinv.htm">
+			商品货号：<input class="small" name="goodsNum" type="text" value="$!{goodsNum}" style="width:100px"/>
+			<select style="width:155px" name="categoryId" class="auto">
+				<option value="0" #if(${cg.id}==0) selected #end>选择商品分类</option>
+				#foreach($cg in $list_cgl)
+					<option value="${cg.id}" #if(${cg.id}==${categoryId}) selected #end>${cg.name}</option>
+				#end
+			</select>
+			<select style="width:95px" name="shelves" class="auto">
+				<option value="0" #if(${shelves}==0) selected #end>选择上下架</option>
+				<option value="1" #if(${shelves}==1) selected #end>上架</option>
+				<option value="2" #if(${shelves}==2) selected #end>下架</option>
+			</select>
+			<select name="storeNums" class="auto">
+				<option value="-1" #if(${storeNums}==-1) selected #end>选择库存</option>
+				<option value="0"> #if(${storeNums}==0) selected #end缺货</option>
+				<option value="10" #if(${storeNums}==10) selected #end>低于10</option>
+				<option value="100" #if(${storeNums}==100) selected #end>10-100</option>
+				<option value="101" #if(${storeNums}==101) selected #end>100以上</option>
+			</select>
+			<button type="submit" class="btn"><span>查 询</span></button>
+		</form>
+	</div>
+	<div class="field">
+		<table class="list_table">
+			<colgroup>
+			<col width="290px">
+			<col width="150px">
+			<col width="150px">
+			<col width="150px">
+			<col width="60px">
+			<col width="80px">
+			<col width="150px">
+			<col width="60px">
+			<col width="50px">
+			<col width="140px">
+			</colgroup><thead>
+				<tr class="">
+					<th>商品名称</th>
+					<th>商品货号</th>
+					<th>商品品牌</th>
+					<th>货品名称</th>
+					<th>图片</th>
+					<th>库存</th>
+					<th>折扣价/市场价</th>
+					<th>上下架</th>
+					<th>推荐</th>
+					<th>橱窗</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+
+</div>
+<div class="content">
+		<table cellspacing="0" cellpadding="0" class="list_table">
+			<colgroup>
+			<col width="290px">
+			<col width="150px">
+			<col width="150px">
+			<col width="150px">
+			<col width="60px">
+			<col width="80px">
+			<col width="150px">
+			<col width="60px">
+			<col width="50px">
+			<col width="140px">
+			</colgroup>
+			<tbody>
+				#foreach($row in $list_inv)
+					<tr class="">
+						<td title="${row.commodityName}">${row.commodityName}</td>
+						<td>$!{row.goodsNumber}</td>
+						<td>$!{row.brandName}</td>
+						<td>$!{row.splitName}</td>
+						<td>
+							#if(${row.imgPageDisplay} == 1) 
+								<span id="pic_${row.id}">是</span>
+							#else
+								<span id="pic_${row.id}">否</span>
+							#end
+							<img title="编辑图片" src="${request.getContextPath()}/image/m1/pen.png" class="operator" onclick="imgEdit(this,${row.id},${row.categoryId});">
+						</td>
+						<td>
+							<img title="更改库存" src="${request.getContextPath()}/image/m1/pen.png" class="operator" onclick="changeNumbers(${row.id});">
+						</td>
+						<td>
+							<input title="折扣价,小数" type="text" value="$formatNumber.format("#0.00",${row.priceDiscount})" size="2" class="tiny"  maxlength="10" id="p_disc_${row.id}"> /
+							<input title="市场价,小数" type="text" value="$formatNumber.format("#0.00",${row.priceActual})" size="2" class="tiny"  maxlength="10" id="p_actual_${row.id}">
+							<img title="更改价格" src="${request.getContextPath()}/image/m1/right.png" class="operator" style="display:''" onclick="submitReq(this,'price',${row.id});">
+						</td>
+						<td>
+							#if(${row.upShelves} == 1) 
+								<span id="upsp_${row.id}">是</span>
+								<img title="下架" src="${request.getContextPath()}/image/m1/desc.png" class="operator" style="display:''" onclick="submitReq(this,'upSl',${row.id});">&nbsp;
+							#else
+								<span id="upsp_${row.id}">否</span>
+								<img title="上架" src="${request.getContextPath()}/image/m1/asc.png" class="operator" style="display:''" onclick="submitReq(this,'upSl',${row.id});">&nbsp;
+							#end
+						</td>
+						<td>
+							<img title="分类推荐" src="${request.getContextPath()}/image/m1/pen.png" class="operator" onclick="changecate(${row.id},${row.categoryId});">
+						</td>
+						<td>
+							<img title="编辑橱窗" src="${request.getContextPath()}/image/m1/pen.png" class="operator" onclick="showcaseEdit(${row.id});"></img>
+							<img title="橱窗详细" src="${request.getContextPath()}/image/m1/search.png" class="operator" onclick="showcase(${row.id});"></img>
+						</td>
+					</tr>
+				#end
+			</tbody>
+		</table>
+	</div>
+	</div>
+<form id="cmdyinvForm" action="${request.getContextPath()}/listinv.htm" method="post">
+	<input type="hidden" name="curPage" id="curPage" value="1">
+</form>
+#getPageHtml("formId=cmdyinvForm" "parameters=pageNo:$page.pageNo,pageSize:$page.pageSize,totalCount:$page.totalCount,pageviewcount:$page.pageviewcount,vmpath:common/page.vm");
+	#getMothodSc("moduleName=admin.action.Common" "parameters=tag:2,vmpath:admin/foot.vm");
+</body>
+</html>
+<script type="text/javascript" language="javascript" charset="utf-8">
+	function imgEdit(obj,id,cid){
+		var __url = "${request.getContextPath()}/cmdyUpPage.htm?splitAttrId="+id+"&categoryId="+cid;
+		art.dialog.open(__url,{
+				id:'alert_goods_img',
+				lock: true,
+				opacity: 0.87,
+				width:'680px',
+				height:'500px',
+				title: '货品图片编辑',
+				yesFn: function(iframeWin, topWin){
+					var _isempty = true;
+					for(var i=1;i<6;i++){
+						var _inner = iframeWin.document.getElementById("imgspan"+i).innerHTML;
+						if(_inner && _inner.toUpperCase().indexOf("IMG") != -1){
+							document.getElementById("pic_"+id).innerHTML = "是";	
+							_isempty = false;
+							break;
+						}
+					}
+					if(_isempty){
+						document.getElementById("pic_"+id).innerHTML = "否";
+					}
+				}
+		});
+	}
+	function changecate(id,cid){
+		var __url = "${request.getContextPath()}/getRecInv.htm?invid="+id+"&cateid="+cid;
+		art.dialog.open(__url,{
+				id:'alert_goods_cate',
+				lock: true,
+				opacity: 0.87,
+				width:'580px',
+				height:'400px',
+				title: '货品推荐',
+				yesFn: function(iframeWin, topWin){
+				}
+		});
+	}
+	function changeNumbers(id){
+		var __url = "${request.getContextPath()}/invNumList.htm?id="+id;
+		art.dialog.open(__url,{
+				id:'alert_goods_numbers',
+				lock: true,
+				opacity: 0.87,
+				width:'580px',
+				height:'400px',
+				title: '货品库存编辑',
+				yesFn: function(iframeWin, topWin){
+				}
+		});
+	}
+	function showcaseEdit(id){
+		var __url = "${request.getContextPath()}/showcasedialog.htm?scid="+id;
+		art.dialog.open(__url,{
+				id:'alert_sc',
+				lock: true,
+				opacity: 0.87,
+				width:'680px',
+				height:'500px',
+				title: '橱窗编辑',
+				yesFn: function(iframeWin, topWin){
+					var _cbox = iframeWin.document.getElementsByName("cbox");
+					if(_cbox && _cbox.length > 0){
+						var _val = ",";
+						var _num = _cbox.length;
+						for(var i=0;i<_num;i++){
+							if(_cbox[i].checked){
+								_val +=_cbox[i].value;
+								_val += ",";
+							}
+						}
+						var _data = "id="+id+"&val="+_val;
+						$.ajax({
+							url: "${request.getContextPath()}/ajaxEdit.htm",
+							type: "GET",
+							data: _data,
+							timeout: 10000,
+							async:false,
+							success: function(data){
+								if("00_FAIL" == data){
+									dialogAlert("错误","非法的请求!");
+								}else if("SUCCESS" == data){
+									dialogAlert("提示","更新成功!");
+								}else{
+									dialogAlert("错误","非法的请求!");
+								}
+							}
+						});
+					}
+				}
+		});
+	}
+	function showcase(id){
+		art.dialog.open("${request.getContextPath()}/listshowcasedialog.htm?invid="+id,{
+				id:'alert_goods_sc',
+				lock: true,
+				opacity: 0.87,
+				width:'500px',
+				height:'400px',
+				title: '货品所属的橱窗列表',
+				yesFn: function(iframeWin, topWin){
+					
+				}
+		});
+	}
+	
+	function submitReq(obj,type,id){
+		var _val = "";
+		var _sub = true;
+		if("num" == type){
+			_val = document.getElementById("p_invn_"+id).value;
+			if(!(/^(0|([1-9]\d*))$/.test(_val))){
+				dialogAlert("错误","请输入一个正整数!");
+				_sub = false;
+			}
+		}else if("price" == type){
+			var _v1="",_v2="";
+			_v1 = document.getElementById("p_actual_"+id).value;
+			if(!(/^(0|([1-9]\d*))(\.\d{1,2})?$/.test(_v1))){
+				dialogAlert("错误","请输入一个正确的小数(2位小数)或整数!");
+				_sub = false;
+			}
+			if(_sub){
+				_v2 = document.getElementById("p_disc_"+id).value;
+				if(!(/^(0|([1-9]\d*))(\.\d{1,2})?$/.test(_v2))){
+					dialogAlert("错误","请输入一个正确的小数(2位小数)或整数!");
+					_sub = false;
+				}
+			}
+			if(_sub){
+				_val = _v1+","+_v2;
+			}
+		}else if("upSl" == type){
+			if("是" == document.getElementById("upsp_"+id).innerHTML){
+				type = "down";
+			}else{
+				type = "up";
+			}
+			_val = "1";
+		}else if("recom" == type){
+			_val = document.getElementById("recom_"+id).value;
+		}else if("showcase" == type){
+			var _tmp = document.getElementById("showcase_"+id).value;
+			if(_tmp == "0"){
+				dialogAlert("错误","请选择一个子橱窗!");
+				_sub = false;
+			}else{
+				var _vals =_tmp.split(",");
+				if(_vals[1] == "0"){
+					dialogAlert("错误","请选择一个子橱窗!");
+					_sub = false;
+				}else{
+					_val = _vals[0];
+					//obj = document.getElementById("scimgq_"+id);
+				}
+			}
+		}else{
+			_sub = false;
+		}
+		if(_sub){
+			var _data = "type="+type+"&val="+_val+"&id="+id;
+			obj.style.display = "none";
+			$.ajax({
+					url: "${request.getContextPath()}/ajaxUpd.htm",
+					type: "GET",
+					data: _data,
+					timeout: 10000,
+					async:false,
+					success: function(data){
+						if("00_FAIL" == data){
+							dialogAlert("错误","非法的请求!");
+						}else if("SUCCESS" == data){
+							if("up"==type){
+								document.getElementById("upsp_"+id).innerHTML = "是";
+								obj.src="${request.getContextPath()}/image/m1/desc.png";
+							}else if("down"==type){
+								document.getElementById("upsp_"+id).innerHTML = "否";
+								obj.src="${request.getContextPath()}/image/m1/asc.png";
+							}
+							dialogAlert("提示","操作成功!");
+						}else{
+							dialogAlert("错误","非法的请求!");
+						}
+						obj.style.display = "";
+					}
+				});
+		}
+	}
+</script>

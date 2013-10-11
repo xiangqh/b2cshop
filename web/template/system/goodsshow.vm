@@ -1,0 +1,475 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>${cmdy.name}</title>
+<link rel="stylesheet" type="text/css" href="${cssDomain}/css/main_cloud.css"/>
+<link rel="stylesheet" type="text/css" href="${cssDomain}/css/cloud-zoom.css"/>
+<link rel="stylesheet" type="text/css" href="${cssDomain}/css/reset.css"/>
+<link rel="stylesheet" type="text/css" href="${cssDomain}/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="${cssDomain}/css/page.css"/>
+ <link href="http://v2.jiathis.com/code_mini/css/jiathis_share.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/cloud-zoom.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/cart.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/browse.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/util.js"></script>
+</head>
+<body id="bh-pd-show">
+<!--head begin-->
+ #getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:HEAD,vmpath:frontpage/head.vm");
+<!--head end-->
+<div class="bh-p-content">
+  <div class="bh-content">
+    <div class="bh-section">
+      <div class="bh-bread bh-bigFont">
+		 #getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:CHEAD,cateId:$!{cate},vmpath:frontpage/product/categoryHead.vm")
+		 &nbsp;$!{cmdy.name}</div>
+    </div>
+    <div class="bh-section">
+      <div class="bh-sidebar-left">
+        <div class="left">
+          <div class="m" id="sortlist" >
+            <div class="mt">
+              <h2>相关分类</h2>
+            </div>
+            <div class="mc">
+              <ul>
+                #foreach($row in $cateslist)
+                	<li><a href="javascript:;" title="${row.name}">${row.name}</a></li>
+                #end
+              </ul>
+            </div>
+          </div>
+          <!--sortlist end-->
+          <div class="m" id="samekind" >
+            <div class="mt">
+              <h2>同类品牌</h2>
+            </div>
+            <div class="mc">
+              <ul>
+                #foreach($row in $catebrands)
+                	<li><a href="javascript:;" title="${row.name}">${row.name}</a></li>
+                #end
+              </ul>
+            </div>
+          </div>
+          <div class="bh-subSection">
+            <div class="bh-new-comment bh-mtop10">
+              <div class="bh-com-smalltab bh-two bh-bigFont bh-strong bh-red">最新评论</div>
+              <div class="bh-zcon bh-overf" id="-new-cmm-0">
+                 <script language="javascript">
+                 	 $.ajax({
+						url: '$!{scpath}/newcomment.htm',
+						type: 'GET',
+						data: {gs:${checkedInv.id}},
+						dataType: 'html',
+						success: function(data){$("#-new-cmm-0").html(data);}
+					});
+                 </script>
+              </div>
+            </div>
+          </div>
+          <div class="bh-subSection bh-mtop10">
+            <div class="bh-history-pd">
+              <div class="bh-com-smalltab bh-two bh-bigFont bh-strong bh-red"><a class="bh-fr" href="javascript:void(0);" onclick="Browse.delAll();">清空</a>最近浏览过的商品</div>
+              <div class="bh-zcon" id="browse" >
+                <!--浏览过的商品-->
+                <!--<p class="bh-overf"><a href="#" class="bh-fr bh-mtop10 bh-mR10 bh-mBt10" style="color:#005DA9;">查看更多推荐</a></p>-->
+              </div>
+            </div>
+          </div>
+          <div class="bh-subSection bh-mtop10">
+            <div class="bh-ad"> 
+				#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:AD,id:55,vmpath:frontpage/common/adImage.vm")
+			</div>
+          </div>
+        </div>
+        <!--left end-->
+      </div>
+      <div class="bh-container" style="float:right; width:977px;">
+        <div class="right-extra">
+        	<input type="hidden" value="${cate}" id="__page05"/>
+        	<input type="hidden" value="${cmdy.name}" id="__page02"/>
+            <div id="name" PshowSkuid="557916" serviceAgentId="670,671,672,1460">
+            <h1>${cmdy.name}</font></h1>
+          </div>
+          <!--pname end-->
+          <div id="preview" style="border: 1px solid #E4E4E4;">
+          	<div style="top: 0px; z-index: 1; position: relative;" id="wrap">
+
+			<a rel="tintOpacity:0.5 ,smoothMove:5,adjustX: 5, adjustY:-4,zoomWidth:350,zoomHeight:350" href="${commodityImgsDomain}${cate}/${checkedInv.id}_1_original.${checkedInv.imgSuffix}" 
+				id="zoom1" class="cloud-zoom" style="position: relative; display: block;">
+				<img alt="" title="$!{cmdy.name}"" src="${commodityImgsDomain}${cate}/${checkedInv.id}_1_2.${checkedInv.imgSuffix}" style="display: block;" width="350" height="350" >
+		    </a></div>
+		    
+            <!--<div id="spec-n1" class="jqzoom" onclick = "">
+            <img src="" width="350" height="350" alt="${cmdy.name}" /></div>-->
+             
+            <div id="spec-n5" >
+              #if(${imgListCount} > 5)
+	              <div class="control" id="spec-left" onclick="_imgLeft()"></div>
+	              <div class="control" id="spec-right" onclick="_imgRight()"></div>
+              #end
+              <div id="spec-list">
+                <ul class="list-h" id="_img_list-h">
+                  #foreach($pi in $imgList)
+                  	<li number="${velocityCount}" #if(${velocityCount} > 5) style="display:none;" #end> 
+	                  	<a rel="useZoom: 'zoom1', smallImage: '${commodityImgsDomain}${cate}/${pi}_2.${checkedInv.imgSuffix}' " 
+	 						title="$!{cmdy.name}" class="cloud-zoom-gallery" href="${commodityImgsDomain}${cate}/${pi}_original.${checkedInv.imgSuffix}">
+							<img alt="$!{cmdy.name}" src="${commodityImgsDomain}${cate}/${pi}_4.${checkedInv.imgSuffix}" width="50" height="50">
+						</a>
+                 	</li>
+                  #end
+                </ul>
+              </div>
+            </div>
+            
+            <ul class="links">
+              <li class="enlarge" ><b></b><a target="_blank" href="$!{scpath}/images.htm?id=${checkedInv.id}">点击看大图</a></li>
+              <li class="partake">  <span class="jiathis_txt">推荐有礼：</span>
+                <font class="" id="ckepop">
+                         <!-- JiaThis Button BEGIN -->
+							<script "text/javascript">
+							var jiathis_config = {
+							url:window.location.href,
+							title: '$!{cmdy.name}',
+							goodname:'商品名称：$!{cmdy.name} ' 
+							}
+							</script>
+                
+                            <a class="jiathis_button_qzone" title="QQ空间"></a>
+							<a class="jiathis_button_tsina" title="新浪"></a>
+							<a class="jiathis_button_renren" title="人人网"></a>
+							<a class="jiathis_button_kaixin001" title="开心网"></a>
+							<a class="jiathis_button_msn" title="MSN"></a>
+							<a href=" http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+				</font>
+              </li>
+            </ul>
+          </div>
+         
+						<script type="text/javascript" src=" http://v2.jiathis.com/code_mini/jia.js" charset="utf-8"></script>
+          <!--preview end-->
+          <div class="bh-overf" id="summary">
+            <ul class="summary">
+              <li><span class="bh-bigFont">商品编号：${cmdy.goods_num}</span></li>
+              <li>
+                <div class="bh-bigFont bh-strong">市场价：<span class="bh-trline">￥$formatNumber.format("#0.00",${checkedInv.priceActual})</span></div>
+              </li>
+              <li>
+              	<input type="hidden" value="${checkedInv.priceDiscount}" id="__page04"/>
+                <div class="bh-bigFont bh-strong">折扣价：<span class="bh-red">￥$formatNumber.format("#0.00",${checkedInv.priceDiscount})</span></div>
+              </li>
+              <li id='storeinfocontainer'> 
+              	<span class="bh-fl">库&nbsp;&nbsp;&nbsp;存：<span id="s_num">${__number}</span>${cmdy.unit},</span>
+                <span class="text" id='stocktext'>下单后由<a href="$!{scpath}/getSearchList.htm?keyName=&brandName=${cmdy.brandName}">${cmdy.brandName}</a>发货</span>
+                <div class="bh-clear"></div>
+              </li>
+              <li>运费：#if(${cmdy.freightTag}==1) ${cmdy.freightTip}  #else 免运费 #end</li>
+              <li>上架时间：${checkedInv.upDt}</li>
+              <!--以旧换新-->
+            </ul>
+            <div class="clearfix bh-textCt bh-fr bh-posRlt bh-score-message">
+              <ul>
+                <li class="bh-overf"><span class="bh-fl" style="padding-left:20px;">评分：</span>
+                  <div class="bh-fl" id="star557916">
+                    <div class="star sa5"></div>
+                  </div>
+                </li>
+                <li class="bh-bg">得分：<span class="bh-red bh-strong" style="font-size:22px;">${cmm_total.score}分</span></li>
+                <li>共有${cmm_total.cnt}人评价&nbsp;&nbsp;<a target="_blank" href="javascript:;" onclick="tocomment('$!{scpath}/comment.htm?gs=${cmm_total.id}');return false;">我要评论</a></li>
+                <li>浏览次数：10000</li>
+              </ul>
+            </div>
+          </div>
+          <!--infos end-->
+          <div class='m' id='choose' clstag='shangpin|keycount|product|choose'>
+            <dl #if(${cmdy.displayTag} == 1) class='color' #else class='size' #end >
+              <dt>${splitName}：</dt>
+              <dd>
+              	#foreach($row in $invList)
+                	<div #if(${row.id} == ${checkedInv.id}) class='selected' #end>
+                		<a href='$!{scpath}/showgoods.htm?gs=${row.id}' title='${row.splitName}'>
+                			#if(${cmdy.displayTag} == 1)
+                				<img title='${row.splitName}' src='${commodityImgsDomain}${cate}/${row.id}_1_4.${row.imgSuffix}' width='50' height='50'/>
+                			#else
+                				${row.splitName}
+                			#end
+                		</a>
+                	</div>
+                #end
+              </dd>
+            </dl>
+            #if(${hasgoodsattr} == 1)
+            <dl class='size'>
+              <dt>${changeName}：</dt>
+              <dd>
+              	#foreach($row in $goodsattr)
+              		<div #if(${checkedV} == ${row.invName}) class='selected' #end name="size_attr" value="${row.invName}"><a href="javascript:getByN('${row.invName}');" >${row.invName}</a></div>
+              	#end
+              </dd>
+            </dl>
+            #end
+            <dl class='amount'>
+              <dt>　我要买：</dt>
+              <dd><a class='reduce' id="a_reduce" clstag='shangpin|keycount|product|pcountsub' href="javascript:;">-</a>
+                <input type='text' value='1' id='pamount' style="ime-mode:disabled;" maxlength="4"/>
+                <a class='add' id="a_add" clstag='shangpin|keycount|product|pcountadd' href="javascript:;">+</a></dd>
+            </dl>
+            <div class='result'>已选择 
+            	<input type="hidden" value="${checkedInv.id}" id="__page01"/>
+            	<input type="hidden" value="${commodityImgsDomain}${cate}/${checkedInv.id}_1_4.${checkedInv.imgSuffix}" id="__page03"/>
+            	<strong>"${checkedInv.splitName}"</strong>
+            	#if(${hasgoodsattr} == 1)
+            		、<strong>"<span id="changes_vv">${checkedV}</span>"</strong>
+            		<input type="hidden" value="${checkedV}" id="__page06"/>
+            	#else
+            		<input type="hidden" value="" id="__page06"/>
+            	#end
+            </div>
+            <div class='btns'> 
+            	<a href="javascript:;" class="bh-nowbug" onclick="lj_cart();">立即购买</a> 
+            	<a class="bh-addcart" href="javascript:;">添加到购物车</a> 
+            	<a class="bh-jinggou" href="#">发起竞购</a> <a class="bh-zutuan" href="#">添加到购物车</a>
+              	<input type="button" class="btn-coll" id = "att-btn-" value="加关注"/>
+            </div>
+          </div>
+          <!--<p class="bh-bigFont bh-fr" style="width:605px;">运费计算：查询相应地区的运输费用、方式及时间&nbsp;
+          <a href="#" style="color:#3586B3;">【开始计算】</a></p>--!>
+          <div id="Fqfk_Tip" class="Tip360" style="display:none;"></div>
+          <input type="hidden" value="${_numstr}" id="_number_00_str_"/>
+          <div id="Collect_Tip" class="Tip360 w260"></div>
+          <!--choose end-->
+          <span class="clr"></span>
+          <div class="m hide" id="placeholder-1" flag="1"></div>
+          <div class="bh-subSection">
+            <div class="bh-tejia-hot">
+              <ul class="bh-com-tab bh-overf">
+                <li class="bh-on" id="_catelis0">本类特价商品</li>
+                <li id="_catelis1">本类热卖商品</li>
+              </ul>
+              <div class="bh-zcon bh-overf bh-posRlt">
+                <div class="bh-l" id="_bh-cate_left"></div>
+                <div class="bh-r" id="_bh-cate_rig"></div>
+                <div class="bh-tab-two bh-on bh-overf" id="bh-tejia">
+                 <script language="javascript">
+                 	 $.ajax({
+						url: 'getRecInvs.htm',
+						type: 'GET',
+						data: {recId:100,cateId:${cate}},
+						dataType: 'html',
+						success: function(data){$("#bh-tejia").html(data);}
+					});
+                 </script>
+                </div>
+                <div class="bh-tab-two bh-overf" id="bh-hot">
+                 	<script language="javascript">
+	                 	 $.ajax({
+							url: 'getRecInvs.htm',
+							type: 'GET',
+							data: {recId:200,cateId:${cate}},
+							dataType: 'html',
+							success: function(data){$("#bh-hot").html(data);}
+						});
+                 	</script>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--recommend end-->
+          <div class="m" id="_detail" clstag="shangpin|keycount|product|detail">
+            <ul class="tab">
+              <li class="curr" clstag="shangpin|keycount|product|pinfotab" indiv="_detail_gds">商品介绍<span></span></li>
+              <li clstag="shangpin|keycount|product|pcanshutab" indiv="_detail_ggs">规格参数<span></span></li>
+              <li clstag="shangpin|keycount|product|packlisttab" indiv="_detail_bzs">包装运输<span></span></li>
+              <!--知识库标签-->
+            </ul>
+            <div class="mc fore tabcon" id="_detail_gds">
+               <script language="javascript">
+                 	 $.ajax({
+						url: 'loadingFeature.htm',
+						type: 'GET',
+						data: {gid:${checkedInv.cmdyId},cateId:${cate}},
+						dataType: 'html',
+						success: function(data){$("#_detail_gds").html(data);}
+					});
+                </script>
+            </div>
+            <!--tabcon end-->
+            <div class="mc tabcon hide" id="_detail_ggs">
+               <script language="javascript">
+                 	 $.ajax({
+						url: 'loadingNorm.htm',
+						type: 'GET',
+						data: {gid:${checkedInv.cmdyId},cateId:${cate}},
+						dataType: 'html',
+						success: function(data){$("#_detail_ggs").html(data);}
+					});
+                </script>
+            </div>
+            <!--tabcon end-->
+            <div class="mc tabcon hide" id="_detail_bzs"> 
+           		<script language="javascript">
+                 	 $.ajax({
+						url: 'loadingPack.htm',
+						type: 'GET',
+						data: {gid:${checkedInv.cmdyId},cateId:${cate}},
+						dataType: 'html',
+						success: function(data){$("#_detail_bzs").html(data);}
+					});
+                </script>
+            </div>
+            <!--知识库二级标签、标题-->
+            <div id="state"><strong>权利声明：</strong><br />
+              京创在线上的所有商品信息、客户评价、商品咨询、网友讨论等内容，是京创在线重要的经营资源，未经许可，禁止非法转载使用。</div>
+          </div>
+          <!--detail end-->
+          <div id="r-addcart2" class="m hide">
+            <div class="mt">
+              <h2>把该商品加入购物车</h2>
+            </div>
+            <div class="mc">
+              <div class="p-img"><a href="" title="" alt=""></a></div>
+              <div class="p-name"><a href=""></div>
+              <div class="p-price"></div>
+              <div class="btns"><a href="" class="btn-append">加入购物车</a></div>
+            </div>
+          </div>
+          <div class="m" id="comment" clstag="shangpin|keycount|product|comment">
+            <ul class="tab">
+              <li class="curr" indiv="_cmm_all_">全部评价<strong id="cnum0">(${cmm_total.cnt})</strong><span></span></li>
+              <li indiv="pdshow-zixun">商品咨询<span></span></li>
+              <li indiv="_cmm_wts_">常见问题<span></span></li>
+              <li indiv="_cmm_fws_">售后服务<span></span></li>
+            </ul>
+            <div class="mc" id="_cmm_all_"> 
+            	<!--start cmm head-->
+            	<div id="i-comment">
+                	<div class="rate"><strong>${cmm_total.hpl}%</strong><br />好评度 </div>
+                	<div class="percent">
+                  <dl><dt>好评</dt><dd class="d1"><div style="width:${cmm_total.hpl}%;"></div></dd><dd class="d2">${cmm_total.hpl}%</dd></dl>
+                  <dl><dt>中评</dt><dd class="d1"><div style="width:${cmm_total.zpl}%;"></div></dd><dd class="d2">${cmm_total.zpl}%</dd>
+                  </dl><dl><dt>差评</dt><dd class="d1"><div style="width:${cmm_total.cpl}%;"></div></dd><dd class="d2">${cmm_total.cpl}%</dd></dl>
+                </div>
+                <div class="bh-actor"><div class="scroller"><p> <span style="width: ${cmm_total.hpl}%;"> <em>${cmm_total.ttscore}</em> </span> </p></div>
+                  <div class="desc">
+                    <ul>
+                      <li>1星<br />(非常不满意)</li>
+                      <li>2星<br />(不满意)</li>
+                      <li>3星<br />(一般)</li>
+                      <li>4星<br />(满意)</li>
+                      <li>5星<br />(非常满意)</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="btns"> <a class="btn-comment" target="_blank" href="javascript:;" onclick="tocomment('$!{scpath}/comment.htm?gs=${cmm_total.id}');return false;">我要评价</a>
+                  <div> <a target="_blank" href="javascript:;"></a> </div>
+                </div>
+              </div>
+              <!--end cmm head-->
+	              <div id="_comment_page_">
+	              	
+	              </div>
+             </div>
+            <div class="bh-posRlt" id="pdshow-zixun" style="display:none">
+            </div>
+            <div class="mc" id="_cmm_wts_" style="display:none">
+            	<script language="javascript">
+                 	 $.ajax({
+						url: 'loadingQues.htm',
+						type: 'GET',
+						data: {cateId:${cate}},
+						dataType: 'html',
+						success: function(data){$("#_cmm_wts_").html(data);}
+					});
+                </script>
+            </div>
+            <div class="mc" id="_cmm_fws_" style="display:none">
+            	<script language="javascript">
+                 	 $.ajax({
+						url: 'loadingServer.htm',
+						type: 'GET',
+						data: {cateId:${cate}},
+						dataType: 'html',
+						success: function(data){$("#_cmm_fws_").html(data);}
+					});
+                </script>
+            </div>
+          </div>
+        </div>
+        <!--right-extra end-->
+      </div>
+    </div>
+    <div class="bh-clear"></div>
+  </div>
+</div>
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:FOOT,vmpath:frontpage/foot.vm");
+<div class="fulldiv" id="x-fulldiv"></div>
+<div class="bh-tanchu-toushu bh-pd-showzx-tanchu top-full-div" id="advi-dd-"><div class="bh-zztab"><h3>我要咨询</h3> <a href="javascript:;" class="bh-close" id="pd-close-" onclick="advclose();"></a></div><div class="bh-zzcon"><dl><dt>分类：</dt><dd><select id="a-types" ><option value="1">产品咨询</option><option value="2">库存配送</option><option value="3">发票保修</option><option value="4">支付信息</option><option value="5">促销优惠</option><option value="6">其他问题</option></select></dd></dl><dl><dt>内容：</dt><dd><textarea id="adv-content"></textarea><br/><span id="bh-pd-span-">请输入的字数不要超过4-150个字</span></dd></dl><dl><dt style="margin-top:3px;">验证码：</dt><dd><input type="text" class="bh-smalltext" id="authcode" name="authcode" maxlength="6" style="ime-mode:disabled;"/><span class="bh-yellow" id="x-bh-yellow">*</span><img src="authImage" id="authImage" /><a href="javascript:;" class="bh-blue bh-udline" onclick="SC_login.refresh();">看不清楚？换一张！</a></dd></dl><div class="bh-overf bh-zxbtn"><a href="javascript:;" class="bh-fr" onclick="adviSubClick()"></a></div></div></div>
+<!-- foot end -->
+<script>
+var _v1 = jQuery("#__page01").val();
+			var _v2 = jQuery("#__page02").val();
+			var _v3 = jQuery("#__page03").val();
+			var _v4 = jQuery("#__page04").val();
+			var _v5 = 100;
+			var _v6 = jQuery("#pamount").val();
+			var _v7 = jQuery("#__page05").val();
+			var _v8 = jQuery("#__page06").val();
+			//最近浏览的商品
+			Browse.intoBrowsePro(_v1,_v2,_v4,_v3);
+Browse.showBrowse();
+function getByN(s){
+	var s0 = jQuery("#_number_00_str_").val();
+	var n0 = s0.indexOf(s)+s.length+1;
+	var _tg = s0.substring(n0,s0.indexOf("&",n0));
+	jQuery("#s_num").html(_tg);
+}
+jQuery(function(){
+	jQuery("#bh-pd-menudiv .bh-cate-1").each(function(i){
+		jQuery(this).mouseover(function(){
+			jQuery(this).addClass("bh-on");
+		}),
+		jQuery(this).mouseout(function(){
+			jQuery(this).removeClass("bh-on");
+		})
+	})
+})
+		
+		 function lj_cart(){
+		 $("#sc_gid").val($("#__page01").val());
+		  $("#sc_gcount").val($("#pamount").val());
+		  $("#sc_gattr").val($("#__page06").val());
+		 var userid=Sccookie.Get("userid");
+		 if(userid==""||userid==null){
+		 LoginReg.isloginReg(cartNext);
+		 }else{
+		 $("#ljcart_form").submit();
+		 }
+		 }
+		  function cartNext(){
+		  
+                $("#ljcart_form").submit();
+                 } 
+</script>
+<form method="post" action="addljCart.htm" id="ljcart_form">
+<input type="hidden" name="gid" id="sc_gid" />
+<input type="hidden" name="gcount" id="sc_gcount" />
+<input type="hidden" name="gattr" id="sc_gattr" />
+</form>
+</body>
+</html>
+<script type="text/javascript" >
+$("#bh-pd-menuanchor").mouseover(function(){
+$("#bh-pd-menudiv").show();
+});
+
+$("#bh-pd-menuanchor").mouseout(function(){
+$("#bh-pd-menudiv").hide();
+});
+</script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/invshow.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/use.js"></script>
+<script language="javascript">getPageData(${checkedInv.id},1,2);getAdviPageData(${checkedInv.id},1,2);</script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/member.js"></script>

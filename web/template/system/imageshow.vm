@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>${cmdy.commodityName}</title>
+<link rel="stylesheet" type="text/css" href="${cssDomain}/css/main_cloud.css"/>
+<link rel="stylesheet" type="text/css" href="${cssDomain}/css/cloud-zoom.css"/>
+<link rel="stylesheet" type="text/css" href="${cssDomain}/css/reset.css"/>
+<link rel="stylesheet" type="text/css" href="${cssDomain}/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="${cssDomain}/css/page.css"/>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/cloud-zoom.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/cart.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/browse.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/util.js"></script>
+</head>
+<body id="bh-pd-show">
+<!--head begin-->
+ #getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:HEAD,vmpath:frontpage/head.vm");
+ <div class="zln-p-content">
+  <div class="zln-content">
+    <div class="zln-section">
+      <div class="zln-bigimg-l zln-fl">
+        <div class="zln-subSection">
+          <div class="zln-tit">
+            <div class="zln-cate"></div>
+            <a href="" class="zln-back"></a>
+            <h3><a href="#">${cmdy.commodityName}</a></h3>
+          </div>
+        </div>
+        #if(${cmdy_count} > 0)
+	        <div class="zln-subSection">
+	          <div id="zln-big-img"> 
+	          	<a class="zln-control zln-prev zln-disprev" title="上一张" href="#prev"><span></span>上一张 </a> 
+	          	<a class="zln-control zln-next" title="下一张" href="#next"> <span></span> 下一张 </a> 
+	          	<img alt="${cmdy.commodityName}" id="imgarea" src="${commodityImgsDomain}${cmdy.categoryId}/${firstImg}original.${cmdy.imgSuffix}" width="800" height="800"> <b></b> 
+	          </div>
+	        </div>
+	        <div class="zln-subSection">
+	          <div class=" zln-btn"> <a class="zln-bigimg-buy" href="#">立即购买</a> </div>
+	        </div>
+        #end
+      </div>
+      <div class="zln-bigimg-r zln-fr">
+        <div id="zln-small-img">
+          <div class="zln-tit">
+            <span class="zln-strong">全部图片</span>(${cmdy_count}张)</div>
+          <div class="zln-con">
+            <ul class="zln-overf zln-padB10">
+              #foreach($row in ${images})
+              <li #if($velocityCount == 1) class="hover" #end index="$velocityCount">
+              	<img alt="${cmdy.commodityName}" data="${commodityImgsDomain}${cmdy.categoryId}/${row}original.${cmdy.imgSuffix}" src="${commodityImgsDomain}${cmdy.categoryId}/${row}4.${cmdy.imgSuffix}" width="50" height="50"> 
+              </li>
+              #end
+            </ul>
+          </div>
+          <div class="zln-bottom"></div>
+        </div>
+      </div>
+      <div class="zln-clear"></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

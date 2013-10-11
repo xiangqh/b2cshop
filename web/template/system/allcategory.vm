@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>所有商品分类</title>
+<link rel="stylesheet" type="text/css" href="${cssDomain}/css/reset.css"/>
+<link rel="stylesheet" type="text/css" href="${cssDomain}/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="${cssDomain}/css/page.css"/>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/jquery.js"></script>
+</head>
+<body id="bh-page-allcategory">
+<!--head begin-->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:HEAD,vmpath:frontpage/head.vm");
+<!--head end-->
+<div class="bh-p-content">
+  <div class="bh-content">
+    <div class="bh-section bh-allcategory">
+      <div class="bh-ztab">
+        <ul>
+          <li #if(${__type}=="cate") class="bh-on" #end onclick="switchTab(this)" cid="_cate_div_"> <a href="javascript:void(0);">所有商品分类</a> </li>
+          <li #if(${__type}=="brand") class="bh-on" #end onclick="switchTab(this)" cid="_brand_div_"> <a href="javascript:void(0);">全部品牌</a> </li>
+          <li onclick="switchTab(this)" cid="_brand_sj_"> <a href="javascript:void(0);">商家分类</a> </li>
+        </ul>
+      </div>
+      <div class="bh-zcon bh-padT10">
+      
+        <div class="bh-zzcon" id="_cate_div_" #if(${__type}=="cate") style="display:block;" #else style="display:none;" #end>
+          <div class="bh-boxcon">
+          	#foreach($row in $front_all_category)
+          		#if(${row.levels}==1)
+          			<div class="bh-box">
+	            		<div class="bh-tit">
+	              			<h1>${row.name}</h1>
+	              		##如果没有子,直接结束
+	              		#if(${row.nextLevels} == 1)
+	              			</div></div>
+	              		#end
+              		#elseif(${row.levels}==2)
+              			##如果为第一个2级分类
+              			#if(${row.preLevels} == 1)
+              				</div>
+              				<div class="bh-boxcon">
+	              				<ul>
+              			#end
+              			<li>
+	                    	<h2>${row.name}</h2>
+              			#if(${row.nextLevels} == 2)
+              				##如果下一个层级为2级,没有子分类,结束2级标签,继续循环
+              				</li>
+              			#elseif(${row.nextLevels} < 2)
+              				##如果下一个层级为1级,没有3级子分类,显示推荐品牌后结束
+              				</li></ul></div>
+              			#end
+              		#else
+              			#if(${row.preLevels} == 2)
+              				##如果为2级分类的第一个3级分类
+              				<dl>
+              			#end
+              			<dd><a href="$!{scpath}/getSearchList.htm?keyName=&cateId=${row.id}">${row.name}</a></dd>
+              			#if(${row.nextLevels} == 2)
+              				##如果下个一层级为2级,结束2级分类标签
+              				</dl></li>
+              			#elseif(${row.nextLevels} < 2)
+              				##如果下个一层级为1级,该大类循环结束
+              				</dl></li></ul></div></div>
+              			#end
+              		#end
+               #end
+          </div>
+        </div>
+      </div>
+    </div>
+     
+      <div class="bh-zzcon bh-overf bh-allbrand" id="_brand_div_" #if(${__type}=="brand") style="display:block;" #else style="display:none;" #end>
+          	<ul class="bh-overf">
+          	#foreach($row in $front_all_brands)
+	            <li>
+	              <div class="bh-img"> <a href="$!{scpath}/getSearchList.htm?keyName=&brandName=${row.name}"> <img src="${brandLogoDomain}/${row.logo}" width="118" height="49" title="${row.name}"> </a> </div>
+	              <div class="bh-title"> <a href="$!{scpath}/getSearchList.htm?keyName=&brandName=${row.name}"></a> </div>
+	            </li>
+	        #end
+	  		</ul>
+        </div>
+        
+       <div class="bh-zzcon bh-overf bh-allbrand" id="_brand_sj_" style="display:none;" >
+       	无商家分类
+       <div> 
+  </div>
+</div>
+<!-- foot begin -->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:FOOT,vmpath:frontpage/foot.vm");
+<!-- foot end -->
+</body>
+</html>
+<script type="text/javascript" charset="utf-8" language="javascript">
+	function switchTab(obj){
+		var _jobj;
+		jQuery(obj).parent().children().each(function(){
+			_jobj = jQuery(this);
+			_jobj.removeClass("bh-on");
+			jQuery("#"+_jobj.attr("cid")).hide();
+		})
+		jQuery(obj).addClass("bh-on");
+		jQuery("#"+jQuery(obj).attr("cid")).show();
+	}
+</script>

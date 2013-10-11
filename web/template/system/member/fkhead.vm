@@ -1,0 +1,121 @@
+<div class="bh-p-head bh-member-head">
+  <div class="bh-head">
+    <!--添加的头部-->
+    <div id="bh-m-head">
+       <div class="bh-section">
+        <div class="bh-head-top">
+          <div class="bh-sidebar-left">
+            <div class="bh-head-txt" id="loginhtml"> 
+			<span class="kp-user-notlogin">尊敬的用户。欢迎光临京创在线！&nbsp;<a id="head_login"  href="${scpath}/mlogin.htm" target="_blank">【登录】</a>，新用户？<a id="head_register" href="${scpath}/preg.htm" target="_blank">【免费注册】</a></span> 
+			</div>
+          </div>
+          <div class="bh-container bh-mLeft">
+            <div class="bh-fr">
+              <ul>
+                <li><a href="#">我的订单</a></li>
+                <li><a href="#">网站地图</a></li>
+                <li><a href="#">企业客户</a></li>
+                <li class="bh-customers" onmousemove="showsc()" onmouseout="hidesc()">
+                  <div class="bh-on"> <a href="#" class="bh-tab">客户服务<b></b> </a>
+                    <div class="bh-tanchu" id="cjwtid" style="display:none;"  >
+                    	<dl>
+                        	<dd><a href="#">常见问题</a></dd>
+                            <dd><a href="#">售后服务</a></dd>
+                            <dd><a href="#">投诉中心</a></dd>
+                            <dd><a href="#">客服邮箱</a></dd>
+                        </dl>
+                    </div>
+                  </div>
+                </li>
+                <li style=" background:none;"><a href="#">在线客服&nbsp;&nbsp;<img width="13" height="17" src="${imageDomain}/images/item3.jpg"></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+	  
+      <div class="bh-section">
+        <div class="bh-head-mid">
+          <div class="bh-subSection">
+            <div class="bh-logo"><a href="/" id="logo"><img src="$!{imageDomain}/images/logo.gif" width="192" height="80" /></a></div>
+            <div class="bh-fr bh-youmin">
+              <div class="bh-search-wrap bh-fl">
+                <div class="bh-search">
+                  <ul class="bh-select bh-fl">
+                    <li>商品名称</li>
+                    <li>商品名称</li>
+                  </ul>
+                  <form class="bh-fl bh-overf" action="getSearchList.htm">
+                    <input class="kp-searchtxt  searchtxt bh-fl" name="keyName" id="keyName" #if($!keyName) value="冰蓝" #else value="$!keyName" #end  type="text" onfocus="SC_gen.onfocus('keyName')" onblur="SC_gen.onblur('keyName','冰蓝')" />
+                    <input class="kp-searchbutton searchbutton bh-fr"  type="submit" value="" />
+                  </form>
+                </div>
+                <div class="bh-keyword">热门搜索：<a href = "#">小型断路器</a>&nbsp;<a href = "#">小型断路器</a>&nbsp;<a href = "#">小型断路器</a>&nbsp;<a href = "#">小型断路器</a>&nbsp;<a href = "#">小型断路器</a>&nbsp;<a href = "#">小型断路器</a>&nbsp;<a href = "#">小型断路器</a>&nbsp;<a href = "#">小型断路器</a>&nbsp;</div>
+              </div>
+              <div class="bh-tel bh-fr">销售热线：400-800-3655</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bh-section">
+        <div class="bh-head-bottom">
+          <div class="bh-nav">
+            <div id="bh-pd-menuanchor">
+              <h1><span class="bh-fr"> <img width="18" height="18" src="$!{imageDomain}/images/cate.gif"> </span>所有商品分类</h1>
+              <div id="bh-pd-menudiv">
+              </div>
+            </div>
+            <div class="bh-fr bh-zbtn"><a href="${scpath}/memberIndex.htm"><img src="$!{imageDomain}/images/head-menu-btn1.gif" width="98" height="35" /></a>&nbsp;&nbsp;<a href="${scpath}/addCart.htm"><img src="$!{imageDomain}/images/head-menu-btn2.gif" width="108" height="35"/></a>&nbsp;&nbsp;<a href="#"><img src="$!{imageDomain}/images/head-menu-btn3.gif" width="108" height="35"/></a> </div>
+            <div class="bh-menu">
+              <ul>
+                <li class="bh-on"><a href="$!{scpath}/index.htm"><span>首&nbsp;页</span></a></li>
+                <li><a href="#"><span>竞购大厅</span></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bh-space"></div>
+    <!--添加的头部结束-->
+  </div>
+</div>
+
+<script>
+   var SC_gen={
+         onfocus:function(id){
+		 document.getElementById(id).value="";
+		 },
+         onblur:function(id,str){
+		var name= document.getElementById(id).value;
+		  if(name==""){
+		 document.getElementById(id).value=str;
+		 }
+		 }
+   }
+   
+   var cookie={ 
+  //读取COOKIES,n为COOKIE名 
+   Get:function(n){ 
+   		var re=new RegExp(n+'=([^;]*);?','gi');
+   	    var r=re.exec(document.cookie)||[];
+   	    return (r.length>1?r[1]:null)
+   	  },show:function(){
+	  var userName='$!{userName}';
+	  if(userName!=null && userName!="" ){
+			//登录成功
+		 document.getElementById("loginhtml").innerHTML ='<span class="kp-user-haslogin">您好，'+unescape(userName)+'<span class="kp-user-nick"></span> <a href="${scpath}/memberIndex.htm">[会员中心]</a> <a target="_self" href="${scpath}/outlogin.htm">退出登录</a></span>';
+		 }
+	  }
+	  }
+	  function showsc(){
+	  document.getElementById("cjwtid").style.display="block"
+	  
+	  }
+	  function hidesc(){
+	  document.getElementById("cjwtid").style.display="none"
+	  
+	  }
+	cookie.show();
+   
+  </script>

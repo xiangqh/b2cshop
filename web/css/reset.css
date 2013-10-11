@@ -1,0 +1,139 @@
+@charset "utf-8";
+/**
+Author :        niujinjin
+Version:        2.0
+Date   :		2011-09-21
+Explain:        此样式为页面初始化样式。
+**/
+
+/*------------------------------- CSSReset -------------------------------*/
+
+/** 清除边距 **/
+body,h1,h2,h3,h4,h5,h6,p,blockquote, /* structural elements 结构元素 */
+dl,dt,dd,ul,ol,li,a,span,i,b, /* list elements 列表元素 */
+form,fieldset,legend,button,input,textarea, /* form elements 表单元素 */
+th,td /* table elements 表格元素 */ {margin:0;padding:0;}
+
+/** 字体设置 **/
+body,
+button,input,select,textarea/* for ie */{font:12px/1.5 \5b8b\4f53, tahoma, arial, sans-serif; color:#333;}
+h1,h2,h3,h4,h5,h6{font-size:100%;}
+address,em{font-style:normal;} /* 将斜体扶正 */
+
+/*去除元素轮廓---fbx---*/
+div,table,form,input,button,select,textarea,fieldset,legend{outline:none;}/* for google / safari*/
+
+/** 重置列表元素 **/
+ul,ol{list-style:none outside none;}
+
+/** 重置链接元素 **/
+a{text-decoration:none; color:#333; cursor:pointer;}
+a:hover{color:#a71f24;text-decoration:underline;}
+
+/** 重置表单元素 **/
+legend{text-indent:-9999px;height:0;}
+fieldset,img{border:0;} /* img 搭车：让链接里的 img 无边框 */
+button,input,select,textarea {font-size:100%;} /* 使得表单元素在 ie 下能继承字体大小 */
+
+/** 重置表格元素 **/
+table{border-collapse:collapse;border-spacing:0;}
+
+/** 重置元素垂直居中 **/
+img,input,select,textarea,button{vertical-align:middle;}
+
+/** 显示样式元素 **/
+.bh-hidden{display:none;}
+.bh-show{display:block;}
+.bh-inline{display:inline;}
+.bh-inlineblock{display:inline-block;}
+
+/** 字体设置 **/
+.bh-bigFont{font-size:14px;}
+.bh-smallFont{font-size:12px;}
+.bh-strong{font-weight:bold;}
+
+/** 文字对齐方式设置 **/
+.bh-textRt{text-align:right!important;}
+.bh-textLt{text-align:left!important;}
+.bh-textCt{text-align:center!important;}
+
+/** 浮动 **/
+.bh-fl{float:left;}
+.bh-fr{float:right;}
+
+/** 下划线 **/
+.bh-udline{text-decoration:underline;}
+
+/** 定位 **/
+.bh-posRlt{position:relative;}
+
+/** 清除浮动 **/
+.bh-clear{clear:both;}
+.bh-section:after{content:".";display:block;visibility:hidden;height:0;clear:both;}
+.bh-section{*zoom:1;}
+.bh-subSection{}
+
+/** 清除边框，清除边距 **/
+.bh-noborder{border:none!important;}
+.bh-nomargin{margin:0!important;}
+.bh-bor-gray{ border:1px solid #dedede;}
+
+/** 空白高度设置 **/
+.bh-space{height:10px;line-height:1px;font-size:1px;clear:both;}
+
+/** 页结构 **/
+body{background-color:#fff;}  /*可以添加满屏的背景颜色或背景图片*/
+.bh-p-head{}
+.bh-head,.bh-content,.bh-foot{width:1200px;margin:0 auto;}
+
+.bh-sidebar-left{width:210px;float:left;}
+#bh-page-index .bh-sidebar-left,#bh-page-news .bh-sidebar-left,#bh-page-news-list .bh-sidebar-left{width:200px;}
+.bh-sidebar-right{width:260px;float:right;}
+
+.bh-sidebar{width:500px;}
+.bh-mLeft{margin-left:223px;_margin-left:220px;}
+.bh-mRight{margin-right:273px;_margin-right:270px;}
+#bh-page-index .bh-mLeft,#bh-page-news .bh-mLeft,#bh-page-news-list .bh-mLeft{margin-left:213px;_margin-left:210px;}
+.bh-mbody .bh-head,.bh-mbody .bh-content,.bh-mbody .bh-foot{width:995px;margin:0 auto;}
+.bh-mbody .bh-sidebar-left{ float:left; width:150px;}
+.bh-mbody .bh-mLeft{margin-left:160px;_margin-left:157px;}
+.bh-mbody .bh-p-head{min-width:995px;}
+
+.bh-container{}
+/** 团购页面的页结构 **/
+
+/*字体颜色*/
+.bh-gray{color:#969696;}
+.bh-red{color:#bb0000;}
+.bh-l-red{color:#f00;}
+.bh-blue{ color:#005aa0;}
+
+/*外边距与内边距*/
+.bh-mtop5{margin-top:5px!important;}
+.bh-mtop10{margin-top:10px!important;}
+.bh-mlt10{margin-left:10px;}
+.bh-mlt15{margin-left:15px;}
+.bh-mlt30{margin-left:30px;}
+.bh-mrt10{margin-right:10px;}
+.bh-mrt20{margin-right:20px;}
+.bh-mR10{margin-right:10px;}
+.bh-mLtRt5{margin-left:5px; margin-right:5px;}
+.bh-mBt5{ margin-bottom:5px;}
+.bh-mBt10{margin-bottom:10px;}
+.bh-mBt20{margin-bottom:20px;}
+.bh-padB10{padding-bottom:10px;}
+.bh-padT10{ padding-top:10px;}
+.bh-padLR10{padding:0 10px;}
+.bh-mTop20{ margin-top:20px;}
+.bh-mLeft20{ margin-left:20px;}
+
+/*隐藏多余文字*/
+.bh-hiddenTxt{overflow:hidden;white-space:nowrap;}
+
+/*常用字号及颜色*/
+.bh-price{font-size:14px;color:#a71f24;font-weight:bold;}   /*商城价格*/
+.bh-mkt-price{color:#8a8a8a;text-decoration:line-through;}  /*市场价格*/
+.bh-flModule{float:left;width:100%;margin-top:10px;}
+.bh-flModule-nomar{float:left;width:100%;}
+/** 下划线 **/
+.bh-udline{text-decoration:underline;}

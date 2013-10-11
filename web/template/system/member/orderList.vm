@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>3655订单中心</title>
+<link href="${cssDomain}/css/reset.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/common.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/page.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="${jsDomain}/js/jquery.js"></script>
+<script type="text/javascript" src="${jsDomain}/js/jquery.cookie.js"></script>
+</head>
+<body id="bh-member-order" class="bh-mbody">
+<!--head begin-->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:HEAD,vmpath:frontpage/member/fkhead.vm");
+<!--head end-->
+<div class="bh-p-content">
+  <div class="bh-content">
+    <div class="bh-section">
+      <div class="bh-bread bh-bigFont"><span class="bh-strong ">我的3655</span>&nbsp;&gt;&nbsp;<span>订单中心</span></div>
+    </div>
+    <div class="bh-section">
+      <div class="bh-sidebar-left">
+        #getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:LEFT,vmpath:frontpage/member/left.vm");
+      </div>
+      <div class="bh-mLeft bh-container">
+        <div class="bh-m-rwrap">
+          <div class="bh-order">
+            <div class="bh-ztab bh-member-ztab">
+              <h1>订单中心</h1>
+            </div>
+            <div class="bh-zcon bh-mtop5">
+              <ul>
+                <li class="bh-on"><span>我的订单</span></li>
+                <li><span>竞购订单</span></li>
+                <li><span>团购订单</span></li>
+                <li><span>询价订单</span></li>
+              </ul>
+              <div class="bh-tj bh-mtop10">
+				<form method="post" action="getOrderList.htm" id="order_from">
+               <input type="hidden" name="curPage" id="curPage" value="1">
+              	<div class="bh-fr"><input type="text" class="bh-text" value="商品名称/订单号"/><input type="submit" value="筛选" class="bh-submit"/></div>
+                <select>
+                  <option>最近一月的订单</option>
+                </select>&nbsp;
+                <select>
+                  <option>所有状态</option>
+                </select>
+				 </form>
+              </div>
+              <table width="829" border="0" cellspacing="0" cellpadding="0" class="bh-table1">
+                <tr>
+                  <th width="100" align="center">订单编号</th>
+                  <th width="250">订单商品</th>
+                  <th>收货人</th>
+                  <th>订单金额</th>
+                  <th>下单时间</th>
+                  <th>订单状态</th>
+                  <th width="110" style="border-right:1px solid #eee;">操作</th>
+                </tr>
+		#foreach($order in $!orderList)
+                <tr>
+                  <td><a href="getDetail.htm?orderCode=${order.orderCode}">${order.orderCode}</a></td>
+                  <td class="bh-textLt"><a href="getDetail.htm?orderCode=${order.orderCode}" class="bh-img"><img src="${commodityImgsDomain}/" width="50" height="50"/></a></td>
+                  <td>$!{order.receiveUname}</td>
+                  <td>￥$!{order.payTotal}<br /></td>
+                  <td class="gray">$!{order.dtOrderCreate}</td>
+                  <td class="gray">
+		  #if($order.orderStatus=='A')
+			#if($order.payType==1)
+			<a href="$!{scpath}/getOnlinePay.htm?id=$!{order.orderCode}">财付通支付</a> 
+			<a href="$!{scpath}/getOnlinePayKq.htm?id=$!{order.orderCode}">快钱支付</a> 
+			
+			#end 
+			#if($order.payType==2) 货到付款 #end
+			#if($order.payType==3) 银行转帐 #end 
+			#if($order.payType==4) 邮局汇款 #end
+		  #end
+		   #if($order.orderStatus=='E')
+已付款
+		  #end
+		  </td>
+                  <td><a href="getDetail.htm?orderCode=${order.orderCode}">查看</a>|<a href="#">评论</a><br />
+		  
+		  <a href="showgoods.htm?gs=$!{good.id}" target="_blank" class="bh-mtop5 bh-show"><img src="${imageDomain}/images/order-btn.jpg" width="72" height="21" /></a></td>
+                </tr>
+                #end
+
+              </table>
+	      #getPageHtml("formId=order_from" "parameters=pageNo:$page.pageNo,pageSize:$page.pageSize,totalCount:$page.totalCount,pageviewcount:$page.pageviewcount,vmpath:common/page.vm");
+              <div class="bh-overf"><p class="bh-fr gray" style="padding:5px 10px;">等待付款订单数：<span class="bh-red bh-strong bh-bigFont">0</span>&nbsp;未完成的订单数：<span class="bh-red bh-strong bh-bigFont">0</span>&nbsp;已完成的订单数：<span class="bh-red bh-strong bh-bigFont">13</span>&nbsp;已取消订单数：<span class="bh-red bh-strong bh-bigFont">13</span>&nbsp;订单总数：<span class="bh-red bh-strong bh-bigFont">20</span></p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bh-clear"></div>
+    </div>
+    <div class="bh-clear"></div>
+  </div>
+</div>
+<!-- foot begin -->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:FOOT,vmpath:frontpage/member/fkfoot.vm");
+<!-- foot end -->
+</body>
+</html>

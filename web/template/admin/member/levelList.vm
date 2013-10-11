@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>会员组列表</title>
+<link href="css/admin.css" rel="stylesheet">
+	<link href="css/art.css" rel="stylesheet">
+	<link href="css/default.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+#getMothodSc("moduleName=admin.action.Common" "parameters=tag:1,vmpath:admin/head.vm,level:5,level2:9");
+<div id="admin_right">
+	<div class="headbar">
+	<div class="position"><span>会员</span><span>&gt;</span><span>用户组管理</span><span>&gt;</span><span>会员组列表</span></div>
+	<div class="operating">
+		<a onclick="" href="javascript:void(0)"><button type="button" class="operating_btn"><span class="addition">添加用户组</span></button></a>
+	</div>
+	<div class="field">
+		<table class="list_table">
+			<thead>
+				<tr class="">
+					<th>会员等级名称</th>
+					<th>消费金额</th>
+					<th>状态</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+<form onsubmit="" name="group_list" method="post" action="">
+<div class="content" >
+	<table class="list_table" id="list_table">
+		<tbody>
+		#foreach( $level in $levelList )
+				<tr class="even">
+				<td>$!level.le_name</td>
+				<td>$!level.sale_ban</td>
+				<td>
+				  #if($!level.status==1)
+				  正常
+				  #end
+				  #if($!level.status==2)
+				  停用
+				  #end
+				</td>
+				<td>
+				<a href="updateLevel.htm?id=$!level.id">修改</a>
+				 #if($!level.status==1)
+					<a href="updateLevelStats.htm?id=$!level.id&status=$!level.status">停用</a>
+					#end
+					
+					#if($!level.status==2)
+					<a href="updateLevelStats.htm?id=$!level.id&status=$!level.status">恢复</a>
+					#end
+				</td>
+			</tr>
+			#end
+					</tbody>
+	</table>
+</div>
+</form>
+<div class="content_box" style="margin-top:25px;width:700px;">
+	<div class="content form_content">
+		<form method="post" action="addLevel.htm">
+			<table class="form_table">
+				<colgroup><col width="150px">
+				<col>
+				</colgroup><tbody><tr>
+				<input type="hidden" name="id" value="$!level.id" />
+				<input type="hidden" name="tag" value="$!tag" />
+					<th>用户组：</th><td><input type="text"   value="$!level.le_name" name="le_name" class="normal"><label>用户等级名称</label></td>
+				</tr>
+				<tr>
+					<th>消费总金额</th><td><input type="text"  value="$!level.sale_ban" name="sale_ban" class="normal"><label>用户消费此金额时升级为此会员等级</label></td>
+				</tr>
+				<tr>
+					<td></td><td><button type="submit" class="submit"><span>确 定</span></button></td>
+				</tr>
+			</tbody></table>
+		</form>
+	</div>
+</div>
+	</div>
+	#getMothodSc("moduleName=admin.action.Common" "parameters=tag:2,vmpath:admin/foot.vm");
+</body>
+</html>

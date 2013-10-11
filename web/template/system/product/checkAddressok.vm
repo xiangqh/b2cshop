@@ -1,0 +1,132 @@
+
+ <div class="show-message" id="show_address" #if($!tag==1)style="display:none;" #end>
+<h1><span class="bh-bigFont">收货人信息</span>&nbsp; <a href="#" onclick="Sc_check.getAddress($!selId,1)">[修改]</a> </h1>
+<div class="middle">
+                  <table>
+                    <tbody>
+						
+                      <tr>
+                        <td align="right" style="width: 80px;">收货人姓名：</td>
+                        <td>$!address.user_name</td>
+                      </tr>
+                      <tr>
+                        <td align="right">省　　份：</td>
+                        <td>$!address.province</td>
+                      </tr>
+                      <tr>
+                        <td align="right">地　　址：</td>
+                        <td>$!address.address</td>
+                      </tr>
+                      <tr>
+                        <td align="right">手机号码：</td>
+                        <td>$!address.mobile</td>
+                      </tr>
+                      <tr>
+                        <td align="right">固定电话：</td>
+                        <td>$!address.telphone</td>
+                      </tr>
+                      <tr>
+                        <td align="right">电子邮件：</td>
+                        <td>$!address.email</td>
+                      </tr>
+                      <tr>
+                        <td align="right">邮　　编：</td>
+                        <td>$!address.zip</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+ </div>
+	
+ <!--修改地址 begin -->
+  <div class="show-message" id="eidt_address" #if($!tag==0)style="display:none;" #end >
+
+  <form id="addressForm" >
+  <input type="hidden" name="id" value="$!address.id">
+   <input type="hidden" name="saveorup" id="saveorup" value="0">
+    <input type="hidden" name="selId" id="selId" value="$!selId">
+<h1><span class="bh-bigFont">收货人信息</span>&nbsp; <a href="#" onclick="Sc_check.showAddress()">[关闭]</a> </h1>
+<div class="middle">
+                  <div id="bh-adrsslist">
+                    <div class="bh-cydz"><span class="bh-strong">常用地址</span>
+                      <dl>
+						#foreach($addsree in $addList)
+						<dd>
+                          <table cellspacing="0" cellpadding="0" border="0" style="width: 98%;">
+                            <tbody><tr>
+                              <td style="width: 20px;"><input type="radio" class="addvals" val="$!addsree.user_name" name="seladdress" #if($!selId==$!addsree.id) checked="checked" #end  onclick="Sc_check.getAddress($!addsree.id,1);" /></td>
+                              <td><label> <strong>$!addsree.user_name</strong> $!addsree.address</label></td>
+                              <td style="width: 40px;"><a href="javascript:void(0);" class=" gray" onclick="Sc_check.delAddress($!selId,1,$!addsree.id);" >[删除]</a></td>
+                          </tr></tbody></table>
+                        </dd>
+						#end
+						
+                      </dl>
+                    </div>
+                  </div>
+                  <div id="bh-fixaddress">
+                    <table width="100%" cellspacing="0" border="0">
+						
+                      <tbody><tr>
+                        <td width="85" valign="middle" align="right"><font color="red">*</font> 收货人姓名： </td>
+                        <td valign="middle" align="left"><input type="text" name="user_name"   id="user_name"  value="$!address.user_name" class="bh-text"/></td>
+                      </tr>
+                      <tr>
+                        <td valign="middle" align="right"><span class="bh-red">*</span> 省　　份： </td>
+                        <td valign="middle" align="left"><div id="bh-arae">
+                            <table border="0">
+                              <tbody><tr>
+                                <td><div id="bh-province">
+                                    <select name="province" class="auto mar" id="s_province">
+                                    </select>
+                                    
+                                  </div></td>
+                                <td><div id="bh-city">
+                                    <select name="city" class="auto mar" id="s_city">
+                                    </select>
+                                  </div></td>
+                                <td><div id="bh-county">
+                                    <select name="area" class="auto mar" id="town_id">
+                                    </select>
+                                  </div></td>
+                              </tr>
+                            </tbody></table>
+                          </div></td>
+                      </tr>
+                      <tr>
+                        <td valign="middle" align="right"><span class="bh-red">*</span> 地　　址： </td>
+                        <td valign="middle" align="left"><span id="addressall">$!{province}#if($!{city})-$!{city}#end #if($!{area})-$!{area}#end</span>
+                          <input type="text" name="address" id="address" value="$!address.address" style="margin-left: 2px; width: 325px;" class=" bh-text"/></td>
+                      </tr>
+                      <tr>
+                        <td valign="middle" align="right">
+							<span class="bh-red">*</span> 手机号码： </td>
+                        <td valign="middle" align="left">
+							<input type="text" name="mobile"  id="mobile" value="$!address.mobile" class="bh-text"/>
+                           或者 固定电话：
+                          <input type="text" name="telphone"  id="telphone" value="$!address.telphone" class="bh-text"/>
+                          <span>用于接收发货通知短信及送货前确认</span></td>
+                      </tr>
+                      <tr>
+                        <td valign="middle" align="right">电子邮件：</td>
+                        <td valign="middle" align="left"><input type="text" name="email"  id="email"  value="$!address.email" class=" bh-text"/>
+                          <span>用来接收订单提醒邮件，便于您及时了解订单状态</span></td>
+                      </tr>
+                      <tr>
+                        <td valign="middle" align="right">邮政编码：</td>
+                        <td valign="middle" align="left"><input type="text" name="zip"  id="zip"  value="$!address.zip" style="width: 77px;" class="bh-text"/>
+                          <span style="margin-left: 51px;">有助于快速确定送货地址</span></td>
+                      </tr>
+                    </tbody></table>
+                  </div>
+                </div>
+					<div style="padding: 10px 0pt 20px 50px;"> <a style="color: rgb(0, 94, 167);" href="javascript:void(0);" onclick="Sc_check.saveaddress()">[添加到常用地址]</a> </div>
+						<div class="bh-btns">
+                  <input type="button" value="保存收货人信息" class="bh-btn" onclick="Sc_check.saveokAddress();"/>
+                </div>
+		</form>
+ </div>
+<script>
+	initcity(0,0);
+</script>
+  <!--修改地址 end -->

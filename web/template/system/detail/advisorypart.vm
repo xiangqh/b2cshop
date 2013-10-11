@@ -1,0 +1,74 @@
+ 			<a href="javascript:;" class="bh-input-zixun" id="-click-adv-" onclick="advreg()">[发表咨询]</a>
+              <div class="bh-lookme">提示：因厂家更改产品包装、产地或者更换随机附件等没有任何提前通知，且每位咨询者购买情况、提问时间等不同，为此以下回复信息仅供参考！若由此给您带来不便请多多谅解，谢谢！</div>
+              <div id="bh-showzixun">
+              	#foreach($row in $advis_list)
+                <div class="bh-item#if(${velocityCount} % 2 == 0) bh-odd #end">
+                  <div class="bh-user"> <span class="bh-name">网友：${row.userName}</span> 
+                  <span class="bh-level"> <font> ${row.menLevel} </font> </span> 
+                  <span class="bh-ask-date">${row.createTime}</span> </div>
+                  <dl class="bh-ask">
+                    <dt> <b></b> 咨询内容： </dt>
+                    <dd> <a href="javascript:;" target="_blank"> ${row.question}</a> </dd>
+                  </dl>
+                  #if(${row.status} == 1)
+                  <dl class="bh-answer">
+                    <dt> <b></b> 京创回复： </dt>
+                    <dd>
+                      <div class="bh-anwer-content"> ${row.answer}</div>
+                      <div class="bh-answer-date"> ${row.replyTime}</div>
+                    </dd>
+                  </dl>
+                  #end
+                </div>
+                #end
+              </div>
+              <div class="clearfix bh-mtop10">
+              	<div class="total bh-fl bh-mLeft20">共<strong style="color:#FF7403">${_page.totalCount}</strong>条&nbsp;&nbsp;
+              		<a target="_blank" href="javascript:;" style="color:#005AA0">&nbsp;</a></div>
+                <div id="commentsPage0" class="pagin bh-fr" clstag="shangpin|keycount|product|fanye"> 
+                	<!--页面参数 pageNo:当前页,pageSize:每页记录数,totalpage:总记录数-->
+					<div id="__page__" class="pagin bh-fr">
+						#if(${_page.pageNo} > 1)
+							<a class="next" href="javascript:;" onclick="getAdviPageData(${_gs},${_page.getPageNoDecreasing1()},${_page.pageSize})">上一页</a>
+						#end
+						#if(${_page.totalpage} <= 10)
+							#foreach($i in [1 .. ${_page.totalpage}])
+								<a href="javascript:void(0)" #if($i == ${_page.pageNo}) class="current" #else onclick="getAdviPageData(${_gs},$i,${_page.pageSize})" #end>$i</a>
+							#end
+						#else
+							#set ($tmp = ${_page.totalpage} - 5)
+							#set ($tmp1 = ${_page.pageNo} + 2)
+							#if(${_page.pageNo} <= 5)
+								#foreach($i in [1 .. ${tmp1}])
+									<a href="javascript:void(0)" #if($i == ${_page.pageNo}) class="current" #else onclick="getAdviPageData(${_gs},$i,${_page.pageSize})" #end>$i</a>
+								#end
+								<a href="javascript:;">...</a>
+								<a href="javascript:;" onclick="getAdviPageData(${_gs},${_page.getTotalPageDecreasing1()},${_page.pageSize})">${_page.getTotalPageDecreasing1()}</a>
+								<a href="javascript:;" onclick="getAdviPageData(${_gs},${_page.totalpage},${_page.pageSize})">${_page.totalpage}</a>
+							#elseif(${_page.pageNo} >=${tmp})
+								<a href="javascript:;" onclick="getAdviPageData(${_gs},1,${_page.pageSize})">1</a>
+								<a href="javascript:;" onclick="getAdviPageData(${_gs},2,${_page.pageSize})">2</a>
+								<a href="javascript:;">...</a>
+								#foreach($i in [${_page.getPageNoDecreasing2()} .. ${_page.totalpage}])
+									<a href="javascript:;" #if($i == ${_page.pageNo}) class="current" #else onclick="getAdviPageData(${_gs},$i,${_page.pageSize})" #end>$i</a>
+								#end
+							#elseif(${_page.pageNo} > 5 && ${_page.pageNo} < ${tmp})
+								<a href="javascript:;" onclick="getAdviPageData(${_gs},1,${_page.pageSize})">1</a>
+								<a href="javascript:;" onclick="getAdviPageData(${_gs},2,${_page.pageSize})">2</a>
+								<a href="javascript:;">...</a>
+								<a href="javascript:;" onclick="getAdviPageData(${_gs},${_page.getPageNoDecreasing2()},${_page.pageSize})">${_page.getPageNoDecreasing2()}</a>
+								<a href="javascript:;" onclick="getAdviPageData(${_gs},${_page.getPageNoDecreasing1()},${_page.pageSize})">${_page.getPageNoDecreasing1()}</a>
+								<a href="javascript:;" class="current">${_page.pageNo}</a>
+								<a href="javascript:;" onclick="getAdviPageData(${_gs},${_page.getPageNoIncrement1()},${_page.pageSize})">${_page.getPageNoIncrement1()}</a>
+								<a href="javascript:;" onclick="getAdviPageData(${_gs},${_page.getPageNoIncrement2()},${_page.pageSize})">${_page.getPageNoIncrement2()}</a>
+								<a href="javascript:;">...</a>
+								<a href="javascript:;" onclick="getAdviPageData(${_gs},${_page.getTotalPageDecreasing1()},${_page.pageSize})">${_page.getTotalPageDecreasing1()}</a>
+								<a href="javascript:;" onclick="getAdviPageData(${_gs},${_page.totalpage},${_page.pageSize})">${_page.totalpage}</a>
+							#end
+						#end
+						#if(${_page.pageNo} < ${_page.totalpage})
+							<a class="next" href="javascript:;" onclick="getAdviPageData(${_gs},${_page.getPageNoIncrement1()},${_page.pageSize})">下一页</a>
+						#end
+					</div>
+                </div>
+              </div>

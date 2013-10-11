@@ -1,0 +1,9 @@
+<div id="kp-ad-box-2">
+    <div class="show_img">
+      <ul  class="hang gallery-panel">
+        <li> <a href="${ad.link}" title="${ad.description}" target="_blank">
+        	<embed src="${imageHttp}/${ad.path}" width="987" height="110" /><
+        /a> </li>
+      </ul>
+    </div>
+  </div>

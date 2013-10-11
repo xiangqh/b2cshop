@@ -1,0 +1,43 @@
+ <div class="bh-container bh-mLeft bh-mRight">
+        <div class="${navclass}">
+          <ul class="bh-tab-ul bh-com-tab bh-com-smalltab" id="${_navId}">
+          	 #foreach($row in $showcaseHeader)
+          		<li #if($velocityCount == 1) class="bh-on" #end  #if(!$velocityHasNext) class="bh-last" #end id="${_navId}_T_${row.id}" onmouseover="scMouseover02(this,'${_navId}',${row.id})">${row.name}</li>
+          	#end
+          </ul>
+          
+           #set($curr=0)
+          #foreach($row in $showcaseList)
+          	  #if($velocityCount == 1)
+          	  	#set($curr=${row.id})
+          	  	 <div class="bh-windows bh-on" id="${_navId}_${row.id}">
+            		<div class="bh-windows-wrap bh-overf">
+              #else
+                 #if($curr != ${row.id})
+	          	  	  #set($curr=${row.id})
+	          	  		</div>
+	          		  </div>
+	          		  <div class="bh-windows" id="${_navId}_${row.id}">
+	            	   <div class="bh-windows-wrap bh-overf">
+	          	  #end
+              #end
+              <div class="bh-m-window bh-fl ">
+              	<ul>
+                  <li class="bh-img"><a target="_blank" href="$!{scpath}/showgoods.htm?gs=${row.invId}"><img src="${commodityImgsDomain}/${row.cateId}/${row.invId}_${imgPos}.${row.imgSuffix}" width="213" height="170" /></a><span class="huodong"></span></li>
+                  <li><a target="_blank" href="$!{scpath}/showgoods.htm?gs=${row.invId}" class="bh-p-title" title="${row.invName}">${row.invName}</a></li>
+                  <li class="bh-textCt"><span class="bh-trline">市场价：￥${row.priceActual}</span>&nbsp;&nbsp;&nbsp;<span class="bh-zprice">折扣价：￥${row.priceDiscount}</span></li>
+                  <li class="bh-textCt">
+                    <p class="bh-kc">库存：<span class="bh-now">现货</span></p>
+                  </li>
+                  <li class="bh-textCt bh-btn"><a target="_blank" href="$!{scpath}/showgoods.htm?gs=${row.invId}" class="bh-gm">购&nbsp;&nbsp;买</a>
+                  <a href="javascript:;" class="bh-jg">竞&nbsp;&nbsp;购</a><a href="javascript:;" class="bh-db">对&nbsp;&nbsp;比</a></li>
+                </ul>
+              </div>
+          	  #if(!$velocityHasNext)
+          	  		</div>
+	          	</div>
+          	  #end
+           #end
+        </div>
+      </div>
+    

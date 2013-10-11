@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>添加促销活动</title>
+<link href="css/admin.css" rel="stylesheet">
+<link href="css/art.css" rel="stylesheet">
+<link href="css/default.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="admin/js/sale/sale.js"></script>
+<script language="javascript" src="DatePicker/WdatePicker.js" type="text/javascript"></script>  
+</head>
+
+<body>
+#getMothodSc("moduleName=admin.action.Common" "parameters=tag:1,vmpath:admin/head.vm,level:4,level2:9");
+<div id="admin_right">
+<div class="headbar">
+	<div class="position"><span>活动</span><span>&gt;</span><span>促销活动管理</span><span>&gt;</span><span>添加促销活动</span></div>
+	<ul name="conf_menu" class="tab">
+		<li class="selected">活动信息</li>
+	</ul>
+</div>
+<div class="content_box">
+	<div class="content form_content">
+		<form  method="post" action="updatePointer.htm" >
+		<input type="hidden" name="tag" value="1" />
+		<input type="hidden" name="id" value="$promotion.id" />
+			<table  class="form_table" >
+				<colgroup><col width="150px">
+				<col>
+				</colgroup><tbody><tr>
+					<th>活动名称：</th>
+					<td><input type="text"   name="name" class="normal" value="$promotion.name" ><label>活动名称</label></td>
+				</tr>
+				<tr>
+					<th>活动时间：</th>
+					<td>
+					<input name="start_time" class="Wdate" onfocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss',skin:'blue',maxDate:'%y-%M-%d'})" value="$!date.format('yyyy-MM-dd HH:mm:ss',$!promotion.start_time)" />
+					<input name="end_time" class="Wdate" onfocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss',skin:'blue',maxDate:'%y-%M-%d'})" value="$!date.format('yyyy-MM-dd HH:mm:ss',$!promotion.end_time)" />
+	<label>* 此活动的使用时间段</label>
+					</td>
+				</tr>
+				<tr>
+				
+					<th>会员级别：</th>
+					<td>
+						<ul class="attr_list clearfix">
+							<li><label class="attr"><input id="reverse" type="checkbox"  value="0" name="user_group" #if($!promotion.user_group=="0")checked="checked" #end >全部</label></li>
+						   #foreach( $level in $levelList )
+							<li><label class="attr"><input class="lccheck" type="checkbox"  value="$level.id" name="user_group" #if($!promotion.user_group=="0")checked="checked" disabled="disabled" #end #if($!promotion.user_group.indexOf("$level.id")!=-1)checked="checked"  #end>$level.le_name</label></li>
+							#end
+							<li><label>*允许参加的用户级别</label></li>
+						</ul>
+						
+					</td>
+					
+				</tr>
+				<tr>
+					<th>活动类型：</th>
+					<td>
+					##<label class="attr"><input type="radio" value="1" name="type" onclick="chang_v(1)" #if($!promotion.type==1)checked="checked" #end >优惠现金</label>
+					##<label class="attr"><input type="radio" value="2" name="type" onclick="chang_v(2)" #if($!promotion.type==2)checked="checked" #end  >打折</label>
+					<label class="attr"><input type="radio" value="3" name="type" onclick="chang_v(3)" #if($!promotion.type==3)checked="checked" #end >送积分</label>
+					##<label class="attr"><input type="radio" value="4" name="type" onclick="chang_v(4)" #if($!promotion.type==4)checked="checked" #end >免运费</label>
+					</td>
+				</tr>
+				<tr>
+					<th>活动商品：</th>
+					<td>
+					<!-- begin -->
+               <table class="list_table">
+			<thead>
+				<tr class="">
+				    <th>商品编号</th>
+					<th>商品名称</th>
+					<th>货品名称</th>
+					<th>市场价/商城价</th>
+					<th>
+					<label id="show_1" #if($!promotion.type!=1)  style="display:none;" #end >元</label>
+						<label #if($!promotion.type!=2) style="display:none;" #end id="show_2">折扣</label>
+						<label #if($!promotion.type!=3)  style="display:none;" #end id="show_3">积分</label>
+					</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+		</table>
+		<table cellspacing="0" cellpadding="0" class="list_table">
+			<tbody id="trAll">
+			
+			#foreach( $pgoods in $promotionGoodsList )
+			<tr  class="" id="tr_re_$pgoods.id">
+			<td>$pgoods.goods_id</td>
+			<td>$pgoods.goods.name</td>
+			<td>$pgoods.cmd.splitName</td>
+			<td>$pgoods.cmd.priceActual/$pgoods.cmd.priceDiscount</td>
+			<td><input type="text" value="$pgoods.to_value" id="value_$pgoods.id">
+			</td>
+			<td> 
+			 <a href="javascript:void(0);" onclick="delTr($pgoods.id)">删除</a>	
+			 <a href="javascript:void(0);" onclick="updateJf($pgoods.id)">更新</a>
+			 <a id="up_$pgoods.id"></a> 
+			</td></tr>
+			#end
+			
+			</tbody>
+		</table>
+		<!-- end -->
+					</td>
+				</tr>
+			</tbody></table>
+			<div class="clear"></div>
+			<button type="submit" class="submit"><span>确 定</span></button>
+		</form>
+	</div>
+	<!--商品begin-->
+	<div class="field">
+		<table class="list_table">
+			<thead>
+				<tr class="">
+					<th>商品名称</th>
+					<th>商品货号</th>
+					<th>商品品牌</th>
+					<th>货品名称</th>
+					<th>库存</th>
+					<th>折扣价/市场价</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+		</table>
+		<table cellspacing="0" cellpadding="0" class="list_table">
+			<tbody>
+				#foreach($row in $list_inv)
+					<tr class="">
+						<td>${row.commodityName}</td>
+						<td>$!{row.goodsNumber}</td>
+						<td>$!{row.brandName}</td>
+						<td>$!{row.splitName}</td>
+						<td>
+							${row.invNumber}
+						</td>
+						<td>
+							${row.priceDiscount}/${row.priceActual}
+						</td>
+						<td>
+						<a onclick="add_pgoods(${row.id},'${row.commodityName}','$!{row.splitName}',${row.priceDiscount},${row.priceActual})">添加</a>
+						</td>
+					</tr>
+				#end
+			</tbody>
+		</table>
+	</div>
+	<!--商品 end-->
+</div>
+
+	</div>
+	#getMothodSc("moduleName=admin.action.Common" "parameters=tag:2,vmpath:admin/foot.vm");
+</body>
+</html>

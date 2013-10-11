@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>订单成功</title>
+<link href="${cssDomain}/css/reset.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/common.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/page.css" type="text/css" rel="stylesheet"/>
+
+</head>
+<body>
+<!--head begin-->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:HEAD,vmpath:frontpage/carthead.vm")
+<!--head end-->
+<div class="bh-p-content">
+  <div class="bh-content">
+    <div class="bh-section">
+      <div class="cart-frame">
+        <div class="tl"></div>
+        <div class="tr"></div>
+      </div>
+      <div class="bh-cart-overf">
+        <div class="bh-ztab bh-bigFont">订单提交页</div>
+        <div class="bh-zcon">
+          <div id="bh-zbuzou1"><s class="bh-zduihao bh-fl"></s>
+            <div class="bh-fore">
+              <h3 class="bh-009900 bh-bigFont bh-mBt10"> 订单已提交，请尽快付款！</h3>
+              <div class="bh-table bh-overf bh-mBt10">
+                <table cellspacing="0" cellpadding="0" border="0" width="395">
+                  <tbody>
+                    <tr>
+                      <th> 订单号 </th>
+                      <th> 应付金额 </th>
+                      <th> 支付方式 </th>
+                      <th> 配送方式 </th>
+                    </tr>
+                    <tr>
+                      <td><a  target="_blank" href="getDetail.htm?orderCode=${order.orderCode}"> $!{order.orderCode}</a></td>
+                      <td><span class="bh-red">￥$!{order.payTotal}</span></td>
+                      <td> 企业转账 </td>
+                      <td> 京创快递 </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div id="bh-zbuzou2">
+            <div class="bh-overf">
+              <div class="bh-fl bh-bigFont"> <span class=" bh-strong">您可以选择以下方式完成支付</span> <span class="bh-fore">(请尽量使用下图京创链接的企业网银，实时到账)</span> </div>
+              <div class="bh-fr"> <s class="item-help"></s> <a href="#">使用帮助</a> </div>
+            </div>
+          </div>
+          <div id="bh-zbuzou3">
+            <div class="bh-zztab bh-posRlt">
+              <div class="bh-fr"> 请在24小时内付清款项，否则订单会被自动取消</div>
+              <ul class="bh-tab" style="overflow:visible;">
+                <li class="curr">支持以下银行的企业网银</li>
+              </ul>
+              <div class="bh-clear"> </div>
+            </div>
+            <div class="bh-zzcon">
+              <ul class="bh-yinhanglist bh-overf">
+                <li><a href="#"><img src="${imageDomain}/images/bank/zggsyh.gif" width="142" height="43" /></a></li>
+                <li><a href="#"><img src="${imageDomain}/images/bank/zgjsyh.gif" width="142" height="43" /></a></li>
+                <li><a href="#"><img src="${imageDomain}/images/bank/zsyh.gif" width="142" height="43" /></a></li>
+                <li><a href="#"><img src="${imageDomain}/images/bank/pfyh.gif" width="142" height="43" /></a></li>
+                <li><a href="#"><img src="${imageDomain}/images/bank/zgnyyh.gif" width="142" height="43" /></a></li>
+                <li><a href="#"><img src="${imageDomain}/images/bank/zgyh.gif" width="142" height="43" /></a></li>
+                <li><a href="#"><img src="${imageDomain}/images/bank/jtyh.gif" width="142" height="43" /></a></li>
+                <li><a href="#"><img src="${imageDomain}/images/bank/xyyh.gif" width="142" height="43" /></a></li>
+              </ul>
+              <div class="bh-tishi"><span class="bh-fl" style="padding:5px 10px 0 0;">若使用其他银行的企业网银或柜台存款 </span><a class="bh-btn" target="_blank" href="getDetail.htm?orderCode=${order.orderCode}"> 查看转账信息</a></div>
+            </div>
+          </div>
+          <div class="bh-userlook"> 完成支付后，您可以： <a target="_blank" href="getDetail.htm?orderCode=${order.orderCode}">查看订单状态</a> <a  href="getSearchList.htm?keyName=">继续购物</a> <a href="#">问题反馈</a> </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- foot begin -->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:FOOT,vmpath:frontpage/foot.vm")
+<!-- foot end -->
+</body>
+</html>

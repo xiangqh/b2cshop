@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>3655订单中心-账户安全</title>
+<link href="${cssDomain}/css/reset.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/common.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/page.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="${jsDomain}/js/jquery.js"></script>
+<script type="text/javascript" src="${jsDomain}/js/jquery.cookie.js"></script>
+</head>
+<body id="bh-member-safe" class="bh-mbody">
+<!--head begin-->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:HEAD,vmpath:frontpage/member/fkhead.vm")
+<!--head end-->
+<div class="bh-p-content">
+  <div class="bh-content">
+    <div class="bh-section">
+      <div class="bh-bread bh-bigFont"><span class="bh-strong ">我的3655</span>&nbsp;&gt;&nbsp;<span>账户安全</span></div>
+    </div>
+    <div class="bh-section">
+      <div class="bh-sidebar-left">
+       #getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:LEFT,vmpath:frontpage/member/left.vm")
+      </div>
+      <div class="bh-mLeft bh-container">
+        <div class="bh-m-rwrap">
+          <div class="bh-order">
+            <div class="bh-ztab bh-member-ztab">
+              <h1>账户安全</h1>
+            </div>
+            <div class="bh-zcon bh-mtop5">
+              <div class="bh-dingyue-message"><span class="bh-strong bh-bigFont">安全级别：&nbsp;<span class="bh-red">初级</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="bh-yellow">建议您启动全部安全设置，以保障账户及资金安全。</span></div>
+              <div class="bh-overf bh-mtop10">
+              	<div class="bh-fr">验证手机和邮箱可赠送10积分哦，马上行动吧！</div>
+              </div>
+              <table width="829" border="0" class="bh-safe-table bh-mtop10">
+  <tr>
+    <th width="200"><img src="${imageDomain}/images/safe1.jpg" width="50" height="45" />登录密码</th>
+    <td><div class="bh-message bh-red">互联网账号存在被盗风险，建议您定期更改密码以保护账号安全。</div></td>
+    <td width="200" class="bh-textCt"><a href="updateAccount.htm" class="bh-blue">修改</a></td>
+  </tr>
+  <tr>
+    <th><img src="${imageDomain}/images/safe2.jpg" width="50" height="45" />邮箱验证</th>
+    <td><div class="bh-message">
+			#if($!user.iseMail!=0)您通过验证的邮箱：$!{user.iseMail} #else  验证后，可用于快速找回登录密码及支付密码，接收账余额变动提醒。#end</div></td>
+    <td class="bh-textCt"><div class="bh-posRlt">
+    #if($!user.iseMail!=0) 
+    <a href="updatetomail.htm" class="bh-verify">修改</a> 
+    #else  
+    <a href="javascript:void(0);" onclick="toMail('$!{user.email}');" class="bh-verify">立即验证</a>
+    #end
+    </div></td>
+  </tr>
+  <script>
+  function toMail(email){
+   $.ajax({
+			url: 'tomail.htm',
+			type: 'post',
+			data: {email:email},
+			success: function(data){
+			alert("pp");
+			if(data.tag==1){
+			$(".emaildiv").show();
+			}
+		      }
+		});
+  }
+  
+  function hide(){
+  $(".emaildiv").hide();
+  }
+  </script>
+  <tr>
+    <th><img src="${imageDomain}/images/safe3.jpg" width="50" height="45" />手机验证</th>
+    <td><div class="bh-message">验证后，可用于快速找回登录密码及支付密码，接收账余额变动提醒</div></td>
+    <td class="bh-textCt"><div class="bh-posRlt">
+    
+    #if($!user.iseMobile!=0) 
+    <a href="updmobile.htm" class="bh-verify">修改</a> 
+    #else  
+    <a href="updmobile.htm" class="bh-verify">立即验证</a>
+    #end
+    
+    </div></td>
+  </tr>
+  <tr>
+    <th><img src="${imageDomain}/images/safe4.jpg" width="50" height="45" />支付密码</th>
+    <td><div class="bh-message">启用支付密码后，在使用账户中余额或优惠劵等资产时，需输入支付密码。</div></td>
+    <td class="bh-textCt"><div class="bh-posRlt">
+    #if($!user.isePay!=0) 
+    <a href="#" class="bh-verify">修改</a> 
+    #else  
+    <a href="#" class="bh-verify">立即验证</a>
+    #end
+    
+    </div></td>
+  </tr>
+</table>
+<div class="bh-safe-service bh-mTop20 bh-posRlt">
+	<div class="bh-ztab"><h3>安全服务提示</h3></div>
+    <div class="bh-zcon">
+    	1.确认您登录的是京创在线网址http://www.hao3655.com，注意防范进入钓鱼网站，不要轻信各种即时通讯工具发送的商品或支付链接，谨防网购诈骗。<br />2.建议您安装杀毒软件，并定期更新操作系统等软件补丁，确保账户及交易安全。 
+    </div>
+</div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bh-clear"></div>
+    </div>
+    <div class="bh-clear"></div>
+  </div>
+</div>
+<!--alert-->
+<div class="bh-safe-tanchu1 bh-tanchu-toushu emaildiv" style="top: 400px; left: 400px; width: 525px; height: 345px; position: absolute; z-index: 9;display:none" >
+                        	<div class="bh-zztab"><h3>邮箱验证</h3><a class="bh-close" href="javascript:void(0);" onclick="hide();"></a></div>
+                            <div class="bh-zzcon">
+                            	<div class="bh-h1">验证邮箱已发送到您的邮箱$!{user.email}</div>
+                                <p style="padding-left:60px;" class="gray">请于24小时内登录邮箱完成验证，获取10积分</p><br><br>
+                                <div style="padding-left:60px;"><a class="bh-longbtn" href="http://$!{user.emailhost}">查看验证邮箱</a><br><br><br>如果您未能验证邮箱，请选择&nbsp;<a class="bh-longbtn" href="javascript:void(0);" onclick="toMail('$!{user.email}');" >重发验证邮件</a></div><br>
+                                <div class="bh-lose">
+                                	若没有收到邮件，也可以尝试以下操作：<br>
+                                    1.请检查您的垃圾箱或者广告箱，邮件有可能被误认为垃圾或广告邮件；<br>
+                                    2.邮箱已过期或忘记密码无法登录，请拨打客服电话400-800-3655申诉更换验证邮箱
+                                </div>
+                            </div>
+                        </div>
+<!--alert-->
+<!-- foot begin -->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:FOOT,vmpath:frontpage/member/fkfoot.vm")
+<!-- foot end -->
+</body>
+</html>

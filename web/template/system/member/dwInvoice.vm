@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>3655订单中心-发票管理</title>
+<link href="${cssDomain}/css/reset.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/common.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/page.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="${jsDomain}/js/jquery.js"></script>
+<script type="text/javascript" src="${jsDomain}/js/jquery.cookie.js"></script>
+</head>
+<body id="bh-member-invoice" class="bh-mbody">
+<!--head begin-->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:HEAD,vmpath:frontpage/member/fkhead.vm");
+<!--head end-->
+<div class="bh-p-content">
+  <div class="bh-content">
+    <div class="bh-section">
+      <div class="bh-bread bh-bigFont"><span class="bh-strong ">我的3655</span>&nbsp;&gt;&nbsp;<span>发票管理</span></div>
+    </div>
+    <div class="bh-section">
+      <div class="bh-sidebar-left">
+       #getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:LEFT,vmpath:frontpage/member/left.vm");
+      </div>
+      <div class="bh-mLeft bh-container">
+        <div class="bh-m-rwrap">
+          <div class="bh-order bh-invoice">
+            <div class="bh-ztab bh-member-ztab">
+              <h1>发票管理</h1>
+            </div>
+            <div class="bh-zcon bh-mtop5">
+              <ul>
+                <li><span><a href="getInvoiceMemberList.htm">普通发票</a></span></li>
+                <li class="bh-on"><span>增值税发票</span></li>
+              </ul>
+              <div class="bh-add-invoice bh-posRlt bh-mTop20 bh-mBt20">
+                <table width="829" border="0" cellspacing="0" cellpadding="0" class="bh-table2">
+                  <tr>
+                    <td width="115" align="right" valign="top"><label>发票抬头：</label></td>
+                    <td><input type="text" class="bh-text"/></td>
+                  </tr>
+                  <tr>
+                    <td align="right" valign="top"><label>纳税人识别号：</label></td>
+                    <td><input type="text" class="bh-text"/></td>
+                  </tr>
+                  <tr>
+                    <td align="right" valign="top"><label>注册地址：</label></td>
+                    <td><input type="text" class="bh-text"/></td>
+                  </tr>
+                  <tr>
+                    <td align="right" valign="top"><label>注册电话：</label></td>
+                    <td><input type="text" class="bh-text"/></td>
+                  </tr>
+                  <tr>
+                    <td align="right" valign="top"><label>开户银行：</label></td>
+                    <td><input type="text" class="bh-text"/></td>
+                  </tr>
+                  <tr>
+                    <td align="right" valign="top"><label>银行账户：</label></td>
+                    <td><input type="text" class="bh-text"/></td>
+                  </tr>
+                  <tr>
+                    <td align="right" valign="top"><label>发票收件人：</label></td>
+                    <td><input type="text" class="bh-text"/></td>
+                  </tr>
+                  <tr>
+                    <td align="right" valign="top"><label>联系方式：</label></td>
+                    <td><input type="text" class="bh-text"/></td>
+                  </tr>
+                  <tr>
+                    <td align="right" valign="top"><label>送票地址：</label></td>
+                    <td><select>
+                        <option>请选择</option>
+                      </select>
+                      &nbsp;
+                      <select>
+                        <option>请选择</option>
+                      </select>
+                      &nbsp;
+                      <select>
+                        <option>请选择</option>
+                      </select>
+                      <br />
+                      <input type="text" class="bh-text bh-mtop10"/>
+                      <p class="bh-yellow bh-mtop10">温馨提示：请详细添加发票收件人姓名、电话和地址，以保证发票能够及时送到。</p></td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td><input type="submit" class="bh-btn" value=" "/></td>
+                  </tr>
+                </table>
+                <div class="bh-r-message"><span class="bh-yellow">提示：</span>首次开具增值税专用发票的客户需传真加盖公章的营业执照副本、税务登记证副本、一般纳税人资格证书、银行开户许可证复印件至我司客服（不接受到付邮件）。增值税专用发票不随货物一起发放（请谅解） </div>
+              </div>
+              <div class="bh-invicemessage">
+                <h1 class="bh-bigFont">已创建的发票信息：</h1>
+                <span class="bh-red bh-strong">提示：</span>为了您的订单可以得到及时处理，请在传真上标明订单号。增值税发票数量有限，开具时间需由客服确认。 传真号码：010-62867627</span></div>
+              <table width="829" border="0" cellspacing="0" cellpadding="0" class="bh-table1">
+                <tr>
+                  <th width="350">发票抬头</th>
+                  <th>发票内容</th>
+                  <th width="110">操作</th>
+                </tr>
+
+		#foreach($invoice in $invs)
+		#if($invoice.type==1)
+                <tr class="bh-on">
+                  <td>$!{invoice.dw}</td>
+                  <td>商品明细</td>
+                  <td><div class="bh-posRlt"><a href="#">查看</a>|<a href="#">修改</a>|<a href="#">删除</a></div></td>
+                </tr>
+                #end
+		#end
+              </table>
+              <div class="bh-overf bh-mTop20">
+                <div class="pagin pagin-m bh-fr">
+                  <div id="pager" class="Pagination" title="1907"> <a class="current" href="javascript:void(0)">1</a> <a href="javascript:void(0)">2</a> <span>...</span> <a href="javascript:void(0)">63</a> <a href="javascript:void(0)">64</a> <a class="next" href="javascript:void(0)">下一页</a>&nbsp;&nbsp;&nbsp;&nbsp;共&nbsp;2&nbsp;条记录&nbsp;共一页</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bh-clear"></div>
+    </div>
+    <div class="bh-clear"></div>
+  </div>
+</div>
+
+
+<!-- alert -->
+#foreach($invoice in $invs)
+					#if($invoice.type==1)
+<div id="updateinvioce_$!{invoice.id}" class=" bh-tanchu-toushu bh-invoice-look" id="bh-tanchu-look" style="top:400px;left:400px;width:500px; height:200px; position:absolute; z-index:9;display:none;">
+                        	<div class="bh-zztab">
+                        		<h3>普通发票信息</h3>
+                            	<a class="bh-close" href="javascript:void(0);"  onclick="hiddeni($!{invoice.id})"></a>
+                        	</div>
+				<form  id="forminvioce_$!{invoice.id}" method="post" action="updateMemberInvoice.htm">
+                        	<div class="bh-zzcon">
+                            	 <input type="hidden" class="bh-text" name="type" value="1" />
+				  <input type="hidden" class="bh-text" name="id" value="$!{invoice.id}" />
+                        		<dl>
+                            		<dt>类型：</dt>
+                            		<dd><input type="radio" name="ptype" value="1" #if($!invoice.ptype==1) checked="checked"#end />个人<input type="radio"  name="ptype"  #if($!invoice.ptype==2) checked="checked"#end  value="2"/>单位</dd>
+                            	</dl>
+                            	<dl>
+                            		<dt>名称：</dt>
+                            		<dd><input type="text" class="bh-text" name="content"  value="$!{invoice.content}"/></dd>
+                            	</dl>
+                            	
+                                <div class="bh-overf">
+				
+                                	<a href="javascript:void(0);" onclick="submitInvoice($!{invoice.id})">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="delMemberInvoice.htm?id=$invoice.id">删除</a>
+                                </div>
+                        	</div>
+				</form>
+                        </div>
+			#end
+				#end
+				<script>
+				function submitInvoice(id){
+				 $("#forminvioce_"+id).submit();
+				}
+				function displayi(id){
+				 $("#updateinvioce_"+id).show();
+				}
+				function hiddeni(id){
+				 $("#updateinvioce_"+id).hide();
+				}
+				</script>
+			<!-- alert -->
+<!-- foot begin -->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:FOOT,vmpath:frontpage/member/fkfoot.vm");
+<!-- foot end -->
+</body>
+</html>

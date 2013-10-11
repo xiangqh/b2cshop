@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>3655订单中心-我的积分</title>
+<link href="${cssDomain}/css/reset.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/common.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/page.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="${jsDomain}/js/jquery.js"></script>
+<script type="text/javascript" src="${jsDomain}/js/jquery.cookie.js"></script>
+</head>
+<body id="bh-member-point" class="bh-mbody">
+<!--head begin-->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:HEAD,vmpath:frontpage/head.vm");
+<!--head end-->
+<div class="bh-p-content">
+  <div class="bh-content">
+    <div class="bh-section">
+      <div class="bh-bread bh-bigFont"><span class="bh-strong ">我的3655</span>&nbsp;&gt;&nbsp;<span>我的积分</span></div>
+    </div>
+    <div class="bh-section">
+      <div class="bh-sidebar-left">
+       #getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:LEFT,vmpath:frontpage/member/left.vm");
+      </div>
+      <div class="bh-mLeft bh-container">
+        <div class="bh-m-rwrap">
+          <div class="bh-order">
+            <div class="bh-ztab bh-member-ztab">
+              <h1>我的积分</h1>
+            </div>
+            <p class="bh-dingyue-message">您当前的积分：<span class="bh-red">30分</span></p>
+            <div class="bh-zcon bh-mtop5">
+              <ul>
+                <li class="bh-on"><span>我的积分</span></li>
+                <li><span>积分兑换</span></li>
+              </ul>
+              <table width="829" border="0" cellspacing="0" cellpadding="0" class="bh-table1">
+                <tr>
+                  <th width="110" align="center">积分</th>
+                  <th width="140">积分来源</th>
+                  <th width="110">订单金额（元）</th>
+                  <th width="110">积分消耗</th>
+                  <th>生效日期</th>
+                  <th>详情说明</th>
+                </tr>
+               #foreach($pointer in $!plist)
+                <tr>
+                  <td>$!{pointer.id}</td>
+                  <td class="bh-000">订单&nbsp;<span class="bh-red">$!{pointer.orderid}</span></td>
+                  <td>￥$!{pointer.total}</td>
+                  <td>$!{pointer.value}</td>
+                  <td>$!{pointer.createtime}</td>
+                  <td class="bh-textLt">$!{pointer.detail}</td>
+                </tr>
+               #end
+
+              </table>
+              <div class="bh-overf bh-mtop10 bh-padB10">
+              	
+		<form method="post" action="getPointerList.htm" id="pointer_from">
+			<input type="hidden" name="curPage" id="curPage" value="1">
+                 </form>
+                #getPageHtml("formId=pointer_from" "parameters=pageNo:$page.pageNo,pageSize:$page.pageSize,totalCount:$page.totalCount,pageviewcount:$page.pageviewcount,vmpath:common/page.vm")
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bh-clear"></div>
+    </div>
+    <div class="bh-clear"></div>
+  </div>
+</div>
+<!-- foot begin -->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:FOOT,vmpath:frontpage/member/fkfoot.vm");
+<!-- foot end -->
+</body>
+</html>

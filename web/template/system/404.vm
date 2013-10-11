@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>产品详情页</title>
+<link rel="stylesheet" type="text/css" href="${cssDomain}/css/main_cloud.css"/>
+<link rel="stylesheet" type="text/css" href="${cssDomain}/css/cloud-zoom.css"/>
+<link rel="stylesheet" type="text/css" href="${cssDomain}/css/reset.css"/>
+<link rel="stylesheet" type="text/css" href="${cssDomain}/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="${cssDomain}/css/page.css"/>
+
+</head>
+<body id="bh-search404">
+<!--head begin-->
+ #getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:HEAD,vmpath:frontpage/head.vm");
+<!--head end-->
+<!--head end-->
+<div class="bh-p-content">
+  <div class="bh-content">
+   
+<div class="bh-section">
+      <div class="bh-swrap">
+        <div class="bh-w810">
+          <div class="bh-subsection">
+            <div class="h1"> <b></b> 抱歉，没此页面 <span>页面</span>  </div>
+</div>   
+</div>
+</div>   
+</div>
+
+</div>   
+</div>
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:FOOT,vmpath:frontpage/foot.vm");
+</body>
+</html>

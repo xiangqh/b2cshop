@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>企业会员注册</title>
+<link href="${cssDomain}/css/reset.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/common.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/page.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="${jsDomain}/js/jquery.js"></script>
+<script type="text/javascript" src="${jsDomain}/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="${jsDomain}/js/member.js"></script>
+</head>
+<body class="bh-mb-member">
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:HEAD,vmpath:frontpage/member/head.vm");
+<div class="bh-p-content">
+  <div class="bh-content">
+    <div class="bh-section">
+    	<div class="w m" id="forget">
+  <div class="mt">
+    <h2> 注册成功</h2>
+    <b></b> </div>
+  <div class="mc">
+    <div class="success-1"> <i></i>
+      <div class="bh-fl"> <span class="yahei bh-strong">恭喜，注册成功！</span> <span class="null-1">您登录京创的用户名为：$!{login_count}，您随时可使用此用户名享受全球领先的竞价购物乐趣。</span><br/>
+        <input type="button" class="but"  onclick="gosc()" />
+        <script type="text/javascript">
+        function gosc(){
+        location.href="/getSearchList.htm?keyName=";
+        }
+         function toMail(email){
+      $.ajax({
+			url: 'tomail.htm',
+			type: 'post',
+			data: {email:email},
+			success: function(data){
+			alert("pp");
+			if(data.tag==1){
+			$(".emaildiv").show();
+			}
+		      }
+		});
+   }
+  
+  function hide(){
+  $(".emaildiv").hide();
+  }
+        </script>
+      </div>
+    </div>
+    <div class="form">
+      <div class="m1 bh-overf">
+        <div class="o-mt"> <strong>请完成账户安全验证</strong><br/>
+          验证手机和邮箱可帮助您快速找回密码，并可接收订单处理、退款、账户余额变动等消息提醒 </div>
+        <div id="m-left" class="succeed">
+          <div class="mail"> </div>
+          <div class="fl-2"> <a href="$!{scpath}/getAccountList.htm"class="yahei bh-strong">邮箱验证&gt;&gt;</a><br/>
+            <br/>
+            $!{email}<br/>
+            <span class="norecode"></span> </div>
+          <div class="clr"> </div>
+        </div>
+        <div id="m-right" class="succeed">
+          <div class="tel"> </div>
+          <div class="fl-2"> 
+          <br/>
+            <br/>
+            <br/>
+            <div class="clr"> </div>
+          </div>
+          <div class="clr"> </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+<!-- foot begin -->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:FOOT,vmpath:frontpage/member/foot.vm");
+</body>
+</html>

@@ -1,0 +1,40 @@
+            <ul class="bh-tab-ul bh-com-tab bh-com-smalltab">
+              <li class="bh-on" onmouseover="_selected(this,0)">${cateName_0}</li>
+              <li onmouseover="_selected(this,1)">${cateName_1}</li>
+              <li style="border:0 none;" onmouseover="_selected(this,2)">${cateName_2}</li>
+            </ul>
+            <div class="bh-num-windows" id="sell_top_0">
+              #foreach($row in $list_0)
+              	<div class="bh-m-window1">
+                <dl class="bh-overf">
+                  <dd class="bh-overf bh-${velocityCount}"><a target="_blank" href="$!{scpath}/showgoods.htm?gs=${row.goodsId}" class="bh-p-title">${row.cmdyName}</a></dd>
+                  <dd class="bh-img bh-fl"><a target="_blank" href="$!{scpath}/showgoods.htm?gs=${row.goodsId}" title="${row.cmdyName}"><img src="${commodityImgsDomain}${row.cateId}/${row.goodsId}_1_4.${row.imgSuffix}" width="79" height="75"/></a></dd>
+                  <dd class="bh-fr bh-message"><p>${row.cmdyName}</p><p class="bh-red">￥${row.price}</p></dd>
+                </dl>
+               </div>
+              #end
+            </div>
+            <div class="bh-num-windows" id="sell_top_1" style="display:none;">
+              #foreach($row in $list_1)
+              	<div class="bh-m-window1">
+                <dl class="bh-overf">
+                  <dd class="bh-overf bh-${velocityCount}"><a target="_blank" href="$!{scpath}/showgoods.htm?gs=${row.goodsId}" class="bh-p-title">${row.cmdyName}</a></dd>
+                  <dd class="bh-img bh-fl"><a target="_blank" href="$!{scpath}/showgoods.htm?gs=${row.goodsId}" title="${row.cmdyName}"><img src="${commodityImgsDomain}${row.cateId}/${row.goodsId}_1_4.${row.imgSuffix}" width="79" height="75"/></a></dd>
+                  <dd class="bh-fr bh-message"><p>${row.cmdyName}</p><p class="bh-red">￥${row.price}</p></dd>
+                </dl>
+               </div>
+              #end
+            </div>
+            
+            <div class="bh-num-windows" id="sell_top_2" style="display:none;">
+	            #foreach($row in $list_2)
+	              	<div class="bh-m-window1">
+	                <dl class="bh-overf">
+	                  <dd class="bh-overf bh-${velocityCount}"><a target="_blank" href="$!{scpath}/showgoods.htm?gs=${row.goodsId}" class="bh-p-title">${row.cmdyName}</a><span class="bh-fr bh-red">￥3299</span></dd>
+	                  <dd class="bh-img bh-fl"><a target="_blank" href="$!{scpath}/showgoods.htm?gs=${row.goodsId}" title="${row.cmdyName}"><img src="${commodityImgsDomain}${row.cateId}/${row.goodsId}_1_4.${row.imgSuffix}" width="79" height="75"/></a></dd>
+	                  <dd class="bh-fr bh-message"><p>${row.cmdyName}</p><p class="bh-red">￥${row.price}</p></dd>
+	                </dl>
+	               </div>
+	            #end
+            </div>
+            

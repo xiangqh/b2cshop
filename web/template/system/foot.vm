@@ -1,0 +1,74 @@
+<div class="bh-p-foot bh-mtop10">
+  <div class="bh-foot">
+    <div class="bh-section">
+      <!-- module foot begin -->
+      <div id="bh-m-foot">
+        <div class="bh-ser-wrapall">
+          <div class="bh-ser-wrap">
+            <div class="bh-service bh-overf">
+              <div class="bh-service-message bh-fr bh-textCt"><span class="bh-red bh-strong">全国客服：400-800-3655</span><br/>
+                服务时间（9:00-21:00）<br/>
+                <a class="bh-mR10" href="#">在线咨询</a><a href="#">投诉中心</a></div>
+              <div class="bh-fore bh-overf bh-fl">
+                <dl class="bh-fore1">
+                  <dt><b/><strong>关于支付</strong></dt>
+                  <dd>
+                    <div class="bh-item"><a href="/sc/frontpage/help/show.htm?id=71" target="_blank">购物流程</a></div>
+                    <div class="bh-item"><a href="/sc/frontpage/help/show.htm?id=72" target="_blank">支付方式</a></div>
+                    <div class="bh-item"><a href="/sc/frontpage/help/show.htm?id=73" target="_blank">支付相关问题</a></div>
+                  </dd>
+                </dl>
+                <dl class="bh-fore2">
+                  <dt><b/><strong>关于配送</strong></dt>
+                  <dd>
+                    <div class="bh-item"><a href="/sc/frontpage/help/show.htm?id=74" target="_blank">配送方式</a></div>
+                    <div class="bh-item"><a href="/sc/frontpage/help/show.htm?id=75" target="_blank">配送流程</a></div>
+                    <div class="bh-item"><a href="/sc/frontpage/help/show.htm?id=76" target="_blank">全程运输保险</a></div>
+                  </dd>
+                </dl>
+                <dl class="bh-fore3">
+                  <dt><b/><strong>售后服务</strong></dt>
+                  <dd>
+                    <div class="bh-item"><a href="/sc/frontpage/help/show.htm?id=77" target="_blank">品质保证</a></div>
+                    <div class="bh-item"><a href="/sc/frontpage/help/show.htm?id=78" target="_blank">回收条款</a></div>
+                    <div class="bh-item"><a href="/sc/frontpage/help/show.htm?id=79" target="_blank">15天退换货承诺</a></div>
+                  </dd>
+                </dl>
+                <dl class="bh-fore4">
+                  <dt><b/><strong>客服中心</strong></dt>
+                  <dd>
+                    <div class="bh-item"><a href="/sc/frontpage/help/show.htm?id=80" target="_blank">找回密码</a></div>
+                    <div class="bh-item"><a href="/sc/frontpage/help/show.htm?id=81" target="_blank">会员制度</a></div>
+                    <div class="bh-item"><a href="/sc/frontpage/help/show.htm?id=82" target="_blank">常见热点问题</a></div>
+                  </dd>
+                </dl>
+                <dl class="bh-fore5">
+                  <dt><b/><strong>关于我们</strong></dt>
+                  <dd>
+                    <div class="bh-item"><a href="/sc/frontpage/help/show.htm?id=83" target="_blank">权威认证</a></div>
+                    <div class="bh-item"><a href="/sc/frontpage/help/show.htm?id=84" target="_blank">招聘信息</a></div>
+                    <div class="bh-item"><a href="/sc/frontpage/help/show.htm?id=85" target="_blank">联系我们</a></div>
+                  </dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- module foot end -->
+    </div>
+    <div style="display: none;" class="bh-section">
+      <!-- module copyright begin -->
+      <div id="bh-m-copyright">
+        <p class="bh-textCt bh-link"><a href="show.htm?id=71">加入商城</a> | <a href="show.htm?id=71">广告服务</a> | <a href="show.htm?id=71">法律声明</a> | <a href="show.htm?id=71">帮助中心</a> | <a href="show.htm?id=71">联系我们</a></p>
+        <p class="bh-textCt bh-mTop20 bh-mBt20">服务热线：400-628-5179 传真：021-66362636<br/>
+          Copyright©2010 酒博会 http://www.9bohui.cn All Rights 沪ICP备10040069号-1</p>
+      </div>
+      <!-- module copyright end -->
+    </div>
+  </div>
+</div>
+	<div class="bh-fix">
+  <div class="bh-question"><img height="94" width="25" src="$!{imageDomain}/images/question.gif"/></div>
+  <div class="bh-back bh-mtop10"><a href="#sctop"><img height="94" width="25" src="$!{imageDomain}/images/back.gif"/></a></div>
+</div>

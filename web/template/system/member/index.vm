@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>我的3655</title>
+<link href="${cssDomain}/css/reset.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/common.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/page.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="${jsDomain}/js/jquery.js"></script>
+<script type="text/javascript" src="${jsDomain}/js/jquery.cookie.js"></script>
+</head>
+<body id="bh-member-index" class="bh-mbody">
+<!--head begin-->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:HEAD,vmpath:frontpage/member/fkhead.vm");
+<!--head end-->
+<div class="bh-p-content">
+  <div class="bh-content">
+    <div class="bh-section">
+      <div class="bh-sidebar-left"><div class="bh-bread bh-bigFont"><span class="bh-strong ">我的3655</span></div></div>
+      <div class="bh-mLeft">
+        <div class="bh-line">
+          <p></p>
+        </div>
+      </div>
+    </div>
+    <div class="bh-section">
+      <div class="bh-sidebar-left">
+        <!--左边树-->
+		#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:LEFT,vmpath:frontpage/member/left.vm");
+      </div>
+      <div class="bh-mLeft bh-container">
+        <div class="bh-m-rwrap">
+          <div class="bh-tixing"> <b></b> <a href="getAddressList.htm" class="bh-fr">收货地址管理</a> <span class="bh-strong bh-bigFont">订单提醒：</span>选择供应商（1）&nbsp;&nbsp;&nbsp;代发货（$!readyShip）&nbsp;&nbsp;&nbsp;待确认收获（$!completeShip）&nbsp;&nbsp;&nbsp;待支付订单（$!readyPay）&nbsp;&nbsp;&nbsp;等待评价（$!readyEvaluate） </div>
+          <div class="bh-geren-message">
+            <dl class="bh-overf">
+              <dd class="bh-fl bh-img"> <img src="${imageDomain}/images/templ/member.jpg" width="180" height="180" /> </dd>
+              <dd class="bh-fr bh-message bh-overf">
+                <div class="bh-overf">
+                	<div class="bh-fl">
+                  <ul>
+                    <li><span class="bh-name">
+							#if($!scm.user_name=="")
+								$!scm.user_name
+							#else
+								$!scm.login_count
+							#end
+							</span><span><img src="${imageDomain}/images/renzheng1.jpg" width="34" height="20" /></span><span><img src="${imageDomain}/images/renzheng2.jpg" width="28" height="20"/></span><span><img src="${imageDomain}/images/renzheng3.jpg" width="28" height="20"/></span><span><img src="${imageDomain}/images/renzheng4.jpg" width="19" height="23"/></span></li>
+                    <li>来自：$!scm.province_id &nbsp; $!scm.city_id &nbsp; $!scm.town_id</li>
+                    <li>用户类型：<span class="bh-strong">#if($!scm.type==0)个人#elseif($!scm.type==1)
+							#if($!scm.enature==1)政府机关/事业单位
+							#elseif($!scm.enature==2)国营企业
+							#elseif($!scm.enature==3)私营企业
+							#elseif($!scm.enature==4)中外合资
+							#elseif($!scm.enature==5)外资
+							#elseif($!scm.enature==6)其他
+							#end
+						#end</span></li>
+                  #if($!scm.type==1) <li>单位：<span class="bh-strong">$!scm.ename</span><span class="bh-red bh-strong">已经认证</span></li>#end
+                    <li><span style="float:left;">资料完善程度：</span><div class="bh-process"><p></p></div>&nbsp;&nbsp;<span style="color:#928d8d; font-family: Tahoma, Geneva, sans-serif" class="bh-strong">60%</span>&nbsp;<a href="editMemberInfo.htm">立即完善</a>&nbsp;&nbsp;<a href="mlogin.htm">我的主页</a></li>
+                  </ul>
+                </div>
+                	<div class="bh-fr bh-posRlt bh-overf">
+                	<a href="#" style="position:absolute; right:25px; top:-5px;">我的诚信档案</a>
+                    <ul>
+                    	<li>我的积分：$!scm.point分</li>
+                        <li>我的等级：
+							 #if($!scm.group_id==0)
+								普通会员
+							 #end
+							</li>
+                        <li>账户余额：100元&nbsp;&nbsp;<a href="getCz.htm">充值</a>&nbsp;&nbsp;<a href="#">提现</a></li>
+                        <li>买家信用等级：<b></b><b></b></li>
+                        <li>卖家信用等级：<b></b><b></b><b></b><b></b></li>
+                    </ul>
+                </div>
+                </div>
+                <p class="bh-tuigang">推&nbsp;广&nbsp;ID:您的营销网址为:&nbsp;<span><a href="http://www.3655.com.cn/public/index.htm?tjid=2924">http://www.3655.com.cn/public/index.htm?tjid=2924</a>&nbsp;（点击复制网址）</span></p>
+              </dd>
+            </dl>
+          </div>
+          <div class="bh-order-center bh-bigFont">
+          	<div class="bh-ztab"><h3>订单中心</h3></div>
+            <div class="bh-zcon">我的订单（<span class="bh-red">$!allOrder</span>）&nbsp;&nbsp;&nbsp;&nbsp;竞购订单（<span class="bh-red">2</span>）&nbsp;&nbsp;&nbsp;&nbsp;团购订单（<span class="bh-red">3</span>）&nbsp;&nbsp;&nbsp;&nbsp;询价订单（<span class="bh-red">1</span>）</div>
+          </div>
+          <div class="bh-trend bh-overf bh-bigFont">
+          	<div class="bh-fl">
+            	商品交易价格实时走势图&nbsp;<input type="text" value="输入商品编号" class="bh-text"/>&nbsp;<input type="submit" value="查询一下" class="bh-submit"/>
+                <p class="bh-img bh-mtop10"><img src="${imageDomain}/images/trend-img_07.jpg" width="362" height="176" /></p>
+            </div>
+            <div class="bh-fr">
+            	<br />帮帮我们进步<br />
+                <textarea class="bh-mtop10">用得满意么？有话您直说！</textarea><br /><input type="submit" value="提交" class="bh-mtop5 bh-submit"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bh-clear"></div>
+  </div>
+</div>
+<!-- foot begin -->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:FOOT,vmpath:frontpage/member/fkfoot.vm");
+<!-- foot end -->
+</body>
+</html>

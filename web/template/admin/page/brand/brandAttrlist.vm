@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>品类列表</title>
+<link href="${request.getContextPath()}/css/admin.css" rel="stylesheet">
+<link href="${request.getContextPath()}/css/style.css" rel="stylesheet">
+<link href="${request.getContextPath()}/css/artDialog.css" rel="stylesheet">
+<script type="text/javascript" charset="utf-8" language="javascript" src="${request.getContextPath()}/js/util.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${request.getContextPath()}/js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${request.getContextPath()}/js/artDialog.js"></script>
+</head>
+
+<body>
+#getMothodSc("moduleName=admin.action.Common" "parameters=tag:1,vmpath:admin/head.vm,level:3,level2:43");
+	<div id="admin_right">
+	<form method="post" action="" name="ModelForm" id="ModelForm">
+<div class="headbar">
+	<div class="position"><span>商品</span><span>&gt;</span><span>品类管理</span><span>&gt;</span><span>品类列表</span></div>
+	
+	<div class="searchbar">
+			<form action="${request.getContextPath()}/listBrandAttr.htm" method="post" name="listBrandForm">
+			品类名称：<input class="small" name="brandAttrName" type="text" value="$!{brandAttrName}" style="width:140px"/>
+				<button class="btn" type="submit"><span>查 询</span></button>
+			</form>
+			<a href="javascript:;">
+				<button class="btn" type="button" onclick="location.href='${request.getContextPath()}/toeidt.htm?opera=0';"><span>增加</span></button>
+			</a>
+		</div>
+	<div class="field">
+		<table class="list_table">
+			<colgroup>
+			<col width="120px">
+			<col width="150px">
+			<col width="150px">
+			<col width="150px">
+			<col>
+			</colgroup><thead>
+				<tr class="">
+					<th>品类名称</th>
+					<th>拆分属性</th>
+					<th>选购名称</th>
+					<th>价格</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+
+</div>
+<div class="content" >
+		<table cellspacing="0" cellpadding="0" class="list_table">
+			<colgroup>
+			<col width="120px">
+			<col width="150px">
+			<col width="150px">
+			<col width="150px">
+			</colgroup>
+			<tbody>
+				#foreach($row in $list_model)
+					<tr class="">
+						<td>${row.name}</td>
+						<td>$!{row.splitValue}</td>
+						<td>$!{row.changeValue}</td>
+						<td>$!{row.priceValue}</td>
+						<td>
+							<a href="javascript:void(0);" onclick="location.href='${request.getContextPath()}/toeidt.htm?opera=1&baid=${row.id}';">
+								<img title="编辑" src="${request.getContextPath()}/image/m1/pen.png" class="operator">
+							</a>
+							<a href="javascript:void(0);" onclick="del(${row.id});">
+								<img title="删除" src="${request.getContextPath()}/image/m1/del.png" class="operator">
+							</a>
+						</td>
+					</tr>
+				#end
+			</tbody>
+		</table>
+	</div></form>
+	</div>
+
+<form id="battrForm" action="${request.getContextPath()}/listBrandAttr.htm" method="post">
+	<input type="hidden" name="curPage" id="curPage" value="1">
+</form>
+#getPageHtml("formId=battrForm" "parameters=pageNo:$page.pageNo,pageSize:$page.pageSize,totalCount:$page.totalCount,pageviewcount:$page.pageviewcount,vmpath:common/page.vm");
+#getMothodSc("moduleName=admin.action.Common" "parameters=tag:2,vmpath:admin/foot.vm");
+</body>
+</html>
+
+<script language="javascript">
+function del(id){
+	dialogConfirm("提示","确认要删除该品类吗?",
+		function(){
+			window.location='${request.getContextPath()}/deleteBrandAttr.htm?baid='+id;
+		}
+	);
+}
+</script>
+<script type="text/javascript" charset="utf-8" language="javascript">
+	var ___mkey = null;
+	var ___msg = null;
+	#if(${page_k_message_key})
+		var ___mkey = $!{page_k_message_key};
+		var ___msg = $!{page_k_message_value};
+	#end
+	if(___mkey){
+		dialogAlert(___mkey,___msg);
+	}
+</script>

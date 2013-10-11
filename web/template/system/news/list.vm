@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>公告资讯</title>
+<link href="${cssDomain}/css/reset.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/common.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/page.css" type="text/css" rel="stylesheet"/>
+</head>
+<body id="bh-page-news-list">
+<!--head begin-->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:HEAD,vmpath:frontpage/head.vm");
+<!--head end-->
+<div class="bh-p-content">
+  <div class="bh-content">
+    <div class="bh-section">
+      <div class="bh-sidebar-left" style="height:520px;"></div>
+      <div class="bh-mLeft bh-container">
+        <div class="bh-newslist">
+          <div class="w490 bh-fl">
+            <div class="bh-ztab bh-com-smalltab">
+              <h3 class="bh-bigFont">新品促销</h3>
+            </div>
+            <div class="bh-zcon">
+              <ul>
+				#foreach($new in $articleVOList)
+                <li>
+                  <div><a target="_blank" href="detailNews.htm?id=$new.article.id">$new.article.title</a></div>
+                  <span>$!date.format('yyyy-MM-dd HH:mm:ss',$!new.article.create_time)</span>
+                  <div class="line"></div>
+                </li>
+				#end
+              </ul>
+            </div>
+            <div class=" bh-overf bh-mtop10">
+              <div class=" pagin-m bh-fr">
+				<form id="newsForm" action="getNesList.htm" method="post">
+	           <input type="hidden" name="curPage" id="curPage" value="1">
+	     </form>
+				#getPageHtml("formId=newsForm" "parameters=pageNo:$page.pageNo,pageSize:$page.pageSize,totalCount:$page.totalCount,pageviewcount:$page.pageviewcount,vmpath:common/page.vm");
+				<!--
+                <div id="pager" class="Pagination" title="1907"> <a class="current" href="javascript:void(0)">1</a> <a href="javascript:void(0)">2</a> <span>...</span> <a href="javascript:void(0)">63</a> <a href="javascript:void(0)">64</a> <a class="next" href="javascript:void(0)">下一页</a> </div>
+              -->
+			  </div>
+            </div>
+          </div>
+          <div class="w490 bh-fr">
+            <div class="bh-ztab bh-com-smalltab">
+              <h3 class="bh-bigFont">公告资讯</h3>
+            </div>
+            <div class="bh-zcon">
+              <ul>
+				#foreach($newm in $articleVOListm)
+                <li>
+                  <div><a target="_blank" href="detailNews.htm?id=$newm.article.id">$newm.article.title</a></div>
+                  <span>$!date.format('yyyy-MM-dd HH:mm:ss',$!newm.article.create_time)</span>
+                  <div class="line"></div>
+                </li>
+               #end
+              </ul>
+            </div>
+            <div class=" bh-overf bh-mtop10">
+              <div class=" pagin-m bh-fr">
+				<form id="newsFormm" action="getNesList.htm" method="post">
+	           <input type="hidden" name="curPagem" id="curPage" value="1">
+	     </form>
+				#getPageHtml("formId=newsFormm" "parameters=pageNo:$pagem.pageNo,pageSize:$pagem.pageSize,totalCount:$pagem.totalCount,pageviewcount:$pagem.pageviewcount,vmpath:common/pagem.vm");
+				<!--
+                <div id="pager" class="Pagination" title="1907"> 
+					<a class="current" href="javascript:void(0)">1</a> <a href="javascript:void(0)">2</a> <span>...</span> <a href="javascript:void(0)">63</a> <a href="javascript:void(0)">64</a> <a class="next" href="javascript:void(0)">下一页</a> 
+				</div>
+				-->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" >
+$("#bh-pd-menuanchor").mouseover(function(){
+$("#bh-pd-menudiv").show();
+});
+
+$("#bh-pd-menuanchor").mouseout(function(){
+$("#bh-pd-menudiv").hide();
+});
+</script>
+<!-- foot begin -->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:FOOT,vmpath:frontpage/foot.vm");
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>橱窗列表</title>
+<link href="${request.getContextPath()}/css/admin.css" rel="stylesheet">
+<link href="${request.getContextPath()}/css/style.css" rel="stylesheet">
+<link href="${request.getContextPath()}/css/artDialog.css" rel="stylesheet">
+<script type="text/javascript" charset="utf-8" language="javascript" src="${request.getContextPath()}/js/util.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${request.getContextPath()}/js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${request.getContextPath()}/js/artDialog.js"></script>
+</head>
+
+<body>
+#getMothodSc("moduleName=admin.action.Common" "parameters=tag:1,vmpath:admin/head.vm,level:3,level2:29");
+<div id="admin_right">
+	<div class="headbar">
+	<div class="position"><span>商品</span><span>&gt;</span><span>商品橱窗管理</span><span>&gt;</span><span>橱窗列表</span></div>
+	<div class="searchbar">
+		<a href="javascript:;"><button onclick="window.location='${request.getContextPath()}/toscedit.htm?opera=0';" type="button" class="btn"><span>添加橱窗</span></button></a>
+	</div>
+	<div class="field">
+		<table class="list_table">
+		<colgroup>
+		<col width="300px">
+		<col width="150px">
+		<col width="100px">
+			</colgroup><thead>
+				<tr id="headth" class="">
+					<th>橱窗名称</th>
+					<th>排序号</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+<form name="category_list" method="post" action="">
+<div class="content">
+	<table class="list_table" id="list_table">
+		<colgroup>
+		<col width="300px">
+		<col width="150px">
+		<col width="100px">
+			</colgroup>
+		<tbody id="conth">
+			#foreach($row in $list_showcase)
+			<tr parent="${row.parentId}" id="${row.id}" >
+				<td style="padding-left: ${row.levelNum}px;width:300px;" class="switch">
+					<img title="关闭" src="${request.getContextPath()}/image/close.gif" class="operator">
+					${row.name}
+				</td>
+				<td style="width:100px;">
+					<input type="hidden" value="${row.sort}" id="hid_sort_${row.id}">
+					<input title="排序，正整数" id="sort_${row.id}" type="text" value="${row.sort}" size="2" class="tiny" maxlength="7">
+					<img title="更改" src="${request.getContextPath()}/image/m1/right.png" class="operator" style="display:''" onclick="_updSort(this,${row.id},${row.parentId});">
+				</td>
+				
+				<td>
+					<a href="javascript:void(0);" onclick="location.href='${request.getContextPath()}/toscedit.htm?opera=1&sc=${row.id}';">
+						<img title="修改" src="${request.getContextPath()}/image/m1/pen.png" class="operator">
+					</a>
+					<a href="javascript:void(0);" onclick="del(${row.id});">
+						<img title="删除" src="${request.getContextPath()}/image/m1/del.png" class="operator">
+					</a>
+					#if(${row.parentId} != 0)
+					<a href="javascript:void(0);" onclick="sel(${row.id});">
+						<img title="查看货品" src="${request.getContextPath()}/image/m1/search.png" class="operator">
+					</a>
+					#end
+				</td>
+			</tr>
+			#end
+		</tbody>
+	</table>
+</div>
+</form>
+	</div>
+	#getMothodSc("moduleName=admin.action.Common" "parameters=tag:2,vmpath:admin/foot.vm");
+</body>
+</html>
+<script language="javascript">
+$("td.switch .operator").each(function(i){
+	$(this).toggle(function(){
+		iteraShow($(this).parent().parent().attr('id'), 'hide');
+		$(this).attr("src", "${request.getContextPath()}/image/open.gif");
+	},function(){
+		iteraShow($(this).parent().parent().attr('id'), 'show');
+		$(this).attr("src", "${request.getContextPath()}/image/close.gif");
+	});
+});
+
+function iteraShow(id,isshow) {
+	var obj = $("#list_table tr[parent='"+id+"']");
+	if (obj.length>0){
+		obj.each(function(i) {
+			iteraShow($(this).attr('id'), isshow);
+		});
+		if (isshow=='hide'){
+			obj.hide();
+		}else{
+			obj.show();
+		}
+	}
+}
+
+function sel(id){
+	window.location='${request.getContextPath()}/listshowcaseInvs.htm?scaseid='+id;
+}
+
+function del(id){
+	dialogConfirm("提示","确认要删除该橱窗吗，如果存在子橱窗，子橱窗也会被删除?",
+		function(){
+			window.location='${request.getContextPath()}/deletesc.htm?sc='+id;
+		}
+	);
+}
+
+function _updSort(_obj,_id,_pid){
+	var _nSort = document.getElementById("sort_"+_id);
+	var _osort = document.getElementById("hid_sort_"+_id);
+	var _sort = _nSort.value;
+	var _sub = true;
+	if(!(/^([1-9]\d*)$/.test(_sort))){
+			dialogAlert("错误","请输入一个正整数!");
+			_nSort.value = _osort.value;
+			_sub = false;
+	}
+	if(_sub){
+		var _data = "sort="+_sort+"&id="+_id+"&pid="+_pid+"&os="+_osort.value;
+		_obj.style.display = "none";
+		$.ajax({
+					url: "${request.getContextPath()}/updscsort.htm",
+					type: "GET",
+					data: _data,
+					timeout: 10000,
+					async:false,
+					success: function(data){
+						if("00_FAIL" == data){
+							dialogAlert("错误","非法的请求!");
+							_nSort.value = _osort.value;
+						}else if("01_FAIL" == data){
+							dialogAlert("错误","排序号重复!");
+							_nSort.value = _osort.value;
+						}else if("02_FAIL" == data){
+							dialogAlert("错误","服务器更新出错，请重试!");
+							_nSort.value = _osort.value;
+						}else if("SUCCESS" == data){
+							_osort.value = _nSort.value;
+							dialogAlert("提示","修改成功!");
+						}else{
+							dialogAlert("错误","非法的请求!");
+							_nSort.value = _osort.value;
+						}
+						_obj.style.display = "";
+					}
+				});
+	}
+}
+
+</script>

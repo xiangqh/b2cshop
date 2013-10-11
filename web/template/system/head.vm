@@ -1,0 +1,261 @@
+<!--head begin-->
+<div class="bh-p-head">
+  <div class="bh-head">
+    <!--添加的头部-->
+    <div id="bh-m-head">
+      <div class="bh-section">
+        <div class="bh-head-top">
+          <div class="bh-sidebar-left" >
+            <div class="bh-head-txt" id="loginhtml"> 
+			<span class="kp-user-notlogin">尊敬的用户。欢迎光临京创在线！&nbsp;<a id="head_login"  href="${scpath}/mlogin.htm" target="_blank">【登录】</a>，新用户？<a id="head_register" href="${scpath}/preg.htm" target="_blank">【免费注册】</a></span> 
+			</div>
+          </div>
+          <div class="bh-container bh-mLeft">
+            <div class="bh-fr">
+              <ul>
+              	<li id="AAA">&nbsp;11</li>
+                <li><a href="#" name="sctop">我的订单</a></li>
+                <li><a href="#">网站地图</a></li>
+                <li><a href="#">企业客户</a></li>
+                <li class="bh-customers">
+                  <div class="bh-on" onmouseover="showsc()" id="-khfw-">
+                    <a href="#" class="bh-tab">客户服务<b></b> </a>
+                    <div class="bh-tanchu"" id="cjwtid" style="display:none;"  >
+                    	<dl>
+                        	<dd><a href="#">常见问题</a></dd>
+                            <dd><a href="#">售后服务</a></dd>
+                            <dd><a href="#">投诉中心</a></dd>
+                            <dd><a href="#">客服邮箱</a></dd>
+                        </dl>
+                    </div>
+                  </div>
+                </li>
+                <li style=" background:none;"><a href="#">在线客服&nbsp;&nbsp;<img width="13" height="17" src="${imageDomain}/images/item3.jpg"></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+	  
+      <div class="bh-section">
+        <div class="bh-head-mid">
+          <div class="bh-subSection">
+            <div class="bh-head-message bh-overf">
+              <div class="bh-year bh-fl">
+                <dl class="bh-overf">
+                  <dt>一年</dt>
+                  <dd class="bh-up bh-zbtn"><img src="${imageDomain}/images/head-up.gif" width="17" height="13" /></dd>
+                  <dd class="bh-down bh-zbtn"><img src="${imageDomain}/images/head-down.gif" width="17" height="13" /></dd>
+                </dl>
+              </div>
+              <ul class="bh-fl">
+                <li>交易数量：<span class="bh-num">406,403</span>个</li>
+                <li>交易金额：<span class="bh-num">498,732,632</span>元</li>
+                <li>新增供应商：<span class="bh-num">2,083,770</span>人</li>
+              </ul>
+              <p class="bh-fr">立即<a href="${scpath}/ereg.htm" target="_blank">注册</a>，马上赚钱</p>
+            </div>
+          </div>
+          <div class="bh-subSection">
+            <div class="bh-logo"><a href="${scpath}" id="logo"><img src="${imageDomain}/images/logo.gif" width="192" height="80" /></a></div>
+            <div class="bh-fr bh-youmin">
+              <div class="bh-search-wrap bh-fl">
+                <div class="bh-search">
+                  <ul class="bh-select bh-fl">
+                    <li>商品名称</li>
+                    <li>商品名称</li>
+                  </ul>
+                  <form class="bh-fl bh-overf" action="getSearchList.htm">
+                    <input class="kp-searchtxt  searchtxt bh-fl" name="keyName" id="keyName" #if($!keyName) value="手机" #else value="$!keyName" #end  type="text" onfocus="SC_gen.onfocus('keyName')" onblur="SC_gen.onblur('keyName','手机')" />
+                    <input class="kp-searchbutton searchbutton bh-fr"  type="submit" value="" />
+                  </form>
+                </div>
+                <div class="bh-keyword">热门搜索：
+                	#foreach($word in $keywords)
+                		<a href = "${scpath}/getSearchList.htm?keyName=$word">$word</a>&nbsp;
+                	#end
+                </div>
+              </div>
+              <div class="bh-tel bh-fr">销售热线：400-800-3655</div>
+            </div>
+          </div>
+        </div>
+      </div>
+	  
+
+   <div class="bh-section">
+        <div class="bh-head-bottom">
+          <div class="bh-nav">
+            <div id="bh-pd-menuanchor">
+              <h1><span class="bh-fr"> 
+              	<img width="18" height="18" src="$!{imageDomain}/images/cate-on.jpg" id="_c_on_i" onclick="this.style.display='none';$('#_c_n_i').show();$('#bh-pd-menudiv').show();"> 
+              	<img width="18" height="18" src="$!{imageDomain}/images/cate.gif" id="_c_n_i" style="display:none;" onclick="this.style.display='none';$('#_c_on_i').show();$('#bh-pd-menudiv').hide();">
+              </span>所有商品分类</h1>
+              <div id="bh-pd-menudiv">
+              	
+                #set($tmp=0)
+               #foreach($row in $front_category)
+              		#if(${row.levels}==1)
+              			#set($tmp=${row.id}+"_b")
+              			<div class="bh-cate-1">
+	              			 <h3>
+	              			 	<i><img src="${imageDomain}/images/item1.gif" width="5" height="9" /></i>
+	              			 	<a href="javascript:;">${row.name}</a>
+	              			 </h3>
+	              		##如果没有子,直接结束
+	              		#if(${row.nextLevels} == 1)
+	              			</div>
+	              		#elseif(${row.nextLevels} == 9)
+		              		<div class="i-mc">
+	                    		<div class="close"></div>
+	                    		 <div class="subitem">
+	                      			<dl class="fore1"></dl>
+	                      		 </div>
+		              			 <div class="bh-fr" id="JD_sort_k">
+	                      			<dl class="categorys-brands"></dl>
+	                      			<dl class="categorys-promotions">
+		                        		<dt>推荐品牌</dt>
+				                        <dd>
+				                            <ul>
+			                                	#foreach($cb in $catebsmap.get($tmp))
+			                                		<li><a href="javascript:;">${cb.name}</a></li>
+			                                	#end
+			                                </ul>
+				                        </dd>
+			                      	</dl>
+			                    </div>
+	              			</div></div>
+	              		#end
+              		#elseif(${row.levels}==2)
+              			##如果为第一个2级分类
+              			#if(${row.preLevels} == 1)
+              				<div class="i-mc">
+                    			<div class="close"></div>
+                    			<div class="subitem">
+              			#end
+              			<dl class="fore1">
+              			<dt><a target="_blank" href="$!{scpath}/getSearchList.htm?keyName=&cateId=${row.id}">${row.name}</a></dt>
+              			#if(${row.nextLevels} == 2)
+              				##如果下一个层级为2级,没有子分类,结束2级标签,继续循环
+              				</dl>
+              			#elseif(${row.nextLevels} < 2)
+              				##如果下一个层级为1级,没有3级子分类,显示推荐品牌后结束
+              				</dl></div>
+              				<div id="JD_sort_k" class="bh-fr">
+		                    	<dl class="categorys-brands">
+		                        	<dt>推荐品牌</dt>
+		                            <dd>
+		                            	<ul>
+		                                	#foreach($cb in $catebsmap.get($tmp))
+		                                		<li><a href="javascript:;">${cb.name}</a></li>
+		                                	#end
+		                                </ul>
+		                            </dd>
+		                        </dl>
+                   			</div>
+                   			</div></div>
+              			#end
+              		#else
+              			#if(${row.preLevels} == 2)
+              				##如果为2级分类的第一个3级分类
+              				<dd>
+              			#end
+              			<em><a target="_blank" href="$!{scpath}/getSearchList.htm?keyName=&cateId=${row.id}">${row.name}</a></em>
+              			#if(${row.nextLevels} == 2)
+              				##如果下个一层级为2级,结束2级分类标签
+              				</dd></dl>
+              			#elseif(${row.nextLevels} < 2)
+              				##如果下个一层级为1级,该大类循环结束
+              				</dd></dl></div>
+              				<div id="JD_sort_k" class="bh-fr">
+		                    	<dl class="categorys-brands">
+		                        	<dt>推荐品牌</dt>
+		                            <dd>
+		                            	<ul>
+		                                	#foreach($cb in $catebsmap.get($tmp))
+		                                		<li><a href="javascript:;">${cb.name}</a></li>
+		                                	#end
+		                                </ul>
+		                            </dd>
+		                        </dl>
+                   			</div>
+                   			</div></div>
+              			#end
+              		#end
+              	#end
+
+                <div class="bh-all"><a target="_blank" href="$!{scpath}/allcategorys.htm?t=cate">全部商品分类&gt;&gt;</a></div>
+              </div>
+            </div>
+           ##<div class="bh-fr bh-zbtn"><a href="#">                       <img width="98" height="35" src="${imageDomain}/images/head-menu-btn1.gif"></a>&nbsp;&nbsp;<a href="#"><img width="108" height="35" src="${imageDomain}/images/head-menu-btn2.gif"></a>&nbsp;&nbsp;<a href="#"><img width="108" height="35" src="${imageDomain}/images/head-menu-btn3.gif"></a> </div>
+            <div class="bh-fr bh-zbtn"><a href="${scpath}/memberIndex.htm"><img src="${imageDomain}/images/head-menu-btn1.gif" width="98" height="35" /></a>&nbsp;&nbsp;<a href="${scpath}/addCart.htm"><img src="${imageDomain}/images/head-menu-btn2.gif" width="108" height="35"/></a>&nbsp;&nbsp;<a href="#"><img src="${imageDomain}/images/head-menu-btn3.gif" width="108" height="35"/></a> </div>
+            <div class="bh-menu">
+               <ul>
+                <li class="bh-on"><a href="$!{scpath}/index.htm"><span>首&nbsp;页</span></a></li>
+                <li><a href="#"><span>竞购大厅</span></a></li>
+              </ul>
+            </div>
+          
+            
+            
+          </div>
+        </div>
+      </div>
+    <!--添加的头部结束-->
+  </div>
+   <div class="bh-space"></div>
+</div>
+</div>
+<script>
+   var SC_gen={
+         onfocus:function(id){
+		 document.getElementById(id).value="";
+		 },
+         onblur:function(id,str){
+		var name= document.getElementById(id).value;
+		  if(name==""){
+		 document.getElementById(id).value=str;
+		 }
+		 }
+   }
+   
+   var cookie={ 
+  //读取COOKIES,n为COOKIE名 
+   Get:function(n){ 
+   		var re=new RegExp(n+'=([^;]*);?','gi');
+   	    var r=re.exec(document.cookie)||[];
+   	    return (r.length>1?r[1]:null)
+   	  },show:function(){
+	  var userName='$!{userName}';
+	  if(userName!=null && userName!="" ){
+			//登录成功
+		 document.getElementById("loginhtml").innerHTML ='<span class="kp-user-haslogin">您好，'+userName+'<span class="kp-user-nick"></span> <a href="${scpath}/memberIndex.htm">[会员中心]</a> <a target="_self" href="${scpath}/outlogin.htm">退出登录</a></span>';
+		 }
+	  }
+	  }
+	  /**
+	  var _scFlag = false;
+	  function showsc(){
+	  document.getElementById("cjwtid").style.display="block";
+	  getPos();
+	  _scFlag=true;
+		  $("body").eq(0).mousemove(function(e) { 
+			var xx=e.pageX；
+			var yy=e.pageY;
+			$("#AAA").html(xx + '---' + yy); 
+	     }); 
+	  }
+	  function hidesc(){
+	  document.getElementById("cjwtid").style.display="none";
+	  _scFlag = false;
+	  }
+	  var minTop,maxTop,minLeft,maxLeft;
+	  function getPos(){
+	  	minTop = $("#-khfw-").offset().top;
+	  	maxTop = $("#-khfw-").height()+$("#cjwtid").height();
+	  	minLeft = $("#-khfw-").offset().left;
+	  	maxLeft = $("#-khfw-").offset().left + $("#-khfw-").width();
+	  }*/
+	cookie.show();
+  </script>
+<!--head end-->

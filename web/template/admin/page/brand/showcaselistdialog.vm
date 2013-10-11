@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>橱窗列表</title>
+<link href="${request.getContextPath()}/css/admin.css" rel="stylesheet">
+<link href="${request.getContextPath()}/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+<div id="admin_right">
+	<div class="headbar">
+	<div class="field">
+		<table class="list_table">
+		<colgroup>
+		<col width="80px" />
+		<col width="400px">
+		</colgroup>
+			<thead>
+				<tr id="headth" class="">
+					<th>选择</th>
+					<th>橱窗名称</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+<div class="content">
+	<table class="list_table" id="list_table">
+		<colgroup>
+		<col width="80px" />
+		<col width="400px">
+		</colgroup>
+		<tbody id="conth">
+			#foreach($row in $list_showcase)
+			<tr parent="${row.parentId}" id="${row.id}" >
+				<td style="padding-left: ${row.levelNum}px;" class="switch">
+					<img title="关闭" src="${request.getContextPath()}/image/close.gif" class="operator">
+					#if(${row.parentId} > 0)
+						<input type="checkbox" value="${row.id}" name="cbox" #if(${row.checked} !=0) checked #end/>
+					#end
+				</td>
+				<td>${row.name}</td>
+			</tr>
+			#end
+		</tbody>
+	</table>
+</div>
+	</div>
+</body>
+</html>
+<script language="javascript">
+$("td.switch .operator").each(function(i){
+	$(this).toggle(function(){
+		iteraShow($(this).parent().parent().attr('id'), 'hide');
+		$(this).attr("src", "${request.getContextPath()}/image/open.gif");
+	},function(){
+		iteraShow($(this).parent().parent().attr('id'), 'show');
+		$(this).attr("src", "${request.getContextPath()}/image/close.gif");
+	});
+});
+
+function iteraShow(id,isshow) {
+	var obj = $("#list_table tr[parent='"+id+"']");
+	if (obj.length>0){
+		obj.each(function(i) {
+			iteraShow($(this).attr('id'), isshow);
+		});
+		if (isshow=='hide'){
+			obj.hide();
+		}else{
+			obj.show();
+		}
+	}
+}
+</script>

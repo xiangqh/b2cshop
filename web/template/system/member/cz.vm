@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>3655订单中心-充值</title>
+<link href="${cssDomain}/css/reset.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/common.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/page.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="${jsDomain}/js/jquery.js"></script>
+</head>
+<body id="bh-member-recharge" class="bh-mbody">
+<!--head begin-->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:HEAD,vmpath:frontpage/member/fkhead.vm")
+<!--head end-->
+<div class="bh-p-content">
+  <div class="bh-content">
+    <div class="bh-section">
+      <div class="bh-bread bh-bigFont"><span class="bh-strong ">我的3655</span>&nbsp;&gt;&nbsp;<span>订单中心</span></div>
+    </div>
+    <div class="bh-section">
+      <div class="bh-sidebar-left">
+         #getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:LEFT,vmpath:frontpage/member/left.vm")
+      </div>
+      <div class="bh-mLeft bh-container">
+        <div class="bh-m-rwrap bh-fr">
+          <div class="bh-zcon">
+            <div class="bh-recharge-zbuzou1">
+            	<div class="bh-overf bh-mBt10">
+                	<s class="bh-zduihao bh-fl"></s>
+              		<div class="bh-fore">我们会在您输入后处理您的充值。</div>
+              	</div>
+                <div class="bh-item">
+                	输入您的金额：<input type="text" class="bh-text" /><span class="bh-red">请输入数字！</span>
+                </div>
+            </div>
+            <div class="bh-recharge-zbuzou2">
+              <div class="bh-overf">
+                <div class="bh-fr"><s class="item-help"></s><a href="#">管理我的快捷支付</a>&nbsp;&nbsp;<a href="#">使用帮助</a> </div>
+              </div>
+            </div>
+            <div class="bh-recharge-zbuzou3">
+              <div class="bh-zztab bh-posRlt">
+                <ul class="bh-tab" style="overflow:visible;">
+                  <li class="bh-on">储蓄卡</li>
+                  <li>信用卡</li>
+                  <li>支付平台</li>
+                </ul>
+                <div class="bh-quickpay">快捷支付</div>
+                <div class="bh-clear"></div> </div>
+              <div class="bh-zzcon">
+                <p class="gray bh-mtop10">请选择在线支付的方式：</p>
+                <p class="bh-mtop10"><span class="bh-strong">网银支付</span>&nbsp;&nbsp;<span class="gray">需开通网银</span></p>
+                <ul class="bh-yinhanglist bh-overf">
+                  <li>
+                    <input class="bh-radio" type="radio">
+                    <a href="#"><img src="${imageDomain}/images/bank/zggsyh.gif" width="142" height="43" /></a></li>
+                  <li>
+                    <input class="bh-radio" type="radio">
+                    <a href="#"><img src="${imageDomain}/images/bank/zgjsyh.gif" width="142" height="43" /></a></li>
+                  <li>
+                    <input class="bh-radio" type="radio">
+                    <a href="#"><img src="${imageDomain}/images/bank/zsyh.gif" width="142" height="43" /></a></li>
+                  <li>
+                    <input class="bh-radio" type="radio">
+                    <a href="#"><img src="${imageDomain}/images/bank/jtyh.gif" width="142" height="43" /></a></li>
+                  <li>
+                    <input class="bh-radio" type="radio">
+                    <a href="#"><img src="${imageDomain}/images/bank/zgnyyh.gif" width="142" height="43" /></a></li>
+                  <li>
+                    <input class="bh-radio" type="radio">
+                    <a href="#"><img src="${imageDomain}/images/bank/gdb.gif" width="142" height="43"/></a></li>
+                  <li>
+                    <input class="bh-radio" type="radio">
+                    <a href="#"><img src="${imageDomain}/images/bank/xyyh.gif" width="142" height="43" /></a></li>
+                  <li>
+                    <input class="bh-radio" type="radio">
+                    <a href="#"><img src="${imageDomain}/images/bank/zggdyh.gif" width="142" height="43"/></a></li>
+                  <li>
+                    <input class="bh-radio" type="radio">
+                    <a href="#"><img src="${imageDomain}/images/bank/zxyh.gif" width="142" height="43" /></a></li>
+                  <li>
+                    <input class="bh-radio" type="radio">
+                    <a href="#"><img src="${imageDomain}/images/bank/pfyh.gif" width="142" height="43" /></a></li>
+                  <li>
+                    <input class="bh-radio" type="radio">
+                    <a href="#"><img src="${imageDomain}/images/bank/zgyh.gif" width="142" height="43" /></a></li>
+                  <li>
+                    <input class="bh-radio" type="radio">
+                    <a href="#"><img src="${imageDomain}/images/bank/szfzyh.gif" width="142" height="43" /></a></li>
+                  <li>
+                    <input class="bh-radio" type="radio">
+                    <a href="#"><img src="${imageDomain}/images/bank/msyh.gif" width="142" height="43" /></a></li>
+                  <li>
+                    <input class="bh-radio" type="radio">
+                    <a href="#"><img src="${imageDomain}/images/bank/bjyh.gif" width="142" height="43" /></a></li>
+                  <li>
+                    <input class="bh-radio" type="radio">
+                    <a href="#"><img src="${imageDomain}/images/bank/hx.gif.jpg" width="140" height="40" /></a></li>
+                  <li>
+                    <input class="bh-radio" type="radio">
+                    <a href="#"><img src="${imageDomain}/images/bank/post.gif" width="142" height="42" /></a></li>
+                  <li>
+                    <input class="bh-radio" type="radio">
+                    <a href="#"><img src="${imageDomain}/images/bank/bohai.gif" width="142" height="43" /></a></li>
+                  <li>
+                    <input class="bh-radio" type="radio">
+                    <a href="#"><img src="${imageDomain}/images/bank/pingan.gif" width="142" height="43" /></a></li>
+                  <li>
+                    <input class="bh-radio" type="radio">
+                    <a href="#"><img src="${imageDomain}/images/bank/nanjing.gif" width="142" height="43" /></a></li>
+                  <li>
+                    <input class="bh-radio" type="radio">
+                    <a href="#"><img src="${imageDomain}/images/bank/hzb.gif" width="142" height="43" /></a></li>
+                </ul>
+
+                <div class="bh-querenbtn"><a href="getOnlinecz.htm">确认支付方式财</a></div>
+		 <div class="bh-querenbtn"><a href="getOnlinePaycz.htm">确认支付方式快</a></div>
+
+		 
+                <a href="getOnlinecz.htm">确认支付方式财</a>
+		<a href="getOnlinePaycz.htm">确认支付方式快</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bh-clear"></div>
+  </div>
+</div>
+<!-- foot begin -->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:FOOT,vmpath:frontpage/member/fkfoot.vm")
+<!-- foot end -->
+</body>
+</html>

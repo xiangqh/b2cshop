@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript" language="javascript" charset="utf-8">
+	window.onload = function(){
+		var _number = document.getElementById("number").value;
+		var _filename = document.getElementById("filename").value;
+		var _imgSpan = parent.document.getElementById("imgspan"+_number);
+		if("ADD" == document.getElementById("opera").value){
+			if(_filename == "FAIL&001"){
+				parent.tip("错误","图片上传失败！");
+			}else{
+				var _url = document.getElementById("url").value;
+				var _path = _url+_filename;
+				var _img = "<img src='"+_path+"'  />";
+				if(_imgSpan.innerHTML.toUpperCase().indexOf("IMG") != -1){
+					_imgSpan.innerHTML = "";
+				}
+				_imgSpan.innerHTML = _img;
+				parent.tip("提示","图片上传成功！");
+			}
+		}else if("DEL" == document.getElementById("opera").value){
+			if(_filename == "FAIL&001"){
+				parent.tip("错误","图片删除失败！");
+			}else{
+				_imgSpan.innerHTML = "";
+				parent.tip("提示","图片删除成功！");
+			}
+		}else{
+			parent.tip("提示","非法操作！");
+		}
+	}
+</script>
+</head>
+
+<body>
+	<input type="hidden" id="opera" name="opera" value="${opera}" />
+	<input type="hidden" id="url" name="url" value="${url}" />
+	<input type="hidden" id="number" name="number" value="${number}" />
+	<input type="hidden" id="filename" name="filename" value="${result}" />
+</body>
+</html>

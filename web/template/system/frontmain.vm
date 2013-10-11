@@ -1,0 +1,450 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>京创在线</title>
+<link rel="stylesheet" type="text/css" href="${cssDomain}/css/reset.css"/>
+<link rel="stylesheet" type="text/css" href="${cssDomain}/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="${cssDomain}/css/page.css"/>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/frontMain.js"></script>
+<script type="text/javascript" src="${jsDomain}/js/jquery-1.2.3.pack.js"></script>
+<script type="text/javascript" src="${jsDomain}/js/jquery.jcarousel.pack.js"></script>
+<script type="text/javascript">
+
+function mycarousel_initCallback(carousel)
+{
+    // Disable autoscrolling if the user clicks the prev or next button.
+    carousel.buttonNext.bind('click', function() {
+        carousel.startAuto(0);
+    });
+
+    carousel.buttonPrev.bind('click', function() {
+        carousel.startAuto(0);
+    });
+
+    // Pause autoscrolling if the user moves with the cursor over the clip.
+    carousel.clip.hover(function() {
+        carousel.stopAuto();
+    }, function() {
+        carousel.startAuto();
+    });
+    
+    $('.ad-gallery-lunbo-1').mouseover(function() {
+        carousel.scroll($.jcarousel.intval($(this).addClass("bh-on").siblings().removeClass("bh-on").end().attr("rel")));
+        carousel.stopAuto();
+        return false;
+      })
+      
+     
+};
+
+jQuery(document).ready(function() {
+    jQuery('#mycarousel').jcarousel({
+        auto: 2,
+        scroll : 1,
+        wrap: 'last',
+        initCallback: mycarousel_initCallback,
+        itemVisibleInCallback:function(carousel, item, idx, state){
+            $('#ad-lunbo-'+idx).addClass("bh-on").siblings().removeClass("bh-on");
+        }
+    });
+});
+
+</script>
+</head>
+<body id="bh-page-index">
+<!--head begin-->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:HEAD,vmpath:frontpage/head.vm")
+<!--head end-->
+<div class="bh-p-content">
+  <div class="bh-content">
+    <div class="bh-section">
+      <div class="bh-sidebar-left"></div>
+      <div class="bh-sidebar-right">
+        <div class="bh-bz"><img src="${imageDomain}/images/bz1.gif" width="86" height="93" /><img src="${imageDomain}/images/bz2.gif" width="86" height="93" /><img src="${imageDomain}/images/bz3.gif" width="86" height="93" /></div>
+        <div class="bh-mtop10 bh-news">
+          <ul class="bh-ztab">
+            <li id="fh" class="bh-item bh-on" onmousemove="over('fh')">发货信息</li>
+            <li id="gg" class="bh-item " onmousemove="over('gg')">公告资讯</li>
+            <li id="xp" class="bh-item " onmousemove="over('xp')" style="margin-right:0;">新品促销</li>
+          </ul>
+          <div class="bh-zcon bh-on" id="fh-zcon">
+            #getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:ORDER,vmpath:frontpage/shipments.vm")
+          </div>
+          <div class="bh-zcon" id="gg-zcon">
+			#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:NEWS,group_name:1111,count:10,vmpath:frontpage/news.vm")
+          </div>
+          <div class="bh-zcon" id="xp-zcon">
+		    #getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:NEWS,group_name:新品促销,count:10,vmpath:frontpage/news.vm")
+		  </div>
+		  <script >
+		    function over(id){
+			     $(".bh-item").removeClass("bh-on");
+			     $("#"+id).addClass("bh-on");
+			     $(".bh-zcon").removeClass("bh-on");
+				 $("#"+id+"-zcon").addClass("bh-on");
+			}
+		      
+          </script>
+        </div>
+        <div class="bh-weibo bh-overf bh-mtop10"> <a href="#" class="bh-fl"><img src="${request.getContextPath()}/frontpage/images/weibo1.jpg" width="123" height="54" /></a><a href="#" class="bh-fr"><img src="${request.getContextPath()}/frontpage/images/weibo2.jpg" width="123" height="54" /></a> </div>
+      </div>
+      <div class="bh-mLeft bh-mRight bh-container">
+        <div class="bh-banner">
+          <div id="kp-ad-box-1">
+            <div class="show_img">
+            	<ul id="mycarousel" class="jcarousel-skin-tango hang gallery-panel">
+            		#foreach($row in $a_sy_l)
+				    	<li><img src="${imageHttp}/${row.path}" width="${row.width}" height="${row.height}" alt="" /></li>
+				    #end
+				</ul>
+
+            </div>
+            <ul class="ad-num gallery-nav">
+            	#foreach($a in $a_sy_l)
+            		<li class="ad-gallery-lunbo-1" id="ad-lunbo-$velocityCount" rel="$velocityCount"><a>$velocityCount</a></li>
+			    #end
+            </ul>
+          </div>
+        </div>
+        <div class="bh-mtop5 bh-cgal">
+          <marquee>
+          <a href="#">[成交案例]让您降低成本轻松采购！</a>&nbsp;<a href="#">[成交案例]让您降低成本轻松采购！</a>&nbsp;<a href="#">[成交案例]让您降低成本轻松采购！</a>
+          </marquee>
+        </div>
+      </div>
+    </div>
+    <div class="bh-section bh-mtop10">
+      <div class="bh-sidebar-left">
+        <div class="bh-ppcx">
+          <div class="bh-ztab-1"> <a target="_blank" href="$!{scpath}/allcategorys.htm?t=brand" class="bh-fr">更多>></a>
+            <h3 class="bh-bigFont">品牌促销</h3>
+          </div>
+          <div class="bh-zcon bh-overf">
+            <dl>
+              <dt class="bh-ppcx-borderb">
+              	<a href="javascript:;">
+              		<img src="${request.getContextPath()}/frontpage/images/templ/brand-big.jpg" width="198" height="85" />
+              	</a>
+              </dt>
+              #foreach($row in $b_cx_l)
+              	 <dd class="bh-ppcx-borderb #if($velocityCount%2 == 1) bh-ppcx-border #end">
+              	 	<a href="javascript:;">
+              	 		<img src="${brandLogoDomain}/${row.logo}" title="${row.name}" width="98" height="60" />
+              	 	</a>
+              	 </dd>
+              #end
+            </dl>
+          </div>
+        </div>
+      </div>
+      <div class="bh-sidebar-right">
+        <div class="bh-jydt-ztdd">
+          <div class="bh-ztab-1">
+            <h3 class="bh-bigFont">交易大厅-组团订单</h3>
+          </div>
+          <div class="bh-zcon">
+            <div class="bh-ztdd-l"></div>
+            <div class="bh-ztdd-r"></div>
+            <div class="bh-pd">
+              <div class="bh-img"><img src="${request.getContextPath()}/frontpage/images/templ/ztdd-pd.jpg" width="226" height="125" /></div>
+              <div class="bh-time">
+                <div class="bh-djs"><span>3</span>时<span>53</span>分<span>17</span>秒<span>5</span></div>
+                <div class="bh-start-time">开团时间：2011-05-22&nbsp;08:30</div>
+                <div class="bh-end-time">结束时间：2011-05-22&nbsp;08:30</div>
+              </div>
+              <div class="bh-btn"><a href="#"><img src="${request.getContextPath()}/frontpage/images/ztdd-btn.jpg" width="105" height="28" /></a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      #getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:WINDOW,ids:2-3-4-5,count:4,imgpos:1_1,vmpath:frontpage/common/mainshowcase.vm")
+      
+    <div class="bh-section bh-mtop10">
+      <div class="bh-sidebar-left">
+      	<div class="bh-ad bh-ad1">
+         #getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:AD,id:51,vmpath:frontpage/common/adImage.vm")
+      	</div>
+      </div>
+      <div class=" bh-container bh-mLeft">
+        <div class="bh-banner-ad">
+          #getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:AD,id:52,vmpath:frontpage/common/adFlash.vm")
+        </div>
+      </div>
+    </div>
+    <div class="bh-section bh-mtop10">
+      <div class="bh-tong-brand"> 
+      	<a target="_blank" href="$!{scpath}/allcategorys.htm?t=brand" class="bh-more">更多品牌>></a>
+      	#foreach($row in $b_hb_l)
+      		<a href="$!{scpath}/getSearchList.htm?keyName=&brandName=${row.name}"><img src="${brandLogoDomain}/${row.logo}" title="${row.name}" width="98" height="38" /></a>
+        #end
+      </div>
+    </div>
+    <div class="bh-section bh-mtop10">
+      <div class="bh-sidebar-right bh-posRlt">
+        <div class="bh-small-right">
+          <div class="bh-waityou">
+            <div class="bh-com-tab bh-com-bigtab bh-one bh-bigFont bh-strong"> 最新竞购订单-等待您的出席！ </div>
+            <div class="bh-zcon bh-overf" style="height:625px;">
+              <div class="bh-m-window">
+                <ul>
+                  <li class="bh-img"><a target="_blank" href="#"><img src="${request.getContextPath()}/frontpage/images/templ/pd2.gif" width="213" height="170" /></a><span class="huodong"></span></li>
+                  <li> <a target="_blank" href="/product/${goods.gd_id}.html" title="$goods.gd_name" class="bh-p-title">包邮 ！全新 摩托罗拉 ME501/MB501/最新2.1/2.3 1220.00￥1050.00诺基亚 C5-03 C503最新</a></li>
+                  <li><span>购买台数：2台</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>竞价企业：5家</span></li>
+                  <li class="bh-textCt bh-red bh-loading">正在竞价中${request.getContextPath()}/frontpage.</li>
+                  <li class="bh-textCt"><a href="#"><img src="${request.getContextPath()}/frontpage/images/wyjj.gif" width="105" height="28" /></a></li>
+                </ul>
+              </div>
+              <div class="bh-m-window">
+                <ul>
+                  <li class="bh-img"><a target="_blank" href="#"><img src="${request.getContextPath()}/frontpage/images/templ/pd2.gif" width="213" height="170" /></a><span class="huodong"></span></li>
+                  <li> <a target="_blank" href="/product/${goods.gd_id}.html" title="$goods.gd_name" class="bh-p-title">包邮 ！全新 摩托罗拉 ME501/MB501/最新2.1/2.3 1220.00￥1050.00诺基亚 C5-03 C503最新</a></li>
+                  <li><span>购买台数：2台</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>竞价企业：5家</span></li>
+                  <li class="bh-textCt bh-red bh-loading">正在竞价中${request.getContextPath()}/frontpage.</li>
+                  <li class="bh-textCt"><a href="#"><img src="${request.getContextPath()}/frontpage/images/wyjj.gif" width="105" height="28" /></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      #getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:WINDOW,ids:7-8-9-10-11-12,count:8,imgpos:1_1,vmpath:frontpage/common/showcase01.vm")
+    <div class="bh-section bh-mtop10">
+      <div class="bh-sidebar-left">
+        <div class="bh-new-pp">
+          <div class="bh-ztab-2"><a href="#" class="bh-fr">更多>></a>
+            <h3 class="bh-bigFont">最新入驻品牌</h3>
+          </div>
+          <div class="bh-zcon bh-overf">
+            <dl>
+              #foreach($row in $b_hb_l)
+      			<dd #if($velocityCount%2 == 1) class="bh-borderr" #end>
+      				<a href="javascript:;">
+      					<img src="${brandLogoDomain}/${row.logo}" width="98" height="38" title="${row.name}"/>
+      				</a>
+      			</dd>
+        	  #end
+            </dl>
+          </div>
+        </div>
+      </div>
+      <div class="bh-sidebar-right">
+        <div class="bh-small-right">
+          <div class="bh-waityou">
+            <div class="bh-com-tab bh-com-smalltab bh-one bh-bigFont bh-strong"> 最新自由询价信息-等待您的出席！ </div>
+            <div class="bh-zcon bh-overf">
+              <div class="bh-m-window">
+                <ul>
+                  <li class="bh-img"><a target="_blank" href="#"><img src="${request.getContextPath()}/frontpage/images/templ/pd2.gif" width="213" height="170" /></a><span class="huodong"></span></li>
+                  <li> <a target="_blank" href="/product/${goods.gd_id}.html" title="$goods.gd_name" class="bh-p-title">包邮 ！全新 摩托罗拉 ME501/MB501/最新2.1/2.3 1220.00￥1050.00诺基亚 C5-03 C503最新</a></li>
+                  <li><span>购买台数：2台</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>竞价企业：5家</span></li>
+                  <li class="bh-textCt bh-red bh-loading">正在竞价中${request.getContextPath()}/frontpage.</li>
+                  <li class="bh-textCt"><a href="#"><img src="${request.getContextPath()}/frontpage/images/wyjj.gif" width="105" height="28" /></a></li>
+                </ul>
+              </div>
+              <div class="bh-m-window">
+                <ul>
+                  <li class="bh-img"><a target="_blank" href="#"><img src="${request.getContextPath()}/frontpage/images/templ/pd2.gif" width="213" height="170" /></a><span class="huodong"></span></li>
+                  <li> <a target="_blank" href="/product/${goods.gd_id}.html" title="$goods.gd_name" class="bh-p-title">包邮 ！全新 摩托罗拉 ME501/MB501/最新2.1/2.3 1220.00￥1050.00诺基亚 C5-03 C503最新</a></li>
+                  <li><span>购买台数：2台</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>竞价企业：5家</span></li>
+                  <li class="bh-textCt bh-red bh-loading">正在竞价中${request.getContextPath()}/frontpage.</li>
+                  <li class="bh-textCt"><a href="#"><img src="${request.getContextPath()}/frontpage/images/wyjj.gif" width="105" height="28" /></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      #getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:WINDOW,ids:14-15-16-17-18,count:6,navclass:bh-five-tab,random:1,imgpos:1_1,vmpath:frontpage/common/showcase02.vm")
+    </div>
+    <div class="bh-section bh-mtop10">
+      <div class="bh-tong-brand"> <a target="_blank" href="$!{scpath}/allcategorys.htm?t=brand" class="bh-more">更多品牌>></a>
+       #foreach($row in $b_hb_l)
+      		<a href="$!{scpath}/getSearchList.htm?keyName=&brandName=${row.name}"><img src="${brandLogoDomain}/${row.logo}" title="${row.name}" width="98" height="38" /></a>
+        #end
+      </div>
+    </div>
+    <div class="bh-section bh-mtop10">
+      <div class="bh-sidebar-left">
+        <div class="bh-peidian">
+          <div class="bh-ztab-2">
+            <h3 class=" bh-bigFont">电器电工商品</h3>
+          </div>
+          <div class="bh-zcon bh-three-smalltab" id="goodssell_div">
+	           <script language="javascript">
+	                 	 $.ajax({
+							url: 'getgoodssell.htm?cates=22,105,106',
+							type: 'GET',
+							dataType: 'html',
+							success: function(data){$("#goodssell_div").html(data);}
+						});
+	          </script>
+          </div>
+        </div>
+      </div>
+      <div class="bh-sidebar-right">
+        <div class="bh-small-right">
+          <div class="bh-waityou">
+            <div class="bh-com-tab bh-com-smalltab bh-one bh-bigFont bh-strong"> 最新组团竞购订单-等待您的出席！ </div>
+            <div class="bh-zcon bh-overf">
+              <div class="bh-m-window">
+                <ul>
+                  <li class="bh-img"><a target="_blank" href="#"><img src="${request.getContextPath()}/frontpage/images/templ/pd2.gif" width="213" height="170" /></a><span class="huodong"></span></li>
+                  <li> <a target="_blank" href="/product/${goods.gd_id}.html" title="$goods.gd_name" class="bh-p-title">包邮 ！全新 摩托罗拉 ME501/MB501/最新2.1/2.3 1220.00￥1050.00诺基亚 C5-03 C503最新</a></li>
+                  <li><span>购买台数：2台</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>竞价企业：5家</span></li>
+                  <li class="bh-textCt bh-red bh-loading">正在竞价中${request.getContextPath()}/frontpage.</li>
+                  <li class="bh-textCt"><a href="#"><img src="${request.getContextPath()}/frontpage/images/wyjj.gif" width="105" height="28" /></a></li>
+                </ul>
+              </div>
+              <div class="bh-m-window">
+                <ul>
+                  <li class="bh-img"><a target="_blank" href="#"><img src="${request.getContextPath()}/frontpage/images/templ/pd2.gif" width="213" height="170" /></a><span class="huodong"></span></li>
+                  <li> <a target="_blank" href="/product/${goods.gd_id}.html" title="$goods.gd_name" class="bh-p-title">包邮 ！全新 摩托罗拉 ME501/MB501/最新2.1/2.3 1220.00￥1050.00诺基亚 C5-03 C503最新</a></li>
+                  <li><span>购买台数：2台</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>竞价企业：5家</span></li>
+                  <li class="bh-textCt bh-red bh-loading">正在竞价中${request.getContextPath()}/frontpage.</li>
+                  <li class="bh-textCt"><a href="#"><img src="${request.getContextPath()}/frontpage/images/wyjj.gif" width="105" height="28" /></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      #getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:WINDOW,ids:20-21-22-23,count:6,navclass:bh-four-bigtab,random:1,imgpos:1_1,vmpath:frontpage/common/showcase02.vm")
+    </div>
+    <div class="bh-section bh-mtop10">
+      <div class="bh-tong-brand"> <a target="_blank" href="$!{scpath}/allcategorys.htm?t=brand" class="bh-more">更多品牌>></a>
+       #foreach($row in $b_hb_l)
+      		<a href="$!{scpath}/getSearchList.htm?keyName=&brandName=${row.name}"><img src="${brandLogoDomain}/${row.logo}" title="${row.name}" width="98" height="38" /></a>
+       #end 
+     </div>
+    </div>
+    <div class="bh-section bh-mtop10">
+      <div class="bh-sidebar-left">
+        <div class="bh-diangong">
+          <div class="bh-ztab-2">
+            <h3 class="bh-bigFont">${f_c_n1}</h3>
+          </div>
+          <div class="bh-zcon bh-overf">
+            <dl>
+            	#foreach($row in $f_c_ls_1)
+            		<dd><a href="javascript:;">${row.name}</a></dd>
+            	#end
+            </dl>
+          </div>
+        </div>
+        <div class="bh-3cpd bh-mtop10">
+          <div class="bh-ztab-2">
+            <h3 class="bh-bigFont">${f_c_n2}</h3>
+          </div>
+          <div class="bh-zcon ">
+            <dl class="bh-overf">
+              #foreach($row in $f_c_ls_2)
+            		<dd><a href="javascript:;">${row.name}</a></dd>
+            	#end
+            </dl>
+            <div class="bh-ad bh-mtop5"><a href="#"><img src="${request.getContextPath()}/frontpage/images/templ/ad2.gif" width="178" height="115" /></a></div>
+          </div>
+        </div>
+      </div>
+      <div class="bh-sidebar-right">
+        <div class="bh-small-right"><div class="bh-buy-comment">
+          <div class="bh-com-tab bh-com-smalltab bh-two bh-bigFont bh-strong bh-red">购买用户点评</div>
+          <div class="bh-zcon bh-overf">
+          	#foreach($row in $cmm_6)
+          		<div class="bh-m-window2">
+	              <dl class="bh-overf">
+	                <dt class="bh-img bh-fl"><a target="_blank" href="$!{scpath}/showgoods.htm?gs=${row.goodsId}" title="${row.goodsName}"><img src="${commodityImgsDomain}/${row.goodsCate}/${row.goodsId}_1_4.${row.goodsImgSuffix}" width="79" height="75"/></a></dt>
+	                <dd class="bh-fr bh-message"><a target="_blank" href="$!{scpath}/showgoods.htm?gs=${row.goodsId}" class="bh-p-title bh-show">${row.getGoodsNameLimit()}</a><span>${row.commentTime}</span><br />
+	                  <p>${row.advantage}</p>
+	                </dd>
+	              </dl>
+	            </div>
+          	#end
+          </div>
+        </div></div>
+      </div>
+      #getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:WINDOW,ids:25-26-27-28-29-30-31,count:6,navclass:bh-seven-tab,random:1,imgpos:1_1,vmpath:frontpage/common/showcase02.vm")
+    </div>
+    <div class="bh-section bh-mtop10">
+      <div class="bh-all-solution bh-fl">
+        <div class="bh-com-tab1">
+          <h3 class="bh-bigFont">整体解决方案</h3>
+        </div>
+        <div class="bh-zcon">
+          <div class="bh-ad" style="padding-top:12px;"><img src="${request.getContextPath()}/frontpage/images/s1.gif" width="173" height="69" /></div>
+          <div class="bh-ad" style="padding-top:25px;"><img src="${request.getContextPath()}/frontpage/images/s2.gif" width="173" height="69" /></div>
+        </div>
+      </div>
+      <div class="bh-success bh-fl">
+        <div class="bh-com-tab1">
+          <h3 class="bh-bigFont">案例</h3>
+        </div>
+        <div class="bh-zcon">
+          <ul>
+            <li class="bh-img"><a href="#"><img src="${request.getContextPath()}/frontpage/images/s3.gif" width="154" height="58" /></a></li>
+            <li><a href="#" class=" bh-p-title">生产采购方案解决应用案例</a></li>
+          </ul>
+          <ul>
+            <li class="bh-img"><a href="#"><img src="${request.getContextPath()}/frontpage/images/s3.gif" width="154" height="58" /></a></li>
+            <li><a href="#" class=" bh-p-title">生产采购方案解决应用案例</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="bh-media bh-fl">
+        <div class="bh-com-tab1"><a href="#" class="bh-fr bh-mR10">更多>></a>
+          <h3 class="bh-bigFont">媒体看3655</h3>
+        </div>
+        <div class="bh-zcon">
+          <ul>
+            <li><a href="#">腾讯---3655首推即使竞价，购物方便</a></li>
+            <li><a href="#">腾讯---3655首推即使竞价，购物方便</a></li>
+            <li><a href="#">腾讯---3655首推即使竞价，购物方便</a></li>
+            <li><a href="#">腾讯---3655首推即使竞价，购物方便</a></li>
+            <li><a href="#">腾讯---3655首推即使竞价，购物方便</a></li>
+            <li><a href="#">腾讯---3655首推即使竞价，购物方便</a></li>
+            <li><a href="#">腾讯---3655首推即使竞价，购物方便</a></li>
+            <li><a href="#">腾讯---3655首推即使竞价，购物方便</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="bh-user-help bh-fl">
+        <div class="bh-com-tab1">
+          <h3 class="bh-bigFont">采购用户帮助</h3>
+        </div>
+        <div class="bh-zcon">
+          <ul>
+            <li><a href="#">发单采购</a></li>
+            <li><a href="#">发单采购</a></li>
+            <li><a href="#">发单采购</a></li>
+            <li><a href="#">发单采购</a></li>
+            <li><a href="#">发单采购</a></li>
+            <li><a href="#">发单采购</a></li>
+            <li style="border:0 none;"><a href="#">发单采购</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="bh-supply-help bh-fl">
+        <div class="bh-com-tab1">
+          <h3 class="bh-bigFont">供应商帮助</h3>
+        </div>
+        <div class="bh-zcon">
+          <ul>
+            <li><a href="#">发单采购</a></li>
+            <li><a href="#">发单采购</a></li>
+            <li><a href="#">发单采购</a></li>
+            <li><a href="#">发单采购</a></li>
+            <li><a href="#">发单采购</a></li>
+            <li><a href="#">发单采购</a></li>
+            <li style="border:0 none;"><a href="#">发单采购</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- foot begin -->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:FOOT,vmpath:frontpage/foot.vm")
+<!-- foot end -->
+</body>
+</html>

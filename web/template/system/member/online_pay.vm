@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>3655订单中心-账户安全</title>
+<link href="${cssDomain}/css/reset.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/common.css" type="text/css" rel="stylesheet"/>
+<link href="${cssDomain}/css/page.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="${jsDomain}/js/jquery.js"></script>
+<script type="text/javascript" src="${jsDomain}/js/jquery.cookie.js"></script>
+</head>
+<body id="bh-member-safe" class="bh-mbody">
+<!--head begin-->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:HEAD,vmpath:frontpage/member/fkhead.vm")
+<!--head end-->
+<!--head end-->
+<div class="bh-p-content">
+  <div class="bh-content">
+    <div class="bh-section">
+      <div class="bh-bread bh-bigFont"><span class="bh-strong ">我的3655</span>&nbsp;&gt;&nbsp;<span>在线支付</span></div>
+    </div>
+    <div class="bh-section">
+      <div class="bh-sidebar-left">
+         #getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:LEFT,vmpath:frontpage/member/left.vm")
+      </div>
+      <div class="bh-mLeft bh-container">
+        <div class="bh-m-rwrap">
+          <div class="bh-order bh-attention">
+            <div class="bh-ztab bh-member-ztab">
+              <h1>在线支付</h1>
+            </div>
+            <script type="text/javascript">
+            function href_url(){
+            //type :1:财富通 2:快钱
+            var type=$('input:radio[name="onlinep"]:checked').val(); 
+            var orderId=$("#orderId").val();
+            if(type==1){
+            window.location.href="$!{scpath}/getOnlinePay.htm?id="+orderId;
+            }
+            if(type==2){
+             window.location.href="$!{scpath}/getOnlinePayKq.htm?id="+orderId;
+            }
+            
+            }
+            </script>
+            <div class="bh-zcon bh-mtop5">
+              <div class="bh-dingyue-message"><span class="bh-red">温馨提示：</span>请您确定支付金额及订单编号，在以下支付方式中选择付款，如有其他疑问请拨打服务热线：400-800-3655</div>
+              <div class="bh-onlinepay">
+                <div class="bh-input-text">
+               <!-- 
+                 支付金额：&nbsp;
+                  <input type="text" value="100.00" class="bh-text bh-small-text"/>
+                  (如：<span class=" bh-red">100.00</span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->涉及订单：&nbsp;
+                  <input type="text" name="orderId" id="orderId" value="" class="bh-text bh-long-text"/>
+                  &nbsp;<span class=" bh-red">*</span>(订单编号)</div>
+                <div class="bh-paytype">
+                  <h2 class="bh-bigFont bh-padB10">支持以下银行或机构在线支付：</h2>
+                  <ol class="bh-yinhanglist bh-overf">
+                    
+                      <input class="bh-radio" type="radio"  name="onlinep" value="1" checked="checked">
+                      <a href="javascript:void(0); " onclick="href_url();" ><img src="${imageDomain}/images/bank/y_cft.gif" width="142" height="43" /></a></li>
+                    <li>
+                      <input class="bh-radio" type="radio" name="onlinep" value="2">
+                      <a href="javascript:void(0); " onclick="href_url();" ><img src="${imageDomain}/images/bank/y_kq.gif" width="142" height="43" /></a></li>
+                   <!--
+                   <li>
+                      <input class="bh-radio" type="radio">
+                      <a href="#"><img src="../../images/bank/zfb.jpg" width="142" height="43" /></a></li>
+                    <li>
+                    <li>
+                      <input class="bh-radio" type="radio">
+                      <a href="#"><img src="../../images/bank/zggsyh.gif" width="142" height="43" /></a></li>
+                    <li>
+                      <input class="bh-radio" type="radio">
+                      <a href="#"><img src="../../images/bank/zsyh.gif" width="142" height="43" /></a></li>
+                    <li>
+                      <input class="bh-radio" type="radio">
+                      <a href="#"><img src="../../images/bank/zgjsyh.gif" width="142" height="43"/></a></li>
+                    <li>
+                      <input class="bh-radio" type="radio">
+                      <a href="#"><img src="../../images/bank/zgnyyh.gif" width="142" height="43" /></a></li>
+                    <li>
+                      <input class="bh-radio" type="radio">
+                      <a href="#"><img src="../../images/bank/pfyh.gif" width="142" height="43"/></a></li>
+                    <li>
+                      <input class="bh-radio" type="radio">
+                      <a href="#"><img src="../../images/bank/szfzyh.gif" width="142" height="43"/></a></li>
+                    <li>
+                      <input class="bh-radio" type="radio">
+                      <a href="#"><img src="../../images/bank/xyyh.gif" width="142" height="43" /></a></li>
+                    <li>
+                      <input class="bh-radio" type="radio">
+                      <a href="#"><img src="../../images/bank/jtyh.gif" width="142" height="43" /></a></li>
+                    <li>
+                      <input class="bh-radio" type="radio">
+                      <a href="#"><img src="../../images/bank/zggdyh.gif" width="142" height="43" /></a></li>
+                    <li>
+                      <input class="bh-radio" type="radio">
+                      <a href="#"><img src="../../images/bank/msyh.gif" width="142" height="43" /></a></li>
+                    <li>
+                      <input class="bh-radio" type="radio">
+                      <a href="#"><img src="../../images/bank/zxyh.gif" width="142" height="43" /></a></li>
+                    <li>
+                      <input class="bh-radio" type="radio">
+                      <a href="#"><img src="../../images/bank/gdfzyh.gif" width="142" height="43" /></a></li>
+                    <li>
+                      <input class="bh-radio" type="radio">
+                      <a href="#"><img src="../../images/bank/pingan.gif" width="142" height="43" /></a></li>
+                    <li>
+                      <input class="bh-radio" type="radio">
+                      <a href="#"><img src="../../images/bank/zgyh.gif" width="142" height="43" /></a></li>-->
+                  </ol>
+                  <div class=" bh-textCt bh-bigFont"><a href="#" onclick="href_url();">
+                <img src="${imageDomain}/images/querenbtn.gif" />  
+                  </a></div>
+                </div>
+                <div class="bh-hint bh-mTop20">说明：<br />
+                1、本处提供的支付手段主要为遇到支付限额问题时进行多次支付，正常订单支付请务必进入您的订单，在订单下方可以选择各种在线支付方式。
+                否则会延缓您的汇款确认时间。<br />
+                2、支付时请输入相应订单号及支付金额，我们可以正常确认您的多次汇款，如遇一个支付平台只能支付一次，请更换其他支付平台支付。</div>
+                 </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bh-clear"></div>
+  </div>
+</div>
+
+<!-- foot begin -->
+#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:FOOT,vmpath:frontpage/member/fkfoot.vm")
+<!-- foot end -->
+</body>
+</html>

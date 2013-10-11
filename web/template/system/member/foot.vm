@@ -1,0 +1,71 @@
+<!-- foot begin -->
+<div class="bh-p-foot bh-mtop10">
+  <div class="bh-foot">
+    <div class="bh-section">
+      <!-- module foot begin -->
+      <div id="bh-m-foot">
+        <div class="bh-ser-wrapall">
+          <div class="bh-ser-wrap">
+            <div class="bh-service bh-overf">
+              <div class="bh-service-message bh-fr bh-textCt"><span class="bh-red bh-strong">全国客服：400-800-3655</span><br />
+                服务时间（9:00-21:00）<br />
+                <a href="#" class="bh-mR10">在线咨询</a><a href="#">投诉中心</a></div>
+              <div class="bh-fore bh-overf bh-fl">
+                <dl class="bh-fore1">
+                  <dt><b></b><strong>关于支付</strong></dt>
+                  <dd>
+                    <div class="bh-item bh-overf"><a target="_blank" href="#">购物流程</a></div>
+                    <div class="bh-item bh-overf"><a target="_blank" href="#">支付方式</a></div>
+                    <div class="bh-item bh-overf"><a target="_blank" href="#">支付相关问题</a></div>
+                  </dd>
+                </dl>
+                <dl class="bh-fore2">
+                  <dt><b></b><strong>关于配送</strong></dt>
+                  <dd>
+                    <div class="bh-item bh-overf"><a target="_blank" href="#">配送方式</a></div>
+                    <div class="bh-item bh-overf"><a target="_blank" href="#">配送流程</a></div>
+                    <div class="bh-item bh-overf"><a target="_blank" href="#">全程运输保险</a></div>
+                  </dd>
+                </dl>
+                <dl class="bh-fore3">
+                  <dt><b></b><strong>售后服务</strong></dt>
+                  <dd>
+                    <div class="bh-item bh-overf"><a target="_blank" href="#">品质保证</a></div>
+                    <div class="bh-item bh-overf"><a target="_blank" href="#">回收条款</a></div>
+                    <div class="bh-item bh-overf"><a target="_blank" href="#">15天退换货承诺</a></div>
+                  </dd>
+                </dl>
+                <dl class="bh-fore4">
+                  <dt><b></b><strong>客服中心</strong></dt>
+                  <dd>
+                    <div class="bh-item bh-overf"><a target="_blank" href="#">找回密码</a></div>
+                    <div class="bh-item bh-overf"><a target="_blank" href="#">会员制度</a></div>
+                    <div class="bh-item bh-overf"><a target="_blank" href="#">常见热点问题</a></div>
+                  </dd>
+                </dl>
+                <dl class="bh-fore5">
+                  <dt><b></b><strong>关于我们</strong></dt>
+                  <dd>
+                    <div class="bh-item bh-overf"><a target="_blank" href="#">权威认证</a></div>
+                    <div class="bh-item bh-overf"><a target="_blank" href="#">招聘信息</a></div>
+                    <div class="bh-item bh-overf"><a target="_blank" href="#">联系我们</a></div>
+                  </dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- module foot end -->
+    </div>
+    <div class="bh-section" style="display:none">
+      <!-- module copyright begin -->
+      <div id="bh-m-copyright">
+        <p class="bh-textCt bh-link"><a href="#">加入商城</a> | <a href="#">广告服务</a> | <a href="#">法律声明</a> | <a href="#">帮助中心</a> | <a href="#">联系我们</a></p>
+        <p class="bh-textCt bh-mTop20 bh-mBt20">服务热线：400-628-5179 传真：021-66362636<br />
+          Copyright©2010 酒博会 http://www.9bohui.cn All Rights 沪ICP备10040069号-1</p>
+      </div>
+      <!-- module copyright end -->
+    </div>
+  </div>
+</div>

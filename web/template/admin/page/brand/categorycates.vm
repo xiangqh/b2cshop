@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>首页分类列表</title>
+<link href="${request.getContextPath()}/css/admin.css" rel="stylesheet">
+<link href="${request.getContextPath()}/css/style.css" rel="stylesheet">
+<script type="text/javascript" charset="utf-8" language="javascript" src="${request.getContextPath()}/js/jquery.js"></script>
+</head>
+
+<body>
+<div id="admin_right">
+	<div class="headbar">
+	<div class="field">
+		<table class="list_table">
+		<colgroup>
+		<col width="400px" />
+		<col/>
+			</colgroup><thead>
+				<tr id="headth" class="">
+					<th>选择</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+<div class="content">
+	<input type="hidden" id="h_id" value="${id}" />
+	<table class="list_table" id="list_table">
+		<tbody>
+			#foreach($row in $list)
+			<tr>
+				<td><input name="ccbox" type="checkbox" value="${row.id}"/>${row.name}</td>
+			</tr>
+			#end
+		</tbody>
+	</table>
+</div>
+	</div>
+</body>
+</html>

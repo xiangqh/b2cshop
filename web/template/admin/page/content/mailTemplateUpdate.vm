@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>编辑模板</title>
+    <link href="css/admin.css" rel="stylesheet">
+    <link href="css/art.css" rel="stylesheet">
+	<link href="css/default.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+    <script src="js/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript" src="fckeditor/fckeditor.js"></script>
+	<script type="text/javascript" src="${request.getContextPath()}/js/xheditor.js"></script>
+  </head>
+  <body>
+  #getMothodSc("moduleName=admin.action.Common" "parameters=tag:1,vmpath:admin/head.vm,level:2,level2:36")
+    <div id="admin_right">
+		<div class="headbar clearfix">
+			<div class="position"><span>内容管理</span><span>&gt;</span><span>邮件短信设置</span><span>&gt;</span><span>编辑模板</span></div>
+		</div>
+		<div class="content_box">
+			<div class="content form_content">
+				<form method="post" action="saveMsgTemplate.htm" onsubmit="return getcontent()">
+					<table class="form_table">
+						<colgroup>
+							<col width="150px">
+							<col>
+						</colgroup>
+						<tbody>
+						<input type="hidden" name="id" value="$!{template.id}"/>
+							<tr>
+								<th>邮件标题：</th><td><input type="text" value="$!{template.title}" name="title" class=""></td>
+							</tr>
+							<tr>
+								<th>模板说明：</th><td><input type="text" value="$!{template.directions}" name="variable"/></td>
+							</tr>
+							<tr>
+								<th valign="top">模板内容：</th>
+								<td>
+									<textarea  class="htmlEditor"  name="content" rows="50" cols="80" style="width: 80%;height:300px;">
+                            			$!{template.content}
+                            		</textarea>
+								</td>
+							</tr>
+							<tr>
+								<th></th><td><button type="submit" class="submit"><span>确定</span></button></td>
+							</tr>
+						</tbody>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
+	#getMothodSc("moduleName=admin.action.Common" "parameters=tag:2,vmpath:admin/foot.vm");
+  </body>
+</html>

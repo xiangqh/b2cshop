@@ -1,0 +1,282 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>分类列表</title>
+<link href="${request.getContextPath()}/css/admin.css" rel="stylesheet">
+<link href="${request.getContextPath()}/css/style.css" rel="stylesheet">
+<link href="${request.getContextPath()}/css/artDialog.css" rel="stylesheet">
+<script type="text/javascript" charset="utf-8" language="javascript" src="${request.getContextPath()}/js/util.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${request.getContextPath()}/js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${request.getContextPath()}/js/artDialog.js"></script>
+
+</head>
+
+<body>
+#getMothodSc("moduleName=admin.action.Common" "parameters=tag:1,vmpath:admin/head.vm,level:3,level2:26");
+<div id="admin_right">
+	<div class="headbar">
+	<div class="position"><span>商品</span><span>&gt;</span><span>商品分类管理</span><span>&gt;</span><span>分类列表</span></div>
+	<div class="searchbar">
+		<a href="javascript:;"><button onclick="location.href='${request.getContextPath()}/tocgedit.htm?opera=0';" type="button" class="btn"><span>添加分类</span></button></a>
+	</div>
+	<div class="field">
+		<table class="list_table">
+		<colgroup>
+		<col width="200px">
+		<col width="150px">
+		<col width="100px">
+		<col width="70px">
+		<col width="70px">
+		<col width="70px">
+			</colgroup><thead>
+				<tr id="headth" class="">
+					<th>分类名称[ID]</th>
+					<th>品类名称</th>
+					<th>排序号</th>
+					<th>推荐</th>
+					<th class="t_c">首页显示</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+<form name="category_list" method="post" action="">
+<div class="content">
+	<table class="list_table" id="list_table">
+		<colgroup>
+		<col width="200px">
+		<col width="150px">
+		<col width="100px">
+		<col width="70px">
+		<col width="70px">
+		<col width="70px">
+			</colgroup>
+		<tbody id="conth">
+			#foreach($row in $list_category)
+			<tr parent="${row.parent_id}" id="${row.id}" #if(${row.parent_id} > 0 || ${row.childNum} == 0) style="display:none;" #end>
+				<td style="padding-left: ${row.levelNum}px;width:300px;" class="switch">
+				#if(${row.childNum} > 0)<img title="打开" src="${request.getContextPath()}/image/open.gif" class="operator">#end
+				${row.name}[${row.id}]</td>
+				<td style="width:150px;">$!{row.bname}</td>
+				<td style="width:100px;">
+					<input type="hidden" value="${row.sort}" id="hid_sort_${row.id}">
+					<input title="排序，正整数" id="sort_${row.id}" type="text" value="${row.sort}" size="2" class="tiny" maxlength="7">
+					<img title="更改" src="${request.getContextPath()}/image/m1/right.png" class="operator" style="display:''" onclick="_updSort(this,${row.id},${row.parent_id});">
+				</td>
+				<td>
+					#if(${row.childNum} == 0)
+					  <a href="${request.getContextPath()}/getRecInvList.htm?cateId=${row.id}">
+					  	<img title="编辑推荐货品" src="${request.getContextPath()}/image/m1/pen.png" class="operator">
+					  </a>
+					  #end
+			    </td>
+				<td class="t_c" style="width:100px;"><span class="green">#if(${row.visibility}==1) 是 #else 否 #end</span></td>
+				<td>
+					<a href="javascript:void(0);" onclick="location.href='${request.getContextPath()}/tocgedit.htm?opera=1&cgId=${row.id}';">
+						<img title="修改" src="${request.getContextPath()}/image/m1/pen.png" class="operator">
+					</a>
+					#if(${row.childNum} == 0)
+					<a href="javascript:void(0);" onclick="del(${row.id});">
+						<img title="删除" src="${request.getContextPath()}/image/m1/del.png" class="operator">
+					</a>
+					#end
+					#if(${row.parent_id} == 0)
+					<!--<a href="javascript:void(0);" onclick="catbrand(this,${row.id});">
+						<img title="推荐品牌" src="${request.getContextPath()}/image/m1/search.png" class="operator">
+					</a>-->
+					<a href="javascript:void(0);" onclick="location.href='${request.getContextPath()}/cmdyqsinfo.htm?id=${row.id}';">
+						<img title="问题、售后信息维护" src="${request.getContextPath()}/image/m1/pen.png" class="operator">
+					</a>
+					#end
+					#if(${row.levelNum} == 40)
+						<img title="推荐首页分类" src="${request.getContextPath()}/image/m1/pen.png" class="operator" onclick="catCates(${row.id})">
+					#end
+				</td>
+			</tr>
+			#end
+		</tbody>
+	</table>
+</div>
+</form>
+	</div>
+	#getMothodSc("moduleName=admin.action.Common" "parameters=tag:2,vmpath:admin/foot.vm");
+</body>
+</html>
+<script language="javascript">
+$("td.switch .operator").each(function(i){
+	$(this).toggle(function(){
+		iteraShow($(this).parent().parent().attr('id'), 'show');
+		$(this).attr("src", "${request.getContextPath()}/image/close.gif").attr("title","关闭");
+	},function(){
+		iteraShow($(this).parent().parent().attr('id'), 'hide');
+		$(this).attr("src", "${request.getContextPath()}/image/open.gif").attr("title","打开");
+	});
+});
+
+function iteraShow(id,isshow) {
+	var obj = $("#list_table tr[parent='"+id+"']");
+	if (obj.length>0){
+		obj.each(function(i) {
+			iteraShow($(this).attr('id'), isshow);
+		});
+		if (isshow=='hide'){
+			obj.hide();
+		}else{
+			obj.show();
+		}
+	}
+}
+
+function del(id){
+	dialogConfirm("提示","确认要删除该分类吗?",
+		function(){
+			window.location='${request.getContextPath()}/deletecg.htm?cgId='+id;
+		}
+	);
+}
+
+function catCates(n){
+	art.dialog.open("${request.getContextPath()}/tocates.htm?id="+n,{
+				id:'alert_ccc',
+				lock: true,
+				opacity: 0.87,
+				width:'450px',
+				height:'400px',
+				title: '选择首页分类',
+				yesFn: function(iframeWin, topWin){
+					var _cbox = iframeWin.document.getElementsByName("ccbox");
+					if(_cbox && _cbox.length > 0){
+						var _val = ",";
+						var _num = _cbox.length;
+						for(var i=0;i<_num;i++){
+							if(_cbox[i].checked){
+								_val +=_cbox[i].value;
+								_val += ",";
+							}
+						}
+						var _data = "id="+n+"&val="+_val;
+						$.ajax({
+							url: "${request.getContextPath()}/updcc.htm",
+							type: "GET",
+							data: _data,
+							timeout: 10000,
+							async:false,
+							success: function(data){
+								if("00_FAIL" == data){
+									dialogAlert("错误","非法的请求!");
+								}else if("01_FAIL" == data){
+									dialogAlert("错误","服务器更新出错，请重试!");
+								}else if("SUCCESS" == data){
+									dialogAlert("提示","更新成功!");
+								}else{
+									dialogAlert("错误","非法的请求!");
+								}
+							}
+						});
+					}
+				},
+				noFn:function(iframeWin, topWin){
+				}
+			});
+}
+
+function _updSort(_obj,_id,_pid){
+	var _nSort = document.getElementById("sort_"+_id);
+	var _osort = document.getElementById("hid_sort_"+_id);
+	var _sort = _nSort.value;
+	var _sub = true;
+	if(!(/^([1-9]\d*)$/.test(_sort))){
+			dialogAlert("错误","请输入一个正整数!");
+			_nSort.value = _osort.value;
+			_sub = false;
+	}
+	if(_sub){
+		var _data = "sort="+_sort+"&id="+_id+"&pid="+_pid+"&os="+_osort.value;
+		_obj.style.display = "none";
+		$.ajax({
+					url: "${request.getContextPath()}/updsort.htm",
+					type: "GET",
+					data: _data,
+					timeout: 10000,
+					async:false,
+					success: function(data){
+						if("00_FAIL" == data){
+							dialogAlert("错误","非法的请求!");
+							_nSort.value = _osort.value;
+						}else if("01_FAIL" == data){
+							dialogAlert("错误","排序号重复!");
+							_nSort.value = _osort.value;
+						}else if("02_FAIL" == data){
+							dialogAlert("错误","服务器更新出错，请重试!");
+							_nSort.value = _osort.value;
+						}else if("SUCCESS" == data){
+							_osort.value = _nSort.value;
+							dialogAlert("提示","修改成功!");
+						}else{
+							dialogAlert("错误","非法的请求!");
+							_nSort.value = _osort.value;
+						}
+						_obj.style.display = "";
+					}
+				});
+	}
+}
+
+function catbrand(_obj,id){
+	art.dialog.open("${request.getContextPath()}/listcb.htm?id="+id,{
+				id:'alert_brand',
+				lock: true,
+				opacity: 0.87,
+				width:'600px',
+				height:'500px',
+				title: '选择品牌',
+				yesFn: function(iframeWin, topWin){
+					var _cbox = iframeWin.document.getElementsByName("cbox");
+					if(_cbox && _cbox.length > 0){
+						var _val = ",";
+						var _num = _cbox.length;
+						for(var i=0;i<_num;i++){
+							if(_cbox[i].checked){
+								_val +=_cbox[i].value;
+								_val += ",";
+							}
+						}
+						var _data = "id="+id+"&val="+_val;
+						$.ajax({
+							url: "${request.getContextPath()}/updcb.htm",
+							type: "GET",
+							data: _data,
+							timeout: 10000,
+							async:false,
+							success: function(data){
+								if("00_FAIL" == data){
+									dialogAlert("错误","非法的请求!");
+								}else if("01_FAIL" == data){
+									dialogAlert("错误","服务器更新出错，请重试!");
+								}else if("SUCCESS" == data){
+									dialogAlert("提示","更新成功!");
+								}else{
+									dialogAlert("错误","非法的请求!");
+								}
+							}
+						});
+					}
+				},
+				noFn:function(iframeWin, topWin){
+				}
+			});
+}
+</script>
+<script type="text/javascript" charset="utf-8" language="javascript">
+	var ___mkey = null;
+	var ___msg = null;
+	#if(${page_k_message_key})
+		var ___mkey = $!{page_k_message_key};
+		var ___msg = $!{page_k_message_value};
+	#end
+	if(___mkey){
+		dialogAlert(___mkey,___msg);
+	}
+</script>

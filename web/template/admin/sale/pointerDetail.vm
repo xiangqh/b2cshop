@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>添加促销活动</title>
+<link href="css/admin.css" rel="stylesheet">
+<link href="css/art.css" rel="stylesheet">
+<link href="css/default.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="admin/js/sale/sale.js"></script>
+<script language="javascript" src="DatePicker/WdatePicker.js" type="text/javascript"></script>  
+</head>
+
+<body>
+#getMothodSc("moduleName=admin.action.Common" "parameters=tag:1,vmpath:admin/head.vm,level:4,level2:9");
+<div id="admin_right">
+<div class="headbar">
+	<div class="position"><span>活动</span><span>&gt;</span><span>促销活动管理</span><span>&gt;</span><span>添加促销活动</span></div>
+	<ul name="conf_menu" class="tab">
+		<li class="selected">活动信息</li>
+	</ul>
+</div>
+<div class="content_box">
+	<div class="content form_content">
+		<input type="hidden" name="tag" value="1" />
+		<input type="hidden" name="id" value="$promotion.id" />
+			<table  class="form_table" >
+				<colgroup><col width="150px">
+				<col>
+				</colgroup><tbody><tr>
+					<th>活动名称：</th>
+					<td><label>$promotion.name</label></td>
+				</tr>
+				<tr>
+					<th>活动时间：</th>
+					<td>
+					$!date.format('yyyy-MM-dd HH:mm:ss',$!promotion.start_time)-$!date.format('yyyy-MM-dd HH:mm:ss',$!promotion.end_time)
+ 	
+					</td>
+				</tr>
+				<tr>
+				
+					<th>会员级别：</th>
+					<td>
+						<ul class="attr_list clearfix">
+							<li>#if($!promotion.user_group=="0")全部 #end</li>
+						   #foreach( $level in $levelList )
+							<li>
+							#if($!promotion.user_group.indexOf("$level.id")!=-1)$level.le_name#end
+							</li>
+							#end
+						</ul>
+						
+					</td>
+					
+				</tr>
+				<tr>
+					<th>活动类型：</th>
+					<td>
+					#if($!promotion.type==1)优惠现金 #end 
+					#if($!promotion.type==2)打折 #end 
+					 #if($!promotion.type==3)送积分 #end 
+					#if($!promotion.type==4)免运费 #end 
+					</td>
+				</tr>
+				<tr>
+					<th>活动商品：</th>
+					<td>
+					<!-- begin -->
+               <table class="list_table">
+			<thead>
+				<tr class="">
+				    <th>商品编号</th>
+					<th>商品名称</th>
+					<th>货品名称</th>
+					<th>市场价/商城价</th>
+					<th>
+					<label id="show_1" #if($!promotion.type!=1)  style="display:none;" #end >元</label>
+						<label #if($!promotion.type!=2) style="display:none;" #end id="show_2">折扣</label>
+						<label #if($!promotion.type!=3)  style="display:none;" #end id="show_3">积分</label>
+					</th>
+				</tr>
+			</thead>
+		</table>
+		<table cellspacing="0" cellpadding="0" class="list_table">
+			<tbody id="trAll">
+			
+			#foreach( $pgoods in $promotionGoodsList )
+			<tr  class="" id="tr_re_$pgoods.id">
+			<td>$pgoods.goods_id</td>
+			<td>$pgoods.goods.name</td>
+			<td>$pgoods.cmd.splitName</td>
+			<td>$pgoods.cmd.priceActual/$pgoods.cmd.priceDiscount</td>
+			<td>$pgoods.to_value</td>
+			</tr>
+			#end
+			
+			</tbody>
+		</table>
+		<!-- end -->
+					</td>
+				</tr>
+			</tbody></table>
+			<div class="clear"></div>
+			<button type="button" onclick="javascript:history.back(-1);" class="submit"><span>返回</span></button>
+	</div>
+</div>
+
+	</div>
+	#getMothodSc("moduleName=admin.action.Common" "parameters=tag:2,vmpath:admin/foot.vm");
+</body>
+</html>

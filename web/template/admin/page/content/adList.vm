@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>广告列表</title>
+    <link href="${request.getContextPath()}/css/admin.css" rel="stylesheet">
+    <link href="${request.getContextPath()}/css/art.css" rel="stylesheet">
+	<link href="${request.getContextPath()}/css/default.css" rel="stylesheet">
+	<link href="${request.getContextPath()}/css/style.css" rel="stylesheet">
+    <script src="${request.getContextPath()}/js/jquery.js" type="text/javascript"></script>
+  </head>
+  <body>
+	#getMothodSc("moduleName=admin.action.Common" "parameters=tag:1,vmpath:admin/head.vm,level:2,level2:23")
+    <div id="admin_right">
+		<div class="headbar">
+			##<div class="position"><span>内容管理</span><span>&gt;</span><span>广告管理</span><span>&gt;</span><span>广告列表</span></div>
+			<div class="operating">
+				##<a href="listPosition.htm"><button type="button" class="operating_btn"><span class="">广告位</span></button></a>
+				
+				<a href="javascript:;"><button type="button" onclick="addad();" class="operating_btn"><span class="addition">添加广告</span></button></a>
+				##<a href="javascript:void(0)"><button type="button" class="operating_btn"><span class="sel_all">全选</span></button></a>
+				##<a href="javascript:void(0)"><button type="button" class="operating_btn"><span class="delete">批量删除</span></button></a>
+			</div>
+			<script type="text/javascript" >
+	function addad(){
+	location.href="/sc/addAd.htm";
+	}
+	</script>
+			<div class="field">
+				<table class="list_table">
+					<colgroup>
+						<col width="80px">
+    					<col width="120px">
+    					<col width="120px">
+    					<col width="120px">
+    					<col width="120px">
+    					<col width="120px">
+    					
+					</colgroup>
+					<thead>
+						<tr id="headth">
+							<th>选择</th>
+							<th>名称</th>
+							<th>显示类别</th>
+							<th>广告位</th>
+							
+							<th>宽×高</th>
+							
+							<th>操作</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+		</div>
+		<div class="content">
+			<form method="post" name="ad" id="adListForm">
+				<input type="hidden" name="curPage" id="curPage" value="1">
+				<table class="list_table" id="list_table">
+					<colgroup>
+						<col width="80px">
+    					<col width="120px">
+    					<col width="120px">
+    					<col width="120px">
+    					<col width="120px">
+    					<col width="120px">
+    					
+					</colgroup>
+					<tbody id="conth">
+						#foreach($adB in $adBList)
+						#set($ad = $adB.adVO)
+						<tr #if($velocityCount%2 == 0) class="even" #end>
+							<td width="80px"><input type="checkbox" value="$!{ad.id}" name="id[]"></td>
+							<td>$!{ad.name}</td>
+							<td>
+								#if($!{ad.adType} == 1) 
+									图片
+								#end
+								#if($!{ad.adType} == 2) 
+									flash
+								#end
+								#if($!{ad.adType} == 3) 
+									文字
+								#end
+								#if($!{ad.adType} == 4) 
+									代码
+								#end
+							</td>
+							<td>$!{adB.adPName}</td>
+							
+							<td>$!{ad.width}×$!{ad.height}</td>
+							<td>
+								<a href="updateAd.htm?id=$!{ad.id}"><img title="编辑" alt="编辑" src="image/icon_edit.gif" class="operator"></a>
+								<a href="delAd.htm?id=$!{ad.id}" onclick="return confirm('确认删除？')"><img title="删除" alt="删除" src="image/icon_del.gif" class="operator"></a>
+							</td>
+						</tr>
+						#end
+					</tbody>
+				</table>
+			</form>
+			#getFrontWindow("moduleName=frontpage.common.CommonFront" "parameters=tag:AD,id:46,vmpath:frontpage/ad.vm");
+		</div>
+		#getPageHtml("formId=adListForm" "parameters=pageNo:$page.pageNo,pageSize:$page.pageSize,totalCount:$page.totalCount,pageviewcount:$page.pageviewcount,vmpath:common/page.vm")
+	</div>
+	#getMothodSc("moduleName=admin.action.Common" "parameters=tag:2,vmpath:admin/foot.vm")
+  </body>
+</html>
