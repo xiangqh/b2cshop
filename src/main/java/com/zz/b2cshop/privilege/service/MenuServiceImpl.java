@@ -58,4 +58,10 @@ public class MenuServiceImpl implements IMenuService {
 
 	}
 
+	@Transactional(readOnly = true)
+	@Override
+	public List<Menu> getMenuListByLevel(Integer id) {
+		return menuDao.getMenuListByLevel(id);
+	}
+
 }
