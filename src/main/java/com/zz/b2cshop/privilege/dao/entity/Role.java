@@ -23,6 +23,9 @@ public class Role extends PO {
 	@Column(name = "rights")
 	private String rights;
 
+	public Role() {
+	}
+
 	public Role(Long id) {
 		this.id = id;
 	}

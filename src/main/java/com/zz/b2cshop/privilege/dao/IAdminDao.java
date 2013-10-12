@@ -11,6 +11,8 @@ import com.zz.b2cshop.privilege.dao.entity.Admin;
  */
 public interface IAdminDao {
 
+	public Admin getAdminByName(String username);
+
 	public void addAdmin(Admin admin);
 
 	public void delAdminById(Long id);

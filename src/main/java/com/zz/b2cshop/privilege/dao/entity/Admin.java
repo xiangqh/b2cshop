@@ -43,10 +43,6 @@ public class Admin extends PO {
 	@Column(name = "last_time")
 	private String last_time;
 
-	public Admin(Long id) {
-		this.id = id;
-	}
-
 	public String getUsername() {
 		return username;
 	}
