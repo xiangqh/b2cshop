@@ -2,6 +2,8 @@ package com.zz.b2cshop.privilege.dao.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.zz.b2cshop.common.PO;

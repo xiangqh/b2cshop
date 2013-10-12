@@ -20,5 +20,7 @@ public interface IMenuDao {
 
 	public List<Menu> getMenuListByPId(Long pId);
 
+	public List<Menu> getMenuListByLevel(Integer id);
+
 	public Menu getMenuById(Long id);
 }

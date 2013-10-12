@@ -1,14 +1,7 @@
 package com.zz.b2cshop.privilege.dao.entity;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.zz.b2cshop.common.PO;
@@ -29,12 +22,8 @@ public class Menu extends PO {
 	@Column(name = "level")
 	private Integer level;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "parent_id")
-	private Menu parent;
-
-	@OneToMany(mappedBy = "parent", cascade = CascadeType.REMOVE)
-	private List<Menu> childs;
+	@Column(name = "parent_id")
+	private Long parentId;
 
 	@Column(name = "url")
 	private String url;
@@ -55,20 +44,12 @@ public class Menu extends PO {
 		this.level = level;
 	}
 
-	public Menu getParent() {
-		return parent;
+	public Long getParentId() {
+		return parentId;
 	}
 
-	public void setParent(Menu parent) {
-		this.parent = parent;
-	}
-
-	public List<Menu> getChilds() {
-		return childs;
-	}
-
-	public void setChilds(List<Menu> childs) {
-		this.childs = childs;
+	public void setParentId(Long parentId) {
+		this.parentId = parentId;
 	}
 
 	public String getUrl() {
@@ -83,10 +64,9 @@ public class Menu extends PO {
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + ((childs == null) ? 0 : childs.hashCode());
 		result = prime * result + ((level == null) ? 0 : level.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((parent == null) ? 0 : parent.hashCode());
+		result = prime * result + ((parentId == null) ? 0 : parentId.hashCode());
 		result = prime * result + ((url == null) ? 0 : url.hashCode());
 		return result;
 	}
@@ -100,11 +80,6 @@ public class Menu extends PO {
 		if (!(obj instanceof Menu))
 			return false;
 		Menu other = (Menu) obj;
-		if (childs == null) {
-			if (other.childs != null)
-				return false;
-		} else if (!childs.equals(other.childs))
-			return false;
 		if (level == null) {
 			if (other.level != null)
 				return false;
@@ -115,10 +90,10 @@ public class Menu extends PO {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (parent == null) {
-			if (other.parent != null)
+		if (parentId == null) {
+			if (other.parentId != null)
 				return false;
-		} else if (!parent.equals(other.parent))
+		} else if (!parentId.equals(other.parentId))
 			return false;
 		if (url == null) {
 			if (other.url != null)
@@ -130,8 +105,7 @@ public class Menu extends PO {
 
 	@Override
 	public String toString() {
-		return String
-				.format("Menu [name=%s, level=%s, parent=%s, childs=%s, url=%s]", name, level, parent, childs, url);
+		return String.format("Menu [name=%s, level=%s, parentId=%s, url=%s]", name, level, parentId, url);
 	}
 
 }

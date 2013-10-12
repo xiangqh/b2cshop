@@ -71,5 +71,6 @@
 	<classpathentry kind="lib" path="web/WEB-INF/lib/velocity-tools-1.3.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/wstx-asl-3.2.7.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/xwork-core-2.3.7.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/asm.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

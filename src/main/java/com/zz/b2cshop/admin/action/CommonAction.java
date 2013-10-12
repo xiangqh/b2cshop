@@ -29,9 +29,8 @@ public class CommonAction implements ModuleAction {
 		Long level = Long.valueOf(params.get("level1").toString());
 		Long level2 = Long.valueOf(params.get("level2").toString());
 		Menu menu = menuService.getMenuById(0l);
-		List<Menu> menuList = menu.getChilds();
 
-		context.put("menuList", menuList);
+	//	context.put("menuList", menuList);
 	}
 
 	@Override

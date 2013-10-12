@@ -11,7 +11,7 @@ import javax.persistence.MappedSuperclass;
  *
  */
 @MappedSuperclass
-public class PO implements Serializable {
+public abstract class PO implements IEntity, Serializable {
 
 	private static final long serialVersionUID = -5967360797638627751L;
 
@@ -56,5 +56,4 @@ public class PO implements Serializable {
 	public String toString() {
 		return String.format("PO [id=%s]", id);
 	}
-
 }
