@@ -13,6 +13,8 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 public class PO implements Serializable {
 
+	private static final long serialVersionUID = -5967360797638627751L;
+
 	@Id
 	@GeneratedValue
 	protected Long id;

@@ -43,7 +43,8 @@ public final class PropertyUtil {
 		try {
 			in = PropertyUtil.class.getResourceAsStream(filePath);
 			props.load(in);
-			Enumeration en = props.propertyNames();
+			@SuppressWarnings("unchecked")
+			Enumeration<String> en = (Enumeration<String>) props.propertyNames();
 			String key, property;
 			while (en.hasMoreElements()) {
 				key = (String) en.nextElement();

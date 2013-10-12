@@ -76,6 +76,7 @@ public class JsonBinder {
 	 * @description: 将json字符串转化为List<bean>对象
 	 *
 	 */
+	@SuppressWarnings("unchecked")
 	public <T> T fromJson(String jsonString, TypeReference<T> type){
 		if (StringUtils.isEmpty(jsonString)) {
 			return null;

@@ -1,6 +1,5 @@
 package com.zz.b2cshop.common.dao;
 
-import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
@@ -22,7 +21,6 @@ public class BaseDaoSupport<T> extends BaseDao implements PODao<T> {
 		this.getHibernateTemplate().saveOrUpdate(t);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public T getById(Long id) {
 		return (T) this.getHibernateTemplate().get(getEntityClass(), id);

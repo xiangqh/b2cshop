@@ -8,7 +8,7 @@ import com.opensymphony.xwork2.Result;
 import com.opensymphony.xwork2.inject.Container;
 import com.opensymphony.xwork2.inject.Inject;
 
-public class BaseResult implements Result{
+public class BaseResult implements Result {
 
 	private static final long serialVersionUID = 5276993118917346950L;
 
@@ -17,39 +17,56 @@ public class BaseResult implements Result{
 	private Container container;
 	private ActionMapping mapping;
 
-	public BaseResult(String location){
+	public BaseResult(String location) {
 		this.location = location;
 
 	}
 
-	public BaseResult(String location,String defaultLocation){
+	public BaseResult(String location, String defaultLocation) {
 		this(location);
 		this.defaultLocation = defaultLocation;
 	}
 
-	public BaseResult(ActionMapping mapping){
+	public BaseResult(ActionMapping mapping) {
 		this.mapping = mapping;
 	}
 
 	@Inject
-    public void setContainer(Container cont) {
-        this.container = cont;
-    }
+	public void setContainer(Container cont) {
+		this.container = cont;
+	}
 
-
-
-	/* (non-Javadoc)
-	 * @see com.opensymphony.xwork2.Result#execute(com.opensymphony.xwork2.ActionInvocation)
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.opensymphony.xwork2.Result#execute(com.opensymphony.xwork2.
+	 * ActionInvocation)
 	 */
 	public void execute(ActionInvocation invocation) throws Exception {
 		// TODO Auto-generated method stub
-		if(mapping!=null){
+		if (mapping != null) {
 
-		}else{
+		} else {
 			VelocityResult r = new VelocityResult(location);
 			container.inject(r);
 			r.execute(invocation);
 		}
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public String getDefaultLocation() {
+		return defaultLocation;
+	}
+
+	public void setDefaultLocation(String defaultLocation) {
+		this.defaultLocation = defaultLocation;
 	}
 
 }

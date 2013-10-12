@@ -1,19 +1,14 @@
 package com.zz.b2cshop.common.util;
 
 import java.net.MalformedURLException;
-import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.apache.solr.client.solrj.impl.CommonsHttpSolrServer;
-import org.apache.solr.common.SolrInputDocument;
 
 /**
  * @author xiangqh
  *
  */
 public class Solr {
-
-	private final static Logger logger = Logger.getLogger(Solr.class);
 
 	private static String URL = "http://127.0.0.1:8080/solr/";
 	private static CommonsHttpSolrServer instance;

@@ -15,7 +15,7 @@ import com.zz.b2cshop.privilege.service.IMenuService;
 
 /**
  * @author xiangqh
- * 
+ *
  */
 @Component
 public class CommonAction implements ModuleAction {
@@ -30,7 +30,7 @@ public class CommonAction implements ModuleAction {
 		Long level2 = Long.valueOf(params.get("level2").toString());
 		Menu menu = menuService.getMenuById(0l);
 		List<Menu> menuList = menu.getChilds();
-		
+
 		context.put("menuList", menuList);
 	}
 

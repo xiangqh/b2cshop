@@ -18,7 +18,6 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 public abstract class BaseDao extends HibernateDaoSupport{
 	private final static Logger logger = LoggerFactory.getLogger(BaseDao.class);
 
-	@SuppressWarnings("unchecked")
 	public Object findUniqueResultByCriteria(DetachedCriteria criteria) {
         Criteria executableCriteria = criteria.getExecutableCriteria(this.getSession());
         return executableCriteria.uniqueResult();

@@ -21,6 +21,8 @@ import com.zz.b2cshop.common.PO;
 @Table(name = "b2c_menu")
 public class Menu extends PO {
 
+	private static final long serialVersionUID = 2884541819158302324L;
+
 	@Column(name = "name")
 	private String name;
 
