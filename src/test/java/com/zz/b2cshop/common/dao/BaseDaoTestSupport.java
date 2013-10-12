@@ -6,7 +6,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.zz.b2cshop.common.IEntity;
 import com.zz.b2cshop.common.PO;
 
 /**

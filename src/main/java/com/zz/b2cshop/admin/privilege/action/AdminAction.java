@@ -1,9 +1,7 @@
 package com.zz.b2cshop.admin.privilege.action;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,10 +12,7 @@ import org.zz.qstruts2.annotations.RequestMapping;
 import com.opensymphony.xwork2.Result;
 import com.zz.b2cshop.common.AjaxResult;
 import com.zz.b2cshop.common.BaseResult;
-import com.zz.b2cshop.common.JsonResult;
 import com.zz.b2cshop.common.dao.Page;
-import com.zz.b2cshop.common.util.JsonBinder;
-import com.zz.b2cshop.privilege.dao.IRoleDao;
 import com.zz.b2cshop.privilege.dao.entity.Admin;
 import com.zz.b2cshop.privilege.dao.entity.Role;
 import com.zz.b2cshop.privilege.service.IAdminService;
