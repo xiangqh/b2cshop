@@ -8,7 +8,7 @@
         <div class="sc-nav">
             <ul class="sc-nav-head">
             	#foreach( $scMenu2 in $menuListS )
-            	<li><a href="$!scMenu2.m_url">$!scMenu2.name</a></li>
+            	<li><a href="/$!scMenu2.url">$!scMenu2.name</a></li>
             	#end
             </ul>
             <!--主菜单列表-->
@@ -19,7 +19,7 @@
 				<div class="clig hidden_sc" id="system_id">
                     <ul>
                     	#foreach( $scMenu in $menuList )
-                    	<li><a href="$!scMenu.m_url">$!scMenu.name</a></li>
+                    	<li><a href="/$!scMenu.url">$!scMenu.name</a></li>
                     	#end
                     </ul>
                     <div class="bom_sc" />
@@ -30,7 +30,7 @@
 </div>
 <div class="sc-secnav">
     <div class="sc-secnav-head">#foreach( $scMenu3 in $menuListT )
-    		<a href="$!scMenu3.m_url"><span>$!scMenu3.name</span></a> #end
+    		<a href="/$!scMenu3.url"><span>$!scMenu3.name</span></a> #end
     </div>
 </div>
 <script>

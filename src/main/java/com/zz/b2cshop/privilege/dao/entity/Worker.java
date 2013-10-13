@@ -16,8 +16,8 @@ import com.zz.b2cshop.common.PO;
  *
  */
 @Entity
-@Table(name = "b2c_admin")
-public class Admin extends PO {
+@Table(name = "b2c_worker")
+public class Worker extends PO {
 
 	private static final long serialVersionUID = 8336803753196126577L;
 
@@ -119,9 +119,9 @@ public class Admin extends PO {
 			return true;
 		if (!super.equals(obj))
 			return false;
-		if (!(obj instanceof Admin))
+		if (!(obj instanceof Worker))
 			return false;
-		Admin other = (Admin) obj;
+		Worker other = (Worker) obj;
 		if (create_ime == null) {
 			if (other.create_ime != null)
 				return false;

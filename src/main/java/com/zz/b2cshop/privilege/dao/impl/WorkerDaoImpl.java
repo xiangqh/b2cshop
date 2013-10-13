@@ -8,48 +8,48 @@ import org.springframework.stereotype.Repository;
 
 import com.zz.b2cshop.common.dao.BaseDaoSupport;
 import com.zz.b2cshop.common.dao.Page;
-import com.zz.b2cshop.privilege.dao.IAdminDao;
-import com.zz.b2cshop.privilege.dao.entity.Admin;
+import com.zz.b2cshop.privilege.dao.IWorkerDao;
+import com.zz.b2cshop.privilege.dao.entity.Worker;
 
 /**
  * @author xiangqh
  *
  */
 @Repository
-public class AdminDaoImpl extends BaseDaoSupport<Admin> implements IAdminDao {
+public class WorkerDaoImpl extends BaseDaoSupport<Worker> implements IWorkerDao {
 
 	@Override
-	public void addAdmin(Admin admin) {
+	public void addAdmin(Worker admin) {
 		super.save(admin);
 	}
 
 	@Override
 	public void delAdminById(Long id) {
-		Admin admin = new Admin();
+		Worker admin = new Worker();
 		admin.setId(id);
 		super.delete(admin);
 	}
 
 	@Override
-	public void updateAdmin(Admin admin) {
+	public void updateAdmin(Worker admin) {
 		super.update(admin);
 
 	}
 
 	@Override
-	public Admin getAdminById(Long id) {
+	public Worker getAdminById(Long id) {
 		return super.getById(id);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Admin> getAdmins(Page page) {
+	public List<Worker> getAdmins(Page page) {
 		return super.findByCriteria(createDetachedCriteria().addOrder(Order.asc("id")), page);
 	}
 
 	@Override
-	public Admin getAdminByName(String username) {
-		return (Admin) super.findUniqueResultByCriteria(createDetachedCriteria().add(
+	public Worker getAdminByName(String username) {
+		return (Worker) super.findUniqueResultByCriteria(createDetachedCriteria().add(
 				Restrictions.eq("username", username)));
 	}
 

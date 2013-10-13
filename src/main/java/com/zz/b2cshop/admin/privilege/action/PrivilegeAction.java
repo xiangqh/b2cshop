@@ -13,17 +13,17 @@ import com.opensymphony.xwork2.Result;
 import com.zz.b2cshop.common.AjaxResult;
 import com.zz.b2cshop.common.BaseResult;
 import com.zz.b2cshop.common.dao.Page;
-import com.zz.b2cshop.privilege.dao.entity.Admin;
+import com.zz.b2cshop.privilege.dao.entity.Worker;
 import com.zz.b2cshop.privilege.dao.entity.Role;
-import com.zz.b2cshop.privilege.service.IAdminService;
+import com.zz.b2cshop.privilege.service.IWorkerService;
 import com.zz.b2cshop.privilege.service.IRoleService;
 
 @Controller
 @ActionController
-public class AdminAction extends QAction {
+public class PrivilegeAction extends QAction {
 
 	@Autowired
-	private IAdminService adminService;
+	private IWorkerService adminService;
 
 	@Autowired
 	private IRoleService roleService;
@@ -31,12 +31,13 @@ public class AdminAction extends QAction {
 	@RequestMapping(value = "showAdmins")
 	public Result show() {
 		Page page = new Page(0, 10);
-		List<Admin> admins = adminService.getAdmins(page);
+		List<Worker> admins = adminService.getAdmins(page);
 		setHttpAttribute("admins", admins);
 
 		return new BaseResult("/template/admin/page/system/showAdmins.vm");
 	}
 
+	@RequestMapping(value="addAdminPage")
 	public Result addAdminPage() {
 		List<Role> roles = roleService.getAllAdminRole();
 		setHttpAttribute("roles", roles);
@@ -50,11 +51,11 @@ public class AdminAction extends QAction {
 		String email = getHttpParameter("email");
 		Long role_id = getParameterLong("roleId");
 
-		Admin admin = adminService.getAdminByName(username);
+		Worker admin = adminService.getAdminByName(username);
 		if (admin == null) {
 			return new AjaxResult(500, "用户名已注册", "");
 		}
-		admin = new Admin();
+		admin = new Worker();
 		admin.setUsername(username);
 		admin.setPassword(password);
 		admin.setEmail(email);
@@ -79,11 +80,11 @@ public class AdminAction extends QAction {
 		String email = getHttpParameter("email");
 		Long role_id = getParameterLong("roleId");
 
-		Admin admin = adminService.getAdminByName(username);
+		Worker admin = adminService.getAdminByName(username);
 		if (admin == null) {
 			return new AjaxResult(500, "用户名已注册", "");
 		}
-		admin = new Admin();
+		admin = new Worker();
 		admin.setId(id);
 		admin.setPassword(password);
 		admin.setEmail(email);

@@ -8,22 +8,22 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.zz.b2cshop.common.dao.Page;
-import com.zz.b2cshop.privilege.dao.IAdminDao;
-import com.zz.b2cshop.privilege.dao.entity.Admin;
+import com.zz.b2cshop.privilege.dao.IWorkerDao;
+import com.zz.b2cshop.privilege.dao.entity.Worker;
 
 /**
  * @author xiangqh
  *
  */
 @Service
-public class AdminServiceImpl implements IAdminService {
+public class WorkerServiceImpl implements IWorkerService {
 
 	@Autowired
-	private IAdminDao adminDao;
+	private IWorkerDao adminDao;
 
 	@Transactional
 	@Override
-	public void addAdmin(Admin admin) {
+	public void addAdmin(Worker admin) {
 		adminDao.addAdmin(admin);
 	}
 
@@ -35,29 +35,29 @@ public class AdminServiceImpl implements IAdminService {
 
 	@Transactional
 	@Override
-	public void updateAdmin(Admin admin) {
+	public void updateAdmin(Worker admin) {
 		adminDao.updateAdmin(admin);
 	}
 
 	@Transactional(readOnly = true)
 	@Override
-	public Admin getAdminById(Long id) {
+	public Worker getAdminById(Long id) {
 		return adminDao.getAdminById(id);
 	}
 
 	@Transactional(readOnly = true)
 	@Override
-	public List<Admin> getAdmins(Page page) {
+	public List<Worker> getAdmins(Page page) {
 		return adminDao.getAdmins(page);
 	}
 
 	@Required
-	public void setAdminDao(IAdminDao adminDao) {
+	public void setAdminDao(IWorkerDao adminDao) {
 		this.adminDao = adminDao;
 	}
 
 	@Override
-	public Admin getAdminByName(String username) {
+	public Worker getAdminByName(String username) {
 		return adminDao.getAdminByName(username);
 	}
 

@@ -15,7 +15,7 @@ import com.zz.b2cshop.privilege.dao.entity.Menu;
 public class MenuDaoTest extends BaseDaoTestSupport<Menu> {
 
 	@Autowired
-	protected IAdminDao adminDao;
+	protected IWorkerDao adminDao;
 	@Autowired
 	protected IRoleDao roleDao;
 	@Autowired
