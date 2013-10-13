@@ -23,37 +23,37 @@ public class RoleServiceImpl implements IRoleService {
 
 	@Transactional
 	@Override
-	public void addAdminRole(Role role) {
+	public void addRole(Role role) {
 		roleDao.addAdminRole(role);
 	}
 
 	@Transactional
 	@Override
-	public void delAdminRoleById(Long id) {
+	public void delRoleById(Long id) {
 		roleDao.delAdminRoleById(id);
 	}
 
 	@Transactional
 	@Override
-	public void updateAdminRole(Role role) {
+	public void updateRole(Role role) {
 		roleDao.updateAdminRole(role);
 	}
 
 	@Transactional(readOnly = true)
 	@Override
-	public Role getAdminRoleById(Long id) {
+	public Role getRoleById(Long id) {
 		return roleDao.getAdminRoleById(id);
 	}
 
 	@Transactional(readOnly = true)
 	@Override
-	public List<Role> getAdminRoles(Page page) {
+	public List<Role> getRoles(Page page) {
 		return roleDao.getAdminRoles(page);
 	}
 
 	@Transactional(readOnly = true)
 	@Override
-	public List<Role> getAllAdminRole() {
+	public List<Role> getAllRole() {
 		return roleDao.getAllAdminRole();
 	}
 

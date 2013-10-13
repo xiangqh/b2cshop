@@ -36,9 +36,7 @@ public class EmbedTomcatServer {
         AprLifecycleListener aprLifecycleListener = new AprLifecycleListener();
         StandardServer server = (StandardServer) tomcat.getServer();
         server.addLifecycleListener(aprLifecycleListener);
-
         tomcat.addWebapp("/" + application, new File("web").getAbsolutePath());
-
         logger.info("Starting tomcat for " + application + "......");
         tomcat.start();
 

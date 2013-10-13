@@ -19,46 +19,46 @@ import com.zz.b2cshop.privilege.dao.entity.Worker;
 public class WorkerServiceImpl implements IWorkerService {
 
 	@Autowired
-	private IWorkerDao adminDao;
+	private IWorkerDao WorkerDao;
 
 	@Transactional
 	@Override
-	public void addAdmin(Worker admin) {
-		adminDao.addAdmin(admin);
+	public void addWorker(Worker Worker) {
+		WorkerDao.addWorker(Worker);
 	}
 
 	@Transactional
 	@Override
-	public void delAdminById(Long id) {
-		adminDao.delAdminById(id);
+	public void delWorkerById(Long id) {
+		WorkerDao.delWorkerById(id);
 	}
 
 	@Transactional
 	@Override
-	public void updateAdmin(Worker admin) {
-		adminDao.updateAdmin(admin);
+	public void updateWorker(Worker Worker) {
+		WorkerDao.updateWorker(Worker);
 	}
 
 	@Transactional(readOnly = true)
 	@Override
-	public Worker getAdminById(Long id) {
-		return adminDao.getAdminById(id);
+	public Worker getWorkerById(Long id) {
+		return WorkerDao.getWorkerById(id);
 	}
 
 	@Transactional(readOnly = true)
 	@Override
-	public List<Worker> getAdmins(Page page) {
-		return adminDao.getAdmins(page);
+	public List<Worker> getWorkers(Page page) {
+		return WorkerDao.getWorkers(page);
 	}
 
 	@Required
-	public void setAdminDao(IWorkerDao adminDao) {
-		this.adminDao = adminDao;
+	public void setWorkerDao(IWorkerDao WorkerDao) {
+		this.WorkerDao = WorkerDao;
 	}
 
 	@Override
-	public Worker getAdminByName(String username) {
-		return adminDao.getAdminByName(username);
+	public Worker getWorkerByName(String username) {
+		return WorkerDao.getWorkerByName(username);
 	}
 
 }

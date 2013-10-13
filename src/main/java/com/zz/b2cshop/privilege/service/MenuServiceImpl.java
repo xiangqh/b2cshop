@@ -2,6 +2,7 @@ package com.zz.b2cshop.privilege.service;
 
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,13 +23,15 @@ public class MenuServiceImpl implements IMenuService {
 	@Transactional(readOnly = true)
 	@Override
 	public List<Menu> getMenuList() {
-		return menuDao.getMenuList();
+		List<Menu> menuList = menuDao.getMenuList();
+		return menuList;
 	}
 
 	@Transactional(readOnly = true)
 	@Override
 	public List<Menu> getMenuListByPId(Long pId) {
-		return menuDao.getMenuListByPId(pId);
+		List<Menu> menuList = menuDao.getMenuListByPId(pId);
+		return menuList;
 	}
 
 	@Transactional(readOnly = true)
@@ -61,7 +64,8 @@ public class MenuServiceImpl implements IMenuService {
 	@Transactional(readOnly = true)
 	@Override
 	public List<Menu> getMenuListByLevel(Integer id) {
-		return menuDao.getMenuListByLevel(id);
+		List<Menu> menuList = menuDao.getMenuListByLevel(id);
+		return menuList;
 	}
 
 }

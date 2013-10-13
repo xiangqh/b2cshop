@@ -24,7 +24,7 @@
 	<classpathentry kind="lib" path="web/WEB-INF/lib/freemarker-2.3.19.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/geronimo-stax-api_1.0_spec-1.0.1.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/gson-2.2.3.jar"/>
-	<classpathentry kind="lib" path="web/WEB-INF/lib/hibernate-jpa-2.0-api-1.0.0.Final.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/hibernate-jpa-2.0-api-1.0.0.Final.jar" sourcepath="C:/Users/working-cat/.m2/repository/org/hibernate/javax/persistence/hibernate-jpa-2.0-api/1.0.0.Final/hibernate-jpa-2.0-api-1.0.0.Final-sources.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/hibernate3.jar" sourcepath="D:/src/hibernate-distribution-3.6.0.Final-dist.zip"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/hsqldb.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/jackson-core-asl-1.5.5.jar"/>
@@ -43,7 +43,7 @@
 	<classpathentry kind="lib" path="web/WEB-INF/lib/slf4j-api-1.7.2.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/slf4j-log4j12-1.7.2.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/solr-solrj-3.1.0.jar"/>
-	<classpathentry kind="lib" path="web/WEB-INF/lib/spring-aop-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/spring-aop-3.0.5.RELEASE.jar" sourcepath="C:/Users/working-cat/.m2/repository/org/springframework/spring-aop/3.0.5.RELEASE/spring-aop-3.0.5.RELEASE-sources.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/spring-asm-3.0.5.RELEASE.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/spring-aspects-3.0.5.RELEASE.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/spring-beans-3.0.5.RELEASE.jar"/>

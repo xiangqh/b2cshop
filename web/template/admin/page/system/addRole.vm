@@ -2,15 +2,15 @@
 <html>
   <head>
     <title>角色添加</title>
-    <link href="css/admin.css" rel="stylesheet">
-	<link href="css/art.css" rel="stylesheet">
-	<link href="css/default.css" rel="stylesheet">
-	<link href="css/style.css" rel="stylesheet">
-	<script type="text/javascript" src="js/jquery.js"></script>
+   <link href="${request.getContextPath()}/css/admin.css" rel="stylesheet">
+	<link href="${request.getContextPath()}/css/art.css" rel="stylesheet">
+	<link href="${request.getContextPath()}/css/default.css" rel="stylesheet">
+	<link href="${request.getContextPath()}/css/style.css" rel="stylesheet">
+	<script type="text/javascript" src="${request.getContextPath()}/js/jquery.js"></script>
   </head>
   
   <body>
-  #getMothodSc("moduleName=admin.action.Common" "parameters=tag:1,vmpath:admin/head.vm,level:1,level2:48")
+  #qModuleLoader("moduleName=module.admin.common.head" "parameters={path:template/admin/head.vm,level1:1,level2:7}")
  
   <div class="container">
 	
@@ -32,13 +32,13 @@
 				<tr>
 					<th valign="top">权限分配：</th>
 					<td>
-					#foreach($menu in $menuList)
+					#foreach($menu in $menus)
 					
 						
-						<div style='clear:both;padding-top:10px' class='bold'>$menu.m_name <label><input type='checkbox' id='checkbox_$menu.m_id' onclick='checkGroupAll(this,"$menu.m_id");' />全选</label></div>
-						<ul class='attr_list' id='ul_$menu.m_id' alt="$menu.m_id">
+						<div style='clear:both;padding-top:10px' class='bold'>$menu.name <label><input type='checkbox' id='checkbox_$menu.id' onclick='checkGroupAll(this,"$menu.id");' />全选</label></div>
+						<ul class='attr_list' id='ul_$menu.id' alt="$menu.id">
 							#foreach($menu2 in $menu.childrens)
-							 <li style="float: left;white-space: nowrap;width: 220px;"><label class='attr'><input type='checkbox' value='$menu2.m_id ' name='right[]'  onclick='checkItem("$menu.m_id");' />$menu2.m_name</label></li>
+							 <li style="float: left;white-space: nowrap;width: 220px;"><label class='attr'><input type='checkbox' value='$menu2.id ' name='right[]'  onclick='checkItem("$menu.id");' />$menu2.name</label></li>
 							 
 							#end																				
 						</ul>
@@ -117,6 +117,6 @@
 </script>
   
   
-  #getMothodSc("moduleName=admin.action.Common" "parameters=tag:2,vmpath:admin/foot.vm");
+   #qModuleLoader("moduleName=module.admin.common.foot" "parameters={path:template/admin/foot.vm}")
   </body>
 </html>

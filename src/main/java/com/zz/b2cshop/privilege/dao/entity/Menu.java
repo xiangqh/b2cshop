@@ -1,14 +1,22 @@
 package com.zz.b2cshop.privilege.dao.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.zz.b2cshop.common.PO;
 
 /**
  * @author xiangqh
- *
+ * 
  */
 @Entity
 @Table(name = "b2c_menu")
@@ -22,11 +30,15 @@ public class Menu extends PO {
 	@Column(name = "level")
 	private Integer level;
 
-	@Column(name = "parent_id")
-	private Long parentId;
+	@ManyToOne
+	@JoinColumn(name = "parent_id")
+	private Menu parent;
 
 	@Column(name = "url")
 	private String url;
+
+	@OneToMany(mappedBy = "parent", fetch = FetchType.EAGER)
+	private Set<Menu> childrens = new HashSet<Menu>();
 
 	public String getName() {
 		return name;
@@ -44,12 +56,12 @@ public class Menu extends PO {
 		this.level = level;
 	}
 
-	public Long getParentId() {
-		return parentId;
+	public Menu getParent() {
+		return parent;
 	}
 
-	public void setParentId(Long parentId) {
-		this.parentId = parentId;
+	public void setParent(Menu parent) {
+		this.parent = parent;
 	}
 
 	public String getUrl() {
@@ -60,13 +72,20 @@ public class Menu extends PO {
 		this.url = url;
 	}
 
+	public Set<Menu> getChildrens() {
+		return childrens;
+	}
+
+	public void setChildrens(Set<Menu> childrens) {
+		this.childrens = childrens;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result + ((level == null) ? 0 : level.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((parentId == null) ? 0 : parentId.hashCode());
 		result = prime * result + ((url == null) ? 0 : url.hashCode());
 		return result;
 	}
@@ -77,7 +96,7 @@ public class Menu extends PO {
 			return true;
 		if (!super.equals(obj))
 			return false;
-		if (!(obj instanceof Menu))
+		if (getClass() != obj.getClass())
 			return false;
 		Menu other = (Menu) obj;
 		if (level == null) {
@@ -90,11 +109,6 @@ public class Menu extends PO {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (parentId == null) {
-			if (other.parentId != null)
-				return false;
-		} else if (!parentId.equals(other.parentId))
-			return false;
 		if (url == null) {
 			if (other.url != null)
 				return false;
@@ -105,7 +119,8 @@ public class Menu extends PO {
 
 	@Override
 	public String toString() {
-		return String.format("Menu [name=%s, level=%s, parentId=%s, url=%s]", name, level, parentId, url);
+		return "Menu [name=" + name + ", level=" + level + ", parent=" + parent + ", url=" + url + ", childrens="
+				+ childrens + "]";
 	}
 
 }

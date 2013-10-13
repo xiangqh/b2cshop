@@ -11,15 +11,15 @@ import com.zz.b2cshop.privilege.dao.entity.Role;
  */
 public interface IRoleService {
 
-	public void addAdminRole(Role role);
+	public void addRole(Role role);
 
-	public void delAdminRoleById(Long id);
+	public void delRoleById(Long id);
 
-	public void updateAdminRole(Role Role);
+	public void updateRole(Role Role);
 
-	public Role getAdminRoleById(Long id);
+	public Role getRoleById(Long id);
 
-	public List<Role> getAdminRoles(Page page);
+	public List<Role> getRoles(Page page);
 
-	public List<Role> getAllAdminRole();
+	public List<Role> getAllRole();
 }

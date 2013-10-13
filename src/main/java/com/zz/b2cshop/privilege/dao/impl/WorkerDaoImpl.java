@@ -19,36 +19,36 @@ import com.zz.b2cshop.privilege.dao.entity.Worker;
 public class WorkerDaoImpl extends BaseDaoSupport<Worker> implements IWorkerDao {
 
 	@Override
-	public void addAdmin(Worker admin) {
-		super.save(admin);
+	public void addWorker(Worker Worker) {
+		super.save(Worker);
 	}
 
 	@Override
-	public void delAdminById(Long id) {
-		Worker admin = new Worker();
-		admin.setId(id);
-		super.delete(admin);
+	public void delWorkerById(Long id) {
+		Worker Worker = new Worker();
+		Worker.setId(id);
+		super.delete(Worker);
 	}
 
 	@Override
-	public void updateAdmin(Worker admin) {
-		super.update(admin);
+	public void updateWorker(Worker Worker) {
+		super.update(Worker);
 
 	}
 
 	@Override
-	public Worker getAdminById(Long id) {
+	public Worker getWorkerById(Long id) {
 		return super.getById(id);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Worker> getAdmins(Page page) {
+	public List<Worker> getWorkers(Page page) {
 		return super.findByCriteria(createDetachedCriteria().addOrder(Order.asc("id")), page);
 	}
 
 	@Override
-	public Worker getAdminByName(String username) {
+	public Worker getWorkerByName(String username) {
 		return (Worker) super.findUniqueResultByCriteria(createDetachedCriteria().add(
 				Restrictions.eq("username", username)));
 	}

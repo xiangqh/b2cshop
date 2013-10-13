@@ -11,15 +11,15 @@ import com.zz.b2cshop.privilege.dao.entity.Worker;
  */
 public interface IWorkerService {
 
-	public Worker getAdminByName(String username);
+	public Worker getWorkerByName(String username);
 
-	public void addAdmin(Worker admin);
+	public void addWorker(Worker Worker);
 
-	public void delAdminById(Long id);
+	public void delWorkerById(Long id);
 
-	public void updateAdmin(Worker admin);
+	public void updateWorker(Worker Worker);
 
-	public Worker getAdminById(Long id);
+	public Worker getWorkerById(Long id);
 
-	public List<Worker> getAdmins(Page page);
+	public List<Worker> getWorkers(Page page);
 }

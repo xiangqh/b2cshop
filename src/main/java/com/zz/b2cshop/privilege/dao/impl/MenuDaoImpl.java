@@ -38,7 +38,7 @@ public class MenuDaoImpl extends BaseDaoSupport<Menu> implements IMenuDao {
 
 	@Override
 	public List<Menu> getMenuListByPId(Long pId) {
-		return super.getList(createDetachedCriteria().add(Restrictions.eq("parentId", pId)));
+		return super.getList(createDetachedCriteria().add(Restrictions.eq("parent.id", pId)));
 	}
 
 	@Override
