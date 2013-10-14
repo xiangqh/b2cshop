@@ -2,28 +2,50 @@
 <html>
   <head>
     <title>网站设置</title>
-    <link href="css/admin.css" rel="stylesheet">
-    <link href="css/art.css" rel="stylesheet">
-    <link href="css/default.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <script src="js/jquery.js" type="text/javascript"></script>
-    <script type="text/javascript"></script>
+    <link href="${cssDomain}/admin.css" rel="stylesheet">
+    <link href="${cssDomain}/art.css" rel="stylesheet">
+    <link href="${cssDomain}/default.css" rel="stylesheet">
+    <link href="${cssDomain}/style.css" rel="stylesheet">
+    <script src="${jsDomain}/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript">
+	       $(function() {
+		      $(".form").submit(function(e) {
+			    var form = $(this);
+    			if (!e.isDefaultPrevented()) {
+    				$.ajax( {
+    					type :"post",
+    					url :"/$ctx/saveMallInfo?"+form.serialize(),
+    					datatype :"json",
+    					error: function(){
+    						return;
+    					},
+    					success :function(dataObj){
+    						var json = eval("(" + dataObj + ")");
+    						if (json.status && json.status==200) {
+    							alert("保存成功")
+    						}
+    					}
+    				});
+    				e.preventDefault();
+    			}
+    		});
+		 })
+	</script>
   </head>
   
   <body>
-  #getMothodSc("moduleName=admin.action.Common" "parameters=tag:1,vmpath:admin/head.vm,level:1,level2:11")
+  #qModuleLoader("moduleName=module.admin.common.head" "parameters={path:template/admin/head.vm,level1:1,level2:8}")
+
   <div id="admin_right">
 	<div class="headbar">
 		<ul name="conf_menu" class="tab">
 			<li class="selected"><a href="javascript:select_tab('base_conf');">基本设置</a></li>
-			##<li class=""><a href="javascript:select_tab('shopping_conf');">购物设置</a></li>
-			##<li class=""><a href="javascript:select_tab('show_conf');">显示设置</a></li>
-			##<li class=""><a href="javascript:select_tab('system_conf');">系统设置</a></li>
 		</ul>
 	</div>
 	<div class="content_box">
 		<div class="content form_content">
-			<form name="base_conf" enctype="multipart/form-data" method="post" action="updateBaseInfo.htm" style="display: block;" novalidate="true">
+			<form class="form" name="base_conf" enctype="multipart/form-data" method="post" action="saveMallInfo" style="display: block;" novalidate="true">
+				 <input type='hidden'  name='id' value="$!mall.id" />
 				<!--基本设置!-->
 				<table class="form_table">
 					<colgroup><col width="150px">
@@ -32,12 +54,12 @@
 					<tbody>
 					<tr>
 						<th>商店名称：</th>
-						<td><input type="text" alt="商店名称必须填写" pattern="required" name="sc.sc_name" class="normal" value="$!{sc.sc_name}"><label>* 网店名称</label></td>
+						<td><input type="text" alt="商店名称必须填写" pattern="required" name="name" class="normal" value="$!{mall.name}"><label>* 网店名称</label></td>
 					</tr>
 					<tr>
 						<th>商店网址：</th>
 						<td>
-							<input type="text" alt="商店网址必须填写" pattern="url" name="sc.sc_url" class="normal" value="$!{sc.sc_url}">
+							<input type="text" alt="商店网址必须填写" pattern="url" name="url" class="normal" value="$!{mall.url}">
 							<label>* 网站完整的URL访问地址</label>
 						</td>
 					</tr>
@@ -54,39 +76,39 @@
 -->
 					<tr>
 						<th>联系人：</th>
-						<td><input type="text" name="sc.sc_master" class="normal" value="$!{sc.sc_master}"></td>
+						<td><input type="text" name="master" class="normal" value="$!{mall.master}"></td>
 					</tr>
 					<tr>
 						<th>QQ：</th>
-						<td><input type="text" alt="请填写正确的QQ号" empty="" name="sc.qq" pattern="qq" class="normal" value="$!{sc.qq}"></td>
+						<td><input type="text" alt="请填写正确的QQ号" empty="" name="qq" pattern="qq" class="normal" value="$!{mall.qq}"></td>
 					</tr>
 					<tr>
 						<th>Email：</th>
-						<td><input type="text" alt="请填写正确的email地址" empty="" name="sc.email" pattern="email" class="normal" value="$!{sc.email}"></td>
+						<td><input type="text" alt="请填写正确的email地址" empty="" name="email" pattern="email" class="normal" value="$!{mall.email}"></td>
 					</tr>
 					<tr>
 						<th>手机：</th>
-						<td><input type="text" alt="请填写正确的手机号码" empty="" name="sc.mobile" pattern="mobi" class="normal" value="$!{sc.mobile}"></td>
+						<td><input type="text" alt="请填写正确的手机号码" empty="" name="mobile" pattern="mobi" class="normal" value="$!{mall.mobile}"></td>
 					</tr>
 					<tr>
 						<th>固定电话：</th>
-						<td><input type="text" alt="请填写正确的固定电话" empty="" name="sc.phone" pattern="phone" class="normal" value="$!{sc.phone}"></td>
+						<td><input type="text" alt="请填写正确的固定电话" empty="" name="phone" pattern="phone" class="normal" value="$!{mall.phone}"></td>
 					</tr>
 					<tr>
 						<th>具体地址：</th>
-						<td><input type="text" alt="商店名称必须填写" empty="" name="sc.address" pattern="required" class="normal" value="$!{sc.address}"></td>
+						<td><input type="text" alt="商店名称必须填写" empty="" name="address" pattern="required" class="normal" value="$!{mall.address}"></td>
 					</tr>
 					<tr>
 						<th>商品货号前缀：</th>
-						<td><input type="text" alt="商品货号前缀" empty="" name="sc.goods_no_pre" pattern="required" class="normal" value="$!{sc.goods_no_pre}"><label>只取前两位</label></td>
+						<td><input type="text" alt="商品货号前缀" empty="" name="goods_no_pre" pattern="required" class="normal" value="$!{mall.goods_no_pre}"><label>只取前两位</label></td>
 					</tr>
 					<tr>
 						<th>首页keywords：</th>
-						<td><input type="text" alt="首页keywords" empty="" name="sc.index_seo_keywords" pattern="required" class="normal" value="$!{sc.index_seo_keywords}"></td>
+						<td><input type="text" alt="首页keywords" empty="" name="index_seo_keywords" pattern="required" class="normal" value="$!{mall.index_seo_keywords}"></td>
 					</tr>
 					<tr>
 						<th>首页description：</th>
-						<td><input type="text" alt="首页description" empty="" name="sc.index_seo_description" pattern="required" class="normal" value="$!{sc.index_seo_description}"></td>
+						<td><input type="text" alt="首页description" empty="" name="index_seo_description" pattern="required" class="normal" value="$!{mall.index_seo_description}"></td>
 					</tr>
 					<tr>
 						<th></th>
@@ -180,67 +202,65 @@
 			<form name="system_conf" method="post" action="" style="display: none;" novalidate="true">
 				<!--系统设置!-->
 				<table class="form_table">
-					<colgroup><col width="150px">
-					<col>
-					</colgroup><tbody><tr>
-						<th>清理模板缓存：</th>
-						<td>
-							<button onclick="clearCache();" type="button" class="btn"><span>开始清理</span></button>
-							<label>清理系统编译生成的模板缓存文件</label>
-						</td>
-					</tr>
-	
-					<tr>
-						<th>私密信息存储策略：</th>
-						<td>
-							<select alt="请选择一种语言" pattern="required" class="normal" name="safe">
-								<option value="cookie">COOKIE方案(存放于客户端)</option>
-								<option value="session">SESSION方案(存放于服务器端)</option>
-							</select>
-							<label>注意：修改此设置后，用户会被强制退出。默认：COOKIE方案</label>
-						</td>
-					</tr>
-	
-					<tr>
-						<th>私密信息防窃取级别：</th>
-						<td>
-							<select alt="请选择一种级别" pattern="required" class="normal" name="safeLevel">
-								<option value="none">低(不进行校验)</option>
-								<option selected="selected" value="normal">中(校验IP地址的一致性)</option>
-								<option value="advance">高(校验IP地址和用户浏览器一致性)</option>
-							</select>
-							<label>可以有效的防止cookie和session的窃取。注意：当修改了此设置，用户会被强制退出，浏览器需要清空缓存。默认：中</label>
-						</td>
-					</tr>
-	
-					<tr>
-						<th>设置语言包：</th>
-						<td>
-													<select alt="请选择一种语言" pattern="required" name="lang" class="normal">
-															<option value="zh_sc">中文(简体)</option>
-														</select>
-							<label>切换整站语言</label>
-						</td>
-					</tr>
-	
-					<tr>
-						<th>伪静态：</th>
-						<td>
-							<label class="attr"><input type="radio" value="pathinfo" name="rewriteRule">开启</label>
-							<label class="attr"><input type="radio" value="url" name="rewriteRule">关闭</label>
-							<label>开启伪静态前请先确保你的服务器环境支持伪静态规则，如果开启后出现问题，则需手动修改config/config.php中的url参数，设定为：url</label>
-						</td>
-					</tr>
-					<tr>
-						<th></th>
-						#include("test.vm")
-						<td><button type="submit" class="submit"><span>保存系统设置</span></button></td>
-					</tr>
-				</tbody></table>
+					<colgroup><col width="150px"></col></colgroup>
+					<tbody>
+						<tr>
+    						<th>清理模板缓存：</th>
+    						<td>
+    							<button onclick="clearCache();" type="button" class="btn"><span>开始清理</span></button>
+    							<label>清理系统编译生成的模板缓存文件</label>
+    						</td>
+					    </tr>
+						<tr>
+    						<th>私密信息存储策略：</th>
+    						<td>
+    							<select alt="请选择一种语言" pattern="required" class="normal" name="safe">
+    								<option value="cookie">COOKIE方案(存放于客户端)</option>
+    								<option value="session">SESSION方案(存放于服务器端)</option>
+    							</select>
+    							<label>注意：修改此设置后，用户会被强制退出。默认：COOKIE方案</label>
+    						</td>
+    					</tr>
+						<tr>
+    						<th>私密信息防窃取级别：</th>
+    						<td>
+    							<select alt="请选择一种级别" pattern="required" class="normal" name="safeLevel">
+    								<option value="none">低(不进行校验)</option>
+    								<option selected="selected" value="normal">中(校验IP地址的一致性)</option>
+    								<option value="advance">高(校验IP地址和用户浏览器一致性)</option>
+    							</select>
+    							<label>可以有效的防止cookie和session的窃取。注意：当修改了此设置，用户会被强制退出，浏览器需要清空缓存。默认：中</label>
+    						</td>
+    					</tr>
+						<tr>
+    						<th>设置语言包：</th>
+    						<td>
+    													<select alt="请选择一种语言" pattern="required" name="lang" class="normal">
+    															<option value="zh_sc">中文(简体)</option>
+    														</select>
+    							<label>切换整站语言</label>
+    						</td>
+    					</tr>
+						<tr>
+    						<th>伪静态：</th>
+    						<td>
+    							<label class="attr"><input type="radio" value="pathinfo" name="rewriteRule">开启</label>
+    							<label class="attr"><input type="radio" value="url" name="rewriteRule">关闭</label>
+    							<label>开启伪静态前请先确保你的服务器环境支持伪静态规则，如果开启后出现问题，则需手动修改config/config.php中的url参数，设定为：url</label>
+    						</td>
+    					</tr>
+						<tr>
+    						<th></th>
+    						##include("test.vm")
+    						<td><button type="submit" class="submit"><span>保存系统设置</span></button></td>
+    					</tr>
+				</tbody>
+             </table>
 			</form>
 		</div>
 	</div>
   </div>
+  #qModuleLoader("moduleName=module.admin.common.foot" "parameters={path:template/admin/foot.vm}")
   <script type="text/javascript">
   	function select_tab(indexVal)
 	{
@@ -266,6 +286,5 @@
 		$('ul[name="conf_menu"] li:eq('+li_index+')').attr('class','selected');
 	}
   </script>
-  #getMothodSc("moduleName=admin.action.Common" "parameters=tag:2,vmpath:admin/foot.vm");
   </body>
 </html>

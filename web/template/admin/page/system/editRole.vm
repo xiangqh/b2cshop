@@ -2,17 +2,17 @@
 <html>
   <head>
     <title>用户组编辑</title>
-    <link href="${request.getContextPath()}/css/admin.css" rel="stylesheet">
-	<link href="${request.getContextPath()}/css/art.css" rel="stylesheet">
-	<link href="${request.getContextPath()}/css/default.css" rel="stylesheet">
-	<link href="${request.getContextPath()}/css/style.css" rel="stylesheet">
-	<script type="text/javascript" src="${request.getContextPath()}/js/jquery.js"></script>
+    <link href="${cssDomain}/admin.css" rel="stylesheet">
+	<link href="${cssDomain}/art.css" rel="stylesheet">
+	<link href="${cssDomain}/default.css" rel="stylesheet">
+	<link href="${cssDomain}/style.css" rel="stylesheet">
+	<script type="text/javascript" src="${jsDomain}/jquery.js"></script>
     <script >
     $(function(){
         var text = "${role.rights}";
     	var rigths = text.split(",");
     	for(var i = 0; i < rigths.length ;i++){
-    	     $("#"+rigths[i]).attr("checked" ,true);
+    	     $("#checkbox_"+rigths[i]).attr("checked" ,true);
     	}
     });
     </script>

@@ -39,6 +39,7 @@
 	     <property name="packagesToScan">
 	         <list>
 	              <value>com.zz.b2cshop.privilege.dao.entity</value>
+	              <value>com.zz.b2cshop.mall.dao.entity</value>
 	         </list>
 	     </property>
 	     <property name="hibernateProperties">

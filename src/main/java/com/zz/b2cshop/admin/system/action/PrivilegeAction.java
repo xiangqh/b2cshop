@@ -1,4 +1,4 @@
-package com.zz.b2cshop.admin.privilege.action;
+package com.zz.b2cshop.admin.system.action;
 
 import java.util.Date;
 import java.util.List;
@@ -121,6 +121,14 @@ public class PrivilegeAction extends QAction {
 		} else {
 			roleService.addRole(role);
 		}
+		return new AjaxResult();
+	}
+	
+	@RequestMapping(value="delRole")
+	public Result delRole(){
+		Long id = getParameterLong("id");
+		roleService.delRoleById(id);
+		
 		return new AjaxResult();
 	}
 
