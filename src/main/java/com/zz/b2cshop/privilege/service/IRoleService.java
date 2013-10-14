@@ -15,7 +15,7 @@ public interface IRoleService {
 
 	public void delRoleById(Long id);
 
-	public void updateRole(Role Role);
+	public void updateRole(Role role);
 
 	public Role getRoleById(Long id);
 

@@ -2,6 +2,7 @@ package com.zz.b2cshop.privilege.service;
 
 import java.util.List;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -65,6 +66,14 @@ public class MenuServiceImpl implements IMenuService {
 	@Override
 	public List<Menu> getMenuListByLevel(Integer id) {
 		List<Menu> menuList = menuDao.getMenuListByLevel(id);
+		for(Menu menu : menuList) {
+			Hibernate.initialize(menu.getChildrens());
+			if(CollectionUtils.isNotEmpty(menu.getChildrens())) {
+				for(Menu child : menu.getChildrens()) {
+					Hibernate.initialize(child.getChildrens());
+				}
+			}
+		}
 		return menuList;
 	}
 

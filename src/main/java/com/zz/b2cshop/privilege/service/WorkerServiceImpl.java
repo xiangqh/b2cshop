@@ -2,6 +2,7 @@ package com.zz.b2cshop.privilege.service;
 
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Service;
@@ -42,13 +43,19 @@ public class WorkerServiceImpl implements IWorkerService {
 	@Transactional(readOnly = true)
 	@Override
 	public Worker getWorkerById(Long id) {
-		return WorkerDao.getWorkerById(id);
+		Worker worker = WorkerDao.getWorkerById(id);
+		Hibernate.initialize(worker.getRole());
+		return worker;
 	}
 
 	@Transactional(readOnly = true)
 	@Override
 	public List<Worker> getWorkers(Page page) {
-		return WorkerDao.getWorkers(page);
+		List<Worker> workers = WorkerDao.getWorkers(page);
+		for(Worker worker : workers)  {
+			Hibernate.initialize(worker.getRole());
+		}
+		return workers;
 	}
 
 	@Required

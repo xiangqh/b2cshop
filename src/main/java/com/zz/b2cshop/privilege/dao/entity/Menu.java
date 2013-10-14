@@ -3,7 +3,6 @@ package com.zz.b2cshop.privilege.dao.entity;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,7 +15,7 @@ import com.zz.b2cshop.common.PO;
 
 /**
  * @author xiangqh
- * 
+ *
  */
 @Entity
 @Table(name = "b2c_menu")
@@ -37,7 +36,7 @@ public class Menu extends PO {
 	@Column(name = "url")
 	private String url;
 
-	@OneToMany(mappedBy = "parent", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
 	private Set<Menu> childrens = new HashSet<Menu>();
 
 	public String getName() {
@@ -96,7 +95,7 @@ public class Menu extends PO {
 			return true;
 		if (!super.equals(obj))
 			return false;
-		if (getClass() != obj.getClass())
+		if (!(obj instanceof Menu))
 			return false;
 		Menu other = (Menu) obj;
 		if (level == null) {
@@ -119,8 +118,8 @@ public class Menu extends PO {
 
 	@Override
 	public String toString() {
-		return "Menu [name=" + name + ", level=" + level + ", parent=" + parent + ", url=" + url + ", childrens="
-				+ childrens + "]";
+		return String.format("Menu [name=%s, level=%s, parent=%s, url=%s, childrens=%s]", name, level, parent, url,
+				childrens);
 	}
 
 }

@@ -9,6 +9,7 @@ import org.zz.qstruts2.action.QAction;
 import org.zz.qstruts2.annotations.ActionController;
 import org.zz.qstruts2.annotations.RequestMapping;
 
+import com.google.common.base.Joiner;
 import com.opensymphony.xwork2.Result;
 import com.zz.b2cshop.common.AjaxResult;
 import com.zz.b2cshop.common.BaseResult;
@@ -25,97 +26,102 @@ import com.zz.b2cshop.privilege.service.IWorkerService;
 public class PrivilegeAction extends QAction {
 
 	@Autowired
-	private IWorkerService WorkerService;
+	private IWorkerService workerService;
 
 	@Autowired
 	private IRoleService roleService;
-	
+
 	@Autowired
 	private IMenuService menuService;
 
 	@RequestMapping(value = "showWorkers")
 	public Result show() {
-		Page page = new Page(0, 10);
-		List<Worker> Workers = WorkerService.getWorkers(page);
-		setHttpAttribute("Workers", Workers);
+		Page page = new Page(1, 10);
+		List<Worker> workers = workerService.getWorkers(page);
+		setHttpAttribute("workers", workers);
+
+		List<Role> roles = roleService.getAllRole();
+		setHttpAttribute("roles", roles);
 
 		return new BaseResult("/template/admin/page/system/showWorkers.vm");
 	}
 
-	@RequestMapping(value="addWorkerPage")
-	public Result addWorkerPage() {
-		List<Role> roles = roleService.getAllRole();
-		setHttpAttribute("roles", roles);
-
-		return new BaseResult("/template/Worker/page/addWorker.vm");
-	}
-
-	public Result addWorker() {
-		String username = getHttpParameter("username");
-		String password = getHttpParameter("password");
-		String email = getHttpParameter("email");
-		Long role_id = getParameterLong("roleId");
-
-		Worker Worker = WorkerService.getWorkerByName(username);
-		if (Worker == null) {
-			return new AjaxResult(500, "用户名已注册", "");
-		}
-		Worker = new Worker();
-		Worker.setUsername(username);
-		Worker.setPassword(password);
-		Worker.setEmail(email);
-		Worker.setRole(new Role(role_id));
-		Worker.setCreate_ime(new Date());
-		WorkerService.addWorker(Worker);
-
-		return new AjaxResult(200,"");
-	}
-
+	@RequestMapping(value = "editWorkerPage")
 	public Result editWorkerPage() {
 		List<Role> roles = roleService.getAllRole();
 		setHttpAttribute("roles", roles);
+		Long id = getParameterLong("id");
+		if (id != null) {
+			Worker worker = workerService.getWorkerById(id);
+			setHttpAttribute("worker", worker);
+		}
 
-		return new BaseResult("/template/Worker/page/addWorker.vm");
+		return new BaseResult("/template/admin/page/system/addWorker.vm");
 	}
 
-	public Result updateWorker(){
-		Long id = getParameterLong("id");
+	@RequestMapping(value = "saveWorker")
+	public Result saveWorker() {
 		String username = getHttpParameter("username");
 		String password = getHttpParameter("password");
 		String email = getHttpParameter("email");
-		Long role_id = getParameterLong("roleId");
+		Long role_id = getParameterLong("role_id");
 
-		Worker Worker = WorkerService.getWorkerByName(username);
-		if (Worker == null) {
-			return new AjaxResult(500, "用户名已注册", "");
-		}
-		Worker = new Worker();
-		Worker.setId(id);
-		Worker.setPassword(password);
-		Worker.setEmail(email);
-		Worker.setRole(new Role(role_id));
-		Worker.setCreate_ime(new Date());
-		WorkerService.updateWorker(Worker);
+		Worker worker = new Worker();
+		worker.setUsername(username);
+		worker.setPassword(password);
+		worker.setEmail(email);
+		worker.setRole(new Role(role_id));
+		worker.setCreate_ime(new Date());
 
-		return new AjaxResult(200,"");
-
-	}
-
-	public Result delWorker() {
 		Long id = getParameterLong("id");
-		WorkerService.delWorkerById(id);
+		if (id == null) {
+			Worker other = workerService.getWorkerByName(username);
+			if (other != null) {
+				return new AjaxResult(500, "用户名已注册", "");
+			}
+			workerService.addWorker(worker);
+		} else {
+			worker.setId(id);
+			workerService.updateWorker(worker);
+		}
 		return new AjaxResult();
 	}
-	
-	@RequestMapping(value="addRolePage")
-	public Result addRolePage(){
+
+	@RequestMapping(value="delWorker")
+	public Result delWorker() {
+		Long id = getParameterLong("id");
+		workerService.delWorkerById(id);
+		return new AjaxResult();
+	}
+
+	@RequestMapping(value = "editRolePage")
+	public Result editRolePage() {
+		Long id = getParameterLong("id");
+		if (id != null) {
+			Role role = roleService.getRoleById(id);
+			setHttpAttribute("role", role);
+		}
 		List<Menu> menus = menuService.getMenuListByLevel(1);
-		/*for(Menu menu : menus) {
-			List<Menu> childrens =  menuService.getMenuListByPId(menu.getId());
-			menu.setChildrens(childrens);
-		}*/
 		setHttpAttribute("menus", menus);
-		return new BaseResult("/template/admin/page/system/addRole.vm");
+		return new BaseResult("/template/admin/page/system/editRole.vm");
+	}
+
+	@RequestMapping(value = "saveRole")
+	public Result saveRole() {
+		String name = getHttpParameter("name");
+		String[] rights = getHttpParameters("rights");
+		Role role = new Role();
+		role.setName(name);
+		role.setRights(Joiner.on(",").join(rights));
+
+		Long id = getParameterLong("id");
+		if (id != null) {
+			role.setId(id);
+			roleService.updateRole(role);
+		} else {
+			roleService.addRole(role);
+		}
+		return new AjaxResult();
 	}
 
 }

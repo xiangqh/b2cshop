@@ -69,7 +69,7 @@ html>body .aui_default .aui_border { background:url(default/50.png)\9; }
 .aui_default .aui_buttons_wrap button { padding:2px 4px; letter-spacing:2px; }
 * html .aui_ie6_select_mask { left:-1px!important; top:-1px!important; }
 
-.aui_default .aui_icon { width:48px; height:48px; margin:10px 0 10px 10px; background-image:url(aero/icons.png); background-repeat:no-repeat; }
+.aui_default .aui_icon { width:48px; height:48px; margin:10px 0 10px 10px; background-images:url(aero/icons.png); background-repeat:no-repeat; }
 .aui_default .art_alert { background-position:0 -96px; }
 .aui_default .art_succeed { background-position:0 0;}
 .aui_default .art_error { background-position:0 -48px; }

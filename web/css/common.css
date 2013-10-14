@@ -461,7 +461,7 @@
 }
 
 #entry .extra .btns s {
-    background-image:url(../images/icon_cooperation.jpg);
+    background-images:url(../images/icon_cooperation.jpg);
     background-repeat: no-repeat;
     display: block;
     height: 23px;

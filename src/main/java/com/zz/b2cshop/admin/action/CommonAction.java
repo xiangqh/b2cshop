@@ -16,7 +16,7 @@ import com.zz.b2cshop.privilege.service.IMenuService;
 
 /**
  * @author xiangqh
- * 
+ *
  */
 @Component
 public class CommonAction implements ModuleAction {
@@ -32,15 +32,13 @@ public class CommonAction implements ModuleAction {
 		Long level2 = Long.valueOf(params.get("level2").toString());
 
 		List<Menu> menuListF = menuService.getMenuListByLevel(1);
-		List<Menu> menuListS = menuService.getMenuListByPId(level1);
-		List<Menu> menuListT = menuService.getMenuListByPId(level2);
 		for (Menu menu : menuListF) {
 			if (level1.equals(menu.getId())) {
 				context.put("currentMenu", menu.getName());
 				context.put("menuListS", menu.getChildrens());
 				for (Menu child : menu.getChildrens()) {
 					if (level2.equals(child.getId())) {
-						context.put("menuListT", menuListT);
+						context.put("menuListT", child.getChildrens());
 						break;
 					}
 				}

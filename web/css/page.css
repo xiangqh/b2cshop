@@ -247,7 +247,7 @@ Explain:        此样式为页面样式。
 
 .rank .mc {
     -moz-border-bottom-colors: none;
-    -moz-border-image: none;
+    -moz-border-images: none;
     -moz-border-left-colors: none;
     -moz-border-right-colors: none;
     -moz-border-top-colors: none;
@@ -262,9 +262,9 @@ Explain:        此样式为页面样式。
     width: 196px;border-top: 1px solid #EFEFEF;
     float: left;}
 #commend .mc li.bh-on {
-    
+
     height: 56px;
-    
+
 }
 #commend .mc .fore {
     border-top: 0 none;
@@ -513,7 +513,7 @@ Explain:        此样式为页面样式。
     line-height: 14px;
     padding-top: 3px;
 }
-.pagin-m .prev, .pagin-m .next, .pagin-m .prev-disabled, .pagin-m 
+.pagin-m .prev, .pagin-m .next, .pagin-m .prev-disabled, .pagin-m
 .pagin .next, .pagin .next-disabled {
     padding-right: 12px;
 }
@@ -523,7 +523,7 @@ Explain:        此样式为页面样式。
     padding-top: 3px;
 }
 .pagin b {
-    background-image: url(../images/bg_hotsale1.gif);
+    background-images: url(../images/bg_hotsale1.gif);
     background-repeat: no-repeat;
     height: 9px;
     overflow: hidden;
@@ -587,7 +587,7 @@ Explain:        此样式为页面样式。
     line-height: 23px;
 }
 #detail .partake a {
-    background-image:url(../images/news-icobg.gif);
+    background-images:url(../images/news-icobg.gif);
     background-repeat: no-repeat;
     float: left;
     height: 23px;
@@ -685,7 +685,7 @@ Explain:        此样式为页面样式。
 }
 
 #search-result .btns a, .rank .tab li, #preview .enlarge b, #preview .partake div a, #spec-n5 .control, .model-partake .i-con b, #service-trade b, #storeinfo .i-storeinfo, #storeinfo .i-storeinfo div, #storeinfo .close, #djd-store .i-storeinfo, #djd-store .i-storeinfo div, #djd-store .close, #choose .btn-append, #choose .btn-divide, #choose .btn-coll, #choose .btn-0yuan, #choose .btn-notice, #choose .btn-enternet, #choose .btn-buyitnow, #easybuy .close, #i-comment .actor b, .recommend .master .icon-add, .recommend .btn-buy, #i-comment .btn-comment, .percent .d1, .percent .d1 div, #comment .btn-agree, #comment .btn-oppose, #comment .btn-reply, #comment .corner, #consult dt b, #consult .i-search1 .btn-search, #discuss b, #float-bar div, #float-bar a, .sa0, .sa1, .sa2, .sa3, .sa4, .sa5 {
-    background-image:url(../images/icon2011111801.gif);
+    background-images:url(../images/icon2011111801.gif);
     background-repeat: no-repeat;
 }
 #spec-left {
@@ -811,7 +811,7 @@ a#site-qzone:link, a#site-qzone:visited {
 }
 #bh-pd-show #summary {
     width: 590px;
-	
+
 }
 #bh-pd-show #summary .summary{float:left}
 #summary {
@@ -1063,7 +1063,7 @@ a#site-qzone:link, a#site-qzone:visited {
     text-align: center;
 }
 #sortlist .mt, #samekind .mt, #related-buy .mt, .rank .mt, #recent .mt, #choose .btn-easy, .right-extra .mt, .right-extra .tab li, .right-extra .tab span {
-    background-image:url(../images/icon2011111802.png);
+    background-images:url(../images/icon2011111802.png);
     background-repeat: no-repeat;
 }
 .right-extra .tab li {
@@ -1104,7 +1104,7 @@ a#site-qzone:link, a#site-qzone:visited {
 }
 #bh-pd-show #sortlist .mc {
     -moz-border-bottom-colors: none;
-    -moz-border-image: none;
+    -moz-border-images: none;
     -moz-border-left-colors: none;
     -moz-border-right-colors: none;
     -moz-border-top-colors: none;
@@ -1135,7 +1135,7 @@ a#site-qzone:link, a#site-qzone:visited {
 }
 #samekind .mc {
     -moz-border-bottom-colors: none;
-    -moz-border-image: none;
+    -moz-border-images: none;
     -moz-border-left-colors: none;
     -moz-border-right-colors: none;
     -moz-border-top-colors: none;
@@ -1620,7 +1620,7 @@ a#site-qzone:link, a#site-qzone:visited {
 	zoom:1;
 }
 #mycart-detail .corner {
-    background-image: url(../images/bg_initcart.gif);
+    background-images: url(../images/bg_initcart.gif);
     background-repeat: no-repeat;
     height: 7px;
     overflow: hidden;
@@ -1994,7 +1994,7 @@ a#site-qzone:link, a#site-qzone:visited {
 }
 #re-search .text {
     -moz-border-bottom-colors: none;
-    -moz-border-image: none;
+    -moz-border-images: none;
     -moz-border-left-colors: none;
     -moz-border-right-colors: none;
     -moz-border-top-colors: none;
@@ -2074,7 +2074,7 @@ a#site-qzone:link, a#site-qzone:visited {
 }
 
 .thickcon  #regist .tab li {
-    background-image:url(../images/bg_frametab.jpg);
+    background-images:url(../images/bg_frametab.jpg);
     background-position: 0 -27px;
     background-repeat: no-repeat;
     color: #333333;
@@ -2156,7 +2156,7 @@ a#site-qzone:link, a#site-qzone:visited {
 }
 
 #regist .extra .btns s {
-    background-image:url(../images/icon_cooperation.jpg);
+    background-images:url(../images/icon_cooperation.jpg);
     background-repeat: no-repeat;
     display: block;
     height: 23px;
@@ -2385,7 +2385,7 @@ a#site-qzone:link, a#site-qzone:visited {
 
 .cart-tbody .quantity-text {
     -moz-border-bottom-colors: none;
-    -moz-border-image: none;
+    -moz-border-images: none;
     -moz-border-left-colors: none;
     -moz-border-right-colors: none;
     -moz-border-top-colors: none;
@@ -2481,7 +2481,7 @@ a#site-qzone:link, a#site-qzone:visited {
 }
 #forget .mc {
     -moz-border-bottom-colors: none;
-    -moz-border-image: none;
+    -moz-border-images: none;
     -moz-border-left-colors: none;
     -moz-border-right-colors: none;
     -moz-border-top-colors: none;
@@ -2956,7 +2956,7 @@ table.bh-comp2{border-left:1px solid #E6E6E6;}
     padding: 6px 0 0 110px;
     width: 340px;
 }
-#bh-comp-tanchu a.up {  
+#bh-comp-tanchu a.up {
     display: block;
     float: left;
     height: 29px;
@@ -3211,7 +3211,7 @@ table.bh-comp2{border-left:1px solid #E6E6E6;}
 .bh-order-show .bh-process { margin: 0 auto;padding: 18px 0 80px;width: 533px;}
 
 .bh-order-show .bh-process .bh-point,.bh-order-show .bh-process .bh-line {
-    background-image:url(../images/order-stadiu.jpg);
+    background-images:url(../images/order-stadiu.jpg);
     background-repeat: no-repeat;
     float: left;
     height: 13px;
@@ -3292,7 +3292,7 @@ table.bh-comp2{border-left:1px solid #E6E6E6;}
 .bh-table2 td{ padding:5px;}
 .bh-table2 .bh-text{width:205px; height:20px; border:1px solid #ccc;}
 .bh-table2 .bh-btn{background:url(../images/save.jpg) no-repeat; width:65px; height:22px; border:0 none; font-size:14px; font-weight:bold; cursor:pointer; margin-top:12px;}
-.bh-invicemessage{color:#7f7d7d; line-height:25px; border-top:1px solid #ccc; padding:5px 8px;} 
+.bh-invicemessage{color:#7f7d7d; line-height:25px; border-top:1px solid #ccc; padding:5px 8px;}
 .bh-invicemessage h1{color:#000;}
 .bh-invoice .bh-zcon{padding-bottom:20px;}
 .bh-invoice .bh-table1{border-right:1px solid #eee;}
@@ -3377,7 +3377,7 @@ table.bh-comp2{border-left:1px solid #E6E6E6;}
 .bh-safe-table{border:1px solid #E6E6E6; border-bottom:0 none;}
 .bh-safe-table tr{height:90px;}
 .bh-safe-table td,.bh-safe-table th{ border-bottom:1px solid #E6E6E6;}
-.bh-safe-table th{ font-size:18px; font-weight:bold; font-family:"微软雅黑";} 
+.bh-safe-table th{ font-size:18px; font-weight:bold; font-family:"微软雅黑";}
 .bh-safe-table th img{ padding-right:25px;}
 .bh-safe-table .bh-message{border-left:1px solid #E6E6E6; padding-left:15px; line-height:32px; color:#999;}
 .bh-safe-table .bh-red{color:#BB0000;}
