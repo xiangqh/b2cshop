@@ -35,7 +35,7 @@ public class PrivilegeAction extends QAction {
 	private IMenuService menuService;
 
 	@RequestMapping(value = "showWorkers")
-	public Result show() {
+	public Result showWorkers() {
 		Page page = new Page(1, 10);
 		List<Worker> workers = workerService.getWorkers(page);
 		setHttpAttribute("workers", workers);
