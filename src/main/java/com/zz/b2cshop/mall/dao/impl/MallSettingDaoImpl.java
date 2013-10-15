@@ -30,10 +30,12 @@ public class MallSettingDaoImpl extends BaseDaoSupport<MallSetting> implements I
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<MallSetting> getMallSettingByKey(String setting_key) {
-		// TODO Auto-generated method stub
 		return super.findByCriteria(createDetachedCriteria().add(Restrictions.eq("setting_key", setting_key)));
 	}
 
-
-
+	@Override
+	public MallSetting getMallSetting(Long mall_id, String setting_key) {
+		return (MallSetting) super.findUniqueResultByCriteria(createDetachedCriteria().add(Restrictions.eq("mall_id", mall_id)).add(
+				Restrictions.eq("setting_key", setting_key)));
+	}
 }

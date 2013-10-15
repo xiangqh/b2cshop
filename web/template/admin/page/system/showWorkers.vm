@@ -10,38 +10,15 @@
 	<script language="javascript">
 	    function delWorker(id) {
 		     var url = "/${ctx}/delWorker?id=" + id;
-			 $.ajax( {
-					type :"post",
-					url :url,
-					datatype :"json",
-					error: function(){
-						return;
-					},
-					success :function(data){
-						var json = eval("(" + data + ")");
-						if (json.status && json.status==200) {
-						    $("#tr_worker_"+id).remove();
-						}
-					}
-				});
+			 $.b2c.ajax(url,function(data){
+			      $("#tr_worker_"+id).remove();
+			 })
 		}
 		function delRole(id){
     		 var url = "/${ctx}/delRole?id=" + id;
-			 $.ajax( {
-					type :"post",
-					url :url,
-					datatype :"json",
-					error: function(){
-						return;
-					},
-					success :function(data){
-						var json = eval("(" + data + ")");
-						if (json.status && json.status==200) {
-						    $("#tr_role_"+id).remove();
-						}
-					}
-				});
-
+			 $.b2c.ajax(url,function(data){
+			      $("#tr_role_"+id).remove();
+			 })
 		}
     </script>
   </head>

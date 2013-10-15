@@ -13,7 +13,7 @@ public class MallSetting extends PO {
 	private static final long serialVersionUID = -2253783146245034676L;
 
 	@Column
-	private Integer mall_id;
+	private Long mall_id;
 
 	@Column
 	private String setting_key;
@@ -21,11 +21,11 @@ public class MallSetting extends PO {
 	@Column
 	private String setting_value;
 
-	public Integer getMall_id() {
+	public Long getMall_id() {
 		return mall_id;
 	}
 
-	public void setMall_id(Integer mall_id) {
+	public void setMall_id(Long mall_id) {
 		this.mall_id = mall_id;
 	}
 

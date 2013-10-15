@@ -2,15 +2,23 @@
 <html>
   <head>
     <title>商品上下架设置</title>
-    <link href="css/admin.css" rel="stylesheet">
-	<link href="css/art.css" rel="stylesheet">
-	<link href="css/default.css" rel="stylesheet">
-	<link href="css/style.css" rel="stylesheet">
-	<script type="text/javascript" src="js/jquery.js"></script>
+    <link href="${cssDomain}/admin.css" rel="stylesheet">
+	<link href="${cssDomain}/art.css" rel="stylesheet">
+	<link href="${cssDomain}/default.css" rel="stylesheet">
+	<link href="${cssDomain}/style.css" rel="stylesheet">
+	<script src="${jsDomain}/b2c.ajax.js" type="text/javascript"></script>
+    <script src="${jsDomain}/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript">
+	       $(function() {
+		      $.b2c.ajaxSubmit($(".form"),"/$ctx/saveGoodsSetting", function(){
+			     alert("保存成功");
+			  })
+		   })
+	</script>
   </head>
-  
+
   <body>
-  #getMothodSc("moduleName=admin.action.Common" "parameters=tag:1,vmpath:admin/head.vm,level:1,level2:14")
+  #qModuleLoader("moduleName=module.admin.common.head" "parameters={path:template/admin/head.vm,level1:1,level2:8}")
     <div id="admin_right">
 		<div class="headbar">
 			<ul name="conf_menu" class="tab">
@@ -18,9 +26,10 @@
 			</ul>
 		</div>
 		<div class="content_box">
-		
+
 			<div class="content form_content">
-				<form name="goods_conf" method="post" action="updateGoodsInfo.htm" style="display: block;" novalidate="true">
+				<form class="form" name="goods_conf" method="post" style="display: block;" novalidate="true">
+					<input type='hidden'  name='id' value="$!mallSetting.id" />
 					<!--邮箱设置-->
 					<table class="form_table">
 						<colgroup>
@@ -98,6 +107,6 @@
 			</div>
 		</div>
 	</div>
-	#getMothodSc("moduleName=admin.action.Common" "parameters=tag:2,vmpath:admin/foot.vm");
+	#qModuleLoader("moduleName=module.admin.common.foot" "parameters={path:template/admin/foot.vm}")
   </body>
 </html>

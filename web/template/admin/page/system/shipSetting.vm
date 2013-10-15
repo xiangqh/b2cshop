@@ -2,23 +2,31 @@
 <html>
   <head>
     <title>配送设置</title>
-    <link href="css/admin.css" rel="stylesheet">
-    <link href="css/art.css" rel="stylesheet">
-	<link href="css/default.css" rel="stylesheet">
-	<link href="css/style.css" rel="stylesheet">
-    <script src="js/jquery.js" type="text/javascript"></script>
+    <link href="${cssDomain}/admin.css" rel="stylesheet">
+    <link href="${cssDomain}/art.css" rel="stylesheet">
+	<link href="${cssDomain}/default.css" rel="stylesheet">
+	<link href="${cssDomain}/style.css" rel="stylesheet">
+    <script src="${jsDomain}/jquery.js" type="text/javascript"></script>
+	<script src="${jsDomain}/b2c.ajax.js" type="text/javascript"></script>
+    <script type="text/javascript">
+	       $(function() {
+		      $.b2c.ajaxSubmit($(".form"),"/$ctx/saveShipSetting", function(){
+			     alert("保存成功");
+			  })
+		   })
+	</script>
   </head>
   <body>
-  #getMothodSc("moduleName=admin.action.Common" "parameters=tag:1,vmpath:admin/head.vm,level:1,level2:17")
+  #qModuleLoader("moduleName=module.admin.common.head" "parameters={path:template/admin/head.vm,level1:1,level2:8}")
     <div id="admin_right">
     	<div class="headbar clearfix">
         	<ul name="menu1" class="tab">
         		<li class="selected" id="li_1"><a hidefocus="true">配送设置</a></li>
         	</ul>
         </div>
-        
-        <form method="post" action="addShip.htm" name="ModelForm" novalidate="true">
-        <input type="hidden" value="$ship.id" name="id" />
+
+        <form class="form" method="post" name="ModelForm" novalidate="true">
+        <input type='hidden'  name='id' value="$!mallSetting.id" />
 		<div class="content_box">
         	<div class="content form_content" style="background:repeat;">
         		<table name="table" class="form_table" id="tab-1" style="display: table;">
@@ -29,12 +37,12 @@
         			<tr>
         				<td><span>配送设置</span></td>
         			</tr>
-        			
+
 					<tr>
         				<td>
         					<table width="90%" class="border_table">
         						<tbody >
-        							
+
 									<tr>
 										<td>
                                             <table>
@@ -44,15 +52,15 @@
 												</tr>
 												<tr>
                                                     <td>快递</td>
-													<td><input type="text" value="$ship.fastPost" name="fastPost" />元</td>
+													<td><input type="text" value="$!ship.fastPost" name="fastPost" />元</td>
 												</tr>
 												<tr>
                                                     <td>平邮</td>
-													<td><input type="text" value="$ship.slowPost" name="slowPost" />元</td>
+													<td><input type="text" value="$!ship.slowPost" name="slowPost" />元</td>
 												</tr>
 												<tr>
                                                     <td>EMS</td>
-													<td><input type="text" value="$ship.ems" name="ems" />元</td>
+													<td><input type="text" value="$!ship.ems" name="ems" />元</td>
 												</tr>
 											</table>
 										</td>
@@ -81,6 +89,6 @@
 			});
 		});
 	</script>
-	#getMothodSc("moduleName=admin.action.Common" "parameters=tag:2,vmpath:admin/foot.vm");
+	#qModuleLoader("moduleName=module.admin.common.foot" "parameters={path:template/admin/foot.vm}")
   </body>
 </html>

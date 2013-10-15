@@ -11,6 +11,9 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.annotate.JsonSerialize.Inclusion;
 import org.codehaus.jackson.type.TypeReference;
 
+import com.zz.b2cshop.mall.model.ImageBean;
+import com.zz.b2cshop.mall.model.ImageSettingBean;
+
 /**
  * @author xiangqh
  *
@@ -119,5 +122,22 @@ public class JsonBinder {
 	 */
 	public ObjectMapper getMapper() {
 		return mapper;
+	}
+
+	public static void main(String[] args) {
+		ImageSettingBean bean = new ImageSettingBean();
+		bean.setImg1(new ImageBean(1,1));
+		bean.setImg2(new ImageBean(2,2));
+		bean.setImg3(new ImageBean(3,3));
+		bean.setImg4(new ImageBean(4,4));
+		bean.setImg5(new ImageBean(5,5));
+
+		String json = JsonBinder.buildNonNullBinder().toJson(bean);
+
+
+		ImageSettingBean bean2 = JsonBinder.buildNonNullBinder().fromJson(json, ImageSettingBean.class);
+		System.out.println(bean2);
+
+
 	}
 }

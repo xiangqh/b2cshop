@@ -6,33 +6,17 @@
     <link href="${cssDomain}/art.css" rel="stylesheet">
     <link href="${cssDomain}/default.css" rel="stylesheet">
     <link href="${cssDomain}/style.css" rel="stylesheet">
+	<script src="${jsDomain}/b2c.ajax.js" type="text/javascript"></script>
     <script src="${jsDomain}/jquery.js" type="text/javascript"></script>
     <script type="text/javascript">
 	       $(function() {
-		      $(".form").submit(function(e) {
-			    var form = $(this);
-    			if (!e.isDefaultPrevented()) {
-    				$.ajax( {
-    					type :"post",
-    					url :"/$ctx/saveMallInfo?"+form.serialize(),
-    					datatype :"json",
-    					error: function(){
-    						return;
-    					},
-    					success :function(dataObj){
-    						var json = eval("(" + dataObj + ")");
-    						if (json.status && json.status==200) {
-    							alert("保存成功")
-    						}
-    					}
-    				});
-    				e.preventDefault();
-    			}
-    		});
-		 })
+		      $.b2c.ajaxSubmit($(".form"),"/$ctx/saveMallInfo", function(){
+			     alert("保存成功");
+			  })
+		   })
 	</script>
   </head>
-  
+
   <body>
   #qModuleLoader("moduleName=module.admin.common.head" "parameters={path:template/admin/head.vm,level1:1,level2:8}")
 
@@ -272,12 +256,12 @@
 
 		var formObj  = $('form[name="'+indexVal+'"]');
 		var li_index = $('form').index(formObj);
-		
+
 		//切换form
 		$('form').hide();
 		if(li_index == -1) {
 			$("form[name='base_conf']").show();
-		} else {		
+		} else {
 			$('form:eq('+li_index+')').show();
 		}
 

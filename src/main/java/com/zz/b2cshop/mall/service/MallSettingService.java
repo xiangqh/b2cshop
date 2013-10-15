@@ -14,7 +14,7 @@ public class MallSettingService implements IMallSettingService {
 
 	@Autowired
 	private IMallSettingDao mallSettingDao;
-	
+
 	@Transactional
 	@Override
 	public void addMallSetting(MallSetting mallSetting) {
@@ -37,6 +37,11 @@ public class MallSettingService implements IMallSettingService {
 	@Override
 	public List<MallSetting> getMallSettingByKey(String setting_key) {
 		return mallSettingDao.getMallSettingByKey(setting_key);
+	}
+
+	@Override
+	public MallSetting getMallSetting(Long mallId, String setting_key) {
+		return mallSettingDao.getMallSetting(mallId, setting_key);
 	}
 
 }
