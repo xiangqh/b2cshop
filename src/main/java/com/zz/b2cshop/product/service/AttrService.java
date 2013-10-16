@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.zz.b2cshop.common.dao.Page;
 import com.zz.b2cshop.product.dao.IAttrDao;
-import com.zz.b2cshop.product.entity.Attr;
+import com.zz.b2cshop.product.entity.ProductType;
 
 @Service
 public class AttrService implements IAttrService {
@@ -16,27 +16,27 @@ public class AttrService implements IAttrService {
 	private IAttrDao attrDao;
 
 	@Override
-	public void addBrandAttr(Attr brandAttr) {
+	public void addBrandAttr(ProductType brandAttr) {
 		attrDao.addBrandAttr(brandAttr);
 	}
 
 	@Override
-	public void updateBrandAttr(Attr brandAttr) {
+	public void updateBrandAttr(ProductType brandAttr) {
 		attrDao.updateBrandAttr(brandAttr);
 	}
 
 	@Override
-	public void delBrandAttr(Attr brandAttr) {
+	public void delBrandAttr(ProductType brandAttr) {
 		attrDao.delBrandAttr(brandAttr);
 	}
 
 	@Override
-	public List<Attr> getAllBrandAttrs() {
+	public List<ProductType> getAllBrandAttrs() {
 		return attrDao.getAllBrandAttrs();
 	}
 
 	@Override
-	public List<Attr> getBrandAttrs(Page page) {
+	public List<ProductType> getBrandAttrs(Page page) {
 		return attrDao.getBrandAttrs(page);
 	}
 

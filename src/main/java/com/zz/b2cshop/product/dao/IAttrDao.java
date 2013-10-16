@@ -3,18 +3,18 @@ package com.zz.b2cshop.product.dao;
 import java.util.List;
 
 import com.zz.b2cshop.common.dao.Page;
-import com.zz.b2cshop.product.entity.Attr;
+import com.zz.b2cshop.product.entity.ProductType;
 
 public interface IAttrDao {
 
-	public void addBrandAttr(Attr brandAttr);
+	public void addBrandAttr(ProductType brandAttr);
 
-	public void updateBrandAttr(Attr brandAttr);
+	public void updateBrandAttr(ProductType brandAttr);
 
-	public void delBrandAttr(Attr brandAttr);
+	public void delBrandAttr(ProductType brandAttr);
 
-	public List<Attr> getAllBrandAttrs();
+	public List<ProductType> getAllBrandAttrs();
 
-	public List<Attr> getBrandAttrs(Page page);
+	public List<ProductType> getBrandAttrs(Page page);
 
 }
