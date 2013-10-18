@@ -3,17 +3,20 @@ package com.zz.b2cshop.product.service;
 import java.util.List;
 
 import com.zz.b2cshop.common.dao.Page;
-import com.zz.b2cshop.product.entity.ProductType;
+import com.zz.b2cshop.product.dao.entity.Attr;
+import com.zz.b2cshop.product.dao.entity.ProductType;
 
 public interface IAttrService {
+	
+	public void saveAll(List<Attr> list);
 
-	public void addBrandAttr(ProductType brandAttr);
+	public void addPtAttr(Attr attr);
 
-	public void updateBrandAttr(ProductType brandAttr);
+	public void updatePtAttr(Attr attr);
 
-	public void delBrandAttr(ProductType brandAttr);
+	public void delPtAttr(Attr attr);
 
-	public List<ProductType> getAllBrandAttrs();
+	public List<Attr> getAllAttrs();
 
-	public List<ProductType> getBrandAttrs(Page page);
+	public List<Attr> getAttrs(Page page);
 }

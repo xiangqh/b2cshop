@@ -6,15 +6,15 @@ import org.springframework.stereotype.Repository;
 
 import com.zz.b2cshop.common.dao.BaseDaoSupport;
 import com.zz.b2cshop.common.dao.Page;
-import com.zz.b2cshop.product.dao.IAttrDao;
-import com.zz.b2cshop.product.dao.entity.Attr;
+import com.zz.b2cshop.product.dao.IProductTypeDao;
+import com.zz.b2cshop.product.dao.entity.ProductType;
 
 @Repository
-public class AttrDaoImpl extends BaseDaoSupport<Attr> implements IAttrDao {
+public class ProductTypeDao extends BaseDaoSupport<ProductType> implements IProductTypeDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Attr> getAttrs(Page page) {
+	public List<ProductType> getPts(Page page) {
 		return super.findByCriteria(createDetachedCriteria(), page);
 	}
 

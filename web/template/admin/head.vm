@@ -6,14 +6,14 @@
         </div>
 
         <div class="sc-nav">
-            <ul class="sc-nav-head">
+            <ul class="sc-nav-head" >
             	#foreach( $scMenu2 in $menuListS )
             	<li><a href="/$!scMenu2.url">$!scMenu2.name</a></li>
             	#end
             </ul>
             <!--主菜单列表-->
             <div class="sc-right">
-				<span class="sc-nav-head">
+				<span class="sc-nav-head" >
 				 <a id="clickmodle" class="bh-ico-1 " onclick="dis_sc()" style="width: 120px;">$!currentMenu</a>
                 </span>
 				<div class="clig hidden_sc" id="system_id">
@@ -29,7 +29,7 @@
     </div>
 </div>
 <div class="sc-secnav">
-    <div class="sc-secnav-head">#foreach( $scMenu3 in $menuListT )
+    <div class="sc-secnav-head" style="text-align:left;">#foreach( $scMenu3 in $menuListT )
     		<a href="/$!scMenu3.url"><span>$!scMenu3.name</span></a> #end
     </div>
 </div>

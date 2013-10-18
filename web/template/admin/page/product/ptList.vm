@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>品类列表</title>
+    <link href="${cssDomain}/admin.css" rel="stylesheet"/>
+    <link href="${cssDomain}/style.css" rel="stylesheet"/>
+    <link href="${cssDomain}/artDialog.css" rel="stylesheet">
+    <script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/util.js"></script>
+    <script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/artDialog.js"></script>
+	<script src="${jsDomain}/jquery.js" type="text/javascript"></script>
+	<script src="${jsDomain}/b2c.ajax.js" type="text/javascript"></script>
+</head>
+
+<body>
+    #qModuleLoader("moduleName=module.admin.common.head" "parameters={path:template/admin/head.vm,level1:3,level2:15}")
+	
+	<div id="admin_right" style="overflow:hidden;padding: 15px;">
+		<div style="float:left;width:100%;border: 1px solid #D7DDE3;">
+	    <div class="content" >
+			<div class="position"><span>商品</span><span>&gt;</span><span>品类管理</span><span>&gt;</span><span>品类列表</span></div>
+			<div class="operating">
+				    <form action="${request.getContextPath()}/listBrandAttr.htm" method="post" name="listBrandForm" style="text-align:left;">
+        			品类名称：<input class="small" name="brandAttrName" type="text" value="$!{brandAttrName}" style="width:140px"/>
+        				<button class="btn" type="submit"><span>查 询</span></button>
+						<button class="btn" type="button" onclick="location.href='${request.getContextPath()}/toeidt.htm?opera=0';"><span>增加</span></button>
+        			</form>
+            </div>
+    		<table cellspacing="0" cellpadding="0" class="list_table">
+    			<col width="10%">
+    			<col width="25%">
+    			<col width="25%">
+    			<col width="25%">
+				<thead>
+    				<tr class="">
+    					<th>品类名称</th>
+    					<th>拆分属性</th>
+    					<th>选购名称</th>
+    					<th>价格</th>
+    					<th>操作</th>
+    				</tr>
+    			</thead>
+    			<tbody>
+    				#foreach($row in $list)
+    					#foreach($attr in $row.attrs)
+    						#if($attr.attr_type == 1) #set($splitValue=$attr.attr_val) #end
+    						#if($attr.attr_type == 2) #set($changeValue=$attr.attr_val) #end
+                            #if($attr.attr_type == 3) #set($priceValue=$attr.attr_val) #end		
+    					#end
+    					<tr class="pt_$!{row.id}">
+    						<td>${row.pt_name}</td>
+    						<td>$!{splitValue}</td>
+    						<td>$!{changeValue}</td>
+    						<td>$!{priceValue}</td>
+    						<td>
+    							<a href="javascript:void(0);" onclick="location.href='${ctx}/editPt?id=$!{row.id}';">
+    								<img title="编辑" src="${imageDomain}/icon_edit.gif" class="operator">
+    							</a>
+    							<a href="javascript:void(0);" onclick="del(${row.id});">
+    								<img title="删除" src="${imageDomain}/icon_del.gif" class="operator">
+    							</a>
+    						</td>
+    					</tr>
+    				#end
+    			</tbody>
+    		</table>
+    	</div>
+		</div>
+   </div>
+##getPageHtml("formId=battrForm" "parameters=pageNo:$page.pageNo,pageSize:$page.pageSize,totalCount:$page.totalCount,pageviewcount:$page.pageviewcount,vmpath:common/page.vm");
+    #qModuleLoader("moduleName=module.admin.common.foot" "parameters={path:template/admin/foot.vm}")
+	<script >
+	    function delPt(id) {
+		    $.b2c.ajax("${ctx}/delPt?id"+id,function(){
+			  $("#pt_"+id).remove();
+			});
+		}
+    </script>
+</body>
+</html>

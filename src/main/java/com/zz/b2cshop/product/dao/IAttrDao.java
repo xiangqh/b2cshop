@@ -2,19 +2,12 @@ package com.zz.b2cshop.product.dao;
 
 import java.util.List;
 
+import com.zz.b2cshop.common.dao.PODao;
 import com.zz.b2cshop.common.dao.Page;
-import com.zz.b2cshop.product.entity.ProductType;
+import com.zz.b2cshop.product.dao.entity.Attr;
 
-public interface IAttrDao {
+public interface IAttrDao extends PODao<Attr>{
 
-	public void addBrandAttr(ProductType brandAttr);
-
-	public void updateBrandAttr(ProductType brandAttr);
-
-	public void delBrandAttr(ProductType brandAttr);
-
-	public List<ProductType> getAllBrandAttrs();
-
-	public List<ProductType> getBrandAttrs(Page page);
+	public List<Attr> getAttrs(Page page);
 
 }

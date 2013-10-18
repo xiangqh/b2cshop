@@ -7,11 +7,13 @@ import java.util.List;
 
 /**
  * @author xiangqh
- *
+ * 
  */
 public interface PODao<T> {
 
 	void save(T t);
+
+	void saveAll(List<T> list);
 
 	void update(T t);
 

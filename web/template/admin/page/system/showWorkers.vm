@@ -6,17 +6,20 @@
 	<link href="${cssDomain}/art.css" rel="stylesheet">
 	<link href="${cssDomain}/default.css" rel="stylesheet">
 	<link href="${cssDomain}/style.css" rel="stylesheet">
-	<script type="text/javascript" src="${jsDomain}/jquery.js"></script>
+    <script src="${jsDomain}/jquery.js" type="text/javascript"></script>
+	<script src="${jsDomain}/b2c.ajax.js" type="text/javascript"></script>
 	<script language="javascript">
 	    function delWorker(id) {
 		     var url = "/${ctx}/delWorker?id=" + id;
 			 $.b2c.ajax(url,function(data){
+			      alert("删除成功！")
 			      $("#tr_worker_"+id).remove();
 			 })
 		}
 		function delRole(id){
     		 var url = "/${ctx}/delRole?id=" + id;
 			 $.b2c.ajax(url,function(data){
+			 alert("删除成功！")
 			      $("#tr_role_"+id).remove();
 			 })
 		}

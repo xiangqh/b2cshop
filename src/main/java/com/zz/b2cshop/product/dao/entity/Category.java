@@ -1,4 +1,4 @@
-package com.zz.b2cshop.product.entity;
+package com.zz.b2cshop.product.dao.entity;
 
 import com.zz.b2cshop.common.PO;
 

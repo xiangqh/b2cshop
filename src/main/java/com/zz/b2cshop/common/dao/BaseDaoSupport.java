@@ -7,13 +7,17 @@ import org.hibernate.criterion.DetachedCriteria;
 
 /**
  * @author xiangqh
- *
+ * 
  */
 public class BaseDaoSupport<T> extends BaseDao implements PODao<T> {
 
 	@Override
 	public void save(T t) {
 		this.getHibernateTemplate().save(t);
+	}
+
+	public void saveAll(List<T> list) {
+		getHibernateTemplate().saveOrUpdateAll(list);
 	}
 
 	@Override

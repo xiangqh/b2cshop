@@ -33,17 +33,18 @@
 	}
 
 	$.b2c.ajaxSubmit = function(form,ajaxURL,callback){
+		var para = form.serialize();
 		form.submit(function(e) {
 			if (!e.isDefaultPrevented()) {
 				$.ajax( {
-					type :"GET",
-					url :ajaxURL + "?" + form.serialize(),
-					datatype :"json",
+					url :ajaxURL,
+					data:para,
+					type:"post",
+					dataType:"json",
 					error: function(){
 						error();
 					},
-					success :function(dataObj){
-						var json = eval("(" + dataObj + ")");
+					success :function(json){
 						if (json.status && json.status==200) {
 							callback();
 						}

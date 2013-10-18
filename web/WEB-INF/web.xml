@@ -12,7 +12,7 @@
 
 	<context-param>
 	     <param-name>actionPackage</param-name>
-	     <param-value>com.zz.b2cshop.admin.system.action</param-value>
+	     <param-value>com.zz.b2cshop.admin.system.action,com.zz.b2cshop.admin.product.action</param-value>
 	</context-param>
 
 	<listener>

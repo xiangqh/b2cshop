@@ -4,10 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.zz.b2cshop.common.dao.Page;
 import com.zz.b2cshop.product.dao.IAttrDao;
-import com.zz.b2cshop.product.entity.ProductType;
+import com.zz.b2cshop.product.dao.entity.Attr;
 
 @Service
 public class AttrService implements IAttrService {
@@ -15,29 +16,39 @@ public class AttrService implements IAttrService {
 	@Autowired
 	private IAttrDao attrDao;
 
+	@Transactional
 	@Override
-	public void addBrandAttr(ProductType brandAttr) {
-		attrDao.addBrandAttr(brandAttr);
+	public void addPtAttr(Attr attr) {
+		attrDao.save(attr);
+	}
+
+	@Transactional
+	@Override
+	public void updatePtAttr(Attr attr) {
+		attrDao.update(attr);
+	}
+
+	@Transactional
+	@Override
+	public void delPtAttr(Attr attr) {
+		attrDao.delete(attr);
+	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public List<Attr> getAllAttrs() {
+		return attrDao.queryAll();
+	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public List<Attr> getAttrs(Page page) {
+		return attrDao.getAttrs(page);
 	}
 
 	@Override
-	public void updateBrandAttr(ProductType brandAttr) {
-		attrDao.updateBrandAttr(brandAttr);
-	}
-
-	@Override
-	public void delBrandAttr(ProductType brandAttr) {
-		attrDao.delBrandAttr(brandAttr);
-	}
-
-	@Override
-	public List<ProductType> getAllBrandAttrs() {
-		return attrDao.getAllBrandAttrs();
-	}
-
-	@Override
-	public List<ProductType> getBrandAttrs(Page page) {
-		return attrDao.getBrandAttrs(page);
+	public void saveAll(List<Attr> list) {
+		attrDao.saveAll(list);
 	}
 
 }
