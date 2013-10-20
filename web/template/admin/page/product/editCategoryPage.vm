@@ -3,14 +3,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>添加分类</title>
-<link href="${request.getContextPath()}/css/admin.css" rel="stylesheet">
-<link href="${request.getContextPath()}/css/style.css" rel="stylesheet">
-<script type="text/javascript" charset="utf-8" language="javascript" src="${request.getContextPath()}/js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" language="javascript" src="${request.getContextPath()}/js/validator.js"></script>
+<link href="${cssDomain}/admin.css" rel="stylesheet">
+<link href="${cssDomain}/style.css" rel="stylesheet">
+<script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/validator.js"></script>
 </head>
 
 <body>
-#getMothodSc("moduleName=admin.action.Common" "parameters=tag:1,vmpath:admin/head.vm,level:3,level2:0");
+#qModuleLoader("moduleName=module.admin.common.head" "parameters={path:template/admin/head.vm,level1:3,level2:15}")
 <div id="admin_right">
 <div class="headbar">
 	<div class="position"><span>商品</span><span>&gt;</span><span>商品分类管理</span><span>&gt;</span><span>添加分类</span></div>
@@ -69,6 +69,6 @@
 	</div>
 </div>
 	</div>
-	#getMothodSc("moduleName=admin.action.Common" "parameters=tag:2,vmpath:admin/foot.vm");
+  #qModuleLoader("moduleName=module.admin.common.foot" "parameters={path:template/admin/foot.vm}")
 </body>
 </html>

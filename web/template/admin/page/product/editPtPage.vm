@@ -6,7 +6,6 @@
     <link href="${cssDomain}/style.css" rel="stylesheet"/>
     <script src="${jsDomain}/jquery.js" type="text/javascript"></script>
     <script src="${jsDomain}/b2c.ajax.js" type="text/javascript"></script>
-
     <script type="text/javascript">
        $(function() {
 	      $.b2c.ajaxSubmit($(".form"),"/$ctx/savaPt", function(){
@@ -23,7 +22,7 @@
 		<div class="position"><span>商品</span><span>&gt;</span><span>品类管理</span><span>&gt;</span><span>品类添加</span></div>
 	</div>
 
-	<form method="post" class="form" enctype="multipart/form-data" style="display: block;" novalidate="true">
+	<form method="post" class="form" action="/$ctx/savaPt">
 	<input type="hidden" value="$!pt.id" name="id"/>
 	<div class="content_box">
 		<div class="content form_content">
@@ -31,23 +30,29 @@
 				<colgroup><col width="150px">
 				<col>
 				</colgroup>
+				#set($list_filkter=[])
+				#foreach($attr in $pt.attrs)
+					#if($attr.attr_type == 1) #set($splitAttr=$attr) #end
+					#if($attr.attr_type == 2) #set($changAttr=$attr) #end
+                    #if($attr.attr_type == 3) #set($priceAttr=$attr) #end
+                    #if($attr.attr_type == 4) #set($list_filkter[$list_filkter.length] = $attr) #end		
+				#end
 				<tbody>
 					<tr>
 						<th>品类名称：</th>
 						<td>
-							<input type="text" value="$!{pt.name}" title="品类名称" id="name" name="name">
+							<input type="text" value="$!{pt.pt_name}" title="品类名称" id="name" name="name"/>
 							<label class="msgColor">*</label>
 							<label id="msg01" class="msgColor"></label>
-							<input type="hidden" value="${edit_ba.id}" name="id">
 						</td>
 					</tr>
 					<tr>
 						<th>拆分属性 [名称/值]：</th>
 						<td>
 							 <input type="hidden" value="1" name="attr_type"/>
-							 <input type="hidden" value="" name="attr_id"/>
-							<input type="text" value="$!{edit_ba.splitName}" title="拆分属性" name="attr_name" class="normal _vdt:{CHECKNOTNULL(拆分属性[名称])} _for:{msg02}" >
-							<input type="text" value="$!{edit_ba.splitValue}" title="拆分属性" style="width:350px" name="attr_val" class="normal _vdt:{CHECKNOTNULL(拆分属性[值])} _for:{msg02}">
+							 <input type="hidden" value="$!{splitAttr.id}" name="attr_id"/>
+							<input type="text" value="$!{splitAttr.attr_name}" title="拆分属性" name="attr_name" class="normal _vdt:{CHECKNOTNULL(拆分属性[名称])} _for:{msg02}" />
+							<input type="text" value="$!{splitAttr.attr_val}" title="拆分属性" style="width:350px" name="attr_val" class="normal _vdt:{CHECKNOTNULL(拆分属性[值])} _for:{msg02}"/>
 							<label class="msgColor">*</label>
 							<label id="msg02" class="msgColor"></label>
 						</td>
@@ -56,9 +61,9 @@
 						<th>选购属性 [名称/值]：</th>
 						<td>
 							<input type="hidden" value="2" name="attr_type"/>
-							<input type="hidden" value="" name="attr_id"/>
-							<input type="text" value="$!{edit_ba.changeName}" title="选购属性" name="attr_name" class="normal _vdt:{CHECKNOTNULL(选购属性[名称]])} _for:{msg03}">
-							<input type="text" value="$!{edit_ba.changeValue}" title="选购属性" style="width:350px" name="attr_val" class="normal _vdt:{CHECKNOTNULL(选购属性[值]])} _for:{msg03}">
+							<input type="hidden" value="$!{changAttr.id}" name="attr_id"/>
+							<input type="text" value="$!{changAttr.attr_name}" title="选购属性" name="attr_name" class="normal _vdt:{CHECKNOTNULL(选购属性[名称]])} _for:{msg03}"/>
+							<input type="text" value="$!{changAttr.attr_val}" title="选购属性" style="width:350px" name="attr_val" class="normal _vdt:{CHECKNOTNULL(选购属性[值]])} _for:{msg03}"/>
 							<label class="msgColor">*(无选购属性时，名称和值填写#号)</label>	
 							<label id="msg03" class="msgColor"></label>					
 						</td>
@@ -67,9 +72,9 @@
 						<th>价格属性 [名称/值]：</th>
 						<td>
 							<input type="hidden" value="3" name="attr_type"/>
-							<input type="hidden" value="" name="attr_id"/>
-							<input type="text" value="$!{edit_ba.priceName}" title="价格属性" name="attr_name" class="normal _vdt:{CHECKNOTNULL(价格属性[名称])} _for:{msg04}">
-							<input type="text" value="$!{edit_ba.priceValue}" title="价格属性" style="width:350px" name="attr_val" class="normal _vdt:{CHECKNOTNULL(价格属性[值])} _for:{msg04}">
+							<input type="hidden" value="$!{priceAttr.id}" name="attr_id"/>
+							<input type="text" value="$!{priceAttr.attr_name}" title="价格属性" name="attr_name" class="normal _vdt:{CHECKNOTNULL(价格属性[名称])} _for:{msg04}"/>
+							<input type="text" value="$!{priceAttr.attr_val}" title="价格属性" style="width:350px" name="attr_val" class="normal _vdt:{CHECKNOTNULL(价格属性[值])} _for:{msg04}"/>
 							<label class="msgColor">*</label>	
 							<label id="msg04" class="msgColor"></label>						
 						</td>
@@ -91,18 +96,22 @@
 									</tr>
 								</thead>
 								<tbody id="attr_list">
-									#foreach($row in $list_edit_atr)
+									
+									#foreach($attr in $pt.attrs)
+									#if($attr.attr_type == 4)
 									<tr>
-										<td><input name='fjname'  class='normal' type='text' value="${row.name}" />
-											<input name='fjserach' value='1' type='hidden' /></td>
+										<td><input name='attr_name'  class='normal' type='text' value="${attr.attr_name}" />
+											<input type="hidden" value="$!{attr.id}" name="attr_id"/>
+											<input type='hidden' value='4' name='attr_type'/>
 										<td><select class='middle' name='fjtype'>
 											<option value = '1' #if(${row.type}==1) selected #end >单选框</option>
 											<option value = '2' #if(${row.type}==2) selected #end >复选框</option>
 										</select></td>
-										<td><input class='normal' name='fjvalue' type='text' value="${row.value}" /></td>
+										<td><input class='normal' name='attr_val' type='text' value="${attr.attr_val}" /></td>
 										<td><img class='operator' src='${request.getContextPath()}/images/icon_del.gif' alt='删除'  onclick='delAttr(this)' />
 										</td>
 									</tr>
+									#end
 									#end
 								</tbody>
 							</table>
@@ -126,11 +135,8 @@
 		function addAttr()
 		{
 			var str = "<tr>"+
-						"<td><input type='hidden' name='attr_id'/><input type='hidden' value='4' name='attr_type'/><input name='attr_name'  class='normal' type='text' /><input name='fjserach' value='1' type='hidden' /></td>"+
-						"<td><select class='middle' name='fjtype'>"+
-							"<option value = '1'>单选框</option>"+
-							"<option value = '2'>复选框</option>"+
-						"</select></td>"+
+						"<td><input type='hidden' name='attr_id'/><input type='hidden' value='4' name='attr_type'/><input name='attr_name'  class='normal' type='text' /></td>"+
+						"<td></td>"+
 						"<td><input class='normal' name='attr_val' type='text'  /></td>"+
 						"<td><img class='operator' src='${request.getContextPath()}/images/icon_del.gif' alt='删除'  onclick='delAttr(this)' /></td>"+
 					"</tr>";

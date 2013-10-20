@@ -33,8 +33,8 @@
 	}
 
 	$.b2c.ajaxSubmit = function(form,ajaxURL,callback){
-		var para = form.serialize();
 		form.submit(function(e) {
+			var para = form.serialize();
 			if (!e.isDefaultPrevented()) {
 				$.ajax( {
 					url :ajaxURL,

@@ -1,65 +1,67 @@
 package com.zz.b2cshop.product.dao.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.Type;
+
 import com.zz.b2cshop.common.PO;
 
 /**
  * @author xiangqh
- *
+ * 
  */
+@Entity
+@Table(name = "b2c_category")
 public class Category extends PO {
 
-	/**
-	 * "分类名称"
-	 */
-	private String cate_name;
-	/**
-	 * "分类父id"
-	 */
-	private Long parent_id;
+	private static final long serialVersionUID = -7852720600536621665L;
 
-	/**
-	 * "左号，方便查询"
-	 */
-	private long left_num;
+	@Column
+	private String name;
 
-	/**
-	 * " 右号，方便查询"
-	 */
-	private long right_num;
-	/**
-	 * "分类展示排序"
-	 */
-	private long sort_num;
+	@ManyToOne
+	@JoinColumn(name = "parent_id")
+	private Category parent;
 
-	/**
-	 * " 发布状态"
-	 */
-	private int publish_status;
+	@Column
+	private Long left_num;
 
-	/**
-	 * " 外键，商品品类 主键 整型，自增长"
-	 */
-	private Long pt_id;
+	@Column
+	private Long right_num;
 
-	/**
-	 * " 是否删除"
-	 */
-	private int is_del;
+	@Column
+	private Long sort_num;
 
-	public String getCate_name() {
-		return cate_name;
+	@Column
+	@Type(type = "yes_no")
+	private Boolean publish_status;
+
+	@ManyToOne
+	@JoinColumn(name = "pt_id")
+	private ProductType pt;
+
+	@Column
+	@Type(type = "yes_no")
+	private Boolean is_del;
+
+	public String getName() {
+		return name;
 	}
 
-	public void setCate_name(String cate_name) {
-		this.cate_name = cate_name;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public Long getParent_id() {
-		return parent_id;
+	public Category getParent() {
+		return parent;
 	}
 
-	public void setParent_id(Long parent_id) {
-		this.parent_id = parent_id;
+	public void setParent(Category parent) {
+		this.parent = parent;
 	}
 
 	public Long getLeft_num() {
@@ -86,30 +88,102 @@ public class Category extends PO {
 		this.sort_num = sort_num;
 	}
 
-	public Integer getPublish_status() {
+	public Boolean getPublish_status() {
 		return publish_status;
 	}
 
-	public void setPublish_status(Integer publish_status) {
+	public void setPublish_status(Boolean publish_status) {
 		this.publish_status = publish_status;
 	}
 
-	public Long getPt_id() {
-		return pt_id;
+	public ProductType getPt() {
+		return pt;
 	}
 
-	public void setPt_id(Long pt_id) {
-		this.pt_id = pt_id;
+	public void setPt(ProductType pt) {
+		this.pt = pt;
 	}
 
-	public int getIs_del() {
+	public Boolean getIs_del() {
 		return is_del;
 	}
 
-	public void setIs_del(int is_del) {
+	public void setIs_del(Boolean is_del) {
 		this.is_del = is_del;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((is_del == null) ? 0 : is_del.hashCode());
+		result = prime * result + ((left_num == null) ? 0 : left_num.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((parent == null) ? 0 : parent.hashCode());
+		result = prime * result + ((pt == null) ? 0 : pt.hashCode());
+		result = prime * result + ((publish_status == null) ? 0 : publish_status.hashCode());
+		result = prime * result + ((right_num == null) ? 0 : right_num.hashCode());
+		result = prime * result + ((sort_num == null) ? 0 : sort_num.hashCode());
+		return result;
+	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Category other = (Category) obj;
+		if (is_del == null) {
+			if (other.is_del != null)
+				return false;
+		} else if (!is_del.equals(other.is_del))
+			return false;
+		if (left_num == null) {
+			if (other.left_num != null)
+				return false;
+		} else if (!left_num.equals(other.left_num))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (parent == null) {
+			if (other.parent != null)
+				return false;
+		} else if (!parent.equals(other.parent))
+			return false;
+		if (pt == null) {
+			if (other.pt != null)
+				return false;
+		} else if (!pt.equals(other.pt))
+			return false;
+		if (publish_status == null) {
+			if (other.publish_status != null)
+				return false;
+		} else if (!publish_status.equals(other.publish_status))
+			return false;
+		if (right_num == null) {
+			if (other.right_num != null)
+				return false;
+		} else if (!right_num.equals(other.right_num))
+			return false;
+		if (sort_num == null) {
+			if (other.sort_num != null)
+				return false;
+		} else if (!sort_num.equals(other.sort_num))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Category [name=" + name + ", parent=" + parent + ", left_num=" + left_num + ", right_num=" + right_num
+				+ ", sort_num=" + sort_num + ", publish_status=" + publish_status + ", pt=" + pt + ", is_del=" + is_del
+				+ "]";
+	}
 
 }

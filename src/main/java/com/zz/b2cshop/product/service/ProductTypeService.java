@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.zz.b2cshop.common.dao.Page;
 import com.zz.b2cshop.product.dao.IProductTypeDao;
-import com.zz.b2cshop.product.dao.entity.Attr;
 import com.zz.b2cshop.product.dao.entity.ProductType;
 
 @Service

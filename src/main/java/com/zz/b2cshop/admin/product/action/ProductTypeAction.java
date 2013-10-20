@@ -39,6 +39,9 @@ public class ProductTypeAction extends QAction {
 
 	@RequestMapping(value = "editPt")
 	public Result editAttrPage() {
+		Long id = getParameterLong("id");
+		ProductType pt = productTypeService.getPtById(id);
+		setHttpAttribute("pt", pt);
 		return new BaseResult("/template/admin/page/product/editPtPage.vm");
 	}
 
@@ -71,7 +74,6 @@ public class ProductTypeAction extends QAction {
 			attrs.add(attr);
 		}
 		attrService.saveAll(attrs);
-
 		return new AjaxResult();
 	}
 
