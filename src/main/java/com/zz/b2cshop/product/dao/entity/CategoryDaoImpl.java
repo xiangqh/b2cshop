@@ -24,4 +24,10 @@ public class CategoryDaoImpl extends BaseDaoSupport<Category> implements ICatego
 		return super.findByCriteria(createDetachedCriteria().add(Restrictions.eq("parent.id", id)));
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Category> getLevelFCatetegory() {
+		return super.findByCriteria(createDetachedCriteria().add(Restrictions.isNull("parent")));
+	}
+
 }

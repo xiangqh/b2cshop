@@ -1,12 +1,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>添加分类</title>
-<link href="${cssDomain}/admin.css" rel="stylesheet">
-<link href="${cssDomain}/style.css" rel="stylesheet">
-<script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/validator.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>添加分类</title>
+    <link href="${cssDomain}/admin.css" rel="stylesheet">
+    <link href="${cssDomain}/style.css" rel="stylesheet">
+    <script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/jquery.js"></script>
+    <script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/validator.js"></script>
+    <script src="${jsDomain}/b2c.ajax.js" type="text/javascript"></script>
+    <script type="text/javascript">
+       $(function() {
+	      $.b2c.ajaxSubmit($("#categoryForm"),"/$ctx/saveCategory", function(){
+		     location.href="/$ctx/categoryList";
+		  })
+	   })
+	</script>
 </head>
 
 <body>
@@ -23,10 +31,10 @@
 				<col>
 				</colgroup><tbody><tr>
 					<th>分类名称：</th>
-					<td><input type="text" title="分类名称" value="$!{edit_category.name}" name="name" class="normal _vdt:{CHECKNOTNULL(分类名称)} _for:{name_msg}">
+					<td><input type="text" title="分类名称" value="$!{category.name}" name="name" class="normal _vdt:{CHECKNOTNULL(分类名称)} _for:{name_msg}">
 					<label class="msgColor">*</label>
 					<label id="name_msg" class="msgColor"></label>
-					<input type="hidden" value="${edit_category.id}" name="id">
+					<input type="hidden" value="${category.id}" name="id">
 					</td>
 				</tr>
 				<tr>
@@ -34,30 +42,30 @@
 					<td>
 						<select title="选择分类" name="parent_id" class="normal">
 						<option value="0">顶级分类</option>
-						#foreach($row in $list_tree)
-							<option value="${row.id}" #if(${edit_category.parent_id} == ${row.id}) selected #end>${row.name}</option>
+						#foreach($row in $list)
+							<option value="${row.id}" #if(${category.parent_id} == ${row.id}) selected #end>${row.name}</option>
 						#end
 						</select>
 					</td>
 				</tr>
 				<tr>
 					<th>品类：</th><td>
-					<select title="选择商品模型" name="brandcg_id" class="normal">
-						<option value="0" #if(${edit_category.brandcg_id} == 0) selected #end>无绑定</option>
-						#foreach($row in $list_ba)
-							<option value="${row.id}" #if(${edit_category.brandcg_id} == ${row.id}) selected #end>${row.name}</option>
+					<select title="选择商品模型" name="pt_id" class="normal">
+						<option value="0" #if(${category.pt_id} == 0) selected #end>无绑定</option>
+						#foreach($row in $pt_list)
+							<option value="${row.id}" #if(${category.pt_id} == ${row.id}) selected #end>$!{row.name}</option>
 						#end
 					</select>
 				</td>
 				</tr>
 				<tr>
-					<th>首页是否显示：</th>
+					<th>发部：</th>
 					<td>
 						<label class="attr">
-							<input type="radio" value="1" name="visibility" #if(${edit_category.visibility} == 1) checked #end> 是 
+							<input type="radio" value="1" name="publish_status" #if(${category.publish_status}) checked #end> 是 
 						</label>
 						<label class="attr">
-							<input type="radio" value="0" name="visibility" #if(${edit_category.visibility} == 0) checked #end> 否 
+							<input type="radio" value="0" name="publish_status" #if(${category.publish_status}) checked #end> 否 
 						</label>
 					</td>
 				</tr>

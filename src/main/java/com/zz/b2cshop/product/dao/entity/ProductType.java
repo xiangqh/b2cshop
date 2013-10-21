@@ -21,17 +21,24 @@ public class ProductType extends PO {
 	private static final long serialVersionUID = 3738368787429663897L;
 
 	@Column
-	private String pt_name;
+	private String name;
 
 	@OneToMany(mappedBy = "productType", fetch = FetchType.LAZY)
 	private List<Attr> attrs;
 
-	public String getPt_name() {
-		return pt_name;
+	public ProductType() {
 	}
 
-	public void setPt_name(String pt_name) {
-		this.pt_name = pt_name;
+	public ProductType(Long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public List<Attr> getAttrs() {
@@ -47,7 +54,7 @@ public class ProductType extends PO {
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result + ((attrs == null) ? 0 : attrs.hashCode());
-		result = prime * result + ((pt_name == null) ? 0 : pt_name.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
 
@@ -60,17 +67,17 @@ public class ProductType extends PO {
 		if (getClass() != obj.getClass())
 			return false;
 		ProductType other = (ProductType) obj;
-		if (pt_name == null) {
-			if (other.pt_name != null)
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!pt_name.equals(other.pt_name))
+		} else if (!name.equals(other.name))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "ProductType [pt_name=" + pt_name + ", attrs=" + attrs + "]";
+		return "ProductType [pt_name=" + name + ", attrs=" + attrs + "]";
 	}
 
 }

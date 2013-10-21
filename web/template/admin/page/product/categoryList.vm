@@ -1,14 +1,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>分类列表</title>
-<link href="${cssDomain}/admin.css" rel="stylesheet">
-<link href="${cssDomain}/style.css" rel="stylesheet">
-<link href="${cssDomain}/artDialog.css" rel="stylesheet">
-<script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/util.js"></script>
-<script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/artDialog.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>分类列表</title>
+    <link href="${cssDomain}/admin.css" rel="stylesheet">
+    <link href="${cssDomain}/style.css" rel="stylesheet">
+    <link href="${cssDomain}/artDialog.css" rel="stylesheet">
+    <script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/util.js"></script>
+    <script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/jquery.js"></script>
+    <script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/artDialog.js"></script>
 
 </head>
 
@@ -54,44 +54,44 @@
 		<col width="70px">
 			</colgroup>
 		<tbody id="conth">
-			#foreach($row in $list_category)
-			<tr parent="${row.parent_id}" id="${row.id}" #if(${row.parent_id} > 0 || ${row.childNum} == 0) style="display:none;" #end>
-				<td style="padding-left: ${row.levelNum}px;width:300px;" class="switch">
-				#if(${row.childNum} > 0)<img title="打开" src="${request.getContextPath()}/image/open.gif" class="operator">#end
+			#foreach($row in $list)
+			<tr id="${row.id}" $null.isNull(${row.parent}) parent="${child.parent.id}" #if(${row.childs.size()} == 0)style="display:none;"#end >
+				<td style="padding-left: 10px;width:300px;" class="switch">
+				#if(${row.childs.size()} > 0)<img title="打开" src="${imageDomain}/open.gif" class="operator">#end
 				${row.name}[${row.id}]</td>
-				<td style="width:150px;">$!{row.bname}</td>
+				<td style="width:150px;">$!{row.pt.name}</td>
 				<td style="width:100px;">
 					<input type="hidden" value="${row.sort}" id="hid_sort_${row.id}">
-					<input title="排序，正整数" id="sort_${row.id}" type="text" value="${row.sort}" size="2" class="tiny" maxlength="7">
-					<img title="更改" src="${request.getContextPath()}/image/m1/right.png" class="operator" style="display:''" onclick="_updSort(this,${row.id},${row.parent_id});">
+					<input title="排序，正整数" id="sort_${row.id}" type="text" value="$!{row.sort}" size="2" class="tiny" maxlength="7">
+					<img title="更改" src="${imageDomain}/m1/right.png" class="operator" style="display:''" onclick="_updSort(this,${row.id},${row.parent.id});">
 				</td>
 				<td>
-					#if(${row.childNum} == 0)
-					  <a href="${request.getContextPath()}/getRecInvList.htm?cateId=${row.id}">
-					  	<img title="编辑推荐货品" src="${request.getContextPath()}/image/m1/pen.png" class="operator">
+					#if(${row.childs.size()} == 0)
+					  <a href="${ctx}/getRecInvList.htm?cateId=${row.id}">
+					  	<img title="编辑推荐货品" src="${imageDomain}/m1/pen.png" class="operator">
 					  </a>
 					  #end
 			    </td>
 				<td class="t_c" style="width:100px;"><span class="green">#if(${row.visibility}==1) 是 #else 否 #end</span></td>
 				<td>
-					<a href="javascript:void(0);" onclick="location.href='${request.getContextPath()}/tocgedit.htm?opera=1&cgId=${row.id}';">
-						<img title="修改" src="${request.getContextPath()}/image/m1/pen.png" class="operator">
+					<a href="${ctx}/editCategoryPage?id=${row.id}">
+						<img title="修改" src="${imageDomain}/icon_edit.gif" class="operator">
 					</a>
-					#if(${row.childNum} == 0)
+					#if(${row.childs.size()} == 0)
 					<a href="javascript:void(0);" onclick="del(${row.id});">
-						<img title="删除" src="${request.getContextPath()}/image/m1/del.png" class="operator">
+						<img title="删除" src="${imageDomain}/icon_del.gif" class="operator">
 					</a>
 					#end
-					#if(${row.parent_id} == 0)
+					#if(${row.parent.id} == 0)
 					<!--<a href="javascript:void(0);" onclick="catbrand(this,${row.id});">
 						<img title="推荐品牌" src="${request.getContextPath()}/image/m1/search.png" class="operator">
 					</a>-->
-					<a href="javascript:void(0);" onclick="location.href='${request.getContextPath()}/cmdyqsinfo.htm?id=${row.id}';">
-						<img title="问题、售后信息维护" src="${request.getContextPath()}/image/m1/pen.png" class="operator">
+					<a href="${ctx}/cmdyqsinfo.htm?id=${row.id}';">
+						<img title="问题、售后信息维护" src="${imageDomain}/m1/pen.png" class="operator">
 					</a>
 					#end
 					#if(${row.levelNum} == 40)
-						<img title="推荐首页分类" src="${request.getContextPath()}/image/m1/pen.png" class="operator" onclick="catCates(${row.id})">
+						<img title="推荐首页分类" src="${imageDomain}/m1/pen.png" class="operator" onclick="catCates(${row.id})">
 					#end
 				</td>
 			</tr>

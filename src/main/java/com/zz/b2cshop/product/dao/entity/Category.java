@@ -1,9 +1,14 @@
 package com.zz.b2cshop.product.dao.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
@@ -23,7 +28,7 @@ public class Category extends PO {
 	@Column
 	private String name;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "parent_id")
 	private Category parent;
 
@@ -47,6 +52,16 @@ public class Category extends PO {
 	@Column
 	@Type(type = "yes_no")
 	private Boolean is_del;
+
+	@OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
+	private Set<Category> childs = new HashSet<Category>();
+
+	public Category() {
+	}
+
+	public Category(Long id) {
+		setId(id);
+	}
 
 	public String getName() {
 		return name;
@@ -112,6 +127,14 @@ public class Category extends PO {
 		this.is_del = is_del;
 	}
 
+	public Set<Category> getChilds() {
+		return childs;
+	}
+
+	public void setChilds(Set<Category> childs) {
+		this.childs = childs;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -119,7 +142,6 @@ public class Category extends PO {
 		result = prime * result + ((is_del == null) ? 0 : is_del.hashCode());
 		result = prime * result + ((left_num == null) ? 0 : left_num.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((parent == null) ? 0 : parent.hashCode());
 		result = prime * result + ((pt == null) ? 0 : pt.hashCode());
 		result = prime * result + ((publish_status == null) ? 0 : publish_status.hashCode());
 		result = prime * result + ((right_num == null) ? 0 : right_num.hashCode());
@@ -150,11 +172,6 @@ public class Category extends PO {
 			if (other.name != null)
 				return false;
 		} else if (!name.equals(other.name))
-			return false;
-		if (parent == null) {
-			if (other.parent != null)
-				return false;
-		} else if (!parent.equals(other.parent))
 			return false;
 		if (pt == null) {
 			if (other.pt != null)

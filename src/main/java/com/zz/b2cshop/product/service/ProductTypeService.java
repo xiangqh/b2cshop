@@ -60,4 +60,10 @@ public class ProductTypeService implements IProductTypeService {
 		return pt;
 	}
 
+	@Transactional(readOnly = true)
+	@Override
+	public List<ProductType> getAllPtsNoAttr() {
+		return productTypeDao.queryAll();
+	}
+
 }

@@ -18,4 +18,6 @@ public interface IProductTypeService {
 	public List<ProductType> getAllPts();
 
 	public List<ProductType> getPts(Page page);
+	
+	public List<ProductType> getAllPtsNoAttr();
 }

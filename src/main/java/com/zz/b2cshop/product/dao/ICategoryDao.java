@@ -11,5 +11,7 @@ public interface ICategoryDao extends PODao<Category> {
 	public List<Category> getList(Page page);
 	
 	public List<Category> getChildsByPId(Long id);
+	
+	public List<Category> getLevelFCatetegory();
 
 }
