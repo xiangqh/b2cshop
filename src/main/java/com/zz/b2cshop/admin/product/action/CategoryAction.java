@@ -1,6 +1,5 @@
 package com.zz.b2cshop.admin.product.action;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +22,7 @@ public class CategoryAction extends QAction {
 
 	@Autowired
 	private ICategorySerice categorySerice;
-	
+
 	@Autowired
 	private IProductTypeService productTypeService;
 
@@ -43,25 +42,15 @@ public class CategoryAction extends QAction {
 			setHttpAttribute("category", category);
 		}
 		List<Category> list = categorySerice.getLevelFCatetegory();
-		List<Category> all = new ArrayList<Category>();
-		for(Category each : list) {
-			all.add(each);
-			for(Category childS : each.getChilds()) {
-				all.add(childS);
-				for(Category childT : childS.getChilds()) {
-					all.add(childT);
-				}
-			}
-		}
-		setHttpAttribute("list", all);
-		
+		setHttpAttribute("list", list);
+
 		List<ProductType> pt_list = productTypeService.getAllPtsNoAttr();
 		setHttpAttribute("pt_list", pt_list);
 
 		return new BaseResult("/template/admin/page/product/editCategoryPage.vm");
 	}
 
-	@RequestMapping(value="saveCategory")
+	@RequestMapping(value = "saveCategory")
 	public Result saveCategory() {
 		String name = getHttpParameter("name");
 		Long parent_id = getParameterLong("parent_id");

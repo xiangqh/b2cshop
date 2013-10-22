@@ -55,7 +55,7 @@
 			</colgroup>
 		<tbody id="conth">
 			#foreach($row in $list)
-			<tr id="${row.id}" $null.isNull(${row.parent}) parent="${child.parent.id}" #if(${row.childs.size()} == 0)style="display:none;"#end >
+			<tr id="${row.id}">
 				<td style="padding-left: 10px;width:300px;" class="switch">
 				#if(${row.childs.size()} > 0)<img title="打开" src="${imageDomain}/open.gif" class="operator">#end
 				${row.name}[${row.id}]</td>
@@ -82,19 +82,39 @@
 						<img title="删除" src="${imageDomain}/icon_del.gif" class="operator">
 					</a>
 					#end
-					#if(${row.parent.id} == 0)
-					<!--<a href="javascript:void(0);" onclick="catbrand(this,${row.id});">
-						<img title="推荐品牌" src="${request.getContextPath()}/image/m1/search.png" class="operator">
-					</a>-->
-					<a href="${ctx}/cmdyqsinfo.htm?id=${row.id}';">
-						<img title="问题、售后信息维护" src="${imageDomain}/m1/pen.png" class="operator">
+				</td>
+			</tr>
+			#foreach($childS in $row.childs) 
+				<tr id="${childS.id}" $null.isNull(${childS.parent}) parent="${childS.parent.id}" #if(${childS.childs.size()} == 0)style="display:none;"#end >
+				<td style="padding-left: 10px;width:300px;" class="switch">
+				#if(${childS.childs.size()} > 0)<img title="打开" src="${imageDomain}/open.gif" class="operator">#end
+				${childS.name}[${childS.id}]</td>
+				<td style="width:150px;">$!{childS.pt.name}</td>
+				<td style="width:100px;">
+					<input type="hidden" value="${childS.sort}" id="hid_sort_${childS.id}">
+					<input title="排序，正整数" id="sort_${childS.id}" type="text" value="$!{childS.sort}" size="2" class="tiny" maxlength="7">
+					<img title="更改" src="${imageDomain}/m1/right.png" class="operator" style="display:''" onclick="_updSort(this,${childS.id},${childS.parent.id});">
+				</td>
+				<td>
+					#if(${childS.childs.size()} == 0)
+					  <a href="${ctx}/getRecInvList.htm?cateId=${childS.id}">
+					  	<img title="编辑推荐货品" src="${imageDomain}/m1/pen.png" class="operator">
+					  </a>
+					  #end
+			    </td>
+				<td class="t_c" style="width:100px;"><span class="green">#if(${childS.visibility}==1) 是 #else 否 #end</span></td>
+				<td>
+					<a href="${ctx}/editCategoryPage?id=${childS.id}">
+						<img title="修改" src="${imageDomain}/icon_edit.gif" class="operator">
 					</a>
-					#end
-					#if(${row.levelNum} == 40)
-						<img title="推荐首页分类" src="${imageDomain}/m1/pen.png" class="operator" onclick="catCates(${row.id})">
+					#if(${row.childs.size()} == 0)
+					<a href="javascript:void(0);" onclick="del(${childS.id});">
+						<img title="删除" src="${imageDomain}/icon_del.gif" class="operator">
+					</a>
 					#end
 				</td>
 			</tr>
+			#end
 			#end
 		</tbody>
 	</table>
@@ -108,10 +128,10 @@
 $("td.switch .operator").each(function(i){
 	$(this).toggle(function(){
 		iteraShow($(this).parent().parent().attr('id'), 'show');
-		$(this).attr("src", "${request.getContextPath()}/image/close.gif").attr("title","关闭");
+		$(this).attr("src", "${imageDomain}/close.gif").attr("title","关闭");
 	},function(){
 		iteraShow($(this).parent().parent().attr('id'), 'hide');
-		$(this).attr("src", "${request.getContextPath()}/image/open.gif").attr("title","打开");
+		$(this).attr("src", "${imageDomain}/open.gif").attr("title","打开");
 	});
 });
 

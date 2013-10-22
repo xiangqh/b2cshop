@@ -54,7 +54,7 @@ public class ProductTypeAction extends QAction {
 		String[] attr_type = getHttpParameters("attr_type");
 
 		ProductType pt = new ProductType();
-		pt.setPt_name(name);
+		pt.setName(name);
 		Long id = getParameterLong("id");
 		if (id != null) {
 			pt.setId(id);

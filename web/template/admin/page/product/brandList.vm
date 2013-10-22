@@ -3,88 +3,75 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>品牌列表</title>
-<link href="${request.getContextPath()}/css/admin.css" rel="stylesheet">
-<link href="${request.getContextPath()}/css/style.css" rel="stylesheet">
-<link href="${request.getContextPath()}/css/artDialog.css" rel="stylesheet">
-<script type="text/javascript" charset="utf-8" language="javascript" src="${request.getContextPath()}/js/util.js"></script>
-<script type="text/javascript" charset="utf-8" language="javascript" src="${request.getContextPath()}/js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" language="javascript" src="${request.getContextPath()}/js/artDialog.js"></script>
+<link href="${cssDomain}/admin.css" rel="stylesheet">
+<link href="${cssDomain}/style.css" rel="stylesheet">
+<link href="${cssDomain}/artDialog.css" rel="stylesheet">
+<script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/util.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/artDialog.js"></script>
 </head>
 
 <body>
-#getMothodSc("moduleName=admin.action.Common" "parameters=tag:1,vmpath:admin/head.vm,level:3,level2:27");
-<div id="admin_right">
-	<div class="headbar">
-		<div class="position"><span>商品</span><span>&gt;</span><span>品牌管理</span><span>&gt;</span><span>品牌列表</span></div>
-		<div class="searchbar">
-			<form action="${request.getContextPath()}/listBrand.htm" method="post" name="listBrandForm">
-			品牌名称：<input class="small" name="brandName" type="text" value="$!{brandName}" style="width:140px"/>
-				<button class="btn" type="submit"><span>查 询</span></button>
-			
-				<a href="javascript:;">
-					<button class="btn" type="button" onclick="location.href='${request.getContextPath()}/toEditBC.htm?opera=0';">
-						<span>增加</span>
-					</button>
-				</a>
-			</form>
-		</div>
-		<div class="field">
-			<div class="table_box">
-				<table class="list_table">
-					<colgroup>
-					<col width="350px"/>
-					<col width="200px"/>
-					<col width="150px"/>
-					</colgroup><thead>
-						<tr class="">
-							<th>品牌名称</th>
-							<th>区域</th>
-							<th>操作</th>
-						</tr>
-					</thead>
-				</table>
-			</div>
-		</div>
-	</div>
-	<div class="content">
-		<table class="list_table" id="list_table">
-			<colgroup>
-				<col width="350px"/>
-				<col width="200px"/>
-				<col width="150px"/>
-			</colgroup>
-			<tbody>
-				
-					#foreach($row in $list_brand)
-						<tr>
-							<td>${row.name}</td>
-							<td>${row.getRegionDesc()}</td>
-							<td><a href="javascript:void(0);" onclick="location.href='${request.getContextPath()}/toEditBC.htm?opera=1&brandId=${row.id}';">
-									<img class="operator" src="${request.getContextPath()}/image/m1/pen.png" title="修改"/>
-								</a>
-								<a href="javascript:void(0)" onclick="del(${row.id});">
-									<img class="operator" src="${request.getContextPath()}/image/m1/del.png" title="删除" />
-								</a>
-								<!--<a href="javascript:void(0);" onclick="changeCategory(this,${row.id});">
-									<img title="推荐分类" src="${request.getContextPath()}/image/m1/search.png" class="operator">
-								</a>-->
-								<a href="javascript:void(0);" onclick="boundCategory(this,${row.id});">
-									<img title="绑定分类" src="${request.getContextPath()}/image/m1/search.png" class="operator">
-								</a>
-							</td>
-						</tr>	
-					#end
-						
-			</tbody>
-		</table>
-	</div>
+#qModuleLoader("moduleName=module.admin.common.head" "parameters={path:template/admin/head.vm,level1:3,level2:15}")
+<div id="container">
+    <div id="admin_right" style="overflow:hidden;padding: 15px;">
+		<div style="float:left;width:70%;border: 1px solid #D7DDE3;">
+			<div class="content">
+				<div class="position"><span>商品</span><span>&gt;</span><span>品牌管理</span><span>&gt;</span><span>品牌列表</span></div>
+				<div class="searchbar">
+        			<form action="${ctx}/listBrand.htm" method="post" name="listBrandForm">
+        			品牌名称：<input class="small" name="brandName" type="text" value="$!{brandName}" style="width:140px"/>
+        				<button class="btn" type="submit"><span>查 询</span></button>
+        			
+        				<a href="javascript:;">
+        					<button class="btn" type="button" onclick="location.href='/${ctx}/editBrandPage';">
+        						<span>增加</span>
+        					</button>
+        				</a>
+        			</form>
+        		</div>
+            </div>
+        	<div>
+        		<table class="list_table" id="list_table">
+        			<colgroup>
+        				<col width="350px"/>
+        				<col width="200px"/>
+        				<col width="150px"/>
+        			</colgroup>
+        			<tbody>
+        				
+        					#foreach($row in $list_brand)
+        						<tr>
+        							<td>${row.name}</td>
+        							<td>${row.getRegionDesc()}</td>
+        							<td><a href="javascript:void(0);" onclick="location.href='${request.getContextPath()}/toEditBC.htm?opera=1&brandId=${row.id}';">
+        									<img class="operator" src="${request.getContextPath()}/image/m1/pen.png" title="修改"/>
+        								</a>
+        								<a href="javascript:void(0)" onclick="del(${row.id});">
+        									<img class="operator" src="${request.getContextPath()}/image/m1/del.png" title="删除" />
+        								</a>
+        								<!--<a href="javascript:void(0);" onclick="changeCategory(this,${row.id});">
+        									<img title="推荐分类" src="${request.getContextPath()}/image/m1/search.png" class="operator">
+        								</a>-->
+        								<a href="javascript:void(0);" onclick="boundCategory(this,${row.id});">
+        									<img title="绑定分类" src="${request.getContextPath()}/image/m1/search.png" class="operator">
+        								</a>
+        							</td>
+        						</tr>	
+        					#end
+        						
+        			</tbody>
+        		</table>
+        	</div>
+        </div>
+    </div>
 </div>
 		
 <form id="brandForm" action="${request.getContextPath()}/listBrand.htm" method="post">
 	<input type="hidden" name="curPage" id="curPage" value="1">
 </form>
-#getPageHtml("formId=brandForm" "parameters=pageNo:$page.pageNo,pageSize:$page.pageSize,totalCount:$page.totalCount,pageviewcount:$page.pageviewcount,vmpath:common/page.vm");
-	#getMothodSc("moduleName=admin.action.Common" "parameters=tag:2,vmpath:admin/foot.vm");
+##getPageHtml("formId=brandForm" "parameters=pageNo:$page.pageNo,pageSize:$page.pageSize,totalCount:$page.totalCount,pageviewcount:$page.pageviewcount,vmpath:common/page.vm");
+ #qModuleLoader("moduleName=module.admin.common.foot" "parameters={path:template/admin/foot.vm}")
 </body>
 </html>
 <script language="javascript">

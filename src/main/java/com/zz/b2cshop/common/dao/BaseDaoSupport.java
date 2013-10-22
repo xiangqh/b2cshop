@@ -16,6 +16,7 @@ public class BaseDaoSupport<T> extends BaseDao implements PODao<T> {
 		this.getHibernateTemplate().save(t);
 	}
 
+	@Override
 	public void saveAll(List<T> list) {
 		getHibernateTemplate().saveOrUpdateAll(list);
 	}

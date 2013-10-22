@@ -1,14 +1,24 @@
 package com.zz.b2cshop.product.dao.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import com.zz.b2cshop.common.PO;
 
+@Entity
+@Table(name = "b2c_brand")
 public class Brand extends PO {
 
 	private static final long serialVersionUID = 7775165746398798993L;
-	
+
+	@Column
 	private String name;
+	@Column
 	private String logo;
-	private String url;
+	@Column
+	private String position;
+	@Column
 	private String description;
 
 	public String getName() {
@@ -27,12 +37,12 @@ public class Brand extends PO {
 		this.logo = logo;
 	}
 
-	public String getUrl() {
-		return url;
+	public String getPosition() {
+		return position;
 	}
 
-	public void setUrl(String url) {
-		this.url = url;
+	public void setPosition(String position) {
+		this.position = position;
 	}
 
 	public String getDescription() {
@@ -50,7 +60,7 @@ public class Brand extends PO {
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((logo == null) ? 0 : logo.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((url == null) ? 0 : url.hashCode());
+		result = prime * result + ((position == null) ? 0 : position.hashCode());
 		return result;
 	}
 
@@ -78,17 +88,18 @@ public class Brand extends PO {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (url == null) {
-			if (other.url != null)
+		if (position == null) {
+			if (other.position != null)
 				return false;
-		} else if (!url.equals(other.url))
+		} else if (!position.equals(other.position))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Brand [name=" + name + ", logo=" + logo + ", url=" + url + ", description=" + description + "]";
+		return "Brand [name=" + name + ", logo=" + logo + ", position=" + position + ", description=" + description
+				+ "]";
 	}
 
 }
