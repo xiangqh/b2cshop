@@ -16,5 +16,7 @@ public interface IBrandService {
 	public void updateBrand(Brand brand);
 
 	public void delBrand(Brand brand);
+	
+	public List<Brand> searchBrands(String brandName);
 
 }

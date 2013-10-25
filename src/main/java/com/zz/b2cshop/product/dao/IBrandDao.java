@@ -9,5 +9,7 @@ import com.zz.b2cshop.product.dao.entity.Brand;
 public interface IBrandDao extends PODao<Brand> {
 
 	public List<Brand> getBrands(Page page);
+	
+	public List<Brand> getBrandByName(String brandName);
 
 }

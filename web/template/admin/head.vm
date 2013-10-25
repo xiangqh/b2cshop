@@ -1,7 +1,7 @@
 <div id="header">
     <div id="headertop">
         <div class="logo">
-             <a href="#"><img height="28" width="303" src="image/logo2.jpg" /></a></div>
+             <a href="#"><img height="28" width="303" src="${imageDomain}/image/logo2.jpg" /></a></div>
              <p><a href="/sc/logout.htm">退出管理</a></p>
         </div>
 

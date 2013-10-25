@@ -15,7 +15,7 @@ public class BrandService implements IBrandService {
 
 	@Autowired
 	private IBrandDao brandDao;
-	
+
 	@Transactional(readOnly = true)
 	@Override
 	public List<Brand> getAllBrand() {
@@ -40,6 +40,11 @@ public class BrandService implements IBrandService {
 	@Override
 	public void delBrand(Brand brand) {
 		brandDao.delete(brand);
+	}
+
+	@Override
+	public List<Brand> searchBrands(String brandName) {
+		return brandDao.getBrandByName(brandName);
 	}
 
 }

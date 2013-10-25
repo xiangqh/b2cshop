@@ -3,19 +3,36 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>添加品牌</title>
-    <link href="${cssDomain}/admin.css" rel="stylesheet">
-    <link href="${cssDomain}/style.css" rel="stylesheet">
-    <link href="${cssDomain}/artDialog.css" rel="stylesheet">
-    <script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/util.js"></script>
-    <script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/jquery.js"></script>
-    <script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/artDialog.js"></script>
-	<script src="${jsDomain}/b2c.ajax.js" type="text/javascript"></script>
+    <link href="${cssDomain}/css/admin.css" rel="stylesheet">
+    <link href="${cssDomain}/css/style.css" rel="stylesheet">
+    <link href="${cssDomain}/css/artDialog.css" rel="stylesheet">
+    <script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/util.js"></script>
+    <script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/jquery.js"></script>
+    <script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/artDialog.js"></script>
+	<script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/swfupload.js"></script>
+    <script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/b2c.ajax.js"></script>
+
 	<script type="text/javascript">
-	      $(function() {
-		      $.b2c.ajaxUpload($(".imageForm"),"/$ctx/imageUpload","" ,function(){
-			     alert("保存成功");
-			  });
-		   })
+    	$(function() {
+          $(".upload-image").ajaxUpload({
+              path : 'brand.image.path',
+			  upload_url:"/$ctx/imageUpload"
+           }, function(jsonData) {//处理ajax返回
+               if (jsonData.status == 200) {//上传成功status=200
+                  alert("已经上传成功!");
+                  var path = jsonData.message.path;
+                  $("#br_logo").val(path);
+        		  $("#br_show").attr("src", "${imageDomain}" + path);
+        		  $("#br_small_show").attr("src", "${imageDomain}" + path);
+               } else {
+                  alert("上传失败！");
+               }
+           });
+		   
+		    $.b2c.ajaxSubmit($(".form"),"/${ctx}/saveBrand", function(){
+		     alert("保存成功");
+		  })
+        });
 	</script>
 </head>
 
@@ -27,7 +44,7 @@
 </div>
 <div class="content_box">
 	<div class="content form_content">
-		<form class="form" enctype="multipart/form-data" method="post" action="${request.getContextPath()}/editBrand.htm" >
+		<form class="form" method="post" action="/${ctx}/saveBrand" >
 			<table cellspacing="0" cellpadding="0" class="form_table">
 				<colgroup><col width="150px">
 				<col>
@@ -42,37 +59,34 @@
 				<tr>
 					<th>品牌定位：</th>
 					<td>
-						<input type="text" name="position" value=""/>
+						<input type="text" name="position" value="" class="normal _vdt:{CHECKNOTNULL(品牌定位)} _for:{name_msg}">
 					</td>
 				</tr>
 				<tr>
-					<th>LOGO地址：</th><td><div><input type="file" name="file" class="normal"></div></td>
-				</tr>
+                    <th valign="top">品牌Logo：</th>
+                    <td>
+                    	<div >
+                   	    	<img id="br_show" src="${brand.logo}" width="140" height="40" alt="品牌" />
+                        </div>
+                    	<div>
+           	    	    	<img id="br_small_show" src="${brand.logo}" width="50" height="23" alt="缩略图" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>更新Logo：</th>
+                    <td>
+                        <span class="upload-image"></span><label class="">图片尺寸建议为140*40</label>
+						<input type="hidden" name="logo" id="br_logo" value="$!{brand.logo}"  />
+
+                    </td>
+                </tr>
 				#if(${DIS} ==1)
 				<tr>
 					<th>LOGO图片：</th>
 					<td><img src="${imgUrl}" /></td>
 				</tr>
 				#end
-				<tr>
-					<th valign="top">描述：</th><td><textarea rows="3" cols="10" name="desc">$!{brand.description}</textarea></td>
-				</tr>
-				<tr>
-					<td></td><td><button type="submit" class="submit"><span>确 定</span></button></td>
-				</tr>
-			</tbody></table>
-		</form>
-		
-		<form enctype="multipart/form-data" method="post" action="/${ctx}/imageUpload">
-			<table cellspacing="0" cellpadding="0" class="form_table">
-				<colgroup><col width="150px">
-				<col>
-				</colgroup>
-				<tbody>
-					<input type="hidden" value="brand.image.path" name="path">
-				<tr>
-					<th>LOGO地址：</th><td><div><input type="file" name="file" class="normal"></div></td>
-				</tr>
 				<tr>
 					<th valign="top">描述：</th><td><textarea rows="3" cols="10" name="desc">$!{brand.description}</textarea></td>
 				</tr>
