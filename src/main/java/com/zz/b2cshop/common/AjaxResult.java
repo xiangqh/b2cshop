@@ -4,13 +4,13 @@ import com.zz.b2cshop.common.util.JsonBinder;
 
 /**
  * @author xiangqh
- *
+ * 
  */
 public class AjaxResult extends JsonResult {
 
 	private static final long serialVersionUID = 404913078338861272L;
 
-	public Object body;
+	public Object message;
 	public String error;
 	public String redirect;
 	public int status = 200;
@@ -22,6 +22,11 @@ public class AjaxResult extends JsonResult {
 
 	public AjaxResult(int status) {
 		this.status = status;
+	}
+
+	public AjaxResult(int status, Object message) {
+		this.status = status;
+		this.message = message;
 	}
 
 	public AjaxResult(int status, String successOrError, String redirect) {
@@ -36,10 +41,6 @@ public class AjaxResult extends JsonResult {
 	public AjaxResult(int status, String redirect) {
 		this.status = status;
 		this.redirect = redirect;
-	}
-
-	public Object getBody() {
-		return body;
 	}
 
 	public String getError() {
@@ -58,10 +59,6 @@ public class AjaxResult extends JsonResult {
 		return success;
 	}
 
-	public void setBody(Object body) {
-		this.body = body;
-	}
-
 	public void setError(String error) {
 		this.error = error;
 	}
@@ -76,6 +73,14 @@ public class AjaxResult extends JsonResult {
 
 	public void setSuccess(String success) {
 		this.success = success;
+	}
+
+	public Object getMessage() {
+		return message;
+	}
+
+	public void setMessage(Object message) {
+		this.message = message;
 	}
 
 	@Override

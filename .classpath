@@ -11,7 +11,7 @@
 	<classpathentry kind="lib" path="web/WEB-INF/lib/commons-chain-1.2.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/commons-codec-1.4.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/commons-digester-2.0.jar"/>
-	<classpathentry kind="lib" path="web/WEB-INF/lib/commons-fileupload-1.2.2.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/commons-fileupload-1.2.2.jar" sourcepath="C:/Users/working-cat/.m2/repository/commons-fileupload/commons-fileupload/1.2.2/commons-fileupload-1.2.2-sources.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/commons-httpclient-3.1.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/commons-io-2.0.1.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/commons-lang-2.4.jar"/>
@@ -62,7 +62,7 @@
 	<classpathentry kind="lib" path="web/WEB-INF/lib/spring-web.portlet-3.0.5.RELEASE.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/spring-web.servlet-3.0.5.RELEASE.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/spring-web.struts-3.0.5.RELEASE.jar"/>
-	<classpathentry kind="lib" path="web/WEB-INF/lib/struts2-core-2.3.7.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/struts2-core-2.3.7.jar" sourcepath="D:/lib-src/struts-2.3.7-src.zip"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/struts2-spring-plugin-2.3.7.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/tomcat-embed-jasper-ecj.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/tomcat-embed.jar"/>

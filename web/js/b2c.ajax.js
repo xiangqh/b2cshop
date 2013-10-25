@@ -31,6 +31,32 @@
 			}
 		});
 	}
+	
+	//
+	
+	$.b2c.ajaxUpload = function(form,ajaxURL,path,callback){
+		form.submit(function(e) {
+			var para = form.serialize();
+			if (!e.isDefaultPrevented()) {
+				$.ajax( {
+					url :ajaxURL,
+					data:para,
+					type:"post",
+					contentType:"multipart/form-data; charset=UTF-8",
+					dataType:"json",
+					error: function(){
+						error();
+					},
+					success :function(json){
+						if (json.status && json.status==200) {
+							callback();
+						}
+					}
+				});
+				e.preventDefault();
+			}
+		});
+	}
 
 	$.b2c.ajaxSubmit = function(form,ajaxURL,callback){
 		form.submit(function(e) {

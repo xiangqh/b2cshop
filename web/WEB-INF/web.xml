@@ -1,34 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
-	id="WebApp_ID" version="3.0">
-	<display-name>b2cshop</display-name>
+		xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+		xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+		id="WebApp_ID" version="3.0">
+		<display-name>b2cshop</display-name>
 
-	<context-param>
-	     <param-name>contextConfigLocation</param-name>
-	     <param-value>/WEB-INF/config/application*.xml</param-value>
-	</context-param>
+		<context-param>
+				<param-name>contextConfigLocation</param-name>
+				<param-value>/WEB-INF/config/application*.xml</param-value>
+		</context-param>
 
-	<context-param>
-	     <param-name>actionPackage</param-name>
-	     <param-value>com.zz.b2cshop.admin.system.action,com.zz.b2cshop.admin.product.action</param-value>
-	</context-param>
+		<context-param>
+				<param-name>actionPackage</param-name>
+				<param-value>com.zz.b2cshop.admin.action,com.zz.b2cshop.admin.system.action,com.zz.b2cshop.admin.product.action</param-value>
+		</context-param>
 
-	<listener>
-		<listener-class>org.zz.qstruts2.listener.QStrutsListener</listener-class>
-	</listener>
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
+		<listener>
+				<listener-class>org.zz.qstruts2.listener.QStrutsListener</listener-class>
+		</listener>
+		<listener>
+				<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+		</listener>
 
-	<filter>
-		<filter-name>struts2</filter-name>
-		<filter-class>com.zz.b2cshop.common.util.FilterDispatcher</filter-class>
-	</filter>
+		<filter>
+				<filter-name>struts2</filter-name>
+				<filter-class>com.zz.b2cshop.common.util.FilterDispatcher</filter-class>
+		</filter>
 
-	<filter-mapping>
-		<filter-name>struts2</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
+		<filter-mapping>
+				<filter-name>struts2</filter-name>
+				<url-pattern>/*</url-pattern>
+		</filter-mapping>
+
+		<servlet>
+				<servlet-name>fileUpload</servlet-name>
+				<servlet-class>com.zz.b2cshop.common.FileUploadServlet</servlet-class>
+		</servlet>
+		<servlet-mapping>
+				<servlet-name>fileUpload</servlet-name>
+				<url-pattern>/file.upload</url-pattern>
+		</servlet-mapping>
 </web-app>
