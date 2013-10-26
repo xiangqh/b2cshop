@@ -15,7 +15,9 @@ import org.zz.qstruts2.upload.UploadBean;
 import com.google.common.collect.Maps;
 import com.opensymphony.xwork2.Result;
 import com.zz.b2cshop.common.AjaxResult;
+import com.zz.b2cshop.common.JsonResult;
 import com.zz.b2cshop.common.util.FileUtils;
+import com.zz.b2cshop.common.util.JsonBinder;
 import com.zz.b2cshop.common.util.PropertyUtil;
 
 @Controller
@@ -25,7 +27,8 @@ public class FileUploadAction extends QAction {
 	@RequestMapping(value = "imageUpload")
 	public Result uploadImage() {
 
-		String path = PropertyUtil.readValue("/addrconfig.properties", getHttpParameter("path"));
+		String path = getHttpParameter("path");
+		String folder = PropertyUtil.readValue("/addrconfig.properties", path);
 
 		List<UploadBean> uploadBeans = getUpLoadFiles();
 		if (uploadBeans.size() > 0) {
@@ -35,9 +38,17 @@ public class FileUploadAction extends QAction {
 
 			String root = ServletActionContext.getServletContext().getRealPath("//").replaceAll("\\\\", "\\/");
 			try {
-				FileUtils.saveFile(file, root + path + newFileName);
+				FileUtils.saveFile(file, root + folder + newFileName);
 				Map<String, String> message = Maps.newHashMap();
-				message.put("path", path + newFileName);
+
+				if ("goods.image.path".equalsIgnoreCase(path)) {
+					Map<String, String> result = Maps.newHashMap();
+					result.put("err", "");
+					result.put("msg", PropertyUtil.readValue("/addrconfig.properties", "imageDomain") + folder
+							+ newFileName);
+					return new JsonResult(JsonBinder.buildNonNullBinder().toJson(result));
+				}
+				message.put("path", folder + newFileName);
 				return new AjaxResult(200, message);
 			} catch (Exception e) {
 				return new AjaxResult(500);

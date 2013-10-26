@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>商品添加-商品信息</title>
+    <link href="${cssDomain}/css/admin.css" rel="stylesheet">
+    <link href="${cssDomain}/css/style.css" rel="stylesheet">
+	<style type="text/css">
+    	.wordBox{display:inline-block;padding:3px;background:#ddd;margin:5px;color:#000;font-size:12px;}
+    	.wordBoxButton{background:#999;cursor:pointer;padding:2px;margin:2px;border-radius:3px;}
+    	.wordBoxButton:hover{background:#bbb}
+    </style>
+    <script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/util.js"></script>
+    <script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/jquery.js"></script>
+    <script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/validator.js"></script>
+	<script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/xheditor/xheditor-1.2.1.min.js"></script>
+	<script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/xheditor/xheditor_lang/zh-cn.js"></script>
+	<script >
+	    $(function(){
+		      $('#riche_ditor').xheditor({
+			           upImgUrl:"/$ctx/imageUpload?path=goods.image.path",
+					   html5Upload:false,
+					   upMultiple:'1',
+					   upImgExt:"jpg,jpeg,gif,png"
+					   });
+		      $(".cate_F").change(function(){
+			       var parent_id = $(this).attr("id"); 
+			       var current_id = $(this).children("option:selected").val();
+				   $(".cate_S").hide();
+				   $(".cate_T").hide();
+				   if($("#"+parent_id+"_"+current_id)[0]) {
+				       $("#"+parent_id+"_"+current_id).show();
+				   }else{
+				      $("#category_id").val(current_id);
+				   }
+			  })
+			  $(".cate_S").change(function(){
+			       var parent_id = $(this).attr("id"); 
+			       var current_id = $(this).children("option:selected").val();
+				   $(".cate_T").hide();
+				   if($("#"+parent_id+"_"+current_id)[0]) {
+				       $("#"+parent_id+"_"+current_id).show();
+				   }else{
+				      $("#category_id").val(current_id);
+				   }
+			  })
+			  $(".cate_T").change(function(){
+			       var current_id = $(this).children("option:selected").val();
+				   $("#category_id").val(current_id);
+			  })
+		})
+    </script>
+</head>
+
+<body>
+#qModuleLoader("moduleName=module.admin.common.head" "parameters={path:template/admin/head.vm,level1:3,level2:15}")
+<div id="admin_right">
+
+<div class="headbar clearfix">
+	<div class="position"><span>商品</span><span>&gt;</span><span>商品管理</span><span>&gt;</span><span>商品添加</span></div>
+</div>
+<div class="content_box">
+	<div class="content form_content">
+		<form method="post" id="cmtyForm" name="cmtyForm" action="" novalidate="true">
+			<div id="table_box_1" style="display: block;">
+				<table class="form_table">
+					<colgroup><col width="150px">
+					<col>
+					</colgroup><tbody>
+					<tr>
+						<th>商品名称：</th>
+						<td><input type="text" title="商品名称" value="$!{edit_cmty.name}" name="name" id="name" class="normal _vdt:{CHECKNOTNULL(商品名称)} _for:{msg01}">
+							<label class="msgColor">*</label>
+							<label id="msg01" class="msgColor"></label>
+							<input type="hidden" value="${edit_cmty.id}" name="id">
+						</td>
+					</tr>
+					<tr>
+						<th>商品货号：</th>
+						<td><input type="text" title="商品货号" value="$!{edit_cmty.goods_num}" name="goods_num" id="goods_num" class="normal _vdt:{CHECKNOTNULL(商品货号)} _for:{msg02}">
+							<label class="msgColor">*</label>
+							<label id="msg02" class="msgColor"></label>
+						</td>
+					</tr>
+					<tr>
+						<th>商品分类：</th>
+						<td>
+							
+							<select class="cate_F" id="cate" name="cate_F">
+								#foreach($cateF in $cates)
+								<option value="$cateF.id">$cateF.name</option>
+								#end
+                            </select>
+							#foreach($cateF in $cates)
+							#if(${cateF.childs.size()}>0)
+							<select class="cate_S" id="cate_${cateF.id}" name="cate_S" style="display:none;">
+								#foreach($cateS in $cateF.childs)
+								<option value="$cateS.id">$cateS.name</option>
+								#end
+                            </select>
+							#end
+							#end
+							
+							#foreach($cateF in $cates)
+							#if(${cateF.childs.size()}>0)
+								#foreach($cateS in $cateF.childs)
+									#if(${cateS.childs.size()}>0)
+									<select class="cate_T" id="cate_${cateF.id}_${cateS.id}" name="cate_T" style="display:none;">
+										#foreach($cateT in $cateS.childs)
+    								      <option value="$cateT.id">$cateT.name</option>
+									    #end
+    								</select>
+									#end
+								#end
+							#end
+							#end
+							<input type="hidden" value="${good.category_id}" id="category_id" name="category_id">
+						</td>
+					</tr>
+					<tr>
+						<th>商品品牌：</th>
+						<td>
+							<select title="商品品牌" class="normal _vdt:{CHECKNOTNULL(商品品牌)} _for:{msg04}" id="brand_id" name="brand_id">
+							#foreach($brand in $brands)
+								<option value="${row.id}" #if(${brand.id} == ${good.brand.id}) selected #end>${brand.name}</option>
+							#end
+							</select>
+						<label class="msgColor">*</label>
+							<label id="msg04" class="msgColor"></label>
+						</td>
+					</tr>
+					
+					<tr>
+                	<th>库存：</th>
+                    <td>
+                         <input type="text" name="stock" id="gd_stock" value="$!good_default_stock" maxlength="8"/>
+                    </td>
+                </tr>
+				<tr>
+                	<th>单位：</th>
+                    <td>
+                    <div>
+                    	<input type="text" class="bh-txt-def" name="gd_unit" id="gd_unit" maxlength="10"/>
+                        </div><i class="bh-icon-help bh-mRt5"></i>商品计价的单位，比如斤、克等
+                    </td>
+                </tr>
+				<tr>
+					<th valign="top">描述：</th>
+					<td class="bh-padLR10">
+                        <textarea id="riche_ditor" name="desc" cols="10" rows="80" style="width: 80%"></textarea>
+					</td>
+				</tr>
+						
+				</tbody></table>
+			</div>
+			<table class="form_table">
+				<colgroup><col width="150px">
+				<col>
+				</colgroup><tbody><tr>
+					<td></td><td><button onclick="validatorForm();" type="button" class="submit"><span>保存</span></button></td>
+				</tr>
+			</tbody></table>
+		</form>
+	</div>
+</div>
+
+	</div>
+#qModuleLoader("moduleName=module.admin.common.foot" "parameters={path:template/admin/foot.vm}")
+</body>
+</html>
+<script type="text/javascript" charset="utf-8" language="javascript">
+    function validatorForm(){
+    	if(validator(document)){
+	    	var _cks = document.getElementsByName("_specalCbox");
+	    	if(_cks && _cks.length > 0){
+	    		var _count = _cks.length;
+	    		var _ckstr = "";
+	    		for(var i =0;i<_count;i++){
+	    			if(_cks[i].checked){
+	    				_ckstr += _cks[i].value;
+	    				_ckstr += ";";
+	    			}
+	    		}
+	    		if(_ckstr.length == 0){
+	    			dialogAlert('提示','没有选择任何商品属性');
+	    		}else{
+	    			var _pri = document.getElementsByName("priceAttrValue");
+	    			if(_pri && _pri.length > 0){
+	    				var _isc = false;
+	    				for(var i =0;i<_pri.length;i++){
+	    					if(_pri[i].checked){
+	    						_isc = true;
+	    						break;
+	    					}
+	    				}
+	    				if(_isc){
+			    			$("#changeSplitJson").val(_ckstr.substr(0,_ckstr.length-1));
+			    			var _ss="";
+			    			var _obj;
+			    			$("._mk").each(function(i){
+			    				_obj = $(this);
+			    				if(_obj.attr("checked")){
+			    					_ss+=_obj.val()+"^";
+			    				}
+			    			});
+			    			if(_ss.length > 0){
+			    				_ss = _ss.substr(0,_ss.length-1);
+			    			}
+			    			$("#searchValue").val(_ss);
+			    			var _from = document.getElementById("cmtyForm");
+			    			_from.action = "${request.getContextPath()}/editcmty.htm";
+			    			_from.submit();
+		    			}else{
+		    				dialogAlert('提示','请选择价格属性');
+		    			}
+	    			}else{
+	    				dialogAlert('提示','请选择价格属性');
+	    			}
+	    		}    		
+	    	}else{
+	    		dialogAlert('提示','没有选择任何商品属性');
+	    	}
+    	}
+    }
+    
+	
+</script>
