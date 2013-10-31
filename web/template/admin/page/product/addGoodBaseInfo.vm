@@ -5,11 +5,6 @@
     <title>商品添加-商品信息</title>
     <link href="${cssDomain}/css/admin.css" rel="stylesheet">
     <link href="${cssDomain}/css/style.css" rel="stylesheet">
-	<style type="text/css">
-    	.wordBox{display:inline-block;padding:3px;background:#ddd;margin:5px;color:#000;font-size:12px;}
-    	.wordBoxButton{background:#999;cursor:pointer;padding:2px;margin:2px;border-radius:3px;}
-    	.wordBoxButton:hover{background:#bbb}
-    </style>
     <script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/util.js"></script>
     <script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/jquery.js"></script>
     <script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/validator.js"></script>
@@ -23,30 +18,11 @@
 					   upMultiple:'1',
 					   upImgExt:"jpg,jpeg,gif,png"
 					   });
-		      $(".cate_F").change(function(){
-			       var parent_id = $(this).attr("id"); 
+		    $("#cate").change(function(){
 			       var current_id = $(this).children("option:selected").val();
-				   $(".cate_S").hide();
-				   $(".cate_T").hide();
-				   if($("#"+parent_id+"_"+current_id)[0]) {
-				       $("#"+parent_id+"_"+current_id).show();
-				   }else{
-				      $("#category_id").val(current_id);
-				   }
-			  })
-			  $(".cate_S").change(function(){
-			       var parent_id = $(this).attr("id"); 
-			       var current_id = $(this).children("option:selected").val();
-				   $(".cate_T").hide();
-				   if($("#"+parent_id+"_"+current_id)[0]) {
-				       $("#"+parent_id+"_"+current_id).show();
-				   }else{
-				      $("#category_id").val(current_id);
-				   }
-			  })
-			  $(".cate_T").change(function(){
-			       var current_id = $(this).children("option:selected").val();
+				   var pt_id = $(this).children("option:selected").attr("pt");
 				   $("#category_id").val(current_id);
+				   $("#pt_id").val(pt_id);
 			  })
 		})
     </script>
@@ -61,23 +37,23 @@
 </div>
 <div class="content_box">
 	<div class="content form_content">
-		<form method="post" id="cmtyForm" name="cmtyForm" action="" novalidate="true">
+		<form method="post" action="/${ctx}/saveBaseInfo">
 			<div id="table_box_1" style="display: block;">
 				<table class="form_table">
-					<colgroup><col width="150px">
-					<col>
-					</colgroup><tbody>
+					<col width="150px"></col>
+					<col ></col>
+					<tbody>
 					<tr>
 						<th>商品名称：</th>
-						<td><input type="text" title="商品名称" value="$!{edit_cmty.name}" name="name" id="name" class="normal _vdt:{CHECKNOTNULL(商品名称)} _for:{msg01}">
+						<td><input type="text" title="商品名称" value="$!{goods.name}" name="name" id="name" class="normal _vdt:{CHECKNOTNULL(商品名称)} _for:{msg01}">
 							<label class="msgColor">*</label>
 							<label id="msg01" class="msgColor"></label>
-							<input type="hidden" value="${edit_cmty.id}" name="id">
+							<input type="hidden" value="$!{goods.id}" name="id">
 						</td>
 					</tr>
 					<tr>
 						<th>商品货号：</th>
-						<td><input type="text" title="商品货号" value="$!{edit_cmty.goods_num}" name="goods_num" id="goods_num" class="normal _vdt:{CHECKNOTNULL(商品货号)} _for:{msg02}">
+						<td><input type="text" title="商品货号" value="$!{goods.sn}" name="sn" id="goods_sn" class="normal _vdt:{CHECKNOTNULL(商品货号)} _for:{msg02}">
 							<label class="msgColor">*</label>
 							<label id="msg02" class="msgColor"></label>
 						</td>
@@ -86,35 +62,23 @@
 						<th>商品分类：</th>
 						<td>
 							
-							<select class="cate_F" id="cate" name="cate_F">
+							<select class="cate" id="cate" class="normal _vdt:{CHECKNOTNULL(商品货号)} _for:{msg02}">
 								#foreach($cateF in $cates)
-								<option value="$cateF.id">$cateF.name</option>
-								#end
-                            </select>
-							#foreach($cateF in $cates)
-							#if(${cateF.childs.size()}>0)
-							<select class="cate_S" id="cate_${cateF.id}" name="cate_S" style="display:none;">
-								#foreach($cateS in $cateF.childs)
-								<option value="$cateS.id">$cateS.name</option>
-								#end
-                            </select>
-							#end
-							#end
-							
-							#foreach($cateF in $cates)
-							#if(${cateF.childs.size()}>0)
-								#foreach($cateS in $cateF.childs)
-									#if(${cateS.childs.size()}>0)
-									<select class="cate_T" id="cate_${cateF.id}_${cateS.id}" name="cate_T" style="display:none;">
-										#foreach($cateT in $cateS.childs)
-    								      <option value="$cateT.id">$cateT.name</option>
-									    #end
-    								</select>
+								<option value="$cateF.id" pt="$!{cateF.pt.id}">$cateF.name</option>
+    								#if(${cateF.childs.size()}>0)
+        								#foreach($cateS in $cateF.childs)
+        								<option style="margin-left:10px;" pt="$!{cateS.pt.id}" value="$cateS.id">$cateS.name</option>
+    										#if(${cateS.childs.size()}>0)
+        										#foreach($cateT in $cateS.childs)
+            								      <option style="margin-left:20px;" pt="$!{cateT.pt.id}" value="$cateT.id">$cateT.name</option>
+												#end
+											#end
+										#end
 									#end
 								#end
-							#end
-							#end
-							<input type="hidden" value="${good.category_id}" id="category_id" name="category_id">
+                            </select>
+							<input type="hidden" value="!${goods.category_id}" id="category_id" name="category_id">
+							<input type="hidden" value="" id="pt_id" name="pt_id">
 						</td>
 					</tr>
 					<tr>
@@ -122,7 +86,7 @@
 						<td>
 							<select title="商品品牌" class="normal _vdt:{CHECKNOTNULL(商品品牌)} _for:{msg04}" id="brand_id" name="brand_id">
 							#foreach($brand in $brands)
-								<option value="${row.id}" #if(${brand.id} == ${good.brand.id}) selected #end>${brand.name}</option>
+								<option value="$!{brand.id}" #if(${brand.id} == ${goods.brand.id}) selected #end>${brand.name}</option>
 							#end
 							</select>
 						<label class="msgColor">*</label>
@@ -133,31 +97,24 @@
 					<tr>
                 	<th>库存：</th>
                     <td>
-                         <input type="text" name="stock" id="gd_stock" value="$!good_default_stock" maxlength="8"/>
-                    </td>
-                </tr>
-				<tr>
-                	<th>单位：</th>
-                    <td>
-                    <div>
-                    	<input type="text" class="bh-txt-def" name="gd_unit" id="gd_unit" maxlength="10"/>
-                        </div><i class="bh-icon-help bh-mRt5"></i>商品计价的单位，比如斤、克等
+                         <input type="text" name="stock" id="gd_stock" value="$!goods.stock" maxlength="8" class="normal _vdt:{CHECKNOTNULL(商品库存)} _for:{msg02}"/>
                     </td>
                 </tr>
 				<tr>
 					<th valign="top">描述：</th>
-					<td class="bh-padLR10">
-                        <textarea id="riche_ditor" name="desc" cols="10" rows="80" style="width: 80%"></textarea>
+					<td>
+                        
 					</td>
 				</tr>
 						
 				</tbody></table>
 			</div>
+			<textarea id="riche_ditor" name="desc" rows="12" cols="80" style="width: 80%"></textarea>
 			<table class="form_table">
 				<colgroup><col width="150px">
 				<col>
 				</colgroup><tbody><tr>
-					<td></td><td><button onclick="validatorForm();" type="button" class="submit"><span>保存</span></button></td>
+					<td></td><td><button type="submit" class="submit"><span>保存</span></button></td>
 				</tr>
 			</tbody></table>
 		</form>

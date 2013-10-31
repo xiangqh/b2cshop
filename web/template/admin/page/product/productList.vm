@@ -1,12 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>商品列表</title>
-<link href="${cssDomain}/css/admin.css" rel="stylesheet">
-<link href="${cssDomain}/css/style.css" rel="stylesheet">
-<script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/util.js"></script>
-<script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/jquery.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>商品列表</title>
+    <link href="${cssDomain}/css/admin.css" rel="stylesheet">
+    <link href="${cssDomain}/css/style.css" rel="stylesheet">
+    <script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/util.js"></script>
+    <script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/jquery.js"></script>
 </head>
 
 <body>
@@ -50,20 +50,20 @@
 						<tbody>
             				#foreach($row in $list)
             					<tr class="">
+									<td>$!{velocityCount}</td>
+									<td>$!{row.sn}</td>
             						<td title="${row.name}">${row.name}</td>
-            						<td>$!{row.goods_num}</td>
-            						<td>$!{row.brandName}</td>
-            						<td>$!{row.ctName}</td>
             						<td>$!{row.cdity_attr}</td>
+									<td>$!{row.brand.name}</td>
             						<td>
-            							<a href="javascript:void(0);" onclick="location.href='${request.getContextPath()}/tocmtyedit.htm?opera=1&cmty=${row.id}';">
-            								<img title="编辑" src="${request.getContextPath()}/image/m1/pen.png" class="operator">
+            							<a href="javascript:void(0);" onclick="location.href='/${ctx}/editGoodsAttrs?id=${row.id}';">
+            								<img title="编辑" src="${imageDomain}/images/m1/pen.png" class="operator">
             							</a>
             							<a href="javascript:void(0);" onclick="del(${row.id});">
-            								<img title="删除" src="${request.getContextPath()}/image/m1/del.png" class="operator">
+            								<img title="删除" src="${imageDomain}images/m1/del.png" class="operator">
             							</a>
             							<a href="javascript:void(0);" onclick="location.href='${request.getContextPath()}/cmdyinfo.htm?id=${row.id}&category_id=${row.category_id}';">
-            								<img title="编辑商品HTML" src="${request.getContextPath()}/image/m1/pen.png" class="operator">
+            								<img title="编辑商品HTML" src="${imageDomain}/images/m1/pen.png" class="operator">
             							</a>
             						</td>
             					</tr>

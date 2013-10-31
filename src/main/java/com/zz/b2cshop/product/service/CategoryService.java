@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.google.common.collect.Lists;
 import com.zz.b2cshop.product.dao.ICategoryDao;
 import com.zz.b2cshop.product.dao.entity.Category;
 
@@ -39,8 +40,8 @@ public class CategoryService implements ICategorySerice {
 	@Override
 	public Category getCategoryById(Long id) {
 		Category category = categoryDao.getById(id);
-		Hibernate.initialize(category.getChilds());
 		Hibernate.initialize(category.getPt());
+		Hibernate.initialize(category.getParent());
 		return category;
 	}
 
@@ -67,15 +68,14 @@ public class CategoryService implements ICategorySerice {
 	}
 
 	private void initializeList(List<Category> list) {
-		for (Category category : list) {
-			Hibernate.initialize(category.getChilds());
-			Hibernate.initialize(category.getPt());
-			if (CollectionUtils.isNotEmpty(category.getChilds())) {
-				for (Category child : category.getChilds()) {
-					Hibernate.initialize(child.getParent());
-					Hibernate.initialize(child.getChilds());
-					Hibernate.initialize(child.getPt());
-				}
+		if (CollectionUtils.isEmpty(list))
+			return;
+		for (Category cate : list) {
+			Hibernate.initialize(cate.getParent());
+			Hibernate.initialize(cate.getChilds());
+			Hibernate.initialize(cate.getPt());
+			if (CollectionUtils.isNotEmpty(cate.getChilds())) {
+				initializeList(Lists.newArrayList(cate.getChilds()));
 			}
 		}
 	}

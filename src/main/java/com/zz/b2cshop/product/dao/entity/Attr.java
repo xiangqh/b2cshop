@@ -136,10 +136,4 @@ public class Attr extends PO {
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "Attr [productType=" + productType + ", attr_name=" + attr_name + ", alias_name=" + alias_name
-				+ ", attr_type=" + attr_type + ", attr_val=" + attr_val + "]";
-	}
-
 }

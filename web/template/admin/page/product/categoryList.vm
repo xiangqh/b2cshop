@@ -3,124 +3,90 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>分类列表</title>
-    <link href="${cssDomain}/admin.css" rel="stylesheet">
-    <link href="${cssDomain}/style.css" rel="stylesheet">
-    <link href="${cssDomain}/artDialog.css" rel="stylesheet">
-    <script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/util.js"></script>
-    <script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/jquery.js"></script>
-    <script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/artDialog.js"></script>
+    <link href="${cssDomain}/css/admin.css" rel="stylesheet">
+    <link href="${cssDomain}/css/style.css" rel="stylesheet">
+    <link href="${cssDomain}/css/artDialog.css" rel="stylesheet">
+    <script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/util.js"></script>
+    <script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/jquery.js"></script>
+    <script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/artDialog.js"></script>
 
 </head>
 
 <body>
 #qModuleLoader("moduleName=module.admin.common.head" "parameters={path:template/admin/head.vm,level1:3,level2:15}")
-<div id="admin_right">
-	<div class="headbar">
-	<div class="position"><span>商品</span><span>&gt;</span><span>商品分类管理</span><span>&gt;</span><span>分类列表</span></div>
-	<div class="searchbar">
-		<a href="javascript:;"><button onclick="location.href='${ctx}/editCategoryPage';" type="button" class="btn"><span>添加分类</span></button></a>
-	</div>
-	<div class="field">
-		<table class="list_table">
-		<colgroup>
-		<col width="200px">
-		<col width="150px">
-		<col width="100px">
-		<col width="70px">
-		<col width="70px">
-		<col width="70px">
-			</colgroup><thead>
-				<tr id="headth" class="">
-					<th>分类名称[ID]</th>
-					<th>品类名称</th>
-					<th>排序号</th>
-					<th>推荐</th>
-					<th class="t_c">首页显示</th>
-					<th>操作</th>
-				</tr>
-			</thead>
-		</table>
-	</div>
+<div id="container">
+   <div id="admin_right" style="overflow:hidden;padding: 15px;">
+      <div style="float:left;width:100%;border: 1px solid #D7DDE3;">
+          <div class="content">
+            <div class="position"><span>商品</span><span>&gt;</span><span>商品分类管理</span><span>&gt;</span><span>分类列表</span></div>
+            <div class="operating">
+				<a href="/${ctx}/editCategoryPage"><button class="operating_btn" type="button"><span class="addition">添加分类</span></button></a>
+            	<a href="javascript:void(0)" onclick="selall()"><button class="operating_btn" type="button"><span class="sel_all">全选</span></button></a>
+            	<a href="javascript:void(0)" onclick="del_select()"><button class="operating_btn" type="button"><span class="delete">批量删除</span></button></a>
+            	<a href="javascript:void(0)" onclick=""><button class="operating_btn" type="button"><span class="recycle">回收站</span></button></a>
+            </div>
+			<div>
+				
+				<table class="list_table" id="list_table">
+            		<colgroup>
+            		<col width="200px"/>
+            		<col width="150px"/>
+            		<col width="100px"/>
+            		<col width="70px"/>
+            		<col width="70px"/>
+            		<col width="70px"/>
+        			</colgroup>
+					<thead>
+        				<tr id="headth" class="">
+        					<th>分类名称[ID]</th>
+        					<th>品类名称</th>
+        					<th>排序号</th>
+        					<th>推荐</th>
+        					<th class="t_c">首页显示</th>
+        					<th>操作</th>
+        				</tr>
+        			</thead>
+					<tbody id="conth">
+            			#foreach($row in $list)
+            			<tr id="${row.id}" parent="$!{row.parent.id}"  #if($row.parent.id) style="display:none;" #end> 
+            				<td class="switch" #if($row.parent.id) #if($row.parent.parent.id)style="padding-left: 60px;"#else style="padding-left: 20px;" #end #end>
+            				#if(${row.childs.size()} > 0)<img title="打开" src="${imageDomain}/images/open.gif" class="operator">#end
+            				${row.name}[${row.id}]
+                            </td>
+            				<td style="width:150px;">$!{row.pt.name}</td>
+            				<td style="width:100px;">
+            					<input type="hidden" value="${row.sort}" id="hid_sort_${row.id}">
+            					<input title="排序，正整数" id="sort_${row.id}" type="text" value="$!{row.sort}" size="2" class="tiny" maxlength="7">
+            					<img title="更改" src="${imageDomain}/m1/right.png" class="operator" style="display:''" onclick="_updSort(this,${row.id},${row.parent.id});">
+            				</td>
+            				<td>
+            					#if(${row.childs.size()} == 0)
+            					  <a href="${ctx}/getRecInvList.htm?cateId=${row.id}">
+            					  	<img title="编辑推荐货品" src="${imageDomain}/m1/pen.png" class="operator">
+            					  </a>
+            					  #end
+            			    </td>
+            				<td class="t_c" style="width:100px;"><span class="green">#if(${row.visibility}==1) 是 #else 否 #end</span></td>
+            				<td>
+            					<a href="${ctx}/editCategoryPage?id=${row.id}">
+            						<img title="编辑" src="${imageDomain}/images/icon_edit.gif" class="operator">
+            					</a>
+            					#if(${row.childs.size()} == 0)
+            					<a href="javascript:void(0);" onclick="del(${row.id});">
+            						<img title="删除" src="${imageDomain}/images/icon_del.gif" class="operator">
+            					</a>
+            					#end
+            				</td>
+            			</tr>
+            			#end
+            		</tbody>
+        		</table>
+				
+            </div>
+          </div>
+	  </div>
+  </div>
 </div>
-<form name="category_list" method="post" action="">
-<div class="content">
-	<table class="list_table" id="list_table">
-		<colgroup>
-		<col width="200px">
-		<col width="150px">
-		<col width="100px">
-		<col width="70px">
-		<col width="70px">
-		<col width="70px">
-			</colgroup>
-		<tbody id="conth">
-			#foreach($row in $list)
-			<tr id="${row.id}">
-				<td style="padding-left: 10px;width:300px;" class="switch">
-				#if(${row.childs.size()} > 0)<img title="打开" src="${imageDomain}/open.gif" class="operator">#end
-				${row.name}[${row.id}]</td>
-				<td style="width:150px;">$!{row.pt.name}</td>
-				<td style="width:100px;">
-					<input type="hidden" value="${row.sort}" id="hid_sort_${row.id}">
-					<input title="排序，正整数" id="sort_${row.id}" type="text" value="$!{row.sort}" size="2" class="tiny" maxlength="7">
-					<img title="更改" src="${imageDomain}/m1/right.png" class="operator" style="display:''" onclick="_updSort(this,${row.id},${row.parent.id});">
-				</td>
-				<td>
-					#if(${row.childs.size()} == 0)
-					  <a href="${ctx}/getRecInvList.htm?cateId=${row.id}">
-					  	<img title="编辑推荐货品" src="${imageDomain}/m1/pen.png" class="operator">
-					  </a>
-					  #end
-			    </td>
-				<td class="t_c" style="width:100px;"><span class="green">#if(${row.visibility}==1) 是 #else 否 #end</span></td>
-				<td>
-					<a href="${ctx}/editCategoryPage?id=${row.id}">
-						<img title="修改" src="${imageDomain}/icon_edit.gif" class="operator">
-					</a>
-					#if(${row.childs.size()} == 0)
-					<a href="javascript:void(0);" onclick="del(${row.id});">
-						<img title="删除" src="${imageDomain}/icon_del.gif" class="operator">
-					</a>
-					#end
-				</td>
-			</tr>
-			#foreach($childS in $row.childs) 
-				<tr id="${childS.id}" $null.isNull(${childS.parent}) parent="${childS.parent.id}" #if(${childS.childs.size()} == 0)style="display:none;"#end >
-				<td style="padding-left: 10px;width:300px;" class="switch">
-				#if(${childS.childs.size()} > 0)<img title="打开" src="${imageDomain}/open.gif" class="operator">#end
-				${childS.name}[${childS.id}]</td>
-				<td style="width:150px;">$!{childS.pt.name}</td>
-				<td style="width:100px;">
-					<input type="hidden" value="${childS.sort}" id="hid_sort_${childS.id}">
-					<input title="排序，正整数" id="sort_${childS.id}" type="text" value="$!{childS.sort}" size="2" class="tiny" maxlength="7">
-					<img title="更改" src="${imageDomain}/m1/right.png" class="operator" style="display:''" onclick="_updSort(this,${childS.id},${childS.parent.id});">
-				</td>
-				<td>
-					#if(${childS.childs.size()} == 0)
-					  <a href="${ctx}/getRecInvList.htm?cateId=${childS.id}">
-					  	<img title="编辑推荐货品" src="${imageDomain}/m1/pen.png" class="operator">
-					  </a>
-					  #end
-			    </td>
-				<td class="t_c" style="width:100px;"><span class="green">#if(${childS.visibility}==1) 是 #else 否 #end</span></td>
-				<td>
-					<a href="${ctx}/editCategoryPage?id=${childS.id}">
-						<img title="修改" src="${imageDomain}/icon_edit.gif" class="operator">
-					</a>
-					#if(${row.childs.size()} == 0)
-					<a href="javascript:void(0);" onclick="del(${childS.id});">
-						<img title="删除" src="${imageDomain}/icon_del.gif" class="operator">
-					</a>
-					#end
-				</td>
-			</tr>
-			#end
-			#end
-		</tbody>
-	</table>
-</div>
-</form>
-	</div>
  #qModuleLoader("moduleName=module.admin.common.foot" "parameters={path:template/admin/foot.vm}")
 </body>
 </html>
@@ -128,19 +94,19 @@
 $("td.switch .operator").each(function(i){
 	$(this).toggle(function(){
 		iteraShow($(this).parent().parent().attr('id'), 'show');
-		$(this).attr("src", "${imageDomain}/close.gif").attr("title","关闭");
+		$(this).attr("src", "${imageDomain}/images/close.gif").attr("title","关闭");
 	},function(){
 		iteraShow($(this).parent().parent().attr('id'), 'hide');
-		$(this).attr("src", "${imageDomain}/open.gif").attr("title","打开");
+		$(this).attr("src", "${imageDomain}/images/open.gif").attr("title","打开");
 	});
 });
 
 function iteraShow(id,isshow) {
+     
 	var obj = $("#list_table tr[parent='"+id+"']");
+	console.info(obj);
 	if (obj.length>0){
-		obj.each(function(i) {
-			iteraShow($(this).attr('id'), isshow);
-		});
+		
 		if (isshow=='hide'){
 			obj.hide();
 		}else{
@@ -152,7 +118,7 @@ function iteraShow(id,isshow) {
 function del(id){
 	dialogConfirm("提示","确认要删除该分类吗?",
 		function(){
-			window.location='${request.getContextPath()}/deletecg.htm?cgId='+id;
+			window.location='${request.getContextPath()}/editCategoryPage?id='+id;
 		}
 	);
 }

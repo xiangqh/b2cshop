@@ -45,7 +45,7 @@ public class Category extends PO {
 	@Type(type = "yes_no")
 	private Boolean publish_status;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "pt_id")
 	private ProductType pt;
 

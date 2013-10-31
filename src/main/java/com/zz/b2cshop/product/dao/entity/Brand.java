@@ -21,6 +21,13 @@ public class Brand extends PO {
 	@Column
 	private String description;
 
+	public Brand() {
+	}
+
+	public Brand(Long id) {
+		this.id = id;
+	}
+
 	public String getName() {
 		return name;
 	}

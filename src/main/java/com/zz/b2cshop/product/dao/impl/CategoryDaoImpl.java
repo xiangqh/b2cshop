@@ -1,4 +1,4 @@
-package com.zz.b2cshop.product.dao.entity;
+package com.zz.b2cshop.product.dao.impl;
 
 import java.util.List;
 
@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.zz.b2cshop.common.dao.BaseDaoSupport;
 import com.zz.b2cshop.common.dao.Page;
 import com.zz.b2cshop.product.dao.ICategoryDao;
+import com.zz.b2cshop.product.dao.entity.Category;
 
 @Repository
 public class CategoryDaoImpl extends BaseDaoSupport<Category> implements ICategoryDao {

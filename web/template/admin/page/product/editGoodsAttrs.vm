@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>商品添加-商品信息</title>
+    <link href="${cssDomain}/css/admin.css" rel="stylesheet">
+    <link href="${cssDomain}/css/style.css" rel="stylesheet">
+    <script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/util.js"></script>
+    <script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/jquery.js"></script>
+</head>
+
+<body>
+#qModuleLoader("moduleName=module.admin.common.head" "parameters={path:template/admin/head.vm,level1:3,level2:15}")
+<div id="admin_right">
+
+<div class="headbar clearfix">
+	<div class="position"><span>商品</span><span>&gt;</span><span>商品管理</span><span>&gt;</span><span>商品添加</span><span>&gt;</span><span>填写商品规格</span></div>
+</div>
+<div class="content_box">
+	<div class="content form_content">
+		<form method="post" action="/${ctx}/saveBaseInfo">
+			<div id="table_box_1" style="display: block;">
+				<table class="form_table">
+					        <col width="150px"></col>
+					<col ></col>
+					        #set($attr = $goods.category.pt)
+					        #set($goods_spliter_attr = '')
+							#set($stock_spliter_attr = '')
+							#foreach($attr in $pt.attrs)
+								#if($attr.attr_type == 1) #set($goods_spliter_attr = $attr) #end
+								#if($attr.attr_type == 2) #set($stock_spliter_attr = $attr) #end
+							#end
+
+                        	<tr>
+                                <th><a style="color:red">*</a>$!{goods_spliter_attr.attr_name}：</th>
+                                <td>
+										    #set($attrValList = $!{goods_spliter_attr.attr_val.split(',')})
+											#foreach($attrVal in $attrValList)
+											<span>
+										       	<input type="checkbox" id="attrItem_$!attrVal.attr_val_id" name="split_goods_attrs" value="$!goods_spliter_attr.attr_id:$!attrVal.attr_val_id" />
+										       	<label class="bh-mLtRt5">$!attrVal</label>
+										    </span>
+											#end
+                                   </td>
+                            </tr>
+
+							<tr>
+                                <th><a style="color:red">*</a>$!{stock_spliter_attr.attr_name}：</th>
+                                <td>
+	                                       #foreach($attrVal in $stock_spliter_attr.attrValList)
+											<span>
+	                                           	<input type="checkbox"  name="split_stock_attrs" value="$!stock_spliter_attr.attr_id:$!attrVal.attr_val_id" />
+	                                           	<label class="bh-mLtRt5">$!attrVal.attr_val</label>
+										    </span>
+											#end
+                                   </td>
+                            </tr>
+
+							<!-- 筛选属性 -->
+							#set($c = 0)
+							#foreach($attr in $attrs)
+							#if($attr.attr_type == 4)
+							#if($c == 0)
+							<tr>
+                                	<td class="bh-bigFont bh-strong" colspan="2">筛选属性：</td>
+                            </tr>
+                            #set($c = 1)
+							#end
+
+							<tr>
+                                <td width="80">
+                                	#if($attr.is_required == 1)<a style="color:red">*</a>#end$!{attr.attr_name}：
+                                </td>
+                                <td>
+                                        	#foreach($attrVal in $attr.attrValList)
+                                        	<span>
+	                                           	<input type="checkbox" class="kp-goods-attr #if($attr.is_required == 1) kp-filter-attr-require #end" name="pubAttrs" value="$attrVal.attr_id:$attrVal.attr_val_id" />
+	                                           	<label class="bh-mLtRt5">$!attrVal.attr_val</label>
+										    </span>
+											#end
+                                   </td>
+                            </tr>
+                            <tr><td style="height: 1px;">&nbsp;</td></tr>
+                            #end
+							#end
+                            <tr>
+                                <th>&nbsp;</th>
+                                <td class="bh-button">
+                                    <div style="display: inline-block;height: 25px;line-height: 25px;">
+                                    <input name="input" type="button" class="bh-btn bh-padLR10" value="上一步：商品描述" onclick="completeSubmit(0)"/>
+                                    </div>
+                                    <div style="display: inline-block;height: 25px;line-height: 25px;">
+                                    <input name="input" type="button" class="bh-btn" value="下一步：上传图片" onclick="completeSubmit(1)"/>
+                                    </div>
+                                    <div style="display: inline-block;height: 25px;line-height: 25px;">
+						            	<input name="input" type="button" id="saveButton" class="bh-btn bh-padLR10" onclick="completeSubmit(2);"  value="完成" />
+						            </div>
+                                </td>
+                            </tr>
+					
+						
+				</tbody>
+              </table>
+			</div>
+			<table class="form_table">
+				<colgroup><col width="150px">
+				<col>
+				</colgroup><tbody><tr>
+					<td></td><td><button type="submit" class="submit"><span>保存</span></button></td>
+				</tr>
+			</tbody></table>
+		</form>
+	</div>
+</div>
+
+	</div>
+#qModuleLoader("moduleName=module.admin.common.foot" "parameters={path:template/admin/foot.vm}")
+</body>
+</html>
+<script type="text/javascript" charset="utf-8" language="javascript">
+    function validatorForm(){
+    	if(validator(document)){
+	    	var _cks = document.getElementsByName("_specalCbox");
+	    	if(_cks && _cks.length > 0){
+	    		var _count = _cks.length;
+	    		var _ckstr = "";
+	    		for(var i =0;i<_count;i++){
+	    			if(_cks[i].checked){
+	    				_ckstr += _cks[i].value;
+	    				_ckstr += ";";
+	    			}
+	    		}
+	    		if(_ckstr.length == 0){
+	    			dialogAlert('提示','没有选择任何商品属性');
+	    		}else{
+	    			var _pri = document.getElementsByName("priceAttrValue");
+	    			if(_pri && _pri.length > 0){
+	    				var _isc = false;
+	    				for(var i =0;i<_pri.length;i++){
+	    					if(_pri[i].checked){
+	    						_isc = true;
+	    						break;
+	    					}
+	    				}
+	    				if(_isc){
+			    			$("#changeSplitJson").val(_ckstr.substr(0,_ckstr.length-1));
+			    			var _ss="";
+			    			var _obj;
+			    			$("._mk").each(function(i){
+			    				_obj = $(this);
+			    				if(_obj.attr("checked")){
+			    					_ss+=_obj.val()+"^";
+			    				}
+			    			});
+			    			if(_ss.length > 0){
+			    				_ss = _ss.substr(0,_ss.length-1);
+			    			}
+			    			$("#searchValue").val(_ss);
+			    			var _from = document.getElementById("cmtyForm");
+			    			_from.action = "${request.getContextPath()}/editcmty.htm";
+			    			_from.submit();
+		    			}else{
+		    				dialogAlert('提示','请选择价格属性');
+		    			}
+	    			}else{
+	    				dialogAlert('提示','请选择价格属性');
+	    			}
+	    		}    		
+	    	}else{
+	    		dialogAlert('提示','没有选择任何商品属性');
+	    	}
+    	}
+    }
+    
+	
+</script>
