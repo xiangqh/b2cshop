@@ -21,7 +21,7 @@ import com.zz.b2cshop.product.service.IGoodsService;
 import com.zz.b2cshop.product.service.IProductTypeService;
 
 @Controller
-@ActionController
+@ActionController(value = "admin/product")
 public class GoodsAction extends QAction {
 
 	@Autowired

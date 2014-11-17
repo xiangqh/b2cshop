@@ -59,5 +59,11 @@ public class CommonAction implements ModuleAction {
 	public void setMenuService(IMenuService menuService) {
 		this.menuService = menuService;
 	}
+	public static void main(String[] args) {
+		String[] ss = new String[2];
+		
+		ss[1] = "111";
+		System.out.println(ss.length);
+	}
 
 }

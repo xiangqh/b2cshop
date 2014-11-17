@@ -5,10 +5,17 @@
     <title>分类列表</title>
     <link href="${cssDomain}/css/admin.css" rel="stylesheet">
     <link href="${cssDomain}/css/style.css" rel="stylesheet">
-    <link href="${cssDomain}/css/artDialog.css" rel="stylesheet">
-    <script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/util.js"></script>
-    <script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/jquery.js"></script>
-    <script type="text/javascript" charset="utf-8" language="javascript" src="${jsDomain}/js/artDialog.js"></script>
+    <link href="${cssDomain}/css/jquery/ui/jquery.ui.css" rel="stylesheet">
+    <script type="text/javascript" src="${jsDomain}/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="${jsDomain}/js/jquery/jquery.ui.min.js"></script>
+	<script language="javascript">
+	        function addCate(parent_id, parent_name) {
+                var options = [];
+            	options.push('<option value="'+parent_id+'">'+parent_name+'</option>');
+            	$("#parent_cate").html(options);
+            	$("#editCate").dialog();
+    		}
+    </script>
 
 </head>
 
@@ -40,7 +47,7 @@
         				<tr id="headth" class="">
         					<th>分类名称[ID]</th>
         					<th>品类名称</th>
-        					<th>排序号</th>
+        					<th>&nbsp;</th>
         					<th>推荐</th>
         					<th class="t_c">首页显示</th>
         					<th>操作</th>
@@ -56,13 +63,14 @@
             				<td style="width:150px;">$!{row.pt.name}</td>
             				<td style="width:100px;">
             					<input type="hidden" value="${row.sort}" id="hid_sort_${row.id}">
-            					<input title="排序，正整数" id="sort_${row.id}" type="text" value="$!{row.sort}" size="2" class="tiny" maxlength="7">
-            					<img title="更改" src="${imageDomain}/m1/right.png" class="operator" style="display:''" onclick="_updSort(this,${row.id},${row.parent.id});">
+								#if(!$row.pt.id)
+                                <button class="editCate" type="button" value="添加子分类" onClick="addCate('${row.id}','${row.name}')" >添加子分类</button>
+								#end
             				</td>
             				<td>
             					#if(${row.childs.size()} == 0)
             					  <a href="${ctx}/getRecInvList.htm?cateId=${row.id}">
-            					  	<img title="编辑推荐货品" src="${imageDomain}/m1/pen.png" class="operator">
+            					  	<img title="编辑推荐货品" src="${imageDomain}/images/m1/pen.png" class="operator">
             					  </a>
             					  #end
             			    </td>
@@ -90,7 +98,56 @@
  #qModuleLoader("moduleName=module.admin.common.foot" "parameters={path:template/admin/foot.vm}")
 </body>
 </html>
+<div id="editCate" style="display:none;">
+    <table cellspacing="0" cellpadding="0" class="form_table">
+			<colgroup><col width="150px">
+			<col>
+			</colgroup><tbody><tr>
+				<th>分类名称：</th>
+				<td><input type="text" title="分类名称" value="" name="name" class="normal _vdt:{CHECKNOTNULL(分类名称)} _for:{name_msg}">
+				<label class="msgColor">*</label>
+				<label id="name_msg" class="msgColor"></label>
+				<input type="hidden" value="${category.id}" name="id">
+				</td>
+			</tr>
+			<tr>
+				<th>上级分类：</th>
+				<td>
+					<select id="parent_cate" title="选择分类" name="parent_id" class="normal">
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>品类：</th><td>
+				<select title="选择商品模型" name="pt_id" class="normal">
+					<option value="0" #if(${category.pt.id}) selected #end>无绑定</option>
+					#foreach($row in $pt_list)
+						<option value="${row.id}">$!{row.name}</option>
+					#end
+				</select>
+			</td>
+			</tr>
+			<tr>
+				<th>发部：</th>
+				<td>
+					<label class="attr">
+						<input type="radio" value="1" name="publish_status" #if(${category.publish_status}) checked #end> 是 
+					</label>
+					<label class="attr">
+						<input type="radio" value="0" name="publish_status" #if(${category.publish_status}) checked #end> 否 
+					</label>
+				</td>
+			</tr>
+			<tr>
+				<td></td><td><button type="button" class="submit" onclick="if(validator(document)){$('#categoryForm').submit();}"><span>确 定</span></button></td>
+			</tr>
+		</tbody>
+        </table>
+	 </form>
+</div>
 <script language="javascript">
+
+
 $("td.switch .operator").each(function(i){
 	$(this).toggle(function(){
 		iteraShow($(this).parent().parent().attr('id'), 'show');
@@ -168,47 +225,6 @@ function catCates(n){
 			});
 }
 
-function _updSort(_obj,_id,_pid){
-	var _nSort = document.getElementById("sort_"+_id);
-	var _osort = document.getElementById("hid_sort_"+_id);
-	var _sort = _nSort.value;
-	var _sub = true;
-	if(!(/^([1-9]\d*)$/.test(_sort))){
-			dialogAlert("错误","请输入一个正整数!");
-			_nSort.value = _osort.value;
-			_sub = false;
-	}
-	if(_sub){
-		var _data = "sort="+_sort+"&id="+_id+"&pid="+_pid+"&os="+_osort.value;
-		_obj.style.display = "none";
-		$.ajax({
-					url: "${request.getContextPath()}/updsort.htm",
-					type: "GET",
-					data: _data,
-					timeout: 10000,
-					async:false,
-					success: function(data){
-						if("00_FAIL" == data){
-							dialogAlert("错误","非法的请求!");
-							_nSort.value = _osort.value;
-						}else if("01_FAIL" == data){
-							dialogAlert("错误","排序号重复!");
-							_nSort.value = _osort.value;
-						}else if("02_FAIL" == data){
-							dialogAlert("错误","服务器更新出错，请重试!");
-							_nSort.value = _osort.value;
-						}else if("SUCCESS" == data){
-							_osort.value = _nSort.value;
-							dialogAlert("提示","修改成功!");
-						}else{
-							dialogAlert("错误","非法的请求!");
-							_nSort.value = _osort.value;
-						}
-						_obj.style.display = "";
-					}
-				});
-	}
-}
 
 function catbrand(_obj,id){
 	art.dialog.open("${request.getContextPath()}/listcb.htm?id="+id,{
